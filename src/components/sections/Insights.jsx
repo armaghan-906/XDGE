@@ -1,0 +1,75 @@
+import { motion } from 'framer-motion';
+import { theme, fadeUp } from '../../theme';
+import { Group } from '../primitives/Reveal';
+import { Img } from '../primitives/Img';
+import { SplitHeading } from '../primitives/SplitHeading';
+
+const posts = [
+  { tag1: 'DEVELOPMENT', tag2: 'TECH', title: 'How to keep your SaaS customers happy: enhanced user experiences in SaaS solutions' },
+  { tag1: 'DESIGN', tag2: 'WEB3', title: "Why your website's user experience is its greatest asset" },
+  { tag1: 'PRODUCTIVITY', tag2: 'HEALTH', title: 'Mastering productivity: a guide to getting more done in less time' },
+];
+
+export function Insights() {
+  return (
+    <section data-screen-label="07 Insights" style={{ background: theme.dark, color: theme.base, padding: '120px 40px 100px' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+        <Group style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'flex-end', marginBottom: 56 }}>
+          <div>
+            <motion.div
+              variants={fadeUp}
+              style={{ fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase', color: theme.subtitle, marginBottom: 28 }}
+            >(INSIGHTS)</motion.div>
+            <SplitHeading
+              lines={['INSIGHTS']}
+              style={{
+                fontFamily: theme.display, fontWeight: 900,
+                fontSize: 'clamp(96px, 14vw, 220px)',
+                lineHeight: 0.95, letterSpacing: '-0.01em',
+              }}
+            />
+          </div>
+          <motion.div variants={fadeUp} style={{ paddingBottom: 24 }}>
+            <p style={{ fontSize: 17, lineHeight: 1.55, color: theme.subtitle, margin: '0 0 24px', maxWidth: 480 }}>
+              Get our latest thoughts and opinions on all things leadership, mindset, and performance.
+            </p>
+            <motion.a
+              whileHover={{ x: 4 }}
+              href="#"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 10, padding: '12px 20px',
+                border: `1px solid ${theme.base}`, borderRadius: 999, color: theme.base,
+                textDecoration: 'none', fontSize: 13, fontWeight: 500,
+              }}
+            >All Insights <span style={{ fontSize: 16 }}>→</span></motion.a>
+          </motion.div>
+        </Group>
+        <Group style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          {posts.map((p, i) => (
+            <motion.a
+              key={i}
+              href="#"
+              variants={fadeUp}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                display: 'block', textDecoration: 'none', color: theme.base,
+                border: `1px solid ${theme.borderDark}`, overflow: 'hidden',
+              }}
+            >
+              <Img src={`/assets/blog-0${i + 1}.jpg`} alt={p.title} ratio="3/2" />
+              <div style={{ padding: '20px 22px 24px' }}>
+                <div style={{ display: 'flex', gap: 8, fontSize: 11, color: theme.subtitle, marginBottom: 12, letterSpacing: '0.06em' }}>
+                  <span>{p.tag1}</span><span>·</span><span>{p.tag2}</span>
+                </div>
+                <h3 style={{ fontFamily: theme.body, fontSize: 16, lineHeight: 1.3, margin: 0, fontWeight: 500 }}>
+                  {p.title}
+                </h3>
+              </div>
+            </motion.a>
+          ))}
+        </Group>
+      </div>
+    </section>
+  );
+}

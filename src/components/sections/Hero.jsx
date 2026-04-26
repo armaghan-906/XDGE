@@ -1,0 +1,114 @@
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { theme } from '../../theme';
+import { TopBar } from '../TopBar';
+
+function HeroHeading({ y, opacity }) {
+  return (
+    <motion.h1
+      style={{
+        y, opacity,
+        fontFamily: theme.display, fontWeight: 900,
+        fontSize: 'clamp(140px, 18vw, 280px)',
+        lineHeight: 0.92, letterSpacing: '-0.02em', margin: 0,
+        color: theme.base, display: 'block',
+        overflow: 'hidden',
+        paddingBottom: '0.06em',
+      }}
+    >
+      <motion.span
+        initial={{ y: '110%' }}
+        animate={{ y: '0%' }}
+        transition={{ duration: 1.1, ease: [0.2, 0.7, 0.2, 1], delay: 0.25 }}
+        style={{ display: 'inline-block' }}
+      >
+        XDGE
+        <span style={{ display: 'inline-block', marginLeft: '0.18em' }}>.</span>
+      </motion.span>
+    </motion.h1>
+  );
+}
+
+export function Hero() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0.4]);
+
+  return (
+    <section
+      ref={ref}
+      data-screen-label="01 Hero"
+      data-cursor="light"
+      style={{
+        background: theme.dark, color: theme.base,
+        minHeight: '100vh', display: 'flex', flexDirection: 'column',
+        position: 'relative', overflow: 'hidden',
+      }}
+    >
+      <TopBar />
+      <div style={{ flex: 1, padding: '40px 56px 48px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div style={{ marginTop: 24, position: 'relative' }}>
+          <HeroHeading y={y} opacity={opacity} />
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.55 }}
+            style={{ fontSize: 13, fontWeight: 600, color: theme.base, marginTop: 18, letterSpacing: '0.01em' }}
+          >
+            Corporate-level leadership development for ages 12–24
+          </motion.div>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, marginTop: 32 }}>
+          <div />
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.85 }}
+            style={{ fontSize: 16, lineHeight: 1.55, color: theme.base, maxWidth: 460 }}
+          >
+            <p style={{ margin: '0 0 24px' }}>
+              Stand out with the edge top employers,<br />
+              universities and schools select for.
+            </p>
+            <p style={{ margin: 0 }}>
+              Prepare for competitive schools,<br />
+              top universities, and exceptional careers with a<br />
+              distinct advantage.
+            </p>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.05 }}
+          style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 48 }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            <div
+              style={{
+                width: 32, height: 32, borderRadius: '50%',
+                border: `1px solid ${theme.base}`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontFamily: theme.body, fontStyle: 'italic', fontSize: 16, color: theme.base,
+              }}
+            >C</div>
+            <div style={{ fontSize: 13, color: theme.base, letterSpacing: '0.01em' }}>
+              Corporate Style Leadership Development &amp; Training
+            </div>
+          </div>
+          <motion.a
+            whileHover={{ x: 4 }}
+            href="#"
+            style={{
+              color: theme.base, textDecoration: 'none', fontSize: 14,
+              borderBottom: `1px solid ${theme.base}`, paddingBottom: 3,
+            }}
+          >Xdge Programs</motion.a>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
