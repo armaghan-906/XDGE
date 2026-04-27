@@ -5,9 +5,12 @@ import { SplitHeading } from '../primitives/SplitHeading';
 
 export function WhatWeDo() {
   return (
-    <section data-screen-label="02 What We Do" style={{ background: theme.base, color: theme.ink, padding: '100px 40px 120px' }}>
+    <section data-screen-label="02 What We Do" style={{
+      background: theme.base, color: theme.ink,
+      padding: 'clamp(56px, 9vw, 100px) clamp(20px, 4vw, 40px) clamp(64px, 10vw, 120px)',
+    }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
-        <Group style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 48, alignItems: 'flex-start' }}>
+        <Group className="xg-wwd-top">
           <motion.div variants={fadeUp} style={{ paddingTop: 8 }}>
             <div
               style={{
@@ -26,7 +29,7 @@ export function WhatWeDo() {
             lines={['WHAT', 'WE DO']}
             style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(120px, 16vw, 260px)',
+              fontSize: 'clamp(64px, 16vw, 260px)',
               lineHeight: 0.92, letterSpacing: '-0.02em',
               textAlign: 'right',
             }}
@@ -44,8 +47,8 @@ export function WhatWeDo() {
           }}
         />
 
-        <Group style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'flex-start' }}>
-          <motion.p variants={fadeUp} style={{ fontSize: 17, lineHeight: 1.55, margin: 0, maxWidth: 560 }}>
+        <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(32px, 6vw, 80px)' }}>
+          <motion.p variants={fadeUp} style={{ fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55, margin: 0, maxWidth: 560 }}>
             XDGE prepares graduates and young students for their next competitive step:
             professional careers, elite internships, top universities, and selective schools.
             Participants develop the confidence, character, tools, and skills required to

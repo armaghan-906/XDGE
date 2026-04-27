@@ -4,6 +4,7 @@ import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { Img } from '../primitives/Img';
 import { SplitHeading } from '../primitives/SplitHeading';
+import { useCanHover } from '../../hooks/useMediaQuery';
 
 const items = [
   {
@@ -25,14 +26,18 @@ const items = [
 
 export function WhoItsFor() {
   const [hovered, setHovered] = useState(null);
+  const canHover = useCanHover();
 
   return (
     <section
       data-screen-label="03 Who It's For"
-      style={{ background: theme.dark, color: theme.base, padding: '120px 40px 100px' }}
+      style={{
+        background: theme.dark, color: theme.base,
+        padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px) clamp(56px, 8vw, 100px)',
+      }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <Group style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'flex-end', marginBottom: 56 }}>
+        <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(32px, 6vw, 56px)' }}>
           <div>
             <motion.div
               variants={fadeUp}
@@ -42,7 +47,7 @@ export function WhoItsFor() {
               lines={['WHO', "IT'S FOR"]}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(96px, 14vw, 220px)',
+                fontSize: 'clamp(56px, 14vw, 220px)',
                 lineHeight: 0.95, letterSpacing: '-0.01em',
               }}
             />
@@ -65,23 +70,23 @@ export function WhoItsFor() {
         </Group>
 
         <Group
-          onMouseLeave={() => setHovered(null)}
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}
+          className="xg-3"
+          onMouseLeave={canHover ? () => setHovered(null) : undefined}
         >
           {items.map((it, i) => {
-            const isFocused = hovered === i;
+            const isFocused = canHover && hovered === i;
             return (
               <motion.div key={i} variants={fadeUp}>
                 <motion.div
                   data-cursor="grow"
-                  onMouseEnter={() => setHovered(i)}
-                  animate={{
+                  onMouseEnter={canHover ? () => setHovered(i) : undefined}
+                  animate={canHover ? {
                     opacity: isFocused ? 1 : 0.35,
                     scale: isFocused ? 1.04 : 0.97,
                     y: isFocused ? -6 : 0,
                     filter: isFocused ? 'blur(0px)' : 'blur(2px)',
                     borderColor: isFocused ? theme.base : theme.borderDark,
-                  }}
+                  } : { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)', borderColor: theme.borderDark }}
                   transition={{ duration: 0.5, ease: [0.2, 0.7, 0.2, 1] }}
                   style={{
                     borderWidth: 1,

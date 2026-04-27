@@ -27,9 +27,10 @@ export function Footer() {
       >XDGE · LEADERSHIP ·</motion.div>
       <div style={{ height: 1, background: theme.borderDark }} />
       <div
+        className="xg-4"
         style={{
-          maxWidth: 1280, margin: '0 auto', padding: '48px 40px 0',
-          display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 32,
+          maxWidth: 1280, margin: '0 auto',
+          padding: 'clamp(32px, 5vw, 48px) clamp(20px, 4vw, 40px) 0',
         }}
       >
         <div>
@@ -83,8 +84,10 @@ export function Footer() {
       </div>
       <div
         style={{
-          maxWidth: 1280, margin: '0 auto', padding: '48px 40px 32px',
+          maxWidth: 1280, margin: '0 auto',
+          padding: 'clamp(32px, 5vw, 48px) clamp(20px, 4vw, 40px) clamp(24px, 3vw, 32px)',
           display: 'flex', justifyContent: 'space-between', fontSize: 11, color: theme.subtitle,
+          gap: 12, flexWrap: 'wrap',
         }}
       >
         <div>©2026 XDGE — All rights reserved</div>

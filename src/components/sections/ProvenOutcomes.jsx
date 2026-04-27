@@ -19,6 +19,7 @@ function TestimonialMarquee({ quotes }) {
         {loop.map((q, i) => (
           <div
             key={i}
+            className="xg-marquee-card"
             style={{
               flex: '0 0 380px',
               border: `1px solid ${theme.borderLight}`,
@@ -44,9 +45,12 @@ function TestimonialMarquee({ quotes }) {
 
 export function ProvenOutcomes() {
   return (
-    <section data-screen-label="06 Proven Outcomes" style={{ background: theme.base, color: theme.ink, padding: '120px 0 100px' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 40px' }}>
-        <Group style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'flex-end', marginBottom: 64 }}>
+    <section data-screen-label="06 Proven Outcomes" style={{
+      background: theme.base, color: theme.ink,
+      padding: 'clamp(64px, 10vw, 120px) 0 clamp(56px, 8vw, 100px)',
+    }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 clamp(20px, 4vw, 40px)' }}>
+        <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(40px, 6vw, 64px)' }}>
           <div>
             <motion.div
               variants={fadeUp}
@@ -56,7 +60,7 @@ export function ProvenOutcomes() {
               lines={['PROVEN', 'OUTCOMES']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(96px, 14vw, 220px)',
+                fontSize: 'clamp(56px, 14vw, 220px)',
                 lineHeight: 0.95, letterSpacing: '-0.01em',
               }}
             />

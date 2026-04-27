@@ -9,7 +9,7 @@ function HeroHeading({ y, opacity }) {
       style={{
         y, opacity,
         fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(140px, 18vw, 280px)',
+        fontSize: 'clamp(80px, 18vw, 280px)',
         lineHeight: 0.92, letterSpacing: '-0.02em', margin: 0,
         color: theme.base, display: 'block',
         overflow: 'hidden',
@@ -47,7 +47,12 @@ export function Hero() {
       }}
     >
       <TopBar />
-      <div style={{ flex: 1, padding: '40px 56px 48px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div style={{
+        flex: 1,
+        padding: 'clamp(24px, 4vw, 40px) clamp(20px, 4vw, 56px) clamp(32px, 6vw, 48px)',
+        display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+        gap: 32,
+      }}>
         <div style={{ marginTop: 24, position: 'relative' }}>
           <HeroHeading y={y} opacity={opacity} />
           <motion.div
@@ -60,22 +65,19 @@ export function Hero() {
           </motion.div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, marginTop: 32 }}>
-          <div />
+        <div className="xg-hero-body" style={{ marginTop: 16 }}>
+          <div className="xg-hide-md" />
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.85 }}
-            style={{ fontSize: 16, lineHeight: 1.55, color: theme.base, maxWidth: 460 }}
+            style={{ fontSize: 'clamp(14px, 1.6vw, 16px)', lineHeight: 1.55, color: theme.base, maxWidth: 460 }}
           >
             <p style={{ margin: '0 0 24px' }}>
-              Stand out with the edge top employers,<br />
-              universities and schools select for.
+              Stand out with the edge top employers, universities and schools select for.
             </p>
             <p style={{ margin: 0 }}>
-              Prepare for competitive schools,<br />
-              top universities, and exceptional careers with a<br />
-              distinct advantage.
+              Prepare for competitive schools, top universities, and exceptional careers with a distinct advantage.
             </p>
           </motion.div>
         </div>
@@ -84,7 +86,10 @@ export function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.05 }}
-          style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 48 }}
+          style={{
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+            marginTop: 24, gap: 16, flexWrap: 'wrap',
+          }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
             <div
@@ -93,6 +98,7 @@ export function Hero() {
                 border: `1px solid ${theme.base}`,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontFamily: theme.body, fontStyle: 'italic', fontSize: 16, color: theme.base,
+                flexShrink: 0,
               }}
             >C</div>
             <div style={{ fontSize: 13, color: theme.base, letterSpacing: '0.01em' }}>
@@ -105,6 +111,7 @@ export function Hero() {
             style={{
               color: theme.base, textDecoration: 'none', fontSize: 14,
               borderBottom: `1px solid ${theme.base}`, paddingBottom: 3,
+              whiteSpace: 'nowrap',
             }}
           >Xdge Programs</motion.a>
         </motion.div>

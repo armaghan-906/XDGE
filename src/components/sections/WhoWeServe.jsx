@@ -15,9 +15,12 @@ export function WhoWeServe() {
   const [hovered, setHovered] = useState(null);
 
   return (
-    <section data-screen-label="05 Who We Serve" style={{ background: theme.dark, color: theme.base, padding: '120px 40px 100px' }}>
+    <section data-screen-label="05 Who We Serve" style={{
+      background: theme.dark, color: theme.base,
+      padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px) clamp(56px, 8vw, 100px)',
+    }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <Group style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'flex-end', marginBottom: 56 }}>
+        <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(32px, 6vw, 56px)' }}>
           <div>
             <motion.div
               variants={fadeUp}
@@ -27,7 +30,7 @@ export function WhoWeServe() {
               lines={['WHO WE', 'SERVE']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(96px, 14vw, 220px)',
+                fontSize: 'clamp(56px, 14vw, 220px)',
                 lineHeight: 0.95, letterSpacing: '-0.01em',
               }}
             />
@@ -63,28 +66,27 @@ export function WhoWeServe() {
               data-cursor="grow"
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
+              className="xg-serve-row"
               style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1.4fr',
                 textDecoration: 'none',
                 color: theme.base,
                 border: `1px solid ${theme.borderDark}`,
                 overflow: 'hidden',
-                minHeight: 420,
                 background: theme.dark,
               }}
             >
               <div style={{
-                padding: '40px 40px 36px',
+                padding: 'clamp(28px, 4vw, 40px)',
                 display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-                gap: 32,
+                gap: 'clamp(20px, 3vw, 32px)',
+                minHeight: 320,
               }}>
                 <div style={{ fontSize: 12, color: theme.subtitle, letterSpacing: '0.04em' }}>
                   {c.year}
                 </div>
                 <h3 style={{
                   fontFamily: theme.display,
-                  fontSize: 'clamp(40px, 5vw, 72px)',
+                  fontSize: 'clamp(32px, 5vw, 72px)',
                   lineHeight: 1.0,
                   margin: 0,
                   letterSpacing: '-0.01em',
@@ -110,7 +112,7 @@ export function WhoWeServe() {
                 </div>
               </div>
 
-              <div style={{ position: 'relative', overflow: 'hidden', background: '#0e0e0e' }}>
+              <div className="xg-serve-img" style={{ position: 'relative', overflow: 'hidden', background: '#0e0e0e' }}>
                 <motion.img
                   src="/assets/program-01.png"
                   alt={c.t}

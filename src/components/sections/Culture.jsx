@@ -57,9 +57,12 @@ const dontList = [
 
 export function Culture() {
   return (
-    <section data-screen-label="04 Our Culture" style={{ background: theme.base, color: theme.ink, padding: '120px 40px 100px' }}>
+    <section data-screen-label="04 Our Culture" style={{
+      background: theme.base, color: theme.ink,
+      padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px) clamp(56px, 8vw, 100px)',
+    }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <Group style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'flex-start', marginBottom: 64 }}>
+        <Group className="xg-2" style={{ alignItems: 'flex-start', marginBottom: 'clamp(40px, 6vw, 64px)' }}>
           <div>
             <motion.div
               variants={fadeUp}
@@ -69,18 +72,18 @@ export function Culture() {
               lines={['OUR', 'CULTURE']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(96px, 14vw, 220px)',
+                fontSize: 'clamp(56px, 14vw, 220px)',
                 lineHeight: 0.95, letterSpacing: '-0.01em',
               }}
             />
           </div>
-          <motion.p variants={fadeUp} style={{ fontSize: 17, lineHeight: 1.55, margin: 0, paddingTop: 48, color: '#3a3c3e' }}>
+          <motion.p variants={fadeUp} style={{ fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55, margin: 0, paddingTop: 'clamp(0px, 4vw, 48px)', color: '#3a3c3e' }}>
             We are always eager to learn and grow, embracing challenges that push us
             beyond our comfort zones. With a passion for self-improvement, we see every
             challenge as an opportunity to expand our skills and discover new perspectives.
           </motion.p>
         </Group>
-        <Group style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+        <Group className="xg-2" style={{ gap: 24 }}>
           <CultureCard title="What We Do" items={doList} light />
           <CultureCard title="What We Don't Do" items={dontList} />
         </Group>
