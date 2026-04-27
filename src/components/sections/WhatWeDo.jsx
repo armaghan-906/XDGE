@@ -5,7 +5,7 @@ import { SplitHeading } from '../primitives/SplitHeading';
 
 export function WhatWeDo() {
   return (
-    <section data-screen-label="02 What We Do" style={{
+    <section data-screen-label="02 What We Do" data-section-theme="light" style={{
       background: theme.base, color: theme.ink,
       padding: 'clamp(56px, 9vw, 100px) clamp(20px, 4vw, 40px) clamp(64px, 10vw, 120px)',
     }}>

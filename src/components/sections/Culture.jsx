@@ -57,7 +57,7 @@ const dontList = [
 
 export function Culture() {
   return (
-    <section data-screen-label="04 Our Culture" style={{
+    <section data-screen-label="04 Our Culture" data-section-theme="light" style={{
       background: theme.base, color: theme.ink,
       padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px) clamp(56px, 8vw, 100px)',
     }}>

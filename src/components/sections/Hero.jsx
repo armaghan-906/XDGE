@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
-import { TopBar } from '../TopBar';
 
 function HeroHeading({ y, opacity }) {
   return (
@@ -40,16 +39,16 @@ export function Hero() {
       ref={ref}
       data-screen-label="01 Hero"
       data-cursor="light"
+      data-section-theme="dark"
       style={{
         background: theme.dark, color: theme.base,
         minHeight: '100vh', display: 'flex', flexDirection: 'column',
         position: 'relative', overflow: 'hidden',
       }}
     >
-      <TopBar />
       <div style={{
         flex: 1,
-        padding: 'clamp(24px, 4vw, 40px) clamp(20px, 4vw, 56px) clamp(32px, 6vw, 48px)',
+        padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(32px, 6vw, 48px)',
         display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
         gap: 32,
       }}>

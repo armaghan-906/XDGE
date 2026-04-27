@@ -44,6 +44,25 @@ input, textarea, select { cursor: text; }
   .xg-hide-sm { display: none !important; }
 }
 
+/* Footer right column — push content to the right edge on desktop */
+.xg-footer-right { justify-self: end; text-align: left; }
+@media (max-width: 768px) {
+  .xg-footer-right { justify-self: start; }
+}
+
+/* Menu drawer (Boldz-style 3-column layout) */
+.xg-menu-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1.6fr 0.85fr;
+  gap: clamp(24px, 4vw, 48px);
+  flex: 1;
+  min-height: 0;
+}
+@media (max-width: 900px) {
+  .xg-menu-grid { grid-template-columns: 1fr; gap: 32px; }
+  .xg-menu-image { display: none; }
+}
+
 @keyframes xdge-marquee {
   from { transform: translateX(0%); }
   to { transform: translateX(-50%); }
@@ -57,6 +76,17 @@ input, textarea, select { cursor: text; }
 }
 .xdge-marquee:hover { animation-play-state: paused; }
 
+@keyframes xdge-footer-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.xdge-footer-marquee {
+  display: flex;
+  white-space: nowrap;
+  will-change: transform;
+  animation: xdge-footer-marquee 30s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .xdge-marquee { animation: none; }
+  .xdge-marquee, .xdge-footer-marquee { animation: none; }
 }

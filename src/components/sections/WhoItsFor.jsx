@@ -31,6 +31,7 @@ export function WhoItsFor() {
   return (
     <section
       data-screen-label="03 Who It's For"
+      data-section-theme="dark"
       style={{
         background: theme.dark, color: theme.base,
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px) clamp(56px, 8vw, 100px)',

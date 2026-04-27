@@ -15,7 +15,7 @@ export function WhoWeServe() {
   const [hovered, setHovered] = useState(null);
 
   return (
-    <section data-screen-label="05 Who We Serve" style={{
+    <section data-screen-label="05 Who We Serve" data-section-theme="dark" style={{
       background: theme.dark, color: theme.base,
       padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px) clamp(56px, 8vw, 100px)',
     }}>

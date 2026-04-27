@@ -45,7 +45,7 @@ function TestimonialMarquee({ quotes }) {
 
 export function ProvenOutcomes() {
   return (
-    <section data-screen-label="06 Proven Outcomes" style={{
+    <section data-screen-label="06 Proven Outcomes" data-section-theme="light" style={{
       background: theme.base, color: theme.ink,
       padding: 'clamp(64px, 10vw, 120px) 0 clamp(56px, 8vw, 100px)',
     }}>

@@ -1,5 +1,6 @@
 import { ScrollProgress } from './components/ScrollProgress';
 import { Cursor } from './components/Cursor';
+import { TopBar } from './components/TopBar';
 import { Hero } from './components/sections/Hero';
 import { WhatWeDo } from './components/sections/WhatWeDo';
 import { WhoItsFor } from './components/sections/WhoItsFor';
@@ -15,6 +16,7 @@ export default function App() {
     <div>
       <Cursor />
       <ScrollProgress />
+      <TopBar />
       <Hero />
       <WhatWeDo />
       <WhoItsFor />

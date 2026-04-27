@@ -5,7 +5,7 @@ import { SplitHeading } from '../primitives/SplitHeading';
 
 export function ClosingCTA() {
   return (
-    <section data-screen-label="08 CTA" style={{
+    <section data-screen-label="08 CTA" data-section-theme="dark" style={{
       background: theme.dark, color: theme.base,
       padding: 'clamp(32px, 4vw, 40px) clamp(20px, 4vw, 40px) clamp(64px, 10vw, 120px)',
     }}>
