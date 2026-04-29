@@ -42,8 +42,6 @@ export function WhoWeServe() {
             <p style={{ fontSize: 14, lineHeight: 1.6, margin: '0 0 24px', color: theme.subtitle, maxWidth: 480 }}>
               XDGE prepares graduates and young students for their next competitive step:
               professional careers, elite internships, top universities, and selective schools.
-              Participants develop the confidence, character, tools, and skills required to
-              perform at the leadership standard expected at the next level.
             </p>
             <motion.a
               whileHover={{ x: 4 }}
@@ -57,7 +55,7 @@ export function WhoWeServe() {
           </motion.div>
         </Group>
 
-        <Group style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+        <Group className="xg-2" style={{ gap: 24 }}>
           {cards.map((c, i) => (
             <motion.a
               key={i}
@@ -66,53 +64,19 @@ export function WhoWeServe() {
               data-cursor="grow"
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
-              className="xg-serve-row"
               style={{
                 textDecoration: 'none',
                 color: theme.base,
                 border: `1px solid ${theme.borderDark}`,
-                overflow: 'hidden',
                 background: theme.dark,
+                display: 'flex', flexDirection: 'column',
+                overflow: 'hidden',
               }}
             >
               <div style={{
-                padding: 'clamp(28px, 4vw, 40px)',
-                display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-                gap: 'clamp(20px, 3vw, 32px)',
-                minHeight: 320,
+                position: 'relative', overflow: 'hidden',
+                aspectRatio: '4/3', background: '#0e0e0e',
               }}>
-                <div style={{ fontSize: 12, color: theme.subtitle, letterSpacing: '0.04em' }}>
-                  {c.year}
-                </div>
-                <h3 style={{
-                  fontFamily: theme.display,
-                  fontSize: 'clamp(32px, 5vw, 72px)',
-                  lineHeight: 1.0,
-                  margin: 0,
-                  letterSpacing: '-0.01em',
-                  fontWeight: 900,
-                  textTransform: 'uppercase',
-                }}>
-                  {c.t}
-                </h3>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 24 }}>
-                  <p style={{ fontSize: 13, color: theme.subtitle, lineHeight: 1.55, margin: 0, maxWidth: 280 }}>
-                    {c.d}
-                  </p>
-                  <motion.div
-                    animate={{ scale: hovered === i ? 1.1 : 1, borderColor: hovered === i ? theme.base : theme.borderDark }}
-                    transition={{ duration: 0.4, ease: [0.2, 0.7, 0.2, 1] }}
-                    style={{
-                      width: 44, height: 44, borderRadius: '50%',
-                      borderWidth: 1, borderStyle: 'solid', borderColor: theme.borderDark,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: 16, color: theme.base, flexShrink: 0,
-                    }}
-                  >↗</motion.div>
-                </div>
-              </div>
-
-              <div className="xg-serve-img" style={{ position: 'relative', overflow: 'hidden', background: '#0e0e0e' }}>
                 <motion.img
                   src="/assets/program-01.png"
                   alt={c.t}
@@ -136,12 +100,57 @@ export function WhoWeServe() {
                       background: theme.base,
                       color: theme.ink,
                       borderRadius: 4,
-                      fontSize: 13,
-                      fontWeight: 500,
-                      letterSpacing: '0.02em',
+                      fontSize: 13, fontWeight: 500, letterSpacing: '0.02em',
                       display: 'inline-flex', alignItems: 'center', gap: 8,
                     }}
                   >View Project →</motion.div>
+                </div>
+              </div>
+
+              <div style={{
+                padding: 'clamp(24px, 3vw, 32px)',
+                display: 'flex', flexDirection: 'column',
+                gap: 'clamp(16px, 2.5vw, 24px)',
+                flex: 1,
+              }}>
+                <div style={{ fontSize: 12, color: theme.subtitle, letterSpacing: '0.04em' }}>
+                  {c.year}
+                </div>
+                <h3 style={{
+                  fontFamily: theme.display,
+                  fontSize: 'clamp(28px, 3.6vw, 48px)',
+                  lineHeight: 1.0,
+                  margin: 0,
+                  letterSpacing: '-0.01em',
+                  fontWeight: 900,
+                  textTransform: 'uppercase',
+                  flex: 1,
+                }}>
+                  {c.t}
+                </h3>
+                <div style={{
+                  display: 'flex', justifyContent: 'space-between',
+                  alignItems: 'flex-end', gap: 16,
+                }}>
+                  <p style={{
+                    fontSize: 13, color: theme.subtitle,
+                    lineHeight: 1.55, margin: 0, maxWidth: 280,
+                  }}>
+                    {c.d}
+                  </p>
+                  <motion.div
+                    animate={{
+                      scale: hovered === i ? 1.1 : 1,
+                      borderColor: hovered === i ? theme.base : theme.borderDark,
+                    }}
+                    transition={{ duration: 0.4, ease: [0.2, 0.7, 0.2, 1] }}
+                    style={{
+                      width: 40, height: 40, borderRadius: '50%',
+                      borderWidth: 1, borderStyle: 'solid', borderColor: theme.borderDark,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      fontSize: 15, color: theme.base, flexShrink: 0,
+                    }}
+                  >↗</motion.div>
                 </div>
               </div>
             </motion.a>

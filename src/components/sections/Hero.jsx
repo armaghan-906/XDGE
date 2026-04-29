@@ -60,7 +60,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.55 }}
             style={{ fontSize: 13, fontWeight: 600, color: theme.base, marginTop: 18, letterSpacing: '0.01em' }}
           >
-            Corporate-level leadership development for ages 12–24
+            Get the Leadership Edge That Sets You Apart
           </motion.div>
         </div>
 
@@ -72,11 +72,8 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.85 }}
             style={{ fontSize: 'clamp(14px, 1.6vw, 16px)', lineHeight: 1.55, color: theme.base, maxWidth: 460 }}
           >
-            <p style={{ margin: '0 0 24px' }}>
-              Stand out with the edge top employers, universities and schools select for.
-            </p>
             <p style={{ margin: 0 }}>
-              Prepare for competitive schools, top universities, and exceptional careers with a distinct advantage.
+              The XDGE — corporate leadership development, redesigned for ages 12–24.
             </p>
           </motion.div>
         </div>
@@ -101,7 +98,7 @@ export function Hero() {
               }}
             >C</div>
             <div style={{ fontSize: 13, color: theme.base, letterSpacing: '0.01em' }}>
-              Corporate Style Leadership Development &amp; Training
+              Build the leader behind what drives you
             </div>
           </div>
           <motion.a
