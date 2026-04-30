@@ -111,19 +111,18 @@ export function TopBar() {
                 lineHeight: 1, textDecoration: 'none',
               }}
             >X</motion.a>
-            <motion.div
+            <motion.a
+              href="#"
               className="xg-hide-sm"
               animate={{ color: fg }}
               transition={{ duration: 0.3 }}
-              style={{ fontSize: 11, lineHeight: 1.35, letterSpacing: '0.04em', paddingTop: 1 }}
-            >
-              <div style={{ whiteSpace: 'nowrap' }}>BRISTOL, UK</div>
-              <motion.div
-                animate={{ color: fgSubtle }}
-                transition={{ duration: 0.3 }}
-                style={{ whiteSpace: 'nowrap' }}
-              >02:58 PM</motion.div>
-            </motion.div>
+              whileHover={{ x: 2 }}
+              style={{
+                fontSize: 12, letterSpacing: '0.04em',
+                paddingTop: 6, fontWeight: 500,
+                textDecoration: 'none', whiteSpace: 'nowrap',
+              }}
+            >Xdge Program</motion.a>
           </div>
 
           <button

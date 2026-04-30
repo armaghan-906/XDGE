@@ -8,8 +8,8 @@ function HeroHeading({ y, opacity }) {
       style={{
         y, opacity,
         fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(80px, 18vw, 280px)',
-        lineHeight: 0.92, letterSpacing: '-0.02em', margin: 0,
+        fontSize: 'clamp(100px, 24vw, 440px)',
+        lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
         overflow: 'hidden',
         paddingBottom: '0.06em',
@@ -18,12 +18,9 @@ function HeroHeading({ y, opacity }) {
       <motion.span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
-        transition={{ duration: 1.1, ease: [0.2, 0.7, 0.2, 1], delay: 0.25 }}
+        transition={{ duration: 1.8, ease: [0.2, 0.7, 0.2, 1], delay: 0.35 }}
         style={{ display: 'inline-block' }}
-      >
-        XDGE
-        <span style={{ display: 'inline-block', marginLeft: '0.18em' }}>.</span>
-      </motion.span>
+      >XDGE.</motion.span>
     </motion.h1>
   );
 }
@@ -93,10 +90,10 @@ export function Hero() {
                 width: 32, height: 32, borderRadius: '50%',
                 border: `1px solid ${theme.base}`,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: theme.body, fontStyle: 'italic', fontSize: 16, color: theme.base,
-                flexShrink: 0,
+                fontFamily: 'serif', fontSize: 14, color: theme.base,
+                flexShrink: 0, lineHeight: 1,
               }}
-            >C</div>
+            >X</div>
             <div style={{ fontSize: 13, color: theme.base, letterSpacing: '0.01em' }}>
               Build the leader behind what drives you
             </div>
@@ -109,7 +106,7 @@ export function Hero() {
               borderBottom: `1px solid ${theme.base}`, paddingBottom: 3,
               whiteSpace: 'nowrap',
             }}
-          >Xdge Programs</motion.a>
+          >Book Your Discovery Session</motion.a>
         </motion.div>
       </div>
     </section>
