@@ -43,7 +43,7 @@ function PerformanceDiagram() {
       maxWidth: 480,
       aspectRatio: '1/1',
       margin: '0 auto',
-      background: 'radial-gradient(circle at center, rgba(110,150,200,0.10), rgba(28,31,33,0) 70%)',
+      background: 'radial-gradient(circle at center, rgba(110,150,200,0.16), rgba(236,237,232,0) 72%)',
     }}>
       {/* Outer ring */}
       <motion.div
@@ -55,8 +55,8 @@ function PerformanceDiagram() {
           position: 'absolute', inset: 0,
           borderRadius: '50%',
           border: `1.5px solid ${ACCENT}`,
-          boxShadow: `0 0 40px rgba(110,150,200,0.35), inset 0 0 40px rgba(110,150,200,0.18)`,
-          opacity: 0.85,
+          boxShadow: `0 0 35px rgba(110,150,200,0.45), inset 0 0 35px rgba(110,150,200,0.22)`,
+          opacity: 0.9,
         }}
       />
       {/* Middle ring */}
@@ -69,7 +69,7 @@ function PerformanceDiagram() {
           position: 'absolute', inset: '17%',
           borderRadius: '50%',
           border: `1.5px solid ${ACCENT}`,
-          boxShadow: `0 0 30px rgba(110,150,200,0.4), inset 0 0 30px rgba(110,150,200,0.2)`,
+          boxShadow: `0 0 28px rgba(110,150,200,0.5), inset 0 0 28px rgba(110,150,200,0.25)`,
         }}
       />
       {/* Inner ring */}
@@ -82,7 +82,7 @@ function PerformanceDiagram() {
           position: 'absolute', inset: '34%',
           borderRadius: '50%',
           border: `1.5px solid ${ACCENT}`,
-          boxShadow: `0 0 24px rgba(110,150,200,0.5), inset 0 0 20px rgba(110,150,200,0.25)`,
+          boxShadow: `0 0 22px rgba(110,150,200,0.55), inset 0 0 18px rgba(110,150,200,0.3)`,
         }}
       />
 
@@ -97,14 +97,14 @@ function PerformanceDiagram() {
           top: '3%', left: '50%',
           transform: 'translateX(-50%)',
           textAlign: 'center',
-          color: theme.base,
+          color: theme.ink,
         }}
       >
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, justifyContent: 'center' }}>
-          <span style={{ color: theme.subtitle }}>{Icons.Clapper}</span>
+          <span style={{ color: '#7d7e7c' }}>{Icons.Clapper}</span>
           <span style={{ fontSize: 'clamp(13px, 1.5vw, 17px)', fontWeight: 600, letterSpacing: '0.01em' }}>Actions</span>
         </div>
-        <div style={{ fontSize: 'clamp(10px, 1.1vw, 12px)', color: theme.subtitle, marginTop: 2 }}>
+        <div style={{ fontSize: 'clamp(10px, 1.1vw, 12px)', color: '#7d7e7c', marginTop: 2 }}>
           Execution Power &amp; Impact
         </div>
       </motion.div>
@@ -119,14 +119,14 @@ function PerformanceDiagram() {
           top: '20%', left: '50%',
           transform: 'translateX(-50%)',
           textAlign: 'center',
-          color: theme.base,
+          color: theme.ink,
         }}
       >
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, justifyContent: 'center' }}>
-          <span style={{ color: theme.subtitle }}>{Icons.Gear}</span>
+          <span style={{ color: '#7d7e7c' }}>{Icons.Gear}</span>
           <span style={{ fontSize: 'clamp(12px, 1.3vw, 15px)', fontWeight: 600, letterSpacing: '0.01em' }}>Behaviors</span>
         </div>
-        <div style={{ fontSize: 'clamp(9px, 1vw, 11px)', color: theme.subtitle, marginTop: 2 }}>
+        <div style={{ fontSize: 'clamp(9px, 1vw, 11px)', color: '#7d7e7c', marginTop: 2 }}>
           Performance Habits &amp; Skill Set
         </div>
       </motion.div>
@@ -141,23 +141,23 @@ function PerformanceDiagram() {
           top: '50%', left: '50%',
           transform: 'translate(-50%, -50%)',
           textAlign: 'center',
-          color: theme.base,
+          color: theme.ink,
           width: '40%',
         }}
       >
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, justifyContent: 'center', marginBottom: 6 }}>
-          <span style={{ color: theme.subtitle }}>{Icons.Mind}</span>
+          <span style={{ color: '#7d7e7c' }}>{Icons.Mind}</span>
         </div>
         <div style={{
           fontFamily: theme.display, fontWeight: 900,
           fontSize: 'clamp(18px, 2.4vw, 28px)',
           letterSpacing: '-0.005em',
-          color: theme.base,
+          color: theme.ink,
           lineHeight: 1,
         }}>Mindset</div>
         <div style={{
           fontSize: 'clamp(10px, 1.1vw, 12px)',
-          color: theme.subtitle,
+          color: '#7d7e7c',
           marginTop: 6, lineHeight: 1.4,
         }}>
           Leadership Thinking<br />&amp; Winning Mindset
@@ -171,10 +171,10 @@ export function OurPerformanceFormula() {
   return (
     <section
       data-screen-label="Our Performance Formula"
-      data-section-theme="dark"
+      data-section-theme="light"
       style={{
-        background: theme.dark,
-        color: theme.base,
+        background: theme.base,
+        color: theme.ink,
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -185,8 +185,8 @@ export function OurPerformanceFormula() {
               lines={['OUR PERFORMANCE', 'FORMULA']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(48px, 9vw, 130px)',
-                lineHeight: 0.95, letterSpacing: '-0.01em',
+                fontSize: 'clamp(40px, 8vw, 120px)',
+                lineHeight: 0.95, letterSpacing: '-0.02em',
                 marginBottom: 'clamp(20px, 3vw, 28px)',
               }}
             />
@@ -195,7 +195,7 @@ export function OurPerformanceFormula() {
               style={{
                 fontSize: 'clamp(20px, 2.4vw, 30px)',
                 lineHeight: 1.35,
-                color: theme.base, fontWeight: 500,
+                color: theme.ink, fontWeight: 500,
                 letterSpacing: '-0.005em',
                 marginBottom: 'clamp(28px, 4vw, 40px)',
               }}
@@ -208,14 +208,14 @@ export function OurPerformanceFormula() {
                 display: 'flex', flexDirection: 'column',
                 gap: 'clamp(14px, 1.8vw, 20px)',
                 fontSize: 'clamp(15px, 1.6vw, 17px)',
-                lineHeight: 1.55, color: theme.base,
+                lineHeight: 1.55, color: theme.ink,
                 maxWidth: 520,
               }}
             >
               <p style={{ margin: 0 }}>Most people focus on what they do.</p>
               <p style={{ margin: 0 }}>We focus on how you think, behave, and take action.</p>
               <p style={{ margin: 0 }}>Align these, and you perform at your next level.</p>
-              <p style={{ margin: 0, color: theme.subtitle }}>
+              <p style={{ margin: 0, color: '#7d7e7c' }}>
                 This is the XDGE framework embedded in every programme and session.
               </p>
             </motion.div>

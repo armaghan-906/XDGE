@@ -48,8 +48,8 @@ export function WhoItsFor() {
               lines={['WHO', "IT'S FOR"]}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(56px, 14vw, 220px)',
-                lineHeight: 0.95, letterSpacing: '-0.01em',
+                fontSize: 'clamp(48px, 12vw, 180px)',
+                lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />
           </div>

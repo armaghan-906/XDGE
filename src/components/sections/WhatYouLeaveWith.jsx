@@ -91,8 +91,8 @@ export function WhatYouLeaveWith() {
           lines={['WHAT YOU', 'LEAVE WITH']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(56px, 13vw, 200px)',
-            lineHeight: 0.95, letterSpacing: '-0.01em',
+            fontSize: 'clamp(48px, 12vw, 180px)',
+            lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(24px, 4vw, 40px)',
           }}
         />

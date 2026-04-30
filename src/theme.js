@@ -6,8 +6,10 @@ export const theme = {
   borderDark: '#42444A',
   borderLight: '#C1C3C8',
   accent: '#6e96c8',
-  display: "'Anton', 'Archivo Black', Impact, sans-serif",
+  display: "'Oswald', 'Anton', 'Archivo Black', Impact, sans-serif",
+  displayTight: "'Inter Tight', 'Inter', system-ui, sans-serif",
   body: "'Inter', system-ui, sans-serif",
+  italic: "'Instrument Sans', 'Inter', system-ui, sans-serif",
 };
 
 export const fadeUp = {

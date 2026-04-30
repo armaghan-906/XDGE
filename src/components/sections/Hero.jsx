@@ -8,7 +8,7 @@ function HeroHeading({ y, opacity }) {
       style={{
         y, opacity,
         fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(100px, 24vw, 440px)',
+        fontSize: 'clamp(80px, 18vw, 280px)',
         lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
         overflow: 'hidden',
@@ -20,7 +20,10 @@ function HeroHeading({ y, opacity }) {
         animate={{ y: '0%' }}
         transition={{ duration: 1.8, ease: [0.2, 0.7, 0.2, 1], delay: 0.35 }}
         style={{ display: 'inline-block' }}
-      >XDGE.</motion.span>
+      >
+        XDGE
+        <span style={{ display: 'inline-block', marginLeft: '0.16em' }}>.</span>
+      </motion.span>
     </motion.h1>
   );
 }

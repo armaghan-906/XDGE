@@ -3,6 +3,8 @@ import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
+const ACCENT = theme.ink;
+
 export function TheReality() {
   const pillStyle = {
     display: 'inline-flex',
@@ -11,10 +13,10 @@ export function TheReality() {
     background: theme.ink,
     color: theme.base,
     borderRadius: 999,
-    fontSize: 'clamp(18px, 2.4vw, 30px)',
+    fontSize: 'clamp(16px, 2vw, 24px)',
     fontWeight: 700,
     fontFamily: theme.display,
-    letterSpacing: '-0.005em',
+    letterSpacing: '0.04em',
     textTransform: 'uppercase',
     whiteSpace: 'nowrap',
   };
@@ -30,58 +32,70 @@ export function TheReality() {
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <Group className="xg-2" style={{ alignItems: 'flex-start', marginBottom: 'clamp(48px, 7vw, 80px)' }}>
-          <motion.div
-            variants={fadeUp}
-            style={{
-              fontSize: 12, letterSpacing: '0.16em',
-              textTransform: 'uppercase', color: '#7d7e7c', fontWeight: 600,
-            }}
-          >(The Reality)</motion.div>
-          <motion.p
-            variants={fadeUp}
-            style={{
-              fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55,
-              color: theme.ink, margin: 0, maxWidth: 520,
-            }}
-          >
-            The bar to stand out keeps rising. Selection is no longer about good
-            grades — it's about who has the edge.
-          </motion.p>
-        </Group>
+        <SplitHeading
+          lines={['THE REALITY']}
+          style={{
+            fontFamily: theme.display, fontWeight: 900,
+            fontSize: 'clamp(56px, 13vw, 200px)',
+            lineHeight: 0.95, letterSpacing: '-0.02em',
+            marginBottom: 'clamp(48px, 8vw, 96px)',
+          }}
+        />
 
-        <Group className="xg-2" style={{ gap: 'clamp(32px, 5vw, 64px)', alignItems: 'flex-start' }}>
-          <motion.div variants={fadeUp}>
+        <Group
+          className="xg-2"
+          style={{
+            gap: 'clamp(32px, 5vw, 80px)',
+            alignItems: 'flex-start',
+            marginBottom: 'clamp(40px, 6vw, 64px)',
+          }}
+        >
+          <motion.div variants={fadeUp} style={{ textAlign: 'center' }}>
             <div style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(96px, 16vw, 220px)',
-              lineHeight: 0.9, letterSpacing: '-0.02em',
-              color: theme.accent,
+              fontSize: 'clamp(54px, 7vw, 96px)',
+              lineHeight: 1, letterSpacing: '-0.01em',
+              color: ACCENT,
+              marginBottom: 14,
             }}>5%</div>
             <p style={{
-              marginTop: 12,
-              fontSize: 'clamp(15px, 1.7vw, 18px)',
-              lineHeight: 1.5, color: theme.ink,
-              maxWidth: 360, fontWeight: 500,
-            }}>
-              of applicants are admitted to top universities.
-            </p>
+              fontSize: 'clamp(13px, 1.4vw, 15px)',
+              lineHeight: 1.45, color: '#3a3c3e',
+              margin: '0 0 6px',
+            }}>of applicants are admitted to</p>
+            <a
+              href="#"
+              style={{
+                fontSize: 'clamp(15px, 1.6vw, 18px)',
+                fontWeight: 700, color: theme.ink,
+                textDecoration: 'underline',
+                textUnderlineOffset: 4,
+              }}
+            >Top Universities</a>
           </motion.div>
-          <motion.div variants={fadeUp}>
+
+          <motion.div variants={fadeUp} style={{ textAlign: 'center' }}>
             <div style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(96px, 16vw, 220px)',
-              lineHeight: 0.9, letterSpacing: '-0.02em',
-              color: theme.accent,
+              fontSize: 'clamp(54px, 7vw, 96px)',
+              lineHeight: 1, letterSpacing: '-0.01em',
+              color: ACCENT,
+              marginBottom: 14,
             }}>3%</div>
             <p style={{
-              marginTop: 12,
-              fontSize: 'clamp(15px, 1.7vw, 18px)',
-              lineHeight: 1.5, color: theme.ink,
-              maxWidth: 360, fontWeight: 500,
-            }}>
-              of applicants are invited to interview at competitive employers.
-            </p>
+              fontSize: 'clamp(13px, 1.4vw, 15px)',
+              lineHeight: 1.45, color: '#3a3c3e',
+              margin: '0 0 6px',
+            }}>of applicants are invited to interviews with</p>
+            <a
+              href="#"
+              style={{
+                fontSize: 'clamp(15px, 1.6vw, 18px)',
+                fontWeight: 700, color: theme.ink,
+                textDecoration: 'underline',
+                textUnderlineOffset: 4,
+              }}
+            >Competitive Employers</a>
           </motion.div>
         </Group>
 
@@ -91,38 +105,81 @@ export function TheReality() {
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 1.0, ease: [0.2, 0.7, 0.2, 1] }}
           style={{
-            height: 1, background: 'rgba(0,0,0,0.18)',
-            margin: 'clamp(48px, 7vw, 80px) 0 clamp(40px, 6vw, 64px)',
+            height: 1, background: 'rgba(0,0,0,0.16)',
+            margin: '0 0 clamp(48px, 7vw, 80px)',
             transformOrigin: 'left',
           }}
         />
 
-        <SplitHeading
-          lines={['What are they', 'looking for?']}
+        <Group
+          className="xg-2"
           style={{
-            fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(48px, 9vw, 130px)',
-            lineHeight: 0.95, letterSpacing: '-0.02em',
-            textTransform: 'uppercase',
-            marginBottom: 'clamp(32px, 5vw, 56px)',
+            alignItems: 'center',
+            gap: 'clamp(32px, 5vw, 80px)',
           }}
-        />
+        >
+          <div>
+            <SplitHeading
+              lines={['What are they', 'looking for?']}
+              style={{
+                fontFamily: theme.display, fontWeight: 900,
+                fontSize: 'clamp(40px, 7vw, 110px)',
+                lineHeight: 0.95, letterSpacing: '-0.02em',
+                textTransform: 'uppercase',
+                marginBottom: 'clamp(28px, 4vw, 40px)',
+              }}
+            />
 
-        <Group style={{
-          display: 'flex', alignItems: 'center',
-          gap: 'clamp(16px, 3vw, 32px)',
-          flexWrap: 'wrap',
-        }}>
-          <motion.div variants={fadeUp} style={pillStyle}>Grades</motion.div>
+            <div style={{
+              display: 'flex', alignItems: 'center',
+              gap: 'clamp(12px, 2vw, 24px)',
+              flexWrap: 'wrap',
+            }}>
+              <motion.div variants={fadeUp} style={pillStyle}>Grades</motion.div>
+              <motion.div
+                variants={fadeUp}
+                style={{
+                  fontFamily: theme.display, fontWeight: 900,
+                  fontSize: 'clamp(28px, 4vw, 56px)',
+                  lineHeight: 1, color: theme.ink,
+                }}
+              >+</motion.div>
+              <motion.div variants={fadeUp} style={pillStyle}>Stand Out Factor</motion.div>
+            </div>
+          </div>
+
           <motion.div
             variants={fadeUp}
             style={{
-              fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(36px, 5.5vw, 72px)',
-              lineHeight: 1, color: theme.accent,
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: 'clamp(12px, 1.5vw, 20px)',
+              maxWidth: 480,
+              justifySelf: 'end',
             }}
-          >+</motion.div>
-          <motion.div variants={fadeUp} style={pillStyle}>Stand Out Factor</motion.div>
+          >
+            <div style={{
+              fontFamily: 'Georgia, serif',
+              fontSize: 'clamp(60px, 9vw, 120px)',
+              lineHeight: 0.7,
+              color: 'rgba(0,0,0,0.18)',
+              fontWeight: 700,
+              flexShrink: 0,
+              marginTop: 8,
+            }}>“</div>
+            <p style={{
+              fontFamily: theme.italic,
+              fontSize: 'clamp(18px, 2.2vw, 28px)',
+              lineHeight: 1.35,
+              fontStyle: 'italic',
+              color: theme.ink,
+              margin: 0,
+              fontWeight: 400,
+            }}>
+              Grades get you considered.<br />
+              Stand out gets you chosen.
+            </p>
+          </motion.div>
         </Group>
       </div>
     </section>

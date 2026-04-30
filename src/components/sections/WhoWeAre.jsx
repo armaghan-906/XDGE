@@ -19,7 +19,7 @@ export function WhoWeAre() {
         <Group className="xg-wwd-top" style={{ alignItems: 'flex-start' }}>
           <motion.div variants={fadeUp} style={{ paddingTop: 8 }}>
             <div style={{
-              width: '70%', maxWidth: 360, aspectRatio: '1/1',
+              width: '88%', maxWidth: 460, aspectRatio: '1/1',
               borderRadius: 2, overflow: 'hidden', background: '#d8d6cf',
             }}>
               <img
@@ -34,7 +34,7 @@ export function WhoWeAre() {
               lines={['WHO WE', 'ARE']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(64px, 15vw, 240px)',
+                fontSize: 'clamp(72px, 17vw, 260px)',
                 lineHeight: 0.92, letterSpacing: '-0.02em',
                 textAlign: 'right',
               }}
@@ -57,57 +57,65 @@ export function WhoWeAre() {
 
         {/* Body row */}
         <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(32px, 6vw, 80px)' }}>
-          <motion.p
+          <motion.div
             variants={fadeUp}
             style={{
-              fontSize: 'clamp(20px, 2.6vw, 34px)',
-              lineHeight: 1.32,
-              margin: 0,
-              fontWeight: 500,
+              display: 'flex', flexDirection: 'column',
+              gap: 'clamp(16px, 2vw, 24px)',
+              fontFamily: theme.italic,
+              fontStyle: 'italic',
+              fontSize: 'clamp(18px, 2vw, 24px)',
+              lineHeight: 1.45,
               color: theme.ink,
-              letterSpacing: '-0.01em',
-              maxWidth: 640,
+              maxWidth: 600,
             }}
           >
-            We are leadership development experts with 20+ years' senior industry
-            experience, focused on developing the next generation of leaders.
-          </motion.p>
+            <p style={{ margin: 0, fontWeight: 400 }}>
+              We are performance and leadership development specialists with
+              20+ years of senior industry experience.
+            </p>
+            <p style={{ margin: 0, fontWeight: 700 }}>
+              One mission: developing the next generation of standout talent.
+            </p>
+          </motion.div>
 
           <motion.div
             variants={fadeUp}
             style={{
               display: 'flex', flexDirection: 'column',
-              gap: 'clamp(20px, 2.5vw, 28px)',
+              gap: 'clamp(16px, 2vw, 22px)',
               alignItems: 'flex-end',
             }}
           >
             <p style={{
               fontSize: 'clamp(14px, 1.5vw, 16px)',
               lineHeight: 1.6, margin: 0,
-              color: '#3a3c3e', maxWidth: 460,
+              color: '#3a3c3e', maxWidth: 480,
             }}>
-              XDGE programmes are guided and delivered exclusively by experienced
-              industry leaders and mentors with over two decades of experience.
+              We bring the professional world to young people through meaningful,
+              high-challenge experiences modelled on elite professional leadership
+              development — carefully adapted to be supportive, empowering, and
+              relevant to the young people we serve.
             </p>
             <p style={{
               fontSize: 'clamp(14px, 1.5vw, 16px)',
               lineHeight: 1.6, margin: 0,
-              color: '#3a3c3e', maxWidth: 460,
+              color: '#3a3c3e', maxWidth: 480,
             }}>
-              Our coaches bring real-world leadership expertise and translate it
-              into practical, engaging development. We build leadership capability
-              that performs in real-world selection environments.
+              Designed to develop the leader behind their ambition, our programmes
+              combine stretch, support, and real-world relevance to build mindset,
+              professional capability, and the personal edge that lasts far beyond
+              the programme.
             </p>
-            <motion.a
-              whileHover={{ x: 4 }}
-              href="#"
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 10,
-                color: theme.ink, textDecoration: 'none', fontSize: 14,
-                borderBottom: `1px solid ${theme.ink}`, paddingBottom: 4,
-                marginTop: 8,
-              }}
-            >More About Us</motion.a>
+            <p style={{
+              fontSize: 'clamp(14px, 1.5vw, 16px)',
+              lineHeight: 1.6, margin: 0,
+              color: '#3a3c3e', maxWidth: 480,
+            }}>
+              From school entrance and university applications to internships,
+              careers, and early leadership development, we prepare young people
+              to stand out where it matters most.
+            </p>
           </motion.div>
         </Group>
       </div>

@@ -22,7 +22,7 @@ input, textarea, select { cursor: text; }
 .xg-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
 
 .xg-hero-body { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 48px); }
-.xg-wwd-top { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(24px, 4vw, 48px); align-items: flex-start; }
+.xg-wwd-top { display: grid; grid-template-columns: 0.8fr 1.6fr; gap: clamp(24px, 4vw, 48px); align-items: flex-start; }
 .xg-serve-row { display: grid; grid-template-columns: 1fr 1.4fr; }
 
 @media (max-width: 1024px) {
@@ -66,31 +66,54 @@ input, textarea, select { cursor: text; }
   }
 }
 
-/* Journey stepper: horizontal on desktop, vertical timeline on mobile */
-.xg-journey-grid {
-  display: flex;
-  gap: 16px;
+/* Journey stepper — arched curve on desktop, vertical timeline on mobile */
+.xg-journey-track { position: relative; }
+.xg-journey-curve-area {
   position: relative;
-  z-index: 1;
+  height: clamp(180px, 22vw, 260px);
 }
-.xg-journey-step {
+.xg-journey-curve {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+.xg-journey-circles {
+  position: absolute; inset: 0;
+  display: flex;
+  align-items: stretch;
+}
+.xg-journey-circle-cell {
   flex: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 16px;
+  justify-content: center;
+  align-items: flex-start;
   min-width: 0;
 }
+.xg-journey-labels {
+  display: flex;
+  margin-top: clamp(20px, 3vw, 36px);
+}
+.xg-journey-label-cell {
+  flex: 1;
+  text-align: center;
+  padding: 0 6px;
+  min-width: 0;
+}
+
+.xg-journey-mobile { display: none; }
+
 @media (max-width: 768px) {
-  .xg-journey-line { display: none; }
-  .xg-journey-grid { flex-direction: column; gap: 28px; }
-  .xg-journey-step {
-    flex-direction: row;
+  .xg-journey-curve-area, .xg-journey-labels { display: none; }
+  .xg-journey-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .xg-journey-mobile-step {
+    display: flex;
     align-items: flex-start;
-    text-align: left;
     gap: 20px;
-    flex: 0 0 auto;
   }
 }
 

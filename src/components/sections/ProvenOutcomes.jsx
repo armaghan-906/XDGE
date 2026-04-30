@@ -22,8 +22,8 @@ function TestimonialMarquee({ quotes }) {
             className="xg-marquee-card"
             style={{
               flex: '0 0 380px',
-              border: `1px solid ${theme.borderLight}`,
-              background: '#f3f4f0',
+              border: `1px solid ${theme.borderDark}`,
+              background: 'rgba(255,255,255,0.03)',
               padding: '28px 26px',
               display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
               minHeight: 220,
@@ -31,11 +31,11 @@ function TestimonialMarquee({ quotes }) {
           >
             <p
               style={{
-                fontSize: 17, lineHeight: 1.45, margin: 0, color: theme.ink,
+                fontSize: 17, lineHeight: 1.45, margin: 0, color: theme.base,
                 fontFamily: theme.display, fontWeight: 400, letterSpacing: '0.005em',
               }}
             >"{q.q}"</p>
-            <div style={{ fontSize: 12, color: '#7d7e7c', marginTop: 24, lineHeight: 1.5 }}>{q.a}</div>
+            <div style={{ fontSize: 12, color: theme.subtitle, marginTop: 24, lineHeight: 1.5 }}>{q.a}</div>
           </div>
         ))}
       </div>
@@ -45,8 +45,8 @@ function TestimonialMarquee({ quotes }) {
 
 export function ProvenOutcomes() {
   return (
-    <section data-screen-label="06 Proven Outcomes" data-section-theme="light" style={{
-      background: theme.base, color: theme.ink,
+    <section data-screen-label="06 Proven Outcomes" data-section-theme="dark" style={{
+      background: theme.dark, color: theme.base,
       padding: 'clamp(64px, 10vw, 120px) 0 clamp(56px, 8vw, 100px)',
     }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 clamp(20px, 4vw, 40px)' }}>
@@ -54,22 +54,22 @@ export function ProvenOutcomes() {
           <div>
             <motion.div
               variants={fadeUp}
-              style={{ fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#7d7e7c', marginBottom: 28 }}
+              style={{ fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase', color: theme.subtitle, marginBottom: 28 }}
             >(PROVEN OUTCOMES)</motion.div>
             <SplitHeading
               lines={['PROVEN', 'OUTCOMES']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(56px, 14vw, 220px)',
-                lineHeight: 0.95, letterSpacing: '-0.01em',
+                fontSize: 'clamp(48px, 12vw, 180px)',
+                lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />
           </div>
-          <motion.div variants={fadeUp} style={{ paddingBottom: 24, color: '#3a3c3e' }}>
+          <motion.div variants={fadeUp} style={{ paddingBottom: 24, color: theme.base }}>
             <p style={{ fontSize: 17, lineHeight: 1.55, margin: '0 0 12px' }}>
               See what participants and parents have to say about us.
             </p>
-            <p style={{ fontSize: 14, lineHeight: 1.55, color: '#7d7e7c', margin: 0, maxWidth: 480 }}>
+            <p style={{ fontSize: 14, lineHeight: 1.55, color: theme.subtitle, margin: 0, maxWidth: 480 }}>
               See what participants and parents have to say about their experience,
               and the outcomes they've achieved.
             </p>
