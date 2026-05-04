@@ -2,12 +2,12 @@ import { motion } from 'framer-motion';
 
 const containerVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
+  visible: { transition: { staggerChildren: 0.13, delayChildren: 0.08 } },
 };
 
 const lineVariants = {
   hidden: { y: '110%' },
-  visible: { y: '0%', transition: { duration: 0.95, ease: [0.2, 0.7, 0.2, 1] } },
+  visible: { y: '0%', transition: { duration: 1.4, ease: [0.2, 0.7, 0.2, 1] } },
 };
 
 export function SplitHeading({ lines, style, tag = 'h2', amount = 0.4 }) {

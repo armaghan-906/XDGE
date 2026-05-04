@@ -20,10 +20,7 @@ function HeroHeading({ y, opacity }) {
         animate={{ y: '0%' }}
         transition={{ duration: 1.8, ease: [0.2, 0.7, 0.2, 1], delay: 0.35 }}
         style={{ display: 'inline-block' }}
-      >
-        XDGE
-        <span style={{ display: 'inline-block', marginLeft: '0.16em' }}>.</span>
-      </motion.span>
+      >XDGE</motion.span>
     </motion.h1>
   );
 }
@@ -48,69 +45,76 @@ export function Hero() {
     >
       <div style={{
         flex: 1,
-        padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(32px, 6vw, 48px)',
+        padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(40px, 6vw, 64px)',
         display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
         gap: 32,
       }}>
         <div style={{ marginTop: 24, position: 'relative' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            style={{
+              fontFamily: theme.display, fontWeight: 700,
+              fontSize: 'clamp(20px, 2.6vw, 36px)',
+              lineHeight: 1, letterSpacing: '-0.01em',
+              color: theme.base,
+              marginBottom: 'clamp(8px, 1.5vw, 16px)',
+              textTransform: 'capitalize',
+            }}
+          >
+            The
+          </motion.div>
           <HeroHeading y={y} opacity={opacity} />
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.55 }}
-            style={{ fontSize: 13, fontWeight: 600, color: theme.base, marginTop: 18, letterSpacing: '0.01em' }}
+            style={{
+              fontSize: 'clamp(13px, 1.4vw, 16px)',
+              fontWeight: 500,
+              color: theme.base,
+              marginTop: 14,
+              letterSpacing: '0.01em',
+            }}
           >
             Get the Leadership Edge That Sets You Apart
           </motion.div>
         </div>
 
-        <div className="xg-hero-body" style={{ marginTop: 16 }}>
+        <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
           <div className="xg-hide-md" />
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.85 }}
-            style={{ fontSize: 'clamp(14px, 1.6vw, 16px)', lineHeight: 1.55, color: theme.base, maxWidth: 460 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            style={{
+              display: 'flex', flexDirection: 'column',
+              gap: 'clamp(16px, 2.5vw, 28px)',
+              maxWidth: 520,
+            }}
           >
-            <p style={{ margin: 0 }}>
-              The XDGE — corporate leadership development, redesigned for ages 12–24.
+            <p style={{
+              fontSize: 'clamp(20px, 2.4vw, 30px)',
+              lineHeight: 1.32,
+              color: theme.base,
+              margin: 0,
+              fontWeight: 500,
+              letterSpacing: '-0.005em',
+            }}>
+              Professional Leadership Development,<br />
+              Redesigned for Ages 12&ndash;24
+            </p>
+            <p style={{
+              fontSize: 'clamp(13px, 1.4vw, 15px)',
+              lineHeight: 1.5,
+              color: theme.subtitle,
+              margin: 0,
+            }}>
+              Build the leader behind what inspires you.
             </p>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.05 }}
-          style={{
-            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-            marginTop: 24, gap: 16, flexWrap: 'wrap',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div
-              style={{
-                width: 32, height: 32, borderRadius: '50%',
-                border: `1px solid ${theme.base}`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: 'serif', fontSize: 14, color: theme.base,
-                flexShrink: 0, lineHeight: 1,
-              }}
-            >X</div>
-            <div style={{ fontSize: 13, color: theme.base, letterSpacing: '0.01em' }}>
-              Build the leader behind what drives you
-            </div>
-          </div>
-          <motion.a
-            whileHover={{ x: 4 }}
-            href="#"
-            style={{
-              color: theme.base, textDecoration: 'none', fontSize: 14,
-              borderBottom: `1px solid ${theme.base}`, paddingBottom: 3,
-              whiteSpace: 'nowrap',
-            }}
-          >Book Your Discovery Session</motion.a>
-        </motion.div>
       </div>
     </section>
   );

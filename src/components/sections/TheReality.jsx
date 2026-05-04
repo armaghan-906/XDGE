@@ -28,7 +28,7 @@ export function TheReality() {
       style={{
         background: theme.base,
         color: theme.ink,
-        padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(44px, 7vw, 84px) clamp(20px, 4vw, 40px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
@@ -36,27 +36,27 @@ export function TheReality() {
           lines={['THE REALITY']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(56px, 13vw, 200px)',
+            fontSize: 'clamp(40px, 9vw, 140px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
-            marginBottom: 'clamp(48px, 8vw, 96px)',
+            marginBottom: 'clamp(32px, 5vw, 64px)',
           }}
         />
 
         <Group
           className="xg-2"
           style={{
-            gap: 'clamp(32px, 5vw, 80px)',
+            gap: 'clamp(24px, 4vw, 56px)',
             alignItems: 'flex-start',
-            marginBottom: 'clamp(40px, 6vw, 64px)',
+            marginBottom: 'clamp(28px, 4vw, 44px)',
           }}
         >
           <motion.div variants={fadeUp} style={{ textAlign: 'center' }}>
             <div style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(54px, 7vw, 96px)',
+              fontSize: 'clamp(40px, 5vw, 70px)',
               lineHeight: 1, letterSpacing: '-0.01em',
               color: ACCENT,
-              marginBottom: 14,
+              marginBottom: 10,
             }}>5%</div>
             <p style={{
               fontSize: 'clamp(13px, 1.4vw, 15px)',
@@ -77,10 +77,10 @@ export function TheReality() {
           <motion.div variants={fadeUp} style={{ textAlign: 'center' }}>
             <div style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(54px, 7vw, 96px)',
+              fontSize: 'clamp(40px, 5vw, 70px)',
               lineHeight: 1, letterSpacing: '-0.01em',
               color: ACCENT,
-              marginBottom: 14,
+              marginBottom: 10,
             }}>3%</div>
             <p style={{
               fontSize: 'clamp(13px, 1.4vw, 15px)',
@@ -106,7 +106,7 @@ export function TheReality() {
           transition={{ duration: 1.0, ease: [0.2, 0.7, 0.2, 1] }}
           style={{
             height: 1, background: 'rgba(0,0,0,0.16)',
-            margin: '0 0 clamp(48px, 7vw, 80px)',
+            margin: '0 0 clamp(32px, 5vw, 56px)',
             transformOrigin: 'left',
           }}
         />
@@ -123,10 +123,10 @@ export function TheReality() {
               lines={['What are they', 'looking for?']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(40px, 7vw, 110px)',
-                lineHeight: 0.95, letterSpacing: '-0.02em',
+                fontSize: 'clamp(32px, 5vw, 76px)',
+                lineHeight: 0.98, letterSpacing: '-0.02em',
                 textTransform: 'uppercase',
-                marginBottom: 'clamp(28px, 4vw, 40px)',
+                marginBottom: 'clamp(20px, 3vw, 28px)',
               }}
             />
 

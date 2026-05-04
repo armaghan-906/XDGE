@@ -122,7 +122,7 @@ export function TopBar() {
                 paddingTop: 6, fontWeight: 500,
                 textDecoration: 'none', whiteSpace: 'nowrap',
               }}
-            >Xdge Program</motion.a>
+            >Our Programs</motion.a>
           </div>
 
           <button

@@ -100,11 +100,20 @@ function PerformanceDiagram() {
           color: theme.ink,
         }}
       >
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, justifyContent: 'center' }}>
-          <span style={{ color: '#7d7e7c' }}>{Icons.Clapper}</span>
-          <span style={{ fontSize: 'clamp(13px, 1.5vw, 17px)', fontWeight: 600, letterSpacing: '0.01em' }}>Actions</span>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, justifyContent: 'center' }}>
+          <span style={{ color: '#7d7e7c', display: 'inline-flex' }}>{Icons.Clapper}</span>
+          <span style={{
+            fontFamily: theme.display, fontWeight: 900,
+            fontSize: 'clamp(18px, 2.4vw, 28px)',
+            letterSpacing: '-0.005em',
+            lineHeight: 1,
+          }}>Actions</span>
         </div>
-        <div style={{ fontSize: 'clamp(10px, 1.1vw, 12px)', color: '#7d7e7c', marginTop: 2 }}>
+        <div style={{
+          fontSize: 'clamp(11px, 1.2vw, 14px)',
+          color: '#7d7e7c',
+          marginTop: 6, lineHeight: 1.4,
+        }}>
           Execution Power &amp; Impact
         </div>
       </motion.div>
@@ -122,11 +131,20 @@ function PerformanceDiagram() {
           color: theme.ink,
         }}
       >
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, justifyContent: 'center' }}>
-          <span style={{ color: '#7d7e7c' }}>{Icons.Gear}</span>
-          <span style={{ fontSize: 'clamp(12px, 1.3vw, 15px)', fontWeight: 600, letterSpacing: '0.01em' }}>Behaviors</span>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, justifyContent: 'center' }}>
+          <span style={{ color: '#7d7e7c', display: 'inline-flex' }}>{Icons.Gear}</span>
+          <span style={{
+            fontFamily: theme.display, fontWeight: 900,
+            fontSize: 'clamp(18px, 2.4vw, 28px)',
+            letterSpacing: '-0.005em',
+            lineHeight: 1,
+          }}>Behaviors</span>
         </div>
-        <div style={{ fontSize: 'clamp(9px, 1vw, 11px)', color: '#7d7e7c', marginTop: 2 }}>
+        <div style={{
+          fontSize: 'clamp(11px, 1.2vw, 14px)',
+          color: '#7d7e7c',
+          marginTop: 6, lineHeight: 1.4,
+        }}>
           Performance Habits &amp; Skill Set
         </div>
       </motion.div>
@@ -142,21 +160,20 @@ function PerformanceDiagram() {
           transform: 'translate(-50%, -50%)',
           textAlign: 'center',
           color: theme.ink,
-          width: '40%',
+          width: '50%',
         }}
       >
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, justifyContent: 'center', marginBottom: 6 }}>
-          <span style={{ color: '#7d7e7c' }}>{Icons.Mind}</span>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, justifyContent: 'center' }}>
+          <span style={{ color: '#7d7e7c', display: 'inline-flex' }}>{Icons.Mind}</span>
+          <span style={{
+            fontFamily: theme.display, fontWeight: 900,
+            fontSize: 'clamp(18px, 2.4vw, 28px)',
+            letterSpacing: '-0.005em',
+            lineHeight: 1,
+          }}>Mindset</span>
         </div>
         <div style={{
-          fontFamily: theme.display, fontWeight: 900,
-          fontSize: 'clamp(18px, 2.4vw, 28px)',
-          letterSpacing: '-0.005em',
-          color: theme.ink,
-          lineHeight: 1,
-        }}>Mindset</div>
-        <div style={{
-          fontSize: 'clamp(10px, 1.1vw, 12px)',
+          fontSize: 'clamp(11px, 1.2vw, 14px)',
           color: '#7d7e7c',
           marginTop: 6, lineHeight: 1.4,
         }}>
