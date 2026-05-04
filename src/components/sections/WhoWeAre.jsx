@@ -1,9 +1,17 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
 export function WhoWeAre() {
+  const imgRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: imgRef,
+    offset: ['start end', 'end start'],
+  });
+  const imgY = useTransform(scrollYProgress, [0, 1], ['-12%', '12%']);
+
   return (
     <section
       data-screen-label="Who We Are"
@@ -18,14 +26,25 @@ export function WhoWeAre() {
         {/* Top row: image (left) + huge heading (right) */}
         <Group className="xg-wwd-top" style={{ alignItems: 'flex-start' }}>
           <motion.div variants={fadeUp} style={{ paddingTop: 8 }}>
-            <div style={{
-              width: '88%', maxWidth: 460, aspectRatio: '1/1',
-              borderRadius: 2, overflow: 'hidden', background: '#d8d6cf',
-            }}>
-              <img
+            <div
+              ref={imgRef}
+              style={{
+                position: 'relative',
+                width: '88%', maxWidth: 460, aspectRatio: '1/1',
+                borderRadius: 2, overflow: 'hidden', background: '#d8d6cf',
+              }}
+            >
+              <motion.img
                 src="/assets/hero-team.png"
                 alt="XDGE coaching session"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                style={{
+                  position: 'absolute', left: 0, right: 0,
+                  top: '-20%',
+                  width: '100%', height: '140%',
+                  objectFit: 'cover', display: 'block',
+                  y: imgY,
+                  willChange: 'transform',
+                }}
               />
             </div>
           </motion.div>

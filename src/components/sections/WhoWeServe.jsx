@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
@@ -10,6 +10,123 @@ const cards = [
   { year: '2024', t: 'School Entry', d: 'Visual Identity' },
   { year: '2024', t: 'Junior MBA', d: 'Distinctive Profile, Capstone Presentation, Evidence Portfolio' },
 ];
+
+function ServeCard({ card, index, hovered, onEnter, onLeave }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
+  const imgY = useTransform(scrollYProgress, [0, 1], ['-12%', '12%']);
+
+  const isHovered = hovered === index;
+
+  return (
+    <motion.a
+      ref={ref}
+      href="#"
+      variants={fadeUp}
+      data-cursor="grow"
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+      style={{
+        textDecoration: 'none',
+        color: theme.base,
+        border: `1px solid ${theme.borderDark}`,
+        background: theme.dark,
+        display: 'flex', flexDirection: 'column',
+        overflow: 'hidden',
+      }}
+    >
+      <div style={{
+        position: 'relative',
+        overflow: 'hidden',
+        aspectRatio: '4/3',
+        background: '#0e0e0e',
+      }}>
+        <motion.img
+          src="/assets/program-01.png"
+          alt={card.t}
+          animate={{ scale: isHovered ? 1.06 : 1 }}
+          transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
+          style={{
+            position: 'absolute', left: 0, right: 0,
+            top: '-20%',
+            width: '100%', height: '140%',
+            objectFit: 'cover',
+            y: imgY,
+            willChange: 'transform',
+          }}
+        />
+        <div style={{
+          position: 'absolute', inset: 0,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          pointerEvents: 'none',
+        }}>
+          <motion.div
+            animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 8 }}
+            transition={{ duration: 0.4, ease: [0.2, 0.7, 0.2, 1] }}
+            style={{
+              padding: '10px 18px',
+              background: theme.base,
+              color: theme.ink,
+              borderRadius: 4,
+              fontSize: 13, fontWeight: 500, letterSpacing: '0.02em',
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+            }}
+          >View Project →</motion.div>
+        </div>
+      </div>
+
+      <div style={{
+        padding: 'clamp(24px, 3vw, 32px)',
+        display: 'flex', flexDirection: 'column',
+        gap: 'clamp(16px, 2.5vw, 24px)',
+        flex: 1,
+      }}>
+        <div style={{ fontSize: 12, color: theme.subtitle, letterSpacing: '0.04em' }}>
+          {card.year}
+        </div>
+        <h3 style={{
+          fontFamily: theme.display,
+          fontSize: 'clamp(28px, 3.6vw, 48px)',
+          lineHeight: 1.0,
+          margin: 0,
+          letterSpacing: '-0.01em',
+          fontWeight: 900,
+          textTransform: 'uppercase',
+          flex: 1,
+        }}>
+          {card.t}
+        </h3>
+        <div style={{
+          display: 'flex', justifyContent: 'space-between',
+          alignItems: 'flex-end', gap: 16,
+        }}>
+          <p style={{
+            fontSize: 13, color: theme.subtitle,
+            lineHeight: 1.55, margin: 0, maxWidth: 280,
+          }}>
+            {card.d}
+          </p>
+          <motion.div
+            animate={{
+              scale: isHovered ? 1.1 : 1,
+              borderColor: isHovered ? theme.base : theme.borderDark,
+            }}
+            transition={{ duration: 0.4, ease: [0.2, 0.7, 0.2, 1] }}
+            style={{
+              width: 40, height: 40, borderRadius: '50%',
+              borderWidth: 1, borderStyle: 'solid', borderColor: theme.borderDark,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 15, color: theme.base, flexShrink: 0,
+            }}
+          >↗</motion.div>
+        </div>
+      </div>
+    </motion.a>
+  );
+}
 
 export function WhoWeServe() {
   const [hovered, setHovered] = useState(null);
@@ -57,103 +174,14 @@ export function WhoWeServe() {
 
         <Group className="xg-2" style={{ gap: 24 }}>
           {cards.map((c, i) => (
-            <motion.a
+            <ServeCard
               key={i}
-              href="#"
-              variants={fadeUp}
-              data-cursor="grow"
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(null)}
-              style={{
-                textDecoration: 'none',
-                color: theme.base,
-                border: `1px solid ${theme.borderDark}`,
-                background: theme.dark,
-                display: 'flex', flexDirection: 'column',
-                overflow: 'hidden',
-              }}
-            >
-              <div style={{
-                position: 'relative', overflow: 'hidden',
-                aspectRatio: '4/3', background: '#0e0e0e',
-              }}>
-                <motion.img
-                  src="/assets/program-01.png"
-                  alt={c.t}
-                  animate={{ scale: hovered === i ? 1.06 : 1 }}
-                  transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
-                  style={{
-                    position: 'absolute', inset: 0, width: '100%', height: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-                <div style={{
-                  position: 'absolute', inset: 0,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  pointerEvents: 'none',
-                }}>
-                  <motion.div
-                    animate={{ opacity: hovered === i ? 1 : 0, y: hovered === i ? 0 : 8 }}
-                    transition={{ duration: 0.4, ease: [0.2, 0.7, 0.2, 1] }}
-                    style={{
-                      padding: '10px 18px',
-                      background: theme.base,
-                      color: theme.ink,
-                      borderRadius: 4,
-                      fontSize: 13, fontWeight: 500, letterSpacing: '0.02em',
-                      display: 'inline-flex', alignItems: 'center', gap: 8,
-                    }}
-                  >View Project →</motion.div>
-                </div>
-              </div>
-
-              <div style={{
-                padding: 'clamp(24px, 3vw, 32px)',
-                display: 'flex', flexDirection: 'column',
-                gap: 'clamp(16px, 2.5vw, 24px)',
-                flex: 1,
-              }}>
-                <div style={{ fontSize: 12, color: theme.subtitle, letterSpacing: '0.04em' }}>
-                  {c.year}
-                </div>
-                <h3 style={{
-                  fontFamily: theme.display,
-                  fontSize: 'clamp(28px, 3.6vw, 48px)',
-                  lineHeight: 1.0,
-                  margin: 0,
-                  letterSpacing: '-0.01em',
-                  fontWeight: 900,
-                  textTransform: 'uppercase',
-                  flex: 1,
-                }}>
-                  {c.t}
-                </h3>
-                <div style={{
-                  display: 'flex', justifyContent: 'space-between',
-                  alignItems: 'flex-end', gap: 16,
-                }}>
-                  <p style={{
-                    fontSize: 13, color: theme.subtitle,
-                    lineHeight: 1.55, margin: 0, maxWidth: 280,
-                  }}>
-                    {c.d}
-                  </p>
-                  <motion.div
-                    animate={{
-                      scale: hovered === i ? 1.1 : 1,
-                      borderColor: hovered === i ? theme.base : theme.borderDark,
-                    }}
-                    transition={{ duration: 0.4, ease: [0.2, 0.7, 0.2, 1] }}
-                    style={{
-                      width: 40, height: 40, borderRadius: '50%',
-                      borderWidth: 1, borderStyle: 'solid', borderColor: theme.borderDark,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: 15, color: theme.base, flexShrink: 0,
-                    }}
-                  >↗</motion.div>
-                </div>
-              </div>
-            </motion.a>
+              card={c}
+              index={i}
+              hovered={hovered}
+              onEnter={() => setHovered(i)}
+              onLeave={() => setHovered(null)}
+            />
           ))}
         </Group>
       </div>

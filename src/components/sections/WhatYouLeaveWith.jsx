@@ -75,6 +75,31 @@ const items = [
   { icon: Icons.Chart, title: 'Next-Level Practice', desc: 'Preparation for high-stakes interviews and selection.' },
 ];
 
+const fadeEase = [0.2, 0.7, 0.2, 1];
+
+const itemVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0 } },
+};
+
+const iconVariants = {
+  hidden: { scale: 0.4, opacity: 0, rotate: -8 },
+  visible: {
+    scale: 1, opacity: 1, rotate: 0,
+    transition: { duration: 0.7, ease: fadeEase },
+  },
+};
+
+const titleVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: fadeEase } },
+};
+
+const descVariants = {
+  hidden: { y: 16, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.85, ease: fadeEase } },
+};
+
 export function WhatYouLeaveWith() {
   return (
     <section
@@ -119,34 +144,44 @@ export function WhatYouLeaveWith() {
           {items.map((it, i) => (
             <motion.div
               key={i}
-              variants={fadeUp}
+              variants={itemVariants}
               style={{
                 display: 'flex', alignItems: 'flex-start',
                 gap: 'clamp(16px, 2vw, 24px)',
               }}
             >
-              <div style={{
-                width: 44, height: 44,
-                color: theme.ink,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                flexShrink: 0,
-              }}>
-                {it.icon}
-              </div>
-              <div>
-                <h3 style={{
-                  fontSize: 'clamp(16px, 1.8vw, 20px)',
-                  margin: '0 0 8px',
-                  fontWeight: 600,
+              <motion.div
+                variants={iconVariants}
+                style={{
+                  width: 44, height: 44,
                   color: theme.ink,
-                  letterSpacing: '-0.005em',
-                }}>{it.title}</h3>
-                <p style={{
-                  fontSize: 'clamp(13px, 1.4vw, 15px)',
-                  margin: 0,
-                  lineHeight: 1.5,
-                  color: '#3a3c3e',
-                }}>{it.desc}</p>
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  flexShrink: 0,
+                  transformOrigin: 'center',
+                }}
+              >
+                {it.icon}
+              </motion.div>
+              <div style={{ overflow: 'hidden' }}>
+                <motion.h3
+                  variants={titleVariants}
+                  style={{
+                    fontSize: 'clamp(16px, 1.8vw, 20px)',
+                    margin: '0 0 8px',
+                    fontWeight: 600,
+                    color: theme.ink,
+                    letterSpacing: '-0.005em',
+                  }}
+                >{it.title}</motion.h3>
+                <motion.p
+                  variants={descVariants}
+                  style={{
+                    fontSize: 'clamp(13px, 1.4vw, 15px)',
+                    margin: 0,
+                    lineHeight: 1.5,
+                    color: '#3a3c3e',
+                  }}
+                >{it.desc}</motion.p>
               </div>
             </motion.div>
           ))}
