@@ -1,9 +1,50 @@
 import { motion } from 'framer-motion';
 import { theme } from '../../theme';
 
-const companyLinks = ['Home', 'Projects', 'Services', 'Contact Us'];
-const resourceLinks = ['Blog', 'Join Us', 'Studio', 'FAQ'];
-const socials = ['LinkedIn', 'Instagram', 'Facebook', 'Behance'];
+const companyLinks = ['Home', 'About', 'Programs', 'How It Works'];
+const resourceLinks = ['FAQ', 'Contact', 'Apply'];
+
+const socials = [
+  {
+    name: 'Instagram',
+    href: '#',
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
+  {
+    name: 'LinkedIn',
+    href: '#',
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'Facebook',
+    href: '#',
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.5-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99A10 10 0 0 0 22 12z"/>
+      </svg>
+    ),
+  },
+];
+
+const phoneIcon = (
+  <svg
+    width="14" height="14" viewBox="0 0 24 24"
+    fill="none" stroke="currentColor" strokeWidth="1.8"
+    strokeLinecap="round" strokeLinejoin="round"
+  >
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+  </svg>
+);
 
 export function Footer() {
   return (
@@ -48,10 +89,22 @@ export function Footer() {
               fontSize: 11, color: theme.subtitle, marginBottom: 14,
               letterSpacing: '0.16em', textTransform: 'uppercase',
             }}>Head Office</div>
-            <div style={{ fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.6, color: theme.base }}>
-              6F Harbourside View Building,<br />
-              3-2-4 Anchor Road, Bristol, BS1<br />
-              5UH, United Kingdom
+            <div style={{ fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.6, color: theme.base, marginBottom: 24 }}>
+              71-75 Shelton Street,<br />
+              Covent Garden,<br />
+              London. WC2H 9JQ
+            </div>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
+              <div style={{
+                width: 36, height: 36, borderRadius: '50%',
+                border: `1px solid ${theme.borderDark}`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: theme.base, flexShrink: 0,
+              }}>{phoneIcon}</div>
+              <div style={{ fontSize: 14, lineHeight: 1.7, color: theme.base }}>
+                <div>UK: 07309 423777</div>
+                <div>USA: 619 983 8853</div>
+              </div>
             </div>
           </div>
 
@@ -63,8 +116,9 @@ export function Footer() {
             <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
               {socials.map((s) => (
                 <motion.a
-                  key={s}
-                  href="#"
+                  key={s.name}
+                  href={s.href}
+                  aria-label={s.name}
                   data-cursor="grow"
                   whileHover={{ y: -3 }}
                   transition={{ duration: 0.25 }}
@@ -72,11 +126,9 @@ export function Footer() {
                     width: 36, height: 36, borderRadius: '50%',
                     border: `1px solid ${theme.borderDark}`,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 11, fontWeight: 700, letterSpacing: '0.04em',
                     color: theme.base, textDecoration: 'none',
-                    textTransform: 'uppercase',
                   }}
-                >{s.slice(0, 2)}</motion.a>
+                >{s.icon}</motion.a>
               ))}
             </div>
           </div>
@@ -117,10 +169,10 @@ export function Footer() {
             <div style={{
               fontSize: 11, color: theme.subtitle, marginBottom: 16,
               letterSpacing: '0.16em', textTransform: 'uppercase',
-            }}>Newsletter</div>
+            }}>Insights</div>
             <div style={{ fontSize: 14, lineHeight: 1.5, color: theme.base, marginBottom: 18 }}>
-              Subscribe to get the latest insights<br />
-              straight to your inbox.
+              Stay ahead with leadership insights<br />
+              that drive performance.
             </div>
             <div style={{ marginBottom: 14 }}>
               <input

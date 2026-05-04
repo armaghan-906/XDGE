@@ -10,7 +10,7 @@ export function WhoWeAre() {
     target: imgRef,
     offset: ['start end', 'end start'],
   });
-  const imgY = useTransform(scrollYProgress, [0, 1], ['-12%', '12%']);
+  const imgY = useTransform(scrollYProgress, [0, 1], ['-5%', '5%']);
 
   return (
     <section
@@ -30,17 +30,17 @@ export function WhoWeAre() {
               ref={imgRef}
               style={{
                 position: 'relative',
-                width: '88%', maxWidth: 460, aspectRatio: '1/1',
+                width: '100%', maxWidth: 540, aspectRatio: '16/9',
                 borderRadius: 2, overflow: 'hidden', background: '#d8d6cf',
               }}
             >
               <motion.img
-                src="/assets/hero-team.png"
+                src="/assets/who-we-are.webp"
                 alt="XDGE coaching session"
                 style={{
                   position: 'absolute', left: 0, right: 0,
-                  top: '-20%',
-                  width: '100%', height: '140%',
+                  top: '-7.5%',
+                  width: '100%', height: '115%',
                   objectFit: 'cover', display: 'block',
                   y: imgY,
                   willChange: 'transform',

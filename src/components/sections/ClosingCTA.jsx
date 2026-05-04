@@ -33,7 +33,7 @@ export function ClosingCTA() {
             }}
           >
             <img
-              src="/assets/blog-02.jpg"
+              src="/assets/blog-02.webp"
               alt=""
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
@@ -52,7 +52,7 @@ export function ClosingCTA() {
             }}
           >
             <img
-              src="/assets/blog-03.jpg"
+              src="/assets/blog-03.webp"
               alt=""
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />

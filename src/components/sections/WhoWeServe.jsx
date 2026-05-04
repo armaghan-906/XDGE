@@ -5,10 +5,10 @@ import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
 const cards = [
-  { year: '2024', t: 'University Incubator Programme', d: 'Distinctive Profile, Core Project, Capstone Presentation, Evidence Portfolio' },
-  { year: '2024', t: 'University Preparation', d: 'Visual Identity, Brand Strategy, Web design' },
-  { year: '2024', t: 'School Entry', d: 'Visual Identity' },
-  { year: '2024', t: 'Junior MBA', d: 'Distinctive Profile, Capstone Presentation, Evidence Portfolio' },
+  { year: '2024', t: 'University Incubator Programme', d: 'Distinctive Profile, Core Project, Capstone Presentation, Evidence Portfolio', img: '/assets/serve-01.webp' },
+  { year: '2024', t: 'University Preparation', d: 'Visual Identity, Brand Strategy, Web design', img: '/assets/serve-02.webp' },
+  { year: '2024', t: 'School Entry', d: 'Visual Identity', img: '/assets/serve-03.webp' },
+  { year: '2024', t: 'Junior MBA', d: 'Distinctive Profile, Capstone Presentation, Evidence Portfolio', img: '/assets/serve-04.webp' },
 ];
 
 function ServeCard({ card, index, hovered, onEnter, onLeave }) {
@@ -45,7 +45,7 @@ function ServeCard({ card, index, hovered, onEnter, onLeave }) {
         background: '#0e0e0e',
       }}>
         <motion.img
-          src="/assets/program-01.png"
+          src={card.img}
           alt={card.t}
           animate={{ scale: isHovered ? 1.06 : 1 }}
           transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}

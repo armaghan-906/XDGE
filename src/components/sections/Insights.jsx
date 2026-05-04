@@ -60,7 +60,7 @@ export function Insights() {
                 border: `1px solid ${theme.borderDark}`, overflow: 'hidden',
               }}
             >
-              <Img src={`/assets/blog-0${i + 1}.jpg`} alt={p.title} ratio="3/2" />
+              <Img src={`/assets/blog-0${i + 1}.webp`} alt={p.title} ratio="3/2" />
               <div style={{ padding: '20px 22px 24px' }}>
                 <div style={{ display: 'flex', gap: 8, fontSize: 11, color: theme.subtitle, marginBottom: 12, letterSpacing: '0.06em' }}>
                   <span>{p.tag1}</span><span>·</span><span>{p.tag2}</span>

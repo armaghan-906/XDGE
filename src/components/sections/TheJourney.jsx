@@ -55,12 +55,12 @@ const Icons = {
 };
 
 const steps = [
-  { n: '01', title: 'Select Your Path', desc: 'Fit, goals, and program alignment', icon: Icons.Search, offset: 152 },
-  { n: '02', title: 'Build Your Internal Operating System', desc: 'Mindset, discipline, decision-making', icon: Icons.Bulb, offset: 78 },
-  { n: '03', title: 'Develop Your Professional Skillset', desc: 'Communication, leadership, execution', icon: Icons.Briefcase, offset: 30 },
-  { n: '04', title: 'Lead a Mentored, Real-World Project', desc: 'Apply skills and create real evidence', icon: Icons.Flag, offset: 30 },
-  { n: '05', title: 'Prove Your Capability', desc: 'Leadership portfolio and capstone presentation', icon: Icons.Clipboard, offset: 78 },
-  { n: '06', title: 'Perform Under Pressure', desc: 'High-stakes interview and selection readiness', icon: Icons.Trophy, offset: 152 },
+  { n: '01', title: 'Define Your Path', desc: 'Align the program to you & choose your leadership project', icon: Icons.Search, offset: 152 },
+  { n: '02', title: 'Personal Mastery', desc: 'Develop mindset & thinking skills for high performance', icon: Icons.Bulb, offset: 78 },
+  { n: '03', title: 'Professional Skillset', desc: 'Strengthen communication, influence, execution, & interview readiness', icon: Icons.Briefcase, offset: 30 },
+  { n: '04', title: 'Leadership Portfolio', desc: 'Evidence your achievements & proven capability', icon: Icons.Clipboard, offset: 30 },
+  { n: '05', title: 'Lead a Real-World Project', desc: 'Apply your skills through a mentored project & create real-world impact', icon: Icons.Flag, offset: 78 },
+  { n: '06', title: 'Capstone Showcase', desc: "Present your project to executive leaders & industry experts in a Dragon's Den–style showcase", icon: Icons.Trophy, offset: 152 },
 ];
 
 const fadeEase = [0.2, 0.7, 0.2, 1];
