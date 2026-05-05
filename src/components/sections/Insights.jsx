@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
-import { Img } from '../primitives/Img';
 import { SplitHeading } from '../primitives/SplitHeading';
 
 const posts = [
@@ -60,7 +59,28 @@ export function Insights() {
                 border: `1px solid ${theme.borderDark}`, overflow: 'hidden',
               }}
             >
-              <Img src={`/assets/blog-0${i + 1}.webp`} alt={p.title} ratio="3/2" />
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                aspectRatio: '4/3',
+                overflow: 'hidden',
+                background: theme.dark,
+              }}>
+                <motion.img
+                  src={`/assets/blog-0${i + 1}.webp`}
+                  alt={p.title}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 1.0, ease: [0.2, 0.7, 0.2, 1] }}
+                  style={{
+                    width: '100%', height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: '50% 30%',
+                    display: 'block',
+                  }}
+                />
+              </div>
               <div style={{ padding: '20px 22px 24px' }}>
                 <div style={{ display: 'flex', gap: 8, fontSize: 11, color: theme.subtitle, marginBottom: 12, letterSpacing: '0.06em' }}>
                   <span>{p.tag1}</span><span>·</span><span>{p.tag2}</span>

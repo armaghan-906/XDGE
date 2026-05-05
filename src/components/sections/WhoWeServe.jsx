@@ -5,10 +5,10 @@ import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
 const cards = [
-  { year: '2024', t: 'University Incubator Programme', d: 'Distinctive Profile, Core Project, Capstone Presentation, Evidence Portfolio', img: '/assets/serve-01.webp' },
-  { year: '2024', t: 'University Preparation', d: 'Visual Identity, Brand Strategy, Web design', img: '/assets/serve-02.webp' },
   { year: '2024', t: 'School Entry', d: 'Visual Identity', img: '/assets/serve-03.webp' },
   { year: '2024', t: 'Junior MBA', d: 'Distinctive Profile, Capstone Presentation, Evidence Portfolio', img: '/assets/serve-04.webp' },
+  { year: '2024', t: 'University Incubator Programme', d: 'Distinctive Profile, Core Project, Capstone Presentation, Evidence Portfolio', img: '/assets/serve-01.webp' },
+  { year: '2024', t: 'University Preparation', d: 'Visual Identity, Brand Strategy, Web design', img: '/assets/serve-02.webp' },
 ];
 
 function ServeCard({ card, index, hovered, onEnter, onLeave }) {

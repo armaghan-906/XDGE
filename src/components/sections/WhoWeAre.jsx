@@ -10,7 +10,7 @@ export function WhoWeAre() {
     target: imgRef,
     offset: ['start end', 'end start'],
   });
-  const imgY = useTransform(scrollYProgress, [0, 1], ['-5%', '5%']);
+  const imgY = useTransform(scrollYProgress, [0, 1], ['-2%', '2%']);
 
   return (
     <section
@@ -30,7 +30,7 @@ export function WhoWeAre() {
               ref={imgRef}
               style={{
                 position: 'relative',
-                width: '100%', maxWidth: 540, aspectRatio: '16/9',
+                width: '100%', maxWidth: 700, aspectRatio: '16/9',
                 borderRadius: 2, overflow: 'hidden', background: '#d8d6cf',
               }}
             >
@@ -39,9 +39,11 @@ export function WhoWeAre() {
                 alt="XDGE coaching session"
                 style={{
                   position: 'absolute', left: 0, right: 0,
-                  top: '-7.5%',
-                  width: '100%', height: '115%',
-                  objectFit: 'cover', display: 'block',
+                  top: '-3%',
+                  width: '100%', height: '106%',
+                  objectFit: 'cover',
+                  objectPosition: '50% 35%',
+                  display: 'block',
                   y: imgY,
                   willChange: 'transform',
                 }}

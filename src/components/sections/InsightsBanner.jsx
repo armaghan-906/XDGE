@@ -11,15 +11,16 @@ export function InsightsBanner() {
         background: theme.dark,
         overflow: 'hidden',
         lineHeight: 0,
+        padding: 'clamp(20px, 3vw, 48px) 0',
       }}
     >
       <motion.img
         src="/assets/insights-banner.webp"
         alt=""
-        initial={{ scale: 1.06, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 1.4, ease: [0.2, 0.7, 0.2, 1] }}
+        transition={{ duration: 1.2, ease: [0.2, 0.7, 0.2, 1] }}
         style={{
           width: '100%',
           height: 'auto',

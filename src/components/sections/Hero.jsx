@@ -8,7 +8,7 @@ function HeroHeading({ y, opacity }) {
       style={{
         y, opacity,
         fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(80px, 18vw, 280px)',
+        fontSize: 'clamp(100px, 26vw, 420px)',
         lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
         overflow: 'hidden',
@@ -56,7 +56,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.15 }}
             style={{
               fontFamily: theme.display, fontWeight: 700,
-              fontSize: 'clamp(20px, 2.6vw, 36px)',
+              fontSize: 'clamp(22px, 2.8vw, 40px)',
               lineHeight: 1, letterSpacing: '-0.01em',
               color: theme.base,
               marginBottom: 'clamp(8px, 1.5vw, 16px)',
@@ -71,11 +71,13 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.55 }}
             style={{
-              fontSize: 'clamp(13px, 1.4vw, 16px)',
-              fontWeight: 500,
+              fontFamily: theme.display, fontWeight: 700,
+              fontSize: 'clamp(22px, 4.5vw, 76px)',
+              lineHeight: 1.0, letterSpacing: '-0.01em',
               color: theme.base,
-              marginTop: 14,
-              letterSpacing: '0.01em',
+              marginTop: 'clamp(14px, 2vw, 32px)',
+              textTransform: 'uppercase',
+              maxWidth: '18ch',
             }}
           >
             Get the Leadership Edge That Sets You Apart

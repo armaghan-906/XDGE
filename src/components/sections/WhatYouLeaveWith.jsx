@@ -104,10 +104,10 @@ export function WhatYouLeaveWith() {
   return (
     <section
       data-screen-label="What You Leave With"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base,
-        color: theme.ink,
+        background: theme.dark,
+        color: theme.base,
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -130,7 +130,7 @@ export function WhatYouLeaveWith() {
           style={{
             fontSize: 'clamp(20px, 2.4vw, 30px)',
             lineHeight: 1.4,
-            color: theme.ink,
+            color: theme.base,
             margin: '0 0 clamp(48px, 7vw, 88px)',
             fontWeight: 500,
             letterSpacing: '-0.005em',
@@ -154,7 +154,7 @@ export function WhatYouLeaveWith() {
                 variants={iconVariants}
                 style={{
                   width: 44, height: 44,
-                  color: theme.ink,
+                  color: theme.base,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   flexShrink: 0,
                   transformOrigin: 'center',
@@ -169,7 +169,7 @@ export function WhatYouLeaveWith() {
                     fontSize: 'clamp(16px, 1.8vw, 20px)',
                     margin: '0 0 8px',
                     fontWeight: 600,
-                    color: theme.ink,
+                    color: theme.base,
                     letterSpacing: '-0.005em',
                   }}
                 >{it.title}</motion.h3>
@@ -179,7 +179,7 @@ export function WhatYouLeaveWith() {
                     fontSize: 'clamp(13px, 1.4vw, 15px)',
                     margin: 0,
                     lineHeight: 1.5,
-                    color: '#3a3c3e',
+                    color: theme.subtitle,
                   }}
                 >{it.desc}</motion.p>
               </div>

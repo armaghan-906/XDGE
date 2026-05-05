@@ -61,18 +61,21 @@ export function Footer() {
         overflow: 'hidden',
         padding: 'clamp(40px, 6vw, 64px) 0 clamp(24px, 4vw, 40px)',
       }}>
-        <div
-          className="xdge-footer-marquee"
+        <motion.div
+          animate={{ x: ['0%', '-50%'] }}
+          transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
           style={{
             fontFamily: theme.display, fontWeight: 900,
             fontSize: 'clamp(72px, 15vw, 220px)',
             lineHeight: 0.95, letterSpacing: '-0.01em',
             color: theme.base,
+            display: 'flex', whiteSpace: 'nowrap',
+            willChange: 'transform',
           }}
         >
           <span style={{ paddingRight: '0.35em' }}>XDGE · LEADERSHIP ·</span>
           <span style={{ paddingRight: '0.35em' }}>XDGE · LEADERSHIP ·</span>
-        </div>
+        </motion.div>
       </div>
 
       <div style={{

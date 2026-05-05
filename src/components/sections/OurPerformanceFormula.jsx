@@ -94,8 +94,7 @@ function PerformanceDiagram() {
         transition={{ duration: 0.6, ease: ringEase, delay: 0.7 }}
         style={{
           position: 'absolute',
-          top: '3%', left: '50%',
-          transform: 'translateX(-50%)',
+          top: '3%', left: 0, right: 0,
           textAlign: 'center',
           color: theme.ink,
         }}
@@ -125,8 +124,7 @@ function PerformanceDiagram() {
         transition={{ duration: 0.6, ease: ringEase, delay: 0.85 }}
         style={{
           position: 'absolute',
-          top: '20%', left: '50%',
-          transform: 'translateX(-50%)',
+          top: '20%', left: 0, right: 0,
           textAlign: 'center',
           color: theme.ink,
         }}
@@ -156,11 +154,10 @@ function PerformanceDiagram() {
         transition={{ duration: 0.6, ease: ringEase, delay: 1.0 }}
         style={{
           position: 'absolute',
-          top: '50%', left: '50%',
-          transform: 'translate(-50%, -50%)',
+          top: '50%', left: 0, right: 0,
+          transform: 'translateY(-50%)',
           textAlign: 'center',
           color: theme.ink,
-          width: '50%',
         }}
       >
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, justifyContent: 'center' }}>
