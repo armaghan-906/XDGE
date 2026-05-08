@@ -1,37 +1,34 @@
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import { ScrollProgress } from './components/ScrollProgress';
 import { Cursor } from './components/Cursor';
 import { TopBar } from './components/TopBar';
-import { Hero } from './components/sections/Hero';
-import { TheReality } from './components/sections/TheReality';
-import { WhoWeServe } from './components/sections/WhoWeServe';
-import { WhoWeAreBanner } from './components/sections/WhoWeAreBanner';
-import { WhoWeAre } from './components/sections/WhoWeAre';
-import { TheJourney } from './components/sections/TheJourney';
-import { OurPerformanceFormula } from './components/sections/OurPerformanceFormula';
-import { WhatYouLeaveWith } from './components/sections/WhatYouLeaveWith';
-import { ProvenOutcomes } from './components/sections/ProvenOutcomes';
-import { InsightsBanner } from './components/sections/InsightsBanner';
-import { Insights } from './components/sections/Insights';
+import { ScrollToTop } from './components/ScrollToTop';
 import { Footer } from './components/sections/Footer';
+import Home from './pages/Home';
+import TheExperience from './pages/TheExperience';
 
-export default function App() {
+function Layout() {
   return (
     <div>
+      <ScrollToTop />
       <Cursor />
       <ScrollProgress />
       <TopBar />
-      <Hero />
-      <TheReality />
-      <WhoWeServe />
-      <WhoWeAreBanner />
-      <WhoWeAre />
-      <TheJourney />
-      <OurPerformanceFormula />
-      <WhatYouLeaveWith />
-      <ProvenOutcomes />
-      <InsightsBanner />
-      <Insights />
+      <Outlet />
       <Footer />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/the-experience" element={<TheExperience />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }

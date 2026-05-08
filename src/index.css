@@ -50,6 +50,21 @@ input, textarea, select { cursor: text; }
   .xg-footer-right { justify-self: start; }
 }
 
+/* Different-ages row: 3 columns on desktop, stacks on tablet/mobile */
+@media (max-width: 1024px) {
+  .xg-ages-row {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .xg-ages-row > :first-child {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 640px) {
+  .xg-ages-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 /* What-you-leave-with grid: 4 items in col 1, 3 in col 2; stacks on mobile */
 .xg-leave-grid {
   display: grid;

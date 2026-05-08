@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { theme } from '../theme';
 
+const MotionLink = motion(Link);
+
 const primaryLinks = [
-  { label: 'Home', href: '#' },
+  { label: 'Home', to: '/' },
+  { label: 'The Experience', to: '/the-experience' },
   { label: 'Programmes', href: '#' },
   { label: 'Outcomes', href: '#' },
   { label: 'Insights', href: '#' },
@@ -270,27 +274,33 @@ export function TopBar() {
                   gap: 'clamp(2px, 0.5vw, 6px)',
                 }}
               >
-                {primaryLinks.map(({ label, href }) => (
-                  <span key={label} style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
-                    <motion.a
-                      variants={linkVariants}
-                      onClick={() => setOpen(false)}
-                      href={href}
-                      data-cursor="grow"
-                      whileHover={{ x: 14 }}
-                      transition={{ duration: 0.3 }}
-                      style={{
-                        display: 'block',
-                        fontFamily: theme.display,
-                        fontSize: 'clamp(48px, 9vw, 130px)',
-                        lineHeight: 0.95, letterSpacing: '-0.02em',
-                        color: theme.ink, textDecoration: 'none',
-                        textTransform: 'uppercase',
-                        fontWeight: 900,
-                      }}
-                    >{label}</motion.a>
-                  </span>
-                ))}
+                {primaryLinks.map((item) => {
+                  const sharedProps = {
+                    variants: linkVariants,
+                    onClick: () => setOpen(false),
+                    'data-cursor': 'grow',
+                    whileHover: { x: 14 },
+                    transition: { duration: 0.3 },
+                    style: {
+                      display: 'block',
+                      fontFamily: theme.display,
+                      fontSize: 'clamp(48px, 9vw, 130px)',
+                      lineHeight: 0.95, letterSpacing: '-0.02em',
+                      color: theme.ink, textDecoration: 'none',
+                      textTransform: 'uppercase',
+                      fontWeight: 900,
+                    },
+                  };
+                  return (
+                    <span key={item.label} style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
+                      {item.to ? (
+                        <MotionLink to={item.to} {...sharedProps}>{item.label}</MotionLink>
+                      ) : (
+                        <motion.a href={item.href} {...sharedProps}>{item.label}</motion.a>
+                      )}
+                    </span>
+                  );
+                })}
               </motion.nav>
 
               <div style={{
