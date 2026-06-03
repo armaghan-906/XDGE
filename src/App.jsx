@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ScrollProgress } from './components/ScrollProgress';
 import { Cursor } from './components/Cursor';
@@ -19,9 +19,7 @@ function Layout() {
       <Cursor />
       <ScrollProgress />
       <TopBar />
-      <Suspense fallback={<div style={{ minHeight: '100vh', background: '#000000' }} />}>
-        <PageTransition />
-      </Suspense>
+      <PageTransition />
       <Footer />
     </div>
   );

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { useLocation, useOutlet } from 'react-router-dom';
 import { motion, useAnimationControls } from 'framer-motion';
 import { theme } from '../theme';
@@ -11,11 +11,11 @@ import { theme } from '../theme';
  *   2. swaps the page + resets scroll while hidden behind the panel
  *   3. sweeps the panel OFF the top (reveal)
  *
- * Drop it in place of <Outlet/> inside your Layout. It owns scroll-reset,
- * so you can delete <ScrollToTop/> from the Layout (it's handled here).
- *
- * Requires the parent route to provide a <Suspense> boundary (yours already does)
- * so lazy pages suspend behind the curtain.
+ * The Suspense boundary is INSIDE this component, around just the page
+ * content — so when a lazy route chunk is loading (network-bound on prod)
+ * the curtain stays mounted and the wipe completes cleanly. In dev, chunks
+ * load in milliseconds so this isn't visible — but on Vercel/network the
+ * outer-Suspense pattern would unmount the curtain mid-animation.
  */
 
 const SWEEP = [0.76, 0, 0.24, 1];
@@ -71,7 +71,14 @@ export function PageTransition() {
   return (
     <>
       <motion.div animate={content} style={{ willChange: 'opacity' }}>
-        {shown}
+        {/* Suspense is INSIDE this motion.div so a lazy chunk load doesn't
+            unmount the curtain (the curtain is the sibling motion.div below).
+            On first page load the fallback shows under the empty curtain.
+            On route navigation the curtain is fully covering, so the fallback
+            is invisible — the wipe completes cleanly even on slow networks. */}
+        <Suspense fallback={<div style={{ minHeight: '100vh', background: '#000000' }} />}>
+          {shown}
+        </Suspense>
       </motion.div>
 
       <motion.div
