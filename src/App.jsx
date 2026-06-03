@@ -1,20 +1,27 @@
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ScrollProgress } from './components/ScrollProgress';
 import { Cursor } from './components/Cursor';
 import { TopBar } from './components/TopBar';
-import { ScrollToTop } from './components/ScrollToTop';
+import { PageTransition } from './components/PageTransition';
 import { Footer } from './components/sections/Footer';
-import Home from './pages/Home';
-import TheExperience from './pages/TheExperience';
+
+const Home = lazy(() => import('./pages/Home'));
+const TheExperience = lazy(() => import('./pages/TheExperience'));
+const About = lazy(() => import('./pages/About'));
+const Cohorts = lazy(() => import('./pages/Cohorts'));
+const Outcomes = lazy(() => import('./pages/Outcomes'));
+const PerformanceFormula = lazy(() => import('./pages/PerformanceFormula'));
 
 function Layout() {
   return (
     <div>
-      <ScrollToTop />
       <Cursor />
       <ScrollProgress />
       <TopBar />
-      <Outlet />
+      <Suspense fallback={<div style={{ minHeight: '100vh', background: '#000000' }} />}>
+        <PageTransition />
+      </Suspense>
       <Footer />
     </div>
   );
@@ -27,6 +34,10 @@ export default function App() {
         <Route element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/the-experience" element={<TheExperience />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/cohorts" element={<Cohorts />} />
+          <Route path="/outcomes" element={<Outcomes />} />
+          <Route path="/performance-formula" element={<PerformanceFormula />} />
         </Route>
       </Routes>
     </BrowserRouter>

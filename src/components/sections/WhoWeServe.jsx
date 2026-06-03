@@ -1,41 +1,34 @@
-import { useState, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
+import { Magnetic } from '../Magnetic';
 
 const cards = [
-  { year: '2024', t: 'School Entry', d: 'Visual Identity', img: '/assets/serve-03.webp' },
-  { year: '2024', t: 'Junior MBA', d: 'Distinctive Profile, Capstone Presentation, Evidence Portfolio', img: '/assets/serve-04.webp' },
-  { year: '2024', t: 'University Incubator Programme', d: 'Distinctive Profile, Core Project, Capstone Presentation, Evidence Portfolio', img: '/assets/serve-01.webp' },
-  { year: '2024', t: 'University Preparation', d: 'Visual Identity, Brand Strategy, Web design', img: '/assets/serve-02.webp' },
+  { year: 'The XDGE', t: 'Early Career & Professional Advantage', d: '', img: '/assets/graduates-card.webp' },
+  { year: 'The XDGE', t: 'University Entry Edge', d: '', img: '/assets/serve-02.webp' },
+  { year: 'The XDGE', t: 'School Entry Edge', d: '', img: '/assets/serve-03.webp' },
+  { year: 'The XDGE', t: 'Early Leadership Foundations', d: '', img: '/assets/serve-04.webp' },
 ];
 
 function ServeCard({ card, index, hovered, onEnter, onLeave }) {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
-  const imgY = useTransform(scrollYProgress, [0, 1], ['-12%', '12%']);
-
   const isHovered = hovered === index;
 
   return (
     <motion.a
-      ref={ref}
       href="#"
       variants={fadeUp}
       data-cursor="grow"
+      className="xg-glass-solid xg-tilt"
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
       style={{
         textDecoration: 'none',
         color: theme.base,
-        border: `1px solid ${theme.borderDark}`,
-        background: theme.dark,
         display: 'flex', flexDirection: 'column',
         overflow: 'hidden',
+        borderRadius: 4,
       }}
     >
       <div style={{
@@ -47,14 +40,15 @@ function ServeCard({ card, index, hovered, onEnter, onLeave }) {
         <motion.img
           src={card.img}
           alt={card.t}
+          loading="lazy"
+          decoding="async"
           animate={{ scale: isHovered ? 1.06 : 1 }}
           transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
           style={{
-            position: 'absolute', left: 0, right: 0,
-            top: '-20%',
-            width: '100%', height: '140%',
+            position: 'absolute',
+            inset: 0,
+            width: '100%', height: '100%',
             objectFit: 'cover',
-            y: imgY,
             willChange: 'transform',
           }}
         />
@@ -139,12 +133,8 @@ export function WhoWeServe() {
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(32px, 6vw, 56px)' }}>
           <div>
-            <motion.div
-              variants={fadeUp}
-              style={{ fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase', color: theme.subtitle, marginBottom: 28 }}
-            >(WHO WE SERVE)</motion.div>
             <SplitHeading
-              lines={['WHO WE', 'SERVE']}
+              lines={['WHO IS', 'IT FOR']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
                 fontSize: 'clamp(48px, 12vw, 180px)',
@@ -153,22 +143,30 @@ export function WhoWeServe() {
             />
           </div>
           <motion.div variants={fadeUp} style={{ paddingBottom: 24 }}>
-            <div style={{ fontSize: 12, letterSpacing: '0.06em', color: theme.subtitle, marginBottom: 12 }}>
-              Corporate-Style Leadership Development
+            <div style={{
+              fontSize: 12, letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              color: theme.base, marginBottom: 14,
+              fontWeight: 700, lineHeight: 1.35,
+              maxWidth: 460,
+            }}>
+              For Young People 12&ndash;24 Building Their Next Step Advantage
             </div>
             <p style={{ fontSize: 14, lineHeight: 1.6, margin: '0 0 24px', color: theme.subtitle, maxWidth: 480 }}>
-              XDGE prepares graduates and young students for their next competitive step:
-              professional careers, elite internships, top universities, and selective schools.
+              XDGE helps ambitious young people build the confidence,
+              leadership skills, and professional edge to stand out in school,
+              university, career, business, and life.
             </p>
-            <motion.a
-              whileHover={{ x: 4 }}
-              href="#"
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 10, padding: '12px 20px',
-                border: `1px solid ${theme.base}`, borderRadius: 999, color: theme.base,
-                textDecoration: 'none', fontSize: 13, fontWeight: 500,
-              }}
-            >View All Programmes <span style={{ fontSize: 16 }}>→</span></motion.a>
+            <Magnetic strength={0.3}>
+              <a
+                href="#"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 10, padding: '12px 20px',
+                  border: `1px solid ${theme.base}`, borderRadius: 999, color: theme.base,
+                  textDecoration: 'none', fontSize: 13, fontWeight: 500,
+                }}
+              >View All Programmes <span style={{ fontSize: 16 }}>→</span></a>
+            </Magnetic>
           </motion.div>
         </Group>
 

@@ -51,14 +51,6 @@ export function StandardsExpectations() {
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(40px, 6vw, 64px)' }}>
           <div>
-            <motion.div
-              variants={fadeUp}
-              style={{
-                fontSize: 12, letterSpacing: '0.16em',
-                textTransform: 'uppercase', color: '#7d7e7c',
-                marginBottom: 28, fontWeight: 600,
-              }}
-            >(What Is Expected Of You)</motion.div>
             <SplitHeading
               lines={['STANDARDS &', 'EXPECTATIONS']}
               style={{

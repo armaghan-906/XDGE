@@ -60,6 +60,8 @@ export function Footer() {
       <div style={{
         overflow: 'hidden',
         padding: 'clamp(40px, 6vw, 64px) 0 clamp(24px, 4vw, 40px)',
+        WebkitMaskImage: 'linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%)',
+        maskImage: 'linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%)',
       }}>
         <motion.div
           animate={{ x: ['0%', '-50%'] }}
@@ -68,13 +70,17 @@ export function Footer() {
             fontFamily: theme.display, fontWeight: 900,
             fontSize: 'clamp(72px, 15vw, 220px)',
             lineHeight: 0.95, letterSpacing: '-0.01em',
-            color: theme.base,
             display: 'flex', whiteSpace: 'nowrap',
             willChange: 'transform',
+            background: 'linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 60%, rgba(168,168,168,0.6) 100%)',
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text',
+            color: 'transparent',
+            WebkitTextFillColor: 'transparent',
           }}
         >
-          <span style={{ paddingRight: '0.35em' }}>XDGE · LEADERSHIP ·</span>
-          <span style={{ paddingRight: '0.35em' }}>XDGE · LEADERSHIP ·</span>
+          <span style={{ paddingRight: '0.35em' }}>CAREER · UNIVERSITY · SCHOOL ·</span>
+          <span style={{ paddingRight: '0.35em' }}>CAREER · UNIVERSITY · SCHOOL ·</span>
         </motion.div>
       </div>
 

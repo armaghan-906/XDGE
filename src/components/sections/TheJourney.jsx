@@ -55,12 +55,12 @@ const Icons = {
 };
 
 const steps = [
-  { n: '01', title: 'Define Your Path', desc: 'Align the program to you & choose your leadership project', icon: Icons.Search, offset: 152 },
-  { n: '02', title: 'Personal Mastery', desc: 'Develop mindset & thinking skills for high performance', icon: Icons.Bulb, offset: 78 },
-  { n: '03', title: 'Professional Skillset', desc: 'Strengthen communication, influence, execution, & interview readiness', icon: Icons.Briefcase, offset: 30 },
-  { n: '04', title: 'Leadership Portfolio', desc: 'Evidence your achievements & proven capability', icon: Icons.Clipboard, offset: 30 },
-  { n: '05', title: 'Lead a Real-World Project', desc: 'Apply your skills through a mentored project & create real-world impact', icon: Icons.Flag, offset: 78 },
-  { n: '06', title: 'Capstone Showcase', desc: "Present your project to executive leaders & industry experts in a Dragon's Den–style showcase", icon: Icons.Trophy, offset: 152 },
+  { n: '01', title: 'Select Your Path', desc: 'Together, we identify a project and pathway that will help you grow and stand out', icon: Icons.Search, offset: 152 },
+  { n: '02', title: 'Build Your Inner Leadership', desc: 'Build self-awareness, confidence, resilience, and the inner leadership foundations', icon: Icons.Bulb, offset: 78 },
+  { n: '03', title: 'Develop Your Professional Skillset', desc: 'Develop the communication, professional, and leadership skills that create real-world results', icon: Icons.Briefcase, offset: 30 },
+  { n: '04', title: 'Lead A Real-World Project', desc: 'Take your project from idea to implementation, applying your skills to create meaningful impact', icon: Icons.Flag, offset: 30 },
+  { n: '05', title: 'Build Your Leadership Portfolio', desc: 'Create a professional portfolio that showcases your achievements and leadership journey', icon: Icons.Clipboard, offset: 78 },
+  { n: '06', title: 'Present Your Impact', desc: 'Showcase your project to a panel of leaders and demonstrate readiness for your next opportunity', icon: Icons.Trophy, offset: 152 },
 ];
 
 const fadeEase = [0.2, 0.7, 0.2, 1];
@@ -79,14 +79,6 @@ export function TheJourney() {
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(56px, 8vw, 96px)' }}>
           <div>
-            <motion.div
-              variants={fadeUp}
-              style={{
-                fontSize: 12, letterSpacing: '0.16em',
-                textTransform: 'uppercase', color: theme.subtitle,
-                marginBottom: 28, fontWeight: 600,
-              }}
-            >(The Journey)</motion.div>
             <SplitHeading
               lines={['THE JOURNEY']}
               style={{
@@ -119,7 +111,7 @@ export function TheJourney() {
             >
               <motion.path
                 d="M 100 180 C 320 30 880 30 1100 180"
-                stroke="rgba(236,237,232,0.45)"
+                stroke="rgba(255,255,255,0.45)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"
@@ -131,7 +123,7 @@ export function TheJourney() {
               {/* Arrow tip at the right end */}
               <motion.path
                 d="M 1090 172 L 1108 180 L 1090 188"
-                stroke="rgba(236,237,232,0.55)"
+                stroke="rgba(255,255,255,0.55)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"

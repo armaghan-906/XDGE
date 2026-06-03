@@ -5,13 +5,14 @@ import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
 const bullets = [
-  'Active, engaging sessions with focused discussion',
-  'Real challenges.',
-  'Direct coaching, feedback, and guidance from experienced leaders',
-  'A supportive, high-energy environment that combines challenge with encouragement',
-  'Clear accountability to follow through and deliver',
-  'Working alongside others committed to improving their performance',
-  'Exposure to real leadership thinking and professional standards',
+  'Your own dedicated coach who supports, challenges, and guides your development throughout the programme',
+  'Meaningful leadership projects connected to your interests and ambitions',
+  'Leadership and professional skills workshops',
+  'Executive Round Tables with experienced business leaders and professionals',
+  'Feedback, coaching, and project reviews from industry experts',
+  'Presentation opportunities that build confidence and communication skills',
+  'A supportive environment that combines challenge, accountability, and encouragement',
+  'A professional leadership portfolio that showcases your achievements',
 ];
 
 const listContainer = {
@@ -54,8 +55,10 @@ export function WhatYouWillExperience() {
               }}
             >
               <motion.img
-                src="/assets/who-we-are.webp"
+                src="/assets/what-you-experience.webp"
                 alt="XDGE active session"
+                loading="lazy"
+                decoding="async"
                 style={{
                   position: 'absolute', left: 0, right: 0,
                   top: '-3%',
@@ -138,31 +141,16 @@ export function WhatYouWillExperience() {
             }}
           >
             <p style={{
-              fontFamily: theme.italic,
-              fontStyle: 'italic',
-              fontSize: 'clamp(18px, 2vw, 24px)',
-              lineHeight: 1.45,
-              margin: 0, fontWeight: 700,
+              fontSize: 'clamp(15px, 1.6vw, 17px)',
+              lineHeight: 1.6, margin: 0,
               color: theme.ink,
-              maxWidth: 520,
+              fontWeight: 500,
+              maxWidth: 540,
             }}>
-              This is not passive learning.
-            </p>
-            <p style={{
-              fontSize: 'clamp(14px, 1.5vw, 16px)',
-              lineHeight: 1.6, margin: 0,
-              color: '#3a3c3e', maxWidth: 520,
-            }}>
-              You are challenged, supported, and encouraged by experienced industry
-              leaders and leadership development experts. You work on real problems,
-              build real capability, and are held to a high standard throughout.
-            </p>
-            <p style={{
-              fontSize: 'clamp(14px, 1.5vw, 16px)',
-              lineHeight: 1.6, margin: 0,
-              color: '#3a3c3e', maxWidth: 520,
-            }}>
-              Every session is active, focused, and designed to drive your progress.
+              Throughout the programme, you will work alongside experienced
+              coaches, professionals, entrepreneurs, and business leaders who
+              help you develop the confidence, capability, and leadership
+              skills needed to achieve your next-level goal.
             </p>
           </motion.div>
         </Group>

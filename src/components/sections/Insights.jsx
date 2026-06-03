@@ -4,9 +4,21 @@ import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
 const posts = [
-  { tag1: 'DEVELOPMENT', tag2: 'TECH', title: 'How to keep your SaaS customers happy: enhanced user experiences in SaaS solutions' },
-  { tag1: 'DESIGN', tag2: 'WEB3', title: "Why your website's user experience is its greatest asset" },
-  { tag1: 'PRODUCTIVITY', tag2: 'HEALTH', title: 'Mastering productivity: a guide to getting more done in less time' },
+  {
+    tag1: 'CAREER', tag2: 'UNIVERSITY',
+    title: 'How Leadership Advances Early Careers',
+    body: 'The greater advantage is interviewing as a future leader, then transitioning into the workplace as someone employers already see as professionally credible, work-ready, able to lead from any seat, take ownership, and create impact from day one.',
+  },
+  {
+    tag1: 'UNIVERSITY', tag2: null,
+    title: 'What Top Universities Seek In Emerging Leaders',
+    body: 'Competitive universities look for evidence of initiative, contribution, and real-world impact from students who can clearly communicate the difference they have made.',
+  },
+  {
+    tag1: 'SCHOOL', tag2: 'UNIVERSITY',
+    title: 'How Young Leadership Creates Lasting Advantage',
+    body: 'Leadership is about developing conviction, building on your unique strengths, standing behind your beliefs and ambitions, and knowing how to translate them into action that creates your long-term advantage. How different might our lives have been if these foundations had been built in our formative years?',
+  },
 ];
 
 export function Insights() {
@@ -18,10 +30,6 @@ export function Insights() {
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(32px, 6vw, 56px)' }}>
           <div>
-            <motion.div
-              variants={fadeUp}
-              style={{ fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase', color: theme.subtitle, marginBottom: 28 }}
-            >(INSIGHTS)</motion.div>
             <SplitHeading
               lines={['INSIGHTS']}
               style={{
@@ -62,13 +70,15 @@ export function Insights() {
               <div style={{
                 position: 'relative',
                 width: '100%',
-                aspectRatio: '4/3',
+                aspectRatio: '1/1',
                 overflow: 'hidden',
                 background: theme.dark,
               }}>
                 <motion.img
-                  src={`/assets/blog-0${i + 1}.webp`}
+                  src={i === 2 ? '/assets/experience-top-banner.webp' : `/assets/right-for-me-${i + 1}.webp`}
                   alt={p.title}
+                  loading="lazy"
+                  decoding="async"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true, amount: 0.2 }}
@@ -76,18 +86,38 @@ export function Insights() {
                   style={{
                     width: '100%', height: '100%',
                     objectFit: 'cover',
-                    objectPosition: '50% 30%',
+                    objectPosition: '50% 50%',
                     display: 'block',
                   }}
                 />
               </div>
-              <div style={{ padding: '20px 22px 24px' }}>
-                <div style={{ display: 'flex', gap: 8, fontSize: 11, color: theme.subtitle, marginBottom: 12, letterSpacing: '0.06em' }}>
-                  <span>{p.tag1}</span><span>·</span><span>{p.tag2}</span>
+              <div style={{ padding: '22px 24px 28px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+                <div style={{
+                  display: 'flex', gap: 8,
+                  fontSize: 11, color: theme.subtitle,
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  fontWeight: 600,
+                }}>
+                  <span>{p.tag1}</span>
+                  {p.tag2 && (<><span>·</span><span>{p.tag2}</span></>)}
                 </div>
-                <h3 style={{ fontFamily: theme.body, fontSize: 16, lineHeight: 1.3, margin: 0, fontWeight: 500 }}>
+                <h3 style={{
+                  fontFamily: theme.body,
+                  fontSize: 'clamp(16px, 1.6vw, 19px)',
+                  lineHeight: 1.25,
+                  letterSpacing: '-0.005em',
+                  margin: 0, fontWeight: 700,
+                  color: theme.base,
+                }}>
                   {p.title}
                 </h3>
+                <p style={{
+                  fontSize: 13, lineHeight: 1.55,
+                  color: theme.subtitle, margin: 0,
+                }}>
+                  {p.body}
+                </p>
               </div>
             </motion.a>
           ))}

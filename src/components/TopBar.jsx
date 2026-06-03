@@ -7,16 +7,15 @@ const MotionLink = motion(Link);
 
 const primaryLinks = [
   { label: 'Home', to: '/' },
-  { label: 'The Experience', to: '/the-experience' },
-  { label: 'Programmes', href: '#' },
-  { label: 'Outcomes', href: '#' },
-  { label: 'Insights', href: '#' },
+  { label: 'About', to: '/about' },
+  { label: 'How It Works', to: '/the-experience' },
+  { label: 'Programmes' },
 ];
 
 const secondaryLinks = [
-  { label: 'Blog', href: '#' },
-  { label: 'Join Us', href: '#' },
-  { label: 'Contact Us', href: '#' },
+  { label: 'Apply', href: '#' },
+  { label: 'Contact', href: '#' },
+  { label: 'Insights', href: '#' },
 ];
 
 const socialLinks = [
@@ -133,8 +132,8 @@ export function TopBar() {
           gap: 16,
         }}>
           <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-            <motion.a
-              href="#"
+            <MotionLink
+              to="/"
               animate={{ color: fg, borderColor: fg }}
               transition={{ duration: 0.3 }}
               style={{
@@ -144,9 +143,9 @@ export function TopBar() {
                 fontFamily: 'serif', fontSize: 14, flexShrink: 0,
                 lineHeight: 1, textDecoration: 'none',
               }}
-            >X</motion.a>
-            <motion.a
-              href="#"
+            >X</MotionLink>
+            <MotionLink
+              to="/"
               className="xg-hide-sm"
               animate={{ color: fg }}
               transition={{ duration: 0.3 }}
@@ -156,7 +155,7 @@ export function TopBar() {
                 paddingTop: 6, fontWeight: 500,
                 textDecoration: 'none', whiteSpace: 'nowrap',
               }}
-            >Our Programs</motion.a>
+            >Our Programs</MotionLink>
           </div>
 
           <button
@@ -166,31 +165,31 @@ export function TopBar() {
             aria-expanded={open}
             style={{
               background: 'transparent', border: 'none', padding: 0,
-              width: 44, height: 44,
+              width: 60, height: 60,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              flexDirection: 'column', gap: 5,
+              flexDirection: 'column', gap: 8,
               cursor: 'pointer',
             }}
           >
             <motion.span
               animate={{
                 rotate: open ? 45 : 0,
-                y: open ? 3.5 : 0,
-                x: open ? 0 : -3,
+                y: open ? 5 : 0,
+                x: open ? 0 : -4,
                 backgroundColor: fg,
               }}
               transition={{ duration: 0.4, ease: overlayEase }}
-              style={{ width: 22, height: 1.5, transformOrigin: 'center', display: 'block' }}
+              style={{ width: 34, height: 2, transformOrigin: 'center', display: 'block' }}
             />
             <motion.span
               animate={{
                 rotate: open ? -45 : 0,
-                y: open ? -3.5 : 0,
-                x: open ? 0 : 4,
+                y: open ? -5 : 0,
+                x: open ? 0 : 5,
                 backgroundColor: fg,
               }}
               transition={{ duration: 0.4, ease: overlayEase }}
-              style={{ width: 18, height: 1.5, transformOrigin: 'center', display: 'block' }}
+              style={{ width: 28, height: 2, transformOrigin: 'center', display: 'block' }}
             />
           </button>
         </div>
@@ -235,11 +234,13 @@ export function TopBar() {
                     XDGE<span style={{ marginLeft: '0.05em' }}>.</span>
                   </div>
                   <div style={{
-                    marginTop: 4, fontSize: 12,
-                    letterSpacing: '0.16em', textTransform: 'uppercase',
+                    marginTop: 8,
+                    fontFamily: theme.body,
+                    fontSize: 13, letterSpacing: '0.14em',
+                    textTransform: 'uppercase',
                     fontWeight: 600, color: theme.ink,
                   }}>
-                    Creative Lab
+                    Career &middot; University &middot; School
                   </div>
                 </motion.div>
 
@@ -275,30 +276,72 @@ export function TopBar() {
                 }}
               >
                 {primaryLinks.map((item) => {
+                  const parentStyle = {
+                    display: 'block',
+                    fontFamily: theme.display,
+                    fontSize: 'clamp(40px, 7.5vw, 110px)',
+                    lineHeight: 0.95, letterSpacing: '-0.02em',
+                    color: theme.ink, textDecoration: 'none',
+                    textTransform: 'uppercase',
+                    fontWeight: 900,
+                    whiteSpace: 'nowrap',
+                  };
+                  const childStyle = {
+                    display: 'block',
+                    fontFamily: theme.display,
+                    fontSize: 'clamp(18px, 2.4vw, 30px)',
+                    lineHeight: 1.1, letterSpacing: '-0.005em',
+                    color: theme.ink, textDecoration: 'none',
+                    textTransform: 'uppercase',
+                    fontWeight: 700,
+                  };
+
                   const sharedProps = {
                     variants: linkVariants,
                     onClick: () => setOpen(false),
                     'data-cursor': 'grow',
                     whileHover: { x: 14 },
                     transition: { duration: 0.3 },
-                    style: {
-                      display: 'block',
-                      fontFamily: theme.display,
-                      fontSize: 'clamp(48px, 9vw, 130px)',
-                      lineHeight: 0.95, letterSpacing: '-0.02em',
-                      color: theme.ink, textDecoration: 'none',
-                      textTransform: 'uppercase',
-                      fontWeight: 900,
-                    },
                   };
+
+                  // Linked top-level item (Home, About)
+                  if (item.to) {
+                    return (
+                      <span key={item.label} style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
+                        <MotionLink to={item.to} {...sharedProps} style={parentStyle}>{item.label}</MotionLink>
+                      </span>
+                    );
+                  }
+
+                  // Parent header with children (How It Works) or placeholder (Programmes)
                   return (
-                    <span key={item.label} style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
-                      {item.to ? (
-                        <MotionLink to={item.to} {...sharedProps}>{item.label}</MotionLink>
-                      ) : (
-                        <motion.a href={item.href} {...sharedProps}>{item.label}</motion.a>
+                    <div key={item.label} style={{ display: 'block' }}>
+                      <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
+                        <motion.span
+                          variants={linkVariants}
+                          style={parentStyle}
+                        >{item.label}</motion.span>
+                      </span>
+                      {item.children && (
+                        <div style={{
+                          marginTop: 'clamp(4px, 0.6vw, 8px)',
+                          marginBottom: 'clamp(8px, 1vw, 12px)',
+                          paddingLeft: 'clamp(20px, 3vw, 40px)',
+                          display: 'flex', flexDirection: 'column',
+                          gap: 'clamp(2px, 0.3vw, 4px)',
+                        }}>
+                          {item.children.map((child) => (
+                            <span key={child.label} style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
+                              <MotionLink
+                                to={child.to}
+                                {...sharedProps}
+                                style={childStyle}
+                              >{child.label}</MotionLink>
+                            </span>
+                          ))}
+                        </div>
                       )}
-                    </span>
+                    </div>
                   );
                 })}
               </motion.nav>

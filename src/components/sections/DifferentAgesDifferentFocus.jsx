@@ -1,13 +1,18 @@
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
-const rows = [
+const slides = [
   {
-    title: 'Career Entry & Professional Development',
     age: 'Ages 19+',
+    eyebrow: 'Career Entry & Professional Development',
+    headlineLines: ['CAREER ENTRY &', 'PROFESSIONAL DEVELOPMENT'],
     focus: 'Performance, credibility, and impact',
+    description:
+      'Delivered at a professional standard aligned to the workplace. Builds credibility, sharpens execution, and develops the communication and judgement required for early career roles.',
     experience: [
       'Delivered at a professional standard aligned to the workplace',
       'Builds credibility for interviews, internships, and early roles',
@@ -20,11 +25,15 @@ const rows = [
       'Build a portfolio of work that demonstrates capability',
       'Develop evidence of impact to use in interviews and early career roles',
     ],
+    img: '/assets/right-for-me-2.webp',
   },
   {
-    title: 'University & Academic Progression',
     age: 'Ages 16+',
+    eyebrow: 'University & Academic Progression',
+    headlineLines: ['UNIVERSITY &', 'ACADEMIC PROGRESSION'],
     focus: 'Standing out in competitive environments',
+    description:
+      'Prepares students for university applications and competitive academic environments. Builds the articulation, presence, and personal positioning that selective institutions look for.',
     experience: [
       'Prepares students for university applications and interviews',
       'Builds confidence, articulation, and personal presence',
@@ -36,11 +45,15 @@ const rows = [
       'Build strong material for personal statements and interviews',
       'Practise presenting ideas with confidence and credibility',
     ],
+    img: '/assets/principle-2.webp',
   },
   {
-    title: 'School Entry & Early Leadership',
     age: 'Ages 11–16',
+    eyebrow: 'School Entry & Early Leadership',
+    headlineLines: ['SCHOOL ENTRY &', 'EARLY LEADERSHIP'],
     focus: 'Confidence, habits, and early leadership behaviours',
+    description:
+      'Engaging, interactive, and practical — introduces leadership in a relatable way. Builds the confidence, communication, and early habits that shape how young people show up.',
     experience: [
       'Delivered through engaging, interactive activities',
       'Introduces leadership in a practical and relatable way',
@@ -52,17 +65,18 @@ const rows = [
       'Practise teamwork, responsibility, and follow-through',
       'Begin developing the confidence to speak up and contribute',
     ],
+    img: '/assets/experience-card-3.webp',
   },
 ];
 
 const fadeEase = [0.2, 0.7, 0.2, 1];
 
-const rowVariants = {
+const cardVariants = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: fadeEase } },
 };
 
-function Bullets({ items }) {
+function Bullets({ items, dark }) {
   return (
     <ul style={{
       listStyle: 'none', margin: 0, padding: 0,
@@ -75,13 +89,14 @@ function Bullets({ items }) {
             display: 'flex', alignItems: 'flex-start', gap: 12,
             fontSize: 'clamp(13px, 1.4vw, 15px)',
             lineHeight: 1.55,
-            color: '#3a3c3e',
+            color: dark ? theme.subtitle : '#3a3c3e',
           }}
         >
           <span aria-hidden style={{
             flexShrink: 0,
             width: 5, height: 5, borderRadius: '50%',
-            background: theme.ink, marginTop: '0.55em',
+            background: dark ? theme.base : theme.ink,
+            marginTop: '0.55em',
           }} />
           <span>{b}</span>
         </li>
@@ -90,7 +105,254 @@ function Bullets({ items }) {
   );
 }
 
+function CloseIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+      <path d="M6 6l12 12M18 6L6 18" />
+    </svg>
+  );
+}
+
+function Modal({ slide, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose]);
+
+  return createPortal(
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      onClick={onClose}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 100,
+        background: 'radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.12) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 60%), rgba(0,0,0,0.88)',
+        backdropFilter: 'blur(8px) saturate(120%)',
+        WebkitBackdropFilter: 'blur(8px) saturate(120%)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: 'clamp(16px, 4vw, 40px)',
+      }}
+    >
+      <motion.div
+        initial={{ y: 40, opacity: 0, scale: 0.97 }}
+        animate={{ y: 0, opacity: 1, scale: 1 }}
+        exit={{ y: 20, opacity: 0, scale: 0.98 }}
+        transition={{ duration: 0.55, ease: fadeEase }}
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          position: 'relative',
+          background: theme.base,
+          color: theme.ink,
+          maxWidth: 1100, width: '100%',
+          boxShadow: '0 60px 120px -30px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05)',
+          maxHeight: '90vh', overflowY: 'auto',
+          padding: 'clamp(28px, 4vw, 56px)',
+        }}
+      >
+        <button
+          onClick={onClose}
+          data-cursor="grow"
+          aria-label="Close"
+          style={{
+            position: 'absolute',
+            top: 'clamp(16px, 2vw, 24px)',
+            right: 'clamp(16px, 2vw, 24px)',
+            width: 44, height: 44, borderRadius: '50%',
+            border: '1px solid rgba(0,0,0,0.2)',
+            background: 'transparent', color: theme.ink,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            cursor: 'pointer',
+          }}
+        ><CloseIcon /></button>
+
+        <div style={{
+          fontSize: 11, letterSpacing: '0.18em',
+          textTransform: 'uppercase',
+          color: '#7d7e7c', fontWeight: 700,
+          marginBottom: 18,
+        }}>
+          {slide.age} · {slide.eyebrow}
+        </div>
+
+        <h2 style={{
+          fontFamily: theme.display, fontWeight: 900,
+          fontSize: 'clamp(32px, 6vw, 88px)',
+          lineHeight: 0.95, letterSpacing: '-0.02em',
+          margin: '0 0 clamp(24px, 4vw, 40px)',
+          color: theme.ink,
+          textTransform: 'uppercase',
+        }}>
+          {slide.headlineLines.map((l) => (<span key={l} style={{ display: 'block' }}>{l}</span>))}
+        </h2>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1.5fr 1fr',
+          gap: 'clamp(28px, 4vw, 64px)',
+          alignItems: 'flex-start',
+        }} className="xg-ages-slide">
+          <div>
+            <p style={{
+              fontSize: 'clamp(15px, 1.6vw, 18px)',
+              lineHeight: 1.55,
+              color: theme.ink,
+              margin: '0 0 clamp(24px, 3vw, 36px)',
+              fontWeight: 500,
+              maxWidth: 560,
+            }}>{slide.description}</p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: 'clamp(20px, 3vw, 40px)',
+            }}>
+              <div>
+                <div style={{
+                  fontSize: 11, letterSpacing: '0.16em',
+                  textTransform: 'uppercase',
+                  color: '#7d7e7c',
+                  marginBottom: 14, fontWeight: 700,
+                }}>Experience</div>
+                <Bullets items={slide.experience} />
+              </div>
+              <div>
+                <div style={{
+                  fontSize: 11, letterSpacing: '0.16em',
+                  textTransform: 'uppercase',
+                  color: '#7d7e7c',
+                  marginBottom: 14, fontWeight: 700,
+                }}>Project Application</div>
+                <Bullets items={slide.project} />
+              </div>
+            </div>
+          </div>
+
+          <aside style={{
+            border: '1px solid rgba(0,0,0,0.18)',
+            background: 'rgba(255,255,255,0.5)',
+            padding: 'clamp(22px, 2.5vw, 32px)',
+          }}>
+            <div style={{
+              fontSize: 11, letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              color: '#7d7e7c', fontWeight: 700,
+              marginBottom: 16,
+            }}>Focus</div>
+            <div style={{
+              fontFamily: theme.display, fontWeight: 800,
+              fontSize: 'clamp(20px, 2.4vw, 28px)',
+              lineHeight: 1.15, letterSpacing: '-0.005em',
+              textTransform: 'uppercase',
+              color: theme.ink,
+            }}>{slide.focus}</div>
+          </aside>
+        </div>
+      </motion.div>
+    </motion.div>,
+    document.body
+  );
+}
+
+function Card({ slide, onOpen, dark }) {
+  const bg = dark ? theme.ink : theme.base;
+  const titleColor = dark ? theme.base : theme.ink;
+  const tagColor = dark ? theme.subtitle : '#7d7e7c';
+  const subColor = dark ? theme.subtitle : '#3a3c3e';
+  const ctaColor = dark ? theme.base : theme.ink;
+  const borderColor = dark ? theme.borderDark : 'rgba(0,0,0,0.2)';
+  const imgBg = dark ? theme.dark : '#d8d6cf';
+
+  return (
+    <motion.button
+      variants={cardVariants}
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.3, ease: fadeEase }}
+      onClick={onOpen}
+      data-cursor="grow"
+      style={{
+        position: 'relative',
+        display: 'flex', flexDirection: 'column',
+        textAlign: 'left',
+        background: bg,
+        color: titleColor,
+        border: `1px solid ${borderColor}`,
+        padding: 0,
+        cursor: 'pointer',
+        overflow: 'hidden',
+        width: '100%',
+      }}
+    >
+      <div style={{
+        width: '100%',
+        aspectRatio: '1 / 1',
+        overflow: 'hidden',
+        background: imgBg,
+      }}>
+        <img
+          src={slide.img}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          style={{
+            width: '100%', height: '100%',
+            objectFit: 'cover',
+            objectPosition: '50% 50%',
+            display: 'block',
+          }}
+        />
+      </div>
+
+      <div style={{
+        padding: 'clamp(22px, 2.6vw, 32px)',
+        display: 'flex', flexDirection: 'column',
+        gap: 14,
+        flex: 1,
+      }}>
+        <div style={{
+          fontSize: 11, letterSpacing: '0.18em',
+          textTransform: 'uppercase',
+          color: tagColor, fontWeight: 700,
+        }}>{slide.age}</div>
+
+        <h3 style={{
+          fontFamily: theme.display, fontWeight: 800,
+          fontSize: 'clamp(22px, 2.4vw, 30px)',
+          lineHeight: 1.05, letterSpacing: '-0.01em',
+          margin: 0,
+          textTransform: 'uppercase',
+          color: titleColor,
+        }}>{slide.eyebrow}</h3>
+
+        <div style={{
+          fontSize: 13, color: subColor,
+          lineHeight: 1.5,
+        }}>{slide.focus}</div>
+
+        <div style={{
+          display: 'inline-flex', alignItems: 'center', gap: 8,
+          marginTop: 'auto', paddingTop: 6,
+          fontSize: 12, letterSpacing: '0.06em',
+          textTransform: 'uppercase',
+          color: ctaColor, fontWeight: 600,
+        }}>
+          View Details <span style={{ fontSize: 16 }}>→</span>
+        </div>
+      </div>
+    </motion.button>
+  );
+}
+
 export function DifferentAgesDifferentFocus() {
+  const [openIndex, setOpenIndex] = useState(null);
+
   return (
     <section
       data-screen-label="Different Ages, Different Focus"
@@ -103,10 +365,10 @@ export function DifferentAgesDifferentFocus() {
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <SplitHeading
-          lines={['DIFFERENT AGES.', 'DIFFERENT FOCUS.', 'DIFFERENT OUTCOMES.']}
+          lines={['HOW DOES XDGE DIFFER', 'BY AGE AND OUTCOMES?']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(40px, 8.5vw, 130px)',
+            fontSize: 'clamp(40px, 7vw, 110px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(28px, 4vw, 40px)',
           }}
@@ -131,75 +393,24 @@ export function DifferentAgesDifferentFocus() {
           is designed around where students are and what they are working towards next.
         </motion.p>
 
-        {rows.map((r, i) => (
-          <motion.div
-            key={r.title}
-            variants={rowVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            {i > 0 && (
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ duration: 1.1, ease: fadeEase }}
-                style={{
-                  height: 2, background: theme.ink,
-                  margin: 'clamp(36px, 5vw, 56px) 0',
-                  transformOrigin: 'left',
-                }}
-              />
-            )}
-            <div className="xg-ages-row" style={{
-              display: 'grid',
-              gridTemplateColumns: 'minmax(220px, 1fr) 1.4fr 1.4fr',
-              gap: 'clamp(24px, 4vw, 56px)',
-              alignItems: 'flex-start',
-            }}>
-              <div>
-                <h3 style={{
-                  fontFamily: theme.display, fontWeight: 800,
-                  fontSize: 'clamp(18px, 1.8vw, 22px)',
-                  lineHeight: 1.18, letterSpacing: '-0.005em',
-                  margin: '0 0 6px',
-                  textTransform: 'uppercase',
-                  color: theme.ink,
-                }}>
-                  {r.title} <span style={{ whiteSpace: 'nowrap' }}>({r.age})</span>
-                </h3>
-                <div style={{
-                  fontSize: 'clamp(13px, 1.4vw, 15px)',
-                  lineHeight: 1.5,
-                  color: '#3a3c3e',
-                  fontStyle: 'italic',
-                }}>
-                  Focus: {r.focus}
-                </div>
-              </div>
-              <div>
-                <div style={{
-                  fontSize: 11, letterSpacing: '0.16em',
-                  textTransform: 'uppercase',
-                  color: '#7d7e7c',
-                  marginBottom: 14, fontWeight: 700,
-                }}>Experience</div>
-                <Bullets items={r.experience} />
-              </div>
-              <div>
-                <div style={{
-                  fontSize: 11, letterSpacing: '0.16em',
-                  textTransform: 'uppercase',
-                  color: '#7d7e7c',
-                  marginBottom: 14, fontWeight: 700,
-                }}>Project Application</div>
-                <Bullets items={r.project} />
-              </div>
-            </div>
-          </motion.div>
-        ))}
+        <Group
+          className="xg-3"
+          style={{
+            gap: 'clamp(20px, 2.4vw, 28px)',
+            alignItems: 'stretch',
+          }}
+        >
+          {slides.map((slide, i) => (
+            <Card key={slide.age} slide={slide} onOpen={() => setOpenIndex(i)} dark={false} />
+          ))}
+        </Group>
       </div>
+
+      <AnimatePresence>
+        {openIndex !== null && (
+          <Modal slide={slides[openIndex]} onClose={() => setOpenIndex(null)} />
+        )}
+      </AnimatePresence>
     </section>
   );
 }

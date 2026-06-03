@@ -1,0 +1,19 @@
+import { AboutHero } from '../components/sections/AboutHero';
+import { AboutBanner } from '../components/sections/AboutBanner';
+import { AboutTeam } from '../components/sections/AboutTeam';
+import { AboutPrinciples } from '../components/sections/AboutPrinciples';
+import { StepIntoNextLevel } from '../components/sections/StepIntoNextLevel';
+
+export default function About() {
+  return (
+    <>
+      <AboutHero />
+      <div className="xg-stick-wrap">
+        <AboutBanner />
+        <AboutTeam />
+      </div>
+      <AboutPrinciples />
+      <StepIntoNextLevel />
+    </>
+  );
+}

@@ -1,23 +1,31 @@
 import { ExperienceHero } from '../components/sections/ExperienceHero';
-import { WhoWeAreBanner } from '../components/sections/WhoWeAreBanner';
+import { ExperienceTopBanner } from '../components/sections/ExperienceTopBanner';
 import { WhatYouWillExperience } from '../components/sections/WhatYouWillExperience';
 import { ExperienceJourney } from '../components/sections/ExperienceJourney';
-import { HowXDGEWorks } from '../components/sections/HowXDGEWorks';
+import { JourneyBanner } from '../components/sections/JourneyBanner';
 import { StandardsExpectations } from '../components/sections/StandardsExpectations';
 import { DifferentAgesDifferentFocus } from '../components/sections/DifferentAgesDifferentFocus';
 import { IsThisRightForMe } from '../components/sections/IsThisRightForMe';
+import { RightForMeBanner } from '../components/sections/RightForMeBanner';
 
 export default function TheExperience() {
   return (
     <>
       <ExperienceHero />
-      <WhoWeAreBanner />
-      <WhatYouWillExperience />
+      <div className="xg-stick-wrap">
+        <ExperienceTopBanner />
+        <WhatYouWillExperience />
+      </div>
       <ExperienceJourney />
-      <HowXDGEWorks />
+      <div className="xg-stick-wrap">
+        <JourneyBanner />
+        <IsThisRightForMe />
+      </div>
       <StandardsExpectations />
-      <DifferentAgesDifferentFocus />
-      <IsThisRightForMe />
+      <div className="xg-stick-wrap">
+        <RightForMeBanner />
+        <DifferentAgesDifferentFocus />
+      </div>
     </>
   );
 }

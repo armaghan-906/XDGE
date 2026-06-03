@@ -56,12 +56,54 @@ const Icons = {
 };
 
 const steps = [
-  { n: '01', title: 'Select Your Path', desc: 'Fit, goals, and program alignment', icon: Icons.Search, offset: 152 },
-  { n: '02', title: 'Build Your Internal Operating System', desc: 'Mindset, discipline, decision-making', icon: Icons.Bulb, offset: 78 },
-  { n: '03', title: 'Develop Your Professional Skillset', desc: 'Communication, leadership, execution', icon: Icons.Briefcase, offset: 30 },
-  { n: '04', title: 'Lead a Mentored, Real-World Project', desc: 'Apply skills and create real evidence', icon: Icons.Flag, offset: 30 },
-  { n: '05', title: 'Prove Your Capability', desc: 'Leadership portfolio and capstone presentation', icon: Icons.Clipboard, offset: 78 },
-  { n: '06', title: 'Perform Under Pressure', desc: 'High-stakes interview and selection readiness', icon: Icons.Trophy, offset: 152 },
+  {
+    n: '01',
+    title: 'Select Your Path',
+    line1: 'Together, we explore your interests, ambitions, strengths, and future goals.',
+    line2: 'We identify a project and pathway that will help you grow, stand out, and prepare for your next step.',
+    icon: Icons.Search,
+    offset: 152,
+  },
+  {
+    n: '02',
+    title: 'Build Your Inner Leadership',
+    line1: 'During the first 4–5 weeks, you build self-awareness, confidence, and resilience.',
+    line2: 'The leadership foundations needed to create a strong internal operating system.',
+    icon: Icons.Bulb,
+    offset: 78,
+  },
+  {
+    n: '03',
+    title: 'Develop Your Professional Skillset',
+    line1: 'You develop the communication, professional, and leadership skills.',
+    line2: 'The skills that help people create results in the real world.',
+    icon: Icons.Briefcase,
+    offset: 30,
+  },
+  {
+    n: '04',
+    title: 'Lead A Real-World Project',
+    line1: 'Put leadership into practice by taking your project from idea to implementation.',
+    line2: 'Apply your skills to create meaningful impact.',
+    icon: Icons.Flag,
+    offset: 30,
+  },
+  {
+    n: '05',
+    title: 'Build Your Leadership Portfolio',
+    line1: 'Create a professional portfolio that showcases your project, achievements, and journey.',
+    line2: 'Evidence of your capability for your next-level goal.',
+    icon: Icons.Clipboard,
+    offset: 78,
+  },
+  {
+    n: '06',
+    title: 'Present Your Impact',
+    line1: 'Showcase your project to a panel of leaders and prepare for interviews.',
+    line2: 'Demonstrate readiness for your next opportunity.',
+    icon: Icons.Trophy,
+    offset: 152,
+  },
 ];
 
 const fadeEase = [0.2, 0.7, 0.2, 1];
@@ -80,16 +122,8 @@ export function ExperienceJourney() {
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(56px, 8vw, 96px)' }}>
           <div>
-            <motion.div
-              variants={fadeUp}
-              style={{
-                fontSize: 12, letterSpacing: '0.16em',
-                textTransform: 'uppercase', color: theme.subtitle,
-                marginBottom: 28, fontWeight: 600,
-              }}
-            >(The Leadership Edge Journey)</motion.div>
             <SplitHeading
-              lines={['THE LEADERSHIP', 'EDGE JOURNEY']}
+              lines={['HOW IT', 'WORKS']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
                 fontSize: 'clamp(48px, 11vw, 170px)',
@@ -119,7 +153,7 @@ export function ExperienceJourney() {
             >
               <motion.path
                 d="M 100 180 C 320 30 880 30 1100 180"
-                stroke="rgba(236,237,232,0.45)"
+                stroke="rgba(255,255,255,0.45)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"
@@ -130,7 +164,7 @@ export function ExperienceJourney() {
               />
               <motion.path
                 d="M 1090 172 L 1108 180 L 1090 188"
-                stroke="rgba(236,237,232,0.55)"
+                stroke="rgba(255,255,255,0.55)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"
@@ -166,28 +200,44 @@ export function ExperienceJourney() {
           </div>
 
           <div className="xg-journey-labels">
-            {steps.map((s, i) => (
-              <div key={i} className="xg-journey-label-cell">
+            {steps.map((s) => (
+              <div key={s.n} className="xg-journey-label-cell">
+                <div style={{
+                  fontFamily: theme.display, fontWeight: 900,
+                  fontSize: 'clamp(22px, 2.2vw, 30px)',
+                  lineHeight: 1, letterSpacing: '-0.01em',
+                  color: theme.base,
+                  marginBottom: 10,
+                }}>{s.n}</div>
                 <h3 style={{
                   fontFamily: theme.display, fontWeight: 700,
-                  fontSize: 'clamp(14px, 1.4vw, 17px)',
+                  fontSize: 'clamp(13px, 1.25vw, 16px)',
                   lineHeight: 1.18, letterSpacing: '-0.005em',
                   margin: '0 0 10px',
                   textTransform: 'uppercase',
                   color: theme.base,
                 }}>{s.title}</h3>
                 <p style={{
-                  fontSize: 12, lineHeight: 1.5, margin: 0,
+                  fontSize: 'clamp(11px, 1vw, 12px)',
+                  lineHeight: 1.5,
+                  margin: '0 0 6px',
+                  color: theme.base,
+                  fontWeight: 500,
+                }}>{s.line1}</p>
+                <p style={{
+                  fontSize: 'clamp(11px, 1vw, 12px)',
+                  lineHeight: 1.5,
+                  margin: 0,
                   color: theme.subtitle,
-                }}>{s.desc}</p>
+                }}>{s.line2}</p>
               </div>
             ))}
           </div>
 
           <Group className="xg-journey-mobile">
-            {steps.map((s, i) => (
+            {steps.map((s) => (
               <motion.div
-                key={i}
+                key={s.n}
                 variants={fadeUp}
                 className="xg-journey-mobile-step"
               >
@@ -201,6 +251,12 @@ export function ExperienceJourney() {
                   {s.icon}
                 </div>
                 <div>
+                  <div style={{
+                    fontFamily: theme.display, fontWeight: 900,
+                    fontSize: 22, lineHeight: 1, letterSpacing: '-0.01em',
+                    color: theme.base,
+                    marginBottom: 6,
+                  }}>{s.n}</div>
                   <h3 style={{
                     fontFamily: theme.display, fontWeight: 700,
                     fontSize: 17, lineHeight: 1.2, letterSpacing: '-0.005em',
@@ -209,9 +265,16 @@ export function ExperienceJourney() {
                     color: theme.base,
                   }}>{s.title}</h3>
                   <p style={{
-                    fontSize: 13, lineHeight: 1.5, margin: 0,
+                    fontSize: 13, lineHeight: 1.5,
+                    margin: '0 0 6px',
+                    color: theme.base,
+                    fontWeight: 500,
+                  }}>{s.line1}</p>
+                  <p style={{
+                    fontSize: 13, lineHeight: 1.5,
+                    margin: 0,
                     color: theme.subtitle,
-                  }}>{s.desc}</p>
+                  }}>{s.line2}</p>
                 </div>
               </motion.div>
             ))}

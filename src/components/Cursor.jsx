@@ -46,13 +46,13 @@ export function Cursor() {
         x: sx, y: sy,
         width: SIZE, height: SIZE,
         borderRadius: '50%',
-        background: '#ECEDE8',
-        mixBlendMode: 'difference',
+        background: 'rgba(0,0,0,0.85)',
+        border: '1px solid rgba(255,255,255,0.6)',
         pointerEvents: 'none',
         zIndex: 9999,
         willChange: 'transform',
       }}
-      animate={{ scale: pressed ? 0.8 : hovering ? 2.0 : 1 }}
+      animate={{ scale: pressed ? 0.8 : hovering ? 1.8 : 1 }}
       transition={{ type: 'spring', stiffness: 500, damping: 30 }}
     />
   );

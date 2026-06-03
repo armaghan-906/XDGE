@@ -59,19 +59,13 @@ export function TheReality() {
               marginBottom: 10,
             }}>5%</div>
             <p style={{
-              fontSize: 'clamp(13px, 1.4vw, 15px)',
-              lineHeight: 1.45, color: '#3a3c3e',
-              margin: '0 0 6px',
-            }}>of applicants are admitted to</p>
-            <a
-              href="#"
-              style={{
-                fontSize: 'clamp(15px, 1.6vw, 18px)',
-                fontWeight: 700, color: theme.ink,
-                textDecoration: 'underline',
-                textUnderlineOffset: 4,
-              }}
-            >Top Universities</a>
+              fontSize: 'clamp(15px, 1.6vw, 18px)',
+              lineHeight: 1.45, color: theme.ink,
+              fontWeight: 500,
+              margin: 0,
+            }}>
+              Top Colleges Admit only<br />5% of Applicants
+            </p>
           </motion.div>
 
           <motion.div variants={fadeUp} style={{ textAlign: 'center' }}>
@@ -83,19 +77,13 @@ export function TheReality() {
               marginBottom: 10,
             }}>3%</div>
             <p style={{
-              fontSize: 'clamp(13px, 1.4vw, 15px)',
-              lineHeight: 1.45, color: '#3a3c3e',
-              margin: '0 0 6px',
-            }}>of applicants are invited to interviews with</p>
-            <a
-              href="#"
-              style={{
-                fontSize: 'clamp(15px, 1.6vw, 18px)',
-                fontWeight: 700, color: theme.ink,
-                textDecoration: 'underline',
-                textUnderlineOffset: 4,
-              }}
-            >Competitive Employers</a>
+              fontSize: 'clamp(15px, 1.6vw, 18px)',
+              lineHeight: 1.45, color: theme.ink,
+              fontWeight: 500,
+              margin: 0,
+            }}>
+              Top employers interview only<br />3% of applicants.
+            </p>
           </motion.div>
         </Group>
 
@@ -111,41 +99,36 @@ export function TheReality() {
           }}
         />
 
-        <Group
-          className="xg-2"
-          style={{
-            alignItems: 'center',
-            gap: 'clamp(32px, 5vw, 80px)',
-          }}
-        >
-          <div>
-            <SplitHeading
-              lines={['What are they', 'looking for?']}
+        <div style={{ textAlign: 'center' }}>
+          <SplitHeading
+            lines={['What gets you chosen?']}
+            style={{
+              fontFamily: theme.display, fontWeight: 900,
+              fontSize: 'clamp(44px, 9vw, 150px)',
+              lineHeight: 0.98, letterSpacing: '-0.02em',
+              textTransform: 'uppercase',
+              marginBottom: 'clamp(32px, 4vw, 48px)',
+              textAlign: 'center',
+            }}
+          />
+
+          <div className="xg-reality-pills" style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            gap: 'clamp(12px, 2vw, 24px)',
+            flexWrap: 'nowrap',
+            whiteSpace: 'nowrap',
+            marginBottom: 'clamp(40px, 6vw, 64px)',
+          }}>
+            <motion.div variants={fadeUp} style={pillStyle}>Grades</motion.div>
+            <motion.div
+              variants={fadeUp}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(32px, 5vw, 76px)',
-                lineHeight: 0.98, letterSpacing: '-0.02em',
-                textTransform: 'uppercase',
-                marginBottom: 'clamp(20px, 3vw, 28px)',
+                fontSize: 'clamp(28px, 4vw, 56px)',
+                lineHeight: 1, color: theme.ink,
               }}
-            />
-
-            <div style={{
-              display: 'flex', alignItems: 'center',
-              gap: 'clamp(12px, 2vw, 24px)',
-              flexWrap: 'wrap',
-            }}>
-              <motion.div variants={fadeUp} style={pillStyle}>Grades</motion.div>
-              <motion.div
-                variants={fadeUp}
-                style={{
-                  fontFamily: theme.display, fontWeight: 900,
-                  fontSize: 'clamp(28px, 4vw, 56px)',
-                  lineHeight: 1, color: theme.ink,
-                }}
-              >+</motion.div>
-              <motion.div variants={fadeUp} style={pillStyle}>Stand Out Factor</motion.div>
-            </div>
+            >+</motion.div>
+            <motion.div variants={fadeUp} style={pillStyle}>Your Stand Out Edge</motion.div>
           </div>
 
           <motion.div
@@ -154,8 +137,8 @@ export function TheReality() {
               display: 'flex',
               alignItems: 'flex-start',
               gap: 'clamp(12px, 1.5vw, 20px)',
-              maxWidth: 480,
-              justifySelf: 'end',
+              maxWidth: 520,
+              marginLeft: 'auto',
             }}
           >
             <div style={{
@@ -175,12 +158,13 @@ export function TheReality() {
               color: theme.ink,
               margin: 0,
               fontWeight: 400,
+              textAlign: 'left',
             }}>
               Grades get you considered.<br />
-              Stand out gets you chosen.
+              Your Edge gets you chosen.
             </p>
           </motion.div>
-        </Group>
+        </div>
       </div>
     </section>
   );

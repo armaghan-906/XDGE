@@ -30,13 +30,15 @@ export function WhoWeAre() {
               ref={imgRef}
               style={{
                 position: 'relative',
-                width: '100%', maxWidth: 700, aspectRatio: '16/9',
+                width: '100%', maxWidth: 900, aspectRatio: '16/9',
                 borderRadius: 2, overflow: 'hidden', background: '#d8d6cf',
               }}
             >
               <motion.img
                 src="/assets/who-we-are.webp"
                 alt="XDGE coaching session"
+                loading="lazy"
+                decoding="async"
                 style={{
                   position: 'absolute', left: 0, right: 0,
                   top: '-3%',
@@ -55,7 +57,7 @@ export function WhoWeAre() {
               lines={['WHO WE', 'ARE']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(72px, 17vw, 260px)',
+                fontSize: 'clamp(56px, 11vw, 180px)',
                 lineHeight: 0.92, letterSpacing: '-0.02em',
                 textAlign: 'right',
               }}

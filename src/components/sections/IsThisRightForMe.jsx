@@ -3,12 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
+import { Magnetic } from '../Magnetic';
 
 const groups = [
   {
     title: 'Career Entry & Professional Development',
     age: 'Ages 19+',
-    img: '/assets/blog-01.webp',
+    img: '/assets/right-for-me-1.webp',
     highlight:
       'Many of our graduates, professionals, and emerging leaders started here — wanting to stand out, make an impact, and step confidently into the next stage of their career.',
     bullets: [
@@ -24,7 +25,7 @@ const groups = [
   {
     title: 'University Entrance & Academic Progression',
     age: 'Ages 16+',
-    img: '/assets/blog-02.webp',
+    img: '/assets/right-for-me-2.webp',
     highlight:
       'If you recognise yourself in these, you’re likely exactly where many of our students are.',
     bullets: [
@@ -40,7 +41,7 @@ const groups = [
   {
     title: 'School Entrance & Early Leader Foundations',
     age: 'Ages 11+',
-    img: '/assets/blog-03.webp',
+    img: '/assets/experience-top-banner.webp',
     highlight:
       'This stage is often where confidence, leadership habits, and self-belief begin to grow.',
     bullets: [
@@ -66,9 +67,8 @@ function Card({ group, index }) {
   return (
     <motion.article
       variants={cardVariants}
+      className="xg-glass-solid"
       style={{
-        background: theme.dark,
-        border: `1px solid ${theme.borderDark}`,
         display: 'flex', flexDirection: 'column',
         overflow: 'hidden',
       }}
@@ -76,16 +76,20 @@ function Card({ group, index }) {
       <div style={{
         position: 'relative',
         width: '100%',
-        aspectRatio: '4/3',
+        aspectRatio: '1/1',
         overflow: 'hidden',
         background: theme.dark,
       }}>
         <img
           src={group.img}
           alt={group.title}
+          loading="lazy"
+          decoding="async"
           style={{
+            position: 'absolute',
+            inset: 0,
             width: '100%', height: '100%',
-            objectFit: 'cover', objectPosition: '50% 35%',
+            objectFit: 'cover', objectPosition: '50% 50%',
             display: 'block',
           }}
         />
@@ -135,7 +139,7 @@ function Card({ group, index }) {
             cursor: 'pointer', fontWeight: 500,
           }}
         >
-          <span>{open ? 'Hide details' : 'You might recognise yourself'}</span>
+          <span>{open ? 'Hide details' : 'Is this right for me?'}</span>
           <motion.span
             animate={{ rotate: open ? 45 : 0 }}
             transition={{ duration: 0.3, ease: fadeEase }}
@@ -203,14 +207,6 @@ export function IsThisRightForMe() {
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(40px, 6vw, 64px)' }}>
           <div>
-            <motion.div
-              variants={fadeUp}
-              style={{
-                fontSize: 12, letterSpacing: '0.16em',
-                textTransform: 'uppercase', color: theme.subtitle,
-                marginBottom: 28, fontWeight: 600,
-              }}
-            >(Is This Right For Me?)</motion.div>
             <SplitHeading
               lines={['IS THIS', 'RIGHT FOR ME']}
               style={{
@@ -230,19 +226,20 @@ export function IsThisRightForMe() {
             }}>
               Not sure if this is right for you?
             </p>
-            <motion.a
-              whileHover={{ x: 4 }}
-              href="#"
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 10,
-                padding: '12px 20px',
-                border: `1px solid ${theme.base}`, borderRadius: 999,
-                color: theme.base, textDecoration: 'none',
-                fontSize: 13, fontWeight: 500,
-              }}
-            >
-              Schedule A Call With Us <span style={{ fontSize: 16 }}>→</span>
-            </motion.a>
+            <Magnetic strength={0.3}>
+              <a
+                href="#"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 10,
+                  padding: '12px 20px',
+                  border: `1px solid ${theme.base}`, borderRadius: 999,
+                  color: theme.base, textDecoration: 'none',
+                  fontSize: 13, fontWeight: 500,
+                }}
+              >
+                Schedule A Call With Us <span style={{ fontSize: 16 }}>→</span>
+              </a>
+            </Magnetic>
           </motion.div>
         </Group>
 

@@ -91,7 +91,7 @@ export function TheEdge() {
               alignSelf: 'flex-start',
               padding: '8px 18px',
               borderRadius: 999,
-              background: 'rgba(110,150,200,0.18)',
+              background: 'rgba(255,255,255,0.12)',
               color: theme.accent,
               fontSize: 11, fontWeight: 700,
               letterSpacing: '0.18em', textTransform: 'uppercase',

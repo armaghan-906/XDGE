@@ -68,10 +68,10 @@ export function HowXDGEWorks() {
   return (
     <section
       data-screen-label="How XDGE Works"
-      data-section-theme="dark"
+      data-section-theme="light"
       style={{
-        background: theme.dark,
-        color: theme.base,
+        background: theme.base,
+        color: theme.ink,
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -94,7 +94,7 @@ export function HowXDGEWorks() {
           style={{
             fontSize: 'clamp(20px, 2.4vw, 30px)',
             lineHeight: 1.4,
-            color: theme.base,
+            color: theme.ink,
             margin: '0 0 clamp(48px, 7vw, 88px)',
             fontWeight: 500,
             letterSpacing: '-0.005em',
@@ -116,55 +116,41 @@ export function HowXDGEWorks() {
               key={s.n}
               variants={itemVariants}
               style={{
-                display: 'flex', alignItems: 'flex-start',
-                gap: 'clamp(20px, 2.5vw, 32px)',
+                display: 'flex', flexDirection: 'column',
                 paddingTop: 'clamp(20px, 2vw, 24px)',
-                borderTop: `1px solid ${theme.borderDark}`,
+                borderTop: '1px solid rgba(0,0,0,0.18)',
               }}
             >
-              <motion.div
-                variants={numberVariants}
+              <motion.h3
+                variants={titleVariants}
                 style={{
-                  fontFamily: theme.display, fontWeight: 900,
-                  fontSize: 'clamp(28px, 3.6vw, 44px)',
-                  lineHeight: 1, letterSpacing: '-0.01em',
-                  color: theme.base,
-                  flexShrink: 0,
-                  minWidth: '1.6em',
+                  fontFamily: theme.display, fontWeight: 700,
+                  fontSize: 'clamp(20px, 2.2vw, 28px)',
+                  lineHeight: 1.1, letterSpacing: '-0.005em',
+                  margin: '0 0 clamp(12px, 1.5vw, 18px)',
+                  textTransform: 'uppercase',
+                  color: theme.ink,
                 }}
-              >{s.n}</motion.div>
-              <div style={{ flex: 1 }}>
-                <motion.h3
-                  variants={titleVariants}
-                  style={{
-                    fontFamily: theme.display, fontWeight: 700,
-                    fontSize: 'clamp(20px, 2.2vw, 28px)',
-                    lineHeight: 1.1, letterSpacing: '-0.005em',
-                    margin: '0 0 clamp(12px, 1.5vw, 18px)',
-                    textTransform: 'uppercase',
-                    color: theme.base,
-                  }}
-                >{s.title}</motion.h3>
-                <motion.p
-                  variants={descVariants}
-                  style={{
-                    fontSize: 'clamp(14px, 1.5vw, 16px)',
-                    lineHeight: 1.55,
-                    margin: '0 0 8px',
-                    color: theme.base,
-                    fontWeight: 500,
-                  }}
-                >{s.line1}</motion.p>
-                <motion.p
-                  variants={descVariants}
-                  style={{
-                    fontSize: 'clamp(13px, 1.4vw, 15px)',
-                    lineHeight: 1.55,
-                    margin: 0,
-                    color: theme.subtitle,
-                  }}
-                >{s.line2}</motion.p>
-              </div>
+              >{s.title}</motion.h3>
+              <motion.p
+                variants={descVariants}
+                style={{
+                  fontSize: 'clamp(14px, 1.5vw, 16px)',
+                  lineHeight: 1.55,
+                  margin: '0 0 8px',
+                  color: theme.ink,
+                  fontWeight: 500,
+                }}
+              >{s.line1}</motion.p>
+              <motion.p
+                variants={descVariants}
+                style={{
+                  fontSize: 'clamp(13px, 1.4vw, 15px)',
+                  lineHeight: 1.55,
+                  margin: 0,
+                  color: '#3a3c3e',
+                }}
+              >{s.line2}</motion.p>
             </motion.div>
           ))}
         </Group>

@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
+import { HeroMotion } from '../HeroMotion';
 
 function HeroHeading({ y, opacity }) {
   return (
@@ -18,7 +19,7 @@ function HeroHeading({ y, opacity }) {
       <motion.span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
-        transition={{ duration: 1.8, ease: [0.2, 0.7, 0.2, 1], delay: 0.35 }}
+        transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1], delay: 0.1 }}
         style={{ display: 'inline-block' }}
       >XDGE</motion.span>
     </motion.h1>
@@ -43,6 +44,7 @@ export function Hero() {
         position: 'relative', overflow: 'hidden',
       }}
     >
+      <HeroMotion variant="ascend" />
       <div style={{
         flex: 1,
         padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(40px, 6vw, 64px)',
@@ -53,7 +55,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
+            transition={{ duration: 0.4, delay: 0.05 }}
             style={{
               fontFamily: theme.display, fontWeight: 700,
               fontSize: 'clamp(22px, 2.8vw, 40px)',
@@ -66,22 +68,27 @@ export function Hero() {
             The
           </motion.div>
           <HeroHeading y={y} opacity={opacity} />
-          <motion.div
+          <motion.h4
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.55 }}
+            transition={{ duration: 0.45, delay: 0.3 }}
             style={{
-              fontFamily: theme.display, fontWeight: 700,
-              fontSize: 'clamp(22px, 4.5vw, 76px)',
-              lineHeight: 1.0, letterSpacing: '-0.01em',
+              display: 'block',
+              marginBlockStart: '1.33em',
+              marginBlockEnd: '1.33em',
+              marginInlineStart: 0,
+              marginInlineEnd: 0,
+              fontFamily: theme.displayTight,
+              fontWeight: 'bold',
+              fontSize: 'clamp(28px, 5.5vw, 76px)',
+              lineHeight: 1.1, letterSpacing: '-0.01em',
               color: theme.base,
-              marginTop: 'clamp(14px, 2vw, 32px)',
-              textTransform: 'uppercase',
-              maxWidth: '18ch',
+              maxWidth: '20ch',
+              unicodeBidi: 'isolate',
             }}
           >
-            Get the Leadership Edge That Sets You Apart
-          </motion.div>
+            Lead Your Own Opportunities
+          </motion.h4>
         </div>
 
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
@@ -89,7 +96,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
             style={{
               display: 'flex', flexDirection: 'column',
               gap: 'clamp(16px, 2.5vw, 28px)',
@@ -97,23 +104,27 @@ export function Hero() {
             }}
           >
             <p style={{
-              fontSize: 'clamp(20px, 2.4vw, 30px)',
-              lineHeight: 1.32,
+              fontFamily: '"Inter", "Inter Display", "Inter Placeholder", sans-serif',
+              fontSize: 40,
+              lineHeight: '1.17em',
+              letterSpacing: '0em',
               color: theme.base,
               margin: 0,
-              fontWeight: 500,
-              letterSpacing: '-0.005em',
+              fontWeight: 400,
+              textAlign: 'left',
             }}>
-              Professional Leadership Development,<br />
-              Redesigned for Ages 12&ndash;24
+              Build The Leader Behind What Inspires You.
             </p>
             <p style={{
-              fontSize: 'clamp(13px, 1.4vw, 15px)',
-              lineHeight: 1.5,
+              fontFamily: '"Inter", "Inter Display", "Inter Placeholder", sans-serif',
+              fontSize: 28,
+              lineHeight: 1.3,
+              letterSpacing: '0em',
               color: theme.subtitle,
               margin: 0,
+              fontWeight: 400,
             }}>
-              Build the leader behind what inspires you.
+              Professional Leadership Development Reengineered for Ages 12&ndash;24+
             </p>
           </motion.div>
         </div>

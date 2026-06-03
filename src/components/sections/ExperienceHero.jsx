@@ -1,14 +1,16 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
+import { HeroMotion } from '../HeroMotion';
 
 function ExperienceHeading({ y, opacity }) {
+  const ease = [0.2, 0.7, 0.2, 1];
   return (
     <motion.h1
       style={{
         y, opacity,
         fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(56px, 16vw, 240px)',
+        fontSize: 'clamp(64px, 14vw, 220px)',
         lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
         overflow: 'hidden',
@@ -18,9 +20,15 @@ function ExperienceHeading({ y, opacity }) {
       <motion.span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
-        transition={{ duration: 1.8, ease: [0.2, 0.7, 0.2, 1], delay: 0.35 }}
-        style={{ display: 'inline-block' }}
-      >EXPERIENCE.</motion.span>
+        transition={{ duration: 1.6, ease, delay: 0.25 }}
+        style={{ display: 'block' }}
+      >HOW IT</motion.span>
+      <motion.span
+        initial={{ y: '110%' }}
+        animate={{ y: '0%' }}
+        transition={{ duration: 1.6, ease, delay: 0.4 }}
+        style={{ display: 'block' }}
+      >WORKS</motion.span>
     </motion.h1>
   );
 }
@@ -43,6 +51,7 @@ export function ExperienceHero() {
         position: 'relative', overflow: 'hidden',
       }}
     >
+      <HeroMotion variant="climb" />
       <div style={{
         flex: 1,
         padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(40px, 6vw, 64px)',
@@ -50,37 +59,21 @@ export function ExperienceHero() {
         gap: 32,
       }}>
         <div style={{ marginTop: 24, position: 'relative' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            style={{
-              fontFamily: theme.display, fontWeight: 700,
-              fontSize: 'clamp(22px, 2.8vw, 40px)',
-              lineHeight: 1, letterSpacing: '-0.01em',
-              color: theme.base,
-              marginBottom: 'clamp(8px, 1.5vw, 16px)',
-              textTransform: 'capitalize',
-            }}
-          >
-            The
-          </motion.div>
           <ExperienceHeading y={y} opacity={opacity} />
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.55 }}
             style={{
-              fontFamily: theme.display, fontWeight: 700,
-              fontSize: 'clamp(20px, 3.2vw, 48px)',
-              lineHeight: 1.1, letterSpacing: '-0.01em',
+              fontFamily: theme.displayTight, fontWeight: 500,
+              fontSize: 'clamp(18px, 2vw, 28px)',
+              lineHeight: 1.4, letterSpacing: '-0.005em',
               color: theme.base,
               marginTop: 'clamp(14px, 2vw, 32px)',
-              textTransform: 'uppercase',
-              maxWidth: '24ch',
+              maxWidth: '36ch',
             }}
           >
-            Leadership develops through experience, challenge, and guided progression.
+            Leadership Through Something You Care About
           </motion.div>
         </div>
 
@@ -92,34 +85,51 @@ export function ExperienceHero() {
             transition={{ duration: 0.8, delay: 0.9 }}
             style={{
               display: 'flex', flexDirection: 'column',
-              gap: 'clamp(12px, 1.8vw, 20px)',
-              maxWidth: 520,
+              gap: 'clamp(14px, 1.8vw, 20px)',
+              maxWidth: 560,
             }}
           >
-            <div style={{
-              fontSize: 12, letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              color: theme.subtitle,
-            }}>
-              What It&rsquo;s Like
-            </div>
             <p style={{
-              fontSize: 'clamp(20px, 2.4vw, 30px)',
-              lineHeight: 1.32,
+              fontFamily: '"Inter", "Inter Display", sans-serif',
+              fontSize: 'clamp(18px, 1.8vw, 22px)',
+              lineHeight: 1.4,
               color: theme.base,
               margin: 0,
               fontWeight: 500,
               letterSpacing: '-0.005em',
             }}>
-              Develop Your Leadership Edge
+              At XDGE, leadership isn&rsquo;t taught through theory alone.
             </p>
             <p style={{
-              fontSize: 'clamp(13px, 1.4vw, 15px)',
-              lineHeight: 1.5,
+              fontSize: 'clamp(14px, 1.4vw, 16px)',
+              lineHeight: 1.55,
               color: theme.subtitle,
               margin: 0,
             }}>
-              A high-standard experience designed to elevate your performance to the next level.
+              You develop leadership by taking the lead on a project connected
+              to a cause, idea, passion, or future ambition that matters to you.
+            </p>
+            <p style={{
+              fontSize: 'clamp(14px, 1.4vw, 16px)',
+              lineHeight: 1.55,
+              color: theme.subtitle,
+              margin: 0,
+            }}>
+              Along the way, you work with experienced coaches, professionals,
+              and leaders who help you develop the confidence, professional
+              skills, and leadership capability needed to bring your ideas to
+              life.
+            </p>
+            <p style={{
+              fontSize: 'clamp(14px, 1.4vw, 16px)',
+              lineHeight: 1.55,
+              color: theme.base,
+              margin: 0,
+              fontWeight: 500,
+            }}>
+              The result is more than a project. It is evidence of initiative,
+              achievement, and leadership that helps you stand out in
+              interviews, applications, careers, and future opportunities.
             </p>
           </motion.div>
         </div>

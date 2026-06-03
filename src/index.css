@@ -1,5 +1,12 @@
-html, body { margin: 0; padding: 0; background: #0e0e0e; color: #ECEDE8; }
-body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+html, body { margin: 0; padding: 0; background: #000000; color: #FFFFFF; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+}
 *, *::before, *::after { box-sizing: border-box; }
 
 ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -9,6 +16,293 @@ body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: anti
 a { color: inherit; }
 img { display: block; max-width: 100%; }
 
+/* ── Premium polish layer ─────────────────────────────────── */
+:root {
+  --xg-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --xg-ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --xg-shadow-soft: 0 12px 40px -16px rgba(0, 0, 0, 0.25), 0 4px 16px -8px rgba(0, 0, 0, 0.18);
+  --xg-shadow-soft-dark: 0 14px 44px -16px rgba(0, 0, 0, 0.55), 0 6px 18px -8px rgba(0, 0, 0, 0.4);
+}
+
+/* Accessible focus ring — invisible custom cursor era still needs keyboard nav */
+:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Premium dark hero depth — subtle radial glow at the top */
+section[data-section-theme="dark"][data-screen-label^="01"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(255, 255, 255, 0.06), transparent 70%),
+    radial-gradient(60% 50% at 100% 100%, rgba(255, 255, 255, 0.04), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+section[data-section-theme="dark"][data-screen-label^="01"] > *:not(.xg-hero-ambient) { position: relative; z-index: 1; }
+
+/* Any section containing HeroAmbient gets proper layering — covers non-"01" heroes like About */
+section:has(> .xg-hero-ambient) {
+  position: relative;
+  overflow: hidden;
+}
+section:has(> .xg-hero-ambient) > *:not(.xg-hero-ambient) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Card lift — applied to <article> elements and any element flagged as a card */
+article[data-cursor="grow"],
+.xg-card-lift {
+  transition: transform 0.5s var(--xg-ease), box-shadow 0.5s var(--xg-ease), border-color 0.5s var(--xg-ease);
+  will-change: transform;
+}
+@media (hover: hover) {
+  article[data-cursor="grow"]:hover,
+  .xg-card-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--xg-shadow-soft);
+  }
+  section[data-section-theme="dark"] article[data-cursor="grow"]:hover {
+    box-shadow: var(--xg-shadow-soft-dark);
+  }
+}
+
+/* Inline link underline reveal — premium agency feel */
+.xg-link {
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+.xg-link::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.55s var(--xg-ease);
+}
+.xg-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* Premium button — slide-fill hover */
+.xg-btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.4s var(--xg-ease), border-color 0.4s var(--xg-ease);
+}
+.xg-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.55s var(--xg-ease);
+  z-index: -1;
+}
+@media (hover: hover) {
+  .xg-btn:hover::before { transform: scaleX(1); }
+  .xg-btn:hover { color: var(--xg-btn-hover-color, #FFFFFF); mix-blend-mode: normal; }
+}
+
+/* Refined typography — body line-height + paragraph spacing */
+p { letter-spacing: -0.003em; }
+
+/* ── HERO AMBIENT — animated mesh gradient + floating orbs ─────────────────── */
+.xg-hero-ambient {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.xg-hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  will-change: transform;
+  contain: layout paint;
+}
+.xg-hero-orb-blue {
+  top: -15%;
+  left: -10%;
+  width: 55vw;
+  height: 55vw;
+  max-width: 800px;
+  max-height: 800px;
+  opacity: 0.35;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.10) 50%, transparent 75%);
+}
+.xg-hero-orb-warm {
+  bottom: -20%;
+  right: -15%;
+  width: 50vw;
+  height: 50vw;
+  max-width: 700px;
+  max-height: 700px;
+  opacity: 0.22;
+  background: radial-gradient(circle, rgba(200, 200, 200, 0.6) 0%, rgba(200, 200, 200, 0.08) 50%, transparent 75%);
+}
+.xg-hero-orb-deep {
+  top: 30%;
+  right: 20%;
+  width: 30vw;
+  height: 30vw;
+  max-width: 500px;
+  max-height: 500px;
+  opacity: 0.6;
+  background: radial-gradient(circle, rgba(26, 26, 26, 0.95) 0%, rgba(26, 26, 26, 0.4) 60%, transparent 80%);
+}
+.xg-hero-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* CSS-keyframe orb drifts — browser auto-pauses composited transforms
+   when the parent section is offscreen, so the 5 non-home heroes don't
+   keep ticking framer-motion rAF after the user has scrolled past. */
+@keyframes xg-orb-a {
+  0%, 100% { transform: translate3d(-10%, -5%, 0) scale(1); }
+  50%      { transform: translate3d(10%, 8%, 0) scale(1.15); }
+}
+@keyframes xg-orb-b {
+  0%, 100% { transform: translate3d(8%, 10%, 0) scale(1.1); }
+  50%      { transform: translate3d(-12%, -8%, 0) scale(0.95); }
+}
+@keyframes xg-orb-c {
+  0%, 100% { transform: translate3d(-5%, 12%, 0) scale(0.9); }
+  50%      { transform: translate3d(12%, -10%, 0) scale(1.2); }
+}
+.xg-orb-drift-a { animation: xg-orb-a 24s ease-in-out infinite; }
+.xg-orb-drift-b { animation: xg-orb-b 30s ease-in-out infinite; }
+.xg-orb-drift-c { animation: xg-orb-c 36s ease-in-out infinite; }
+
+/* Ensure hero content sits above ambient — but never re-position the ambient layer itself */
+section[data-screen-label^="01"] > div:not(.xg-hero-ambient) { position: relative; z-index: 2; }
+
+/* ── GLASS-MORPHISM CARD — premium translucent surface ─────────────────────── */
+.xg-glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.5s var(--xg-ease), border-color 0.5s var(--xg-ease), box-shadow 0.5s var(--xg-ease), transform 0.5s var(--xg-ease);
+}
+/* Solid variant — same look without backdrop-filter for grids that scroll heavily.
+   Avoids per-scroll-frame blur re-rasterization that causes jank on glass-card grids. */
+.xg-glass-solid {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  transition: background 0.5s var(--xg-ease), border-color 0.5s var(--xg-ease), box-shadow 0.5s var(--xg-ease), transform 0.5s var(--xg-ease);
+}
+@media (hover: hover) {
+  .xg-glass-solid:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 22px 60px -28px rgba(0, 0, 0, 0.7);
+    transform: translateY(-6px);
+  }
+}
+.xg-glass-light {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: background 0.5s var(--xg-ease), border-color 0.5s var(--xg-ease), box-shadow 0.5s var(--xg-ease), transform 0.5s var(--xg-ease);
+}
+@media (hover: hover) {
+  .xg-glass:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.28);
+    box-shadow: 0 22px 60px -28px rgba(0, 0, 0, 0.7), 0 0 50px -16px rgba(255, 255, 255, 0.18);
+    transform: translateY(-6px);
+  }
+  .xg-glass-light:hover {
+    background: rgba(255, 255, 255, 0.65);
+    border-color: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.18);
+    transform: translateY(-6px);
+  }
+}
+
+/* ── ANIMATED GRADIENT DIVIDER ─────────────────────────────────────────────── */
+.xg-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+  position: relative;
+  overflow: hidden;
+}
+.xg-divider::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: translateX(-100%);
+  animation: xg-divider-sweep 6s ease-in-out infinite;
+}
+@keyframes xg-divider-sweep {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+/* ── GLOW UTILITY — accent halo around key elements ────────────────────────── */
+.xg-glow-accent {
+  position: relative;
+}
+.xg-glow-accent::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(200, 200, 200, 0.3), rgba(255, 255, 255, 0.4));
+  filter: blur(20px);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.5s var(--xg-ease);
+}
+@media (hover: hover) {
+  .xg-glow-accent:hover::before { opacity: 0.8; }
+}
+
+/* ── SCROLL-LINKED PARALLAX ENHANCEMENT for sticky banners ────────────────── */
+.xg-stick-wrap > .xg-stick-pin::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.65) 100%);
+  pointer-events: none;
+}
+
+/* ── DISABLE HERO AMBIENT ON LOW-POWER / REDUCED MOTION ───────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .xg-hero-orb { animation: none !important; }
+  .xg-divider::after { animation: none; }
+}
+
+/* Page transition removed — keyframe was replaying on every content-visibility re-render,
+   producing a "section keeps loading again" effect on scroll. Per-component framer-motion
+   `whileInView once: true` handles reveal correctly. */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
 body { cursor: none; }
 input, textarea, select { cursor: text; }
 @media (hover: none), (prefers-reduced-motion: reduce) {
@@ -16,13 +310,178 @@ input, textarea, select { cursor: text; }
   .xdge-cursor { display: none !important; }
 }
 
+/* ── What You Leave With list: small image left, title + desc right ── */
+.xg-leave-list {
+  display: flex;
+  flex-direction: column;
+}
+.xg-leave-row {
+  display: grid;
+  grid-template-columns: clamp(140px, 18vw, 220px) 1fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+  padding: clamp(24px, 3.5vw, 40px) 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.18);
+}
+.xg-leave-row:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+}
+.xg-leave-img,
+.xg-leave-text { min-width: 0; }
+@media (max-width: 700px) {
+  .xg-leave-row {
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 3vw, 24px);
+  }
+  .xg-leave-img { max-width: 220px; }
+}
+
+/* ── Principles list: numbered rows with image on the right ── */
+.xg-principles-list {
+  display: flex;
+  flex-direction: column;
+}
+.xg-principle-row {
+  display: grid;
+  grid-template-columns: 0.7fr 1.4fr 1fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: flex-start;
+  padding: clamp(36px, 5vw, 56px) 0;
+  border-top: 1px solid rgba(248, 248, 248, 0.18);
+}
+.xg-principle-row:last-child {
+  border-bottom: 1px solid rgba(248, 248, 248, 0.18);
+}
+.xg-principle-num,
+.xg-principle-text,
+.xg-principle-img {
+  min-width: 0;
+}
+@media (max-width: 900px) {
+  .xg-principle-row {
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 3vw, 24px);
+  }
+  .xg-principle-img {
+    max-width: 480px;
+  }
+}
+
+/* ── Team grid: 3 columns — intro (first row), image, text ── */
+.xg-team-grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 6vw, 72px);
+}
+.xg-team-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.3fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: flex-start;
+}
+.xg-team-intro {
+  min-width: 0;
+}
+.xg-team-image {
+  min-width: 0;
+}
+.xg-team-text {
+  min-width: 0;
+}
+@media (max-width: 900px) {
+  .xg-team-row {
+    grid-template-columns: 1fr;
+    gap: clamp(20px, 3vw, 32px);
+  }
+  .xg-team-image {
+    max-width: 360px;
+  }
+}
+
+/* ── Capability section grid: wider diagram column ── */
+@media (max-width: 900px) {
+  .xg-cap-grid {
+    grid-template-columns: 1fr !important;
+    gap: clamp(24px, 4vw, 40px) !important;
+  }
+}
+
+/* ── About hero grid: small sticky image on left, scrolling text on right ── */
+.xg-about-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.4fr;
+  gap: clamp(32px, 6vw, 88px);
+  align-items: flex-start;
+}
+.xg-about-image-sticky {
+  position: sticky;
+  top: clamp(96px, 12vh, 140px);
+  width: 100%;
+  max-width: 320px;
+}
+.xg-about-image-col {
+  min-width: 0;
+}
+.xg-about-text-col {
+  min-width: 0;
+}
+@media (max-width: 900px) {
+  .xg-about-grid { grid-template-columns: 1fr; gap: clamp(28px, 5vw, 48px); }
+  .xg-about-image-sticky { position: static; max-width: 480px; margin: 0 auto; }
+}
+
+/* ── Defer offscreen rendering for heavy sections ── */
+section[data-screen-label] {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
+}
+/* Hero sections render eagerly — they're the first thing seen */
+section[data-screen-label^="01"] {
+  content-visibility: visible;
+}
+
+/* ── Sticky-pin banner stack: banner stays fixed while next section slides over ── */
+.xg-stick-wrap { position: relative; }
+.xg-stick-wrap > .xg-stick-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  z-index: 1;
+  padding: 0 !important;
+  display: block;
+  will-change: transform;
+  contain: paint;
+  transform: translateZ(0);
+}
+.xg-stick-wrap > .xg-stick-pin img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  display: block;
+}
+.xg-stick-wrap > section:not(.xg-stick-pin) {
+  position: relative;
+  z-index: 2;
+  contain: layout paint;
+}
+
 /* ── Responsive grid utilities ──────────────────────────── */
 .xg-2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 48px); }
+.xg-perf-grid { grid-template-columns: 1fr 1.8fr; }
+@media (max-width: 900px) {
+  .xg-perf-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 542px) {
+  .xg-cap-grid { grid-template-columns: 1fr !important; }
+  .xg-perf-tagline { margin-top: 0 !important; }
+}
 .xg-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .xg-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
 
 .xg-hero-body { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 48px); }
-.xg-wwd-top { display: grid; grid-template-columns: 0.8fr 1.6fr; gap: clamp(24px, 4vw, 48px); align-items: flex-start; }
+.xg-wwd-top { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(24px, 4vw, 48px); align-items: flex-start; }
 .xg-serve-row { display: grid; grid-template-columns: 1fr 1.4fr; }
 
 @media (max-width: 1024px) {
@@ -44,23 +503,67 @@ input, textarea, select { cursor: text; }
   .xg-hide-sm { display: none !important; }
 }
 
+/* Global small-screen safety: prevent any element overflowing horizontally */
+@media (max-width: 640px) {
+  html, body { overflow-x: hidden; }
+  img, video { max-width: 100%; height: auto; }
+}
+
+/* Hero sections: on mobile, stop spreading content apart with space-between */
+@media (max-width: 768px) {
+  section[data-screen-label*="Hero" i] > div:first-child {
+    justify-content: flex-start !important;
+    gap: clamp(24px, 6vw, 48px) !important;
+    min-height: auto !important;
+  }
+  section[data-screen-label*="Hero" i] {
+    min-height: auto !important;
+  }
+}
+
+/* TheReality pills + heading — allow wrapping on phones */
+@media (max-width: 640px) {
+  .xg-reality-pills { flex-wrap: wrap !important; white-space: normal !important; justify-content: center; }
+  .xg-reality-pills > div { white-space: normal; text-align: center; }
+}
+
+/* ProvenOutcomes nav row stacks nicely on small screens */
+@media (max-width: 900px) {
+  .xg-outcomes-nav { flex-wrap: wrap; gap: 16px !important; }
+  .xg-outcomes-nav > div:nth-child(2) { display: none; /* hide divider when wrapping */ }
+  .xg-outcomes-nav > div:last-child { width: 100%; justify-content: flex-start; flex-wrap: wrap; }
+  .xg-outcomes-nav button { padding: 12px 20px !important; font-size: 12px !important; letter-spacing: 0.04em !important; }
+}
+@media (max-width: 720px) {
+  .xg-outcomes-card { grid-template-columns: 1fr !important; gap: 20px !important; }
+}
+@media (max-width: 420px) {
+  .xg-outcomes-nav button { padding: 10px 14px !important; font-size: 11px !important; gap: 8px !important; }
+}
+
+/* Sticky-pin disabled on small screens — too tall and jumpy on phones */
+@media (max-width: 640px) {
+  .xg-stick-wrap > .xg-stick-pin {
+    position: relative;
+    top: auto;
+    height: auto;
+  }
+  .xg-stick-wrap > .xg-stick-pin img {
+    height: auto !important;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+}
+
 /* Footer right column — push content to the right edge on desktop */
 .xg-footer-right { justify-self: end; text-align: left; }
 @media (max-width: 768px) {
   .xg-footer-right { justify-self: start; }
 }
 
-/* Different-ages row: 3 columns on desktop, stacks on tablet/mobile */
-@media (max-width: 1024px) {
-  .xg-ages-row {
-    grid-template-columns: 1fr 1fr !important;
-  }
-  .xg-ages-row > :first-child {
-    grid-column: 1 / -1;
-  }
-}
-@media (max-width: 640px) {
-  .xg-ages-row {
+/* Different-ages slide: 2 cols on desktop, stacks on smaller screens */
+@media (max-width: 900px) {
+  .xg-ages-slide {
     grid-template-columns: 1fr !important;
   }
 }
@@ -108,12 +611,14 @@ input, textarea, select { cursor: text; }
 .xg-journey-labels {
   display: flex;
   margin-top: clamp(20px, 3vw, 36px);
+  gap: clamp(8px, 1vw, 14px);
 }
 .xg-journey-label-cell {
   flex: 1;
-  text-align: center;
-  padding: 0 6px;
+  text-align: left;
+  padding: clamp(14px, 1.4vw, 18px) 4px 0;
   min-width: 0;
+  border-top: 1px solid rgba(248, 248, 248, 0.18);
 }
 
 .xg-journey-mobile { display: none; }
@@ -141,8 +646,21 @@ input, textarea, select { cursor: text; }
   min-height: 0;
 }
 @media (max-width: 900px) {
-  .xg-menu-grid { grid-template-columns: 1fr; gap: 32px; }
-  .xg-menu-image { display: none; }
+  .xg-menu-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(20px, 4vw, 32px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .xg-menu-image {
+    max-width: 280px;
+    aspect-ratio: 4 / 3 !important;
+    margin: 0;
+  }
+}
+@media (max-width: 540px) {
+  .xg-menu-grid { gap: 16px; }
+  .xg-menu-image { max-width: 220px; aspect-ratio: 16 / 10 !important; }
 }
 
 @keyframes xdge-marquee {
@@ -171,4 +689,101 @@ input, textarea, select { cursor: text; }
 
 @media (prefers-reduced-motion: reduce) {
   .xdge-marquee, .xdge-footer-marquee { animation: none; }
+}
+
+/* ============================================================
+   XDGE — Playful hover utilities
+   Pure CSS (no JS) — pair with <Magnetic> for the springy follow.
+   ============================================================ */
+
+:root {
+  /* overshoot spring curve for playful hovers */
+  --xg-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Springy lift + slight tilt — drop onto chips, tags, small CTAs.
+   Add the class:  <button class="xg-pop"> … </button>  */
+.xg-pop {
+  transition:
+    transform 0.35s var(--xg-spring),
+    background 0.35s var(--xg-ease),
+    color 0.35s var(--xg-ease),
+    border-color 0.35s var(--xg-ease);
+  will-change: transform;
+}
+@media (hover: hover) {
+  .xg-pop:hover { transform: translateY(-4px) rotate(-1.5deg); }
+  .xg-pop:active { transform: translateY(-1px) scale(0.97); }
+}
+
+/* Ready-made playful chip (mono, inverts on hover) */
+.xg-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #2A2A2A;
+  border-radius: 100px;
+  padding: 12px 22px;
+  font-family: 'Oswald', 'Anton', Impact, sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: inherit;
+  cursor: pointer;
+  background: transparent;
+  transition:
+    transform 0.35s var(--xg-spring),
+    background 0.35s var(--xg-ease),
+    color 0.35s var(--xg-ease),
+    border-color 0.35s var(--xg-ease);
+}
+@media (hover: hover) {
+  .xg-chip:hover {
+    transform: translateY(-4px) rotate(-1.5deg);
+    background: #FFFFFF;
+    color: #000000;
+    border-color: #FFFFFF;
+  }
+}
+/* On cream/light sections, default border is darker for contrast */
+[data-section-theme="light"] .xg-chip { border-color: #E5E5E5; }
+
+/* Playful card tilt — enhances your existing .xg-card-lift / article cards.
+   Add alongside:  <article class="xg-card-lift xg-tilt"> … </article>  */
+@media (hover: hover) {
+  .xg-tilt {
+    transition:
+      transform 0.5s var(--xg-spring),
+      box-shadow 0.5s var(--xg-ease),
+      border-color 0.5s var(--xg-ease);
+  }
+  .xg-tilt:hover { transform: translateY(-8px) rotate(-1deg) scale(1.015); }
+}
+
+/* Animated underline that wipes in from the left with a bounce (links).
+   Add the class:  <a class="xg-underline-pop"> … </a>  */
+.xg-underline-pop {
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+.xg-underline-pop::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s var(--xg-spring);
+}
+@media (hover: hover) {
+  .xg-underline-pop:hover::after { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xg-pop, .xg-chip, .xg-tilt { transition: none; }
+  .xg-pop:hover, .xg-chip:hover, .xg-tilt:hover { transform: none; }
 }
