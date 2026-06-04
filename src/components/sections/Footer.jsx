@@ -1,8 +1,18 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { theme } from '../../theme';
 
-const companyLinks = ['Home', 'About', 'Programs', 'How It Works'];
-const resourceLinks = ['FAQ', 'Contact', 'Apply'];
+const companyLinks = [
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Programmes', to: '/programmes' },
+  { label: 'How It Works', to: '/the-experience' },
+];
+const resourceLinks = [
+  { label: 'FAQ', href: '#' },
+  { label: 'Contact', to: '/contact' },
+  { label: 'Apply', to: '/apply' },
+];
 
 const socials = [
   {
@@ -156,8 +166,12 @@ export function Footer() {
                 letterSpacing: '0.16em', textTransform: 'uppercase',
               }}>Company</div>
               {companyLinks.map((l) => (
-                <div key={l} style={{ fontSize: 14, lineHeight: 2.1 }}>
-                  <a href="#" style={{ color: theme.base, textDecoration: 'none' }}>{l}</a>
+                <div key={l.label} style={{ fontSize: 14, lineHeight: 2.1 }}>
+                  {l.to ? (
+                    <Link to={l.to} style={{ color: theme.base, textDecoration: 'none' }}>{l.label}</Link>
+                  ) : (
+                    <a href={l.href} style={{ color: theme.base, textDecoration: 'none' }}>{l.label}</a>
+                  )}
                 </div>
               ))}
             </div>
@@ -167,8 +181,12 @@ export function Footer() {
                 letterSpacing: '0.16em', textTransform: 'uppercase',
               }}>Resources</div>
               {resourceLinks.map((l) => (
-                <div key={l} style={{ fontSize: 14, lineHeight: 2.1 }}>
-                  <a href="#" style={{ color: theme.base, textDecoration: 'none' }}>{l}</a>
+                <div key={l.label} style={{ fontSize: 14, lineHeight: 2.1 }}>
+                  {l.to ? (
+                    <Link to={l.to} style={{ color: theme.base, textDecoration: 'none' }}>{l.label}</Link>
+                  ) : (
+                    <a href={l.href} style={{ color: theme.base, textDecoration: 'none' }}>{l.label}</a>
+                  )}
                 </div>
               ))}
             </div>

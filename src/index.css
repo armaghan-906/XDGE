@@ -449,6 +449,31 @@ input, textarea, select { cursor: text; }
    on top of whatever else scroll was doing. Eager render trades a bit of
    memory for buttery-smooth section-to-section scroll. */
 
+/* ── Programme tier cards — lift + image zoom on hover (light theme) ────── */
+.xg-tier-card {
+  transition: transform 0.5s var(--xg-ease), box-shadow 0.5s var(--xg-ease), border-color 0.5s var(--xg-ease);
+  will-change: transform;
+}
+.xg-tier-card .xg-tier-card-media img {
+  transition: transform 0.7s var(--xg-ease);
+  will-change: transform;
+}
+@media (hover: hover) {
+  .xg-tier-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 50px -22px rgba(0, 0, 0, 0.22), 0 6px 18px -10px rgba(0, 0, 0, 0.12);
+    border-color: rgba(0, 0, 0, 0.25);
+  }
+  .xg-tier-card:hover .xg-tier-card-media img {
+    transform: scale(1.06);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .xg-tier-card, .xg-tier-card .xg-tier-card-media img { transition: none; }
+  .xg-tier-card:hover { transform: none; }
+  .xg-tier-card:hover .xg-tier-card-media img { transform: none; }
+}
+
 /* ── Curtain — CSS-transition crossfade (compositor-thread only) ────────────
    The class toggles opacity. The transition runs on the GPU compositor,
    independent of main thread. Stays smooth even while React mounts the

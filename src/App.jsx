@@ -12,6 +12,9 @@ const About = lazy(() => import('./pages/About'));
 const Cohorts = lazy(() => import('./pages/Cohorts'));
 const Outcomes = lazy(() => import('./pages/Outcomes'));
 const PerformanceFormula = lazy(() => import('./pages/PerformanceFormula'));
+const Programmes = lazy(() => import('./pages/Programmes'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Apply = lazy(() => import('./pages/Apply'));
 
 function Layout() {
   return (
@@ -36,6 +39,9 @@ export default function App() {
           <Route path="/cohorts" element={<Cohorts />} />
           <Route path="/outcomes" element={<Outcomes />} />
           <Route path="/performance-formula" element={<PerformanceFormula />} />
+          <Route path="/programmes" element={<Programmes />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/apply" element={<Apply />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -9,12 +9,12 @@ const primaryLinks = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'How It Works', to: '/the-experience' },
-  { label: 'Programmes' },
+  { label: 'Programmes', to: '/programmes' },
 ];
 
 const secondaryLinks = [
-  { label: 'Apply', href: '#' },
-  { label: 'Contact', href: '#' },
+  { label: 'Apply', to: '/apply' },
+  { label: 'Contact', to: '/contact' },
   { label: 'Insights', href: '#' },
 ];
 
@@ -361,27 +361,34 @@ export function TopBar() {
                     gap: 'clamp(2px, 0.4vw, 4px)',
                   }}
                 >
-                  {secondaryLinks.map(({ label, href }) => (
-                    <span key={label} style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
-                      <motion.a
-                        variants={linkVariants}
-                        onClick={() => setOpen(false)}
-                        href={href}
-                        data-cursor="grow"
-                        whileHover={{ x: -10 }}
-                        transition={{ duration: 0.3 }}
-                        style={{
-                          display: 'block',
-                          fontFamily: theme.display,
-                          fontSize: 'clamp(20px, 2.6vw, 38px)',
-                          lineHeight: 1.05, letterSpacing: '-0.005em',
-                          color: theme.ink, textDecoration: 'none',
-                          textTransform: 'uppercase',
-                          fontWeight: 900,
-                        }}
-                      >{label}</motion.a>
-                    </span>
-                  ))}
+                  {secondaryLinks.map(({ label, href, to }) => {
+                    const linkStyle = {
+                      display: 'block',
+                      fontFamily: theme.display,
+                      fontSize: 'clamp(20px, 2.6vw, 38px)',
+                      lineHeight: 1.05, letterSpacing: '-0.005em',
+                      color: theme.ink, textDecoration: 'none',
+                      textTransform: 'uppercase',
+                      fontWeight: 900,
+                    };
+                    const motionProps = {
+                      variants: linkVariants,
+                      onClick: () => setOpen(false),
+                      'data-cursor': 'grow',
+                      whileHover: { x: -10 },
+                      transition: { duration: 0.3 },
+                      style: linkStyle,
+                    };
+                    return (
+                      <span key={label} style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
+                        {to ? (
+                          <MotionLink to={to} {...motionProps}>{label}</MotionLink>
+                        ) : (
+                          <motion.a href={href} {...motionProps}>{label}</motion.a>
+                        )}
+                      </span>
+                    );
+                  })}
                 </motion.nav>
 
                 <motion.div
