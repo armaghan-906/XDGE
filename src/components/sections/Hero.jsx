@@ -1,40 +1,29 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { theme } from '../../theme';
 import { HeroAmbient } from '../HeroAmbient';
 
-function HeroHeading({ y, opacity }) {
+function HeroHeading() {
   return (
     <motion.h1
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: [0.2, 0.7, 0.2, 1], delay: 0.1 }}
       style={{
-        y, opacity,
         fontFamily: theme.display, fontWeight: 900,
         fontSize: 'clamp(100px, 26vw, 420px)',
         lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
-        overflow: 'hidden',
         paddingBottom: '0.06em',
       }}
     >
-      <motion.span
-        initial={{ y: '110%' }}
-        animate={{ y: '0%' }}
-        transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1], delay: 0.1 }}
-        style={{ display: 'inline-block' }}
-      >XDGE</motion.span>
+      XDGE
     </motion.h1>
   );
 }
 
 export function Hero() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0.4]);
-
   return (
     <section
-      ref={ref}
       data-screen-label="01 Hero"
       data-cursor="light"
       data-section-theme="dark"
@@ -67,7 +56,7 @@ export function Hero() {
           >
             The
           </motion.div>
-          <HeroHeading y={y} opacity={opacity} />
+          <HeroHeading />
           <motion.h4
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
