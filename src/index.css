@@ -443,11 +443,16 @@ input, textarea, select { cursor: text; }
   .xg-about-image-sticky { position: static; max-width: 480px; margin: 0 auto; }
 }
 
-/* content-visibility: auto removed — it was the primary cause of the
-   visible "stutter" as each section came into the viewport: the browser
-   was forced to layout + paint the section fresh at the moment of entry,
-   on top of whatever else scroll was doing. Eager render trades a bit of
-   memory for buttery-smooth section-to-section scroll. */
+/* content-visibility: auto removed — it caused per-section stutter on
+   viewport entry. Replaced with `contain: content` (= layout + style + paint
+   containment) which tells the browser each section is self-contained.
+   Painting one section can't invalidate paint on another, so scrolling
+   doesn't trigger ripple-repaints across sections. */
+section[data-screen-label] { contain: content; }
+/* Heroes opt out — they create stacking contexts via inline position:relative
+   + the .xg-hero-ambient absolute layer, which conflict with paint containment. */
+section[data-screen-label^="01"] { contain: none; }
+section:has(> .xg-hero-ambient) { contain: none; }
 
 /* ── Programme tier cards — lift + image zoom on hover (light theme) ────── */
 .xg-tier-card {

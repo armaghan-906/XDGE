@@ -49,6 +49,15 @@ export function PerformanceDiagram({ maxWidth = 620, dark = false } = {}) {
       aspectRatio: '1/1',
       margin: '0 auto',
       background: 'radial-gradient(circle at center, rgba(110,150,200,0.16), rgba(255,255,255,0) 72%)',
+      // Permanently promote the diagram to its own GPU compositor layer.
+      // The three rings carry expensive outer + inset box-shadow blurs;
+      // without this, framer-motion drops will-change after the entrance
+      // animation and the shadows re-rasterize on every scroll-induced
+      // re-paint. With layer promotion, the rasterized result is cached
+      // and the GPU just translates it as the section scrolls — no jank.
+      transform: 'translateZ(0)',
+      willChange: 'transform',
+      contain: 'paint',
     }}>
       {/* Outer ring */}
       <motion.div

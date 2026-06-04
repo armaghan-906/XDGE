@@ -1,17 +1,9 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
 export function WhoWeAre() {
-  const imgRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: imgRef,
-    offset: ['start end', 'end start'],
-  });
-  const imgY = useTransform(scrollYProgress, [0, 1], ['-2%', '2%']);
-
   return (
     <section
       data-screen-label="Who We Are"
@@ -27,7 +19,6 @@ export function WhoWeAre() {
         <Group className="xg-wwd-top" style={{ alignItems: 'flex-start' }}>
           <motion.div variants={fadeUp} style={{ paddingTop: 8 }}>
             <div
-              ref={imgRef}
               style={{
                 position: 'relative',
                 width: '100%', maxWidth: 900, aspectRatio: '16/9',
@@ -40,14 +31,11 @@ export function WhoWeAre() {
                 loading="lazy"
                 decoding="async"
                 style={{
-                  position: 'absolute', left: 0, right: 0,
-                  top: '-3%',
-                  width: '100%', height: '106%',
+                  position: 'absolute', inset: 0,
+                  width: '100%', height: '100%',
                   objectFit: 'cover',
                   objectPosition: '50% 35%',
                   display: 'block',
-                  y: imgY,
-                  willChange: 'transform',
                 }}
               />
             </div>
