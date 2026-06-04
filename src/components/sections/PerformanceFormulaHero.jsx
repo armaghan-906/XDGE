@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
-import { HeroMotion } from '../HeroMotion';
+import { HeroAmbient } from '../HeroAmbient';
 
 function FormulaHeading({ y, opacity }) {
   const ease = [0.2, 0.7, 0.2, 1];
@@ -51,7 +51,7 @@ export function PerformanceFormulaHero() {
         position: 'relative', overflow: 'hidden',
       }}
     >
-      <HeroMotion variant="climb" />
+      <HeroAmbient />
       <div style={{
         flex: 1,
         padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(40px, 6vw, 64px)',

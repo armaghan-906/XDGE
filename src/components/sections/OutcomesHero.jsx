@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
-import { HeroMotion } from '../HeroMotion';
+import { HeroAmbient } from '../HeroAmbient';
 
 function OutcomesHeading({ y, opacity }) {
   return (
@@ -44,7 +44,7 @@ export function OutcomesHero() {
         position: 'relative', overflow: 'hidden',
       }}
     >
-      <HeroMotion variant="ascend" />
+      <HeroAmbient />
       <div style={{
         flex: 1,
         padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(40px, 6vw, 64px)',

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
-import { HeroMotion } from '../HeroMotion';
+import { HeroAmbient } from '../HeroAmbient';
 
 const fadeEase = [0.2, 0.7, 0.2, 1];
 
@@ -17,7 +17,7 @@ export function AboutHero() {
         padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(80px, 10vw, 120px)',
       }}
     >
-      <HeroMotion variant="cohort" />
+      <HeroAmbient />
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <SplitHeading
           lines={['ABOUT US']}

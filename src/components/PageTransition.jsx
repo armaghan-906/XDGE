@@ -4,35 +4,30 @@ import { motion, useAnimationControls } from 'framer-motion';
 import { theme } from '../theme';
 
 /**
- * PageTransition — curtain-wipe route transition.
+ * PageTransition — opacity-only curtain crossfade.
  *
- * Wraps your routed <Outlet/>. On every navigation it:
- *   1. sweeps a solid panel UP from the bottom (cover)
- *   2. swaps the page + resets scroll while hidden behind the panel
- *   3. sweeps the panel OFF the top (reveal)
+ * Replaced the earlier scaleY sweep with a pure opacity fade. Opacity
+ * transitions on a fixed-position element are composited entirely on the
+ * GPU — there is zero main-thread paint cost while the curtain shows or
+ * hides. This eliminates the perceived jerk during route changes,
+ * especially on production where the lazy chunk load was competing for
+ * main-thread time with the previous scaleY animation.
  *
- * The Suspense boundary is INSIDE this component, around just the page
- * content — so when a lazy route chunk is loading (network-bound on prod)
- * the curtain stays mounted and the wipe completes cleanly. In dev, chunks
- * load in milliseconds so this isn't visible — but on Vercel/network the
- * outer-Suspense pattern would unmount the curtain mid-animation.
+ * Suspense is INSIDE this component so a slow lazy chunk doesn't unmount
+ * the curtain mid-fade.
  */
 
-const SWEEP = [0.76, 0, 0.24, 1];
+const EASE = [0.4, 0, 0.2, 1];
 
 export function PageTransition() {
   const { pathname } = useLocation();
   const outlet = useOutlet();
   const [shown, setShown] = useState(outlet);
 
-  const curtainRef = useRef(null);
   const curtain = useAnimationControls();
-  const mark = useAnimationControls();
-  const content = useAnimationControls();
   const firstRender = useRef(true);
 
   useEffect(() => {
-    // Skip the wipe on first load — the hero already has its own entrance.
     if (firstRender.current) {
       firstRender.current = false;
       setShown(outlet);
@@ -41,27 +36,19 @@ export function PageTransition() {
 
     let cancelled = false;
     const run = async () => {
-      // 1 · COVER — panel sweeps up from the bottom (fast)
-      if (curtainRef.current) curtainRef.current.style.transformOrigin = 'bottom';
-      mark.set({ opacity: 0, y: 18 });
-      await curtain.start({ scaleY: 1, transition: { duration: 0.3, ease: SWEEP } });
+      // 1 · Cover — overlay fades in (GPU-composited, no main-thread cost).
+      await curtain.start({ opacity: 1, transition: { duration: 0.28, ease: EASE } });
       if (cancelled) return;
 
-      // 2 · SWAP — new page mounts behind the panel, scroll resets
+      // 2 · Swap — new page mounts behind the overlay, scroll resets.
       setShown(outlet);
       window.scrollTo(0, 0);
-      content.set({ opacity: 0 });
-      mark.start({ opacity: 1, y: 0, transition: { duration: 0.22, ease: SWEEP } });
-      // Hold long enough that the mark fully reaches opacity 1 (0.22s rise)
-      // AND sits solid for a beat before the reveal starts fading it out.
-      await new Promise((r) => setTimeout(r, 380));
+      // Brief settle so the new page commits before we start uncovering.
+      await new Promise((r) => setTimeout(r, 140));
       if (cancelled) return;
 
-      // 3 · REVEAL — content fades up, mark drifts up + fades, panel sweeps off
-      content.start({ opacity: 1, transition: { duration: 0.32, ease: SWEEP } });
-      mark.start({ opacity: 0, y: -8, transition: { duration: 0.22, ease: SWEEP } });
-      if (curtainRef.current) curtainRef.current.style.transformOrigin = 'top';
-      await curtain.start({ scaleY: 0, transition: { duration: 0.36, ease: SWEEP } });
+      // 3 · Reveal — overlay fades out.
+      await curtain.start({ opacity: 0, transition: { duration: 0.32, ease: EASE } });
     };
     run();
     return () => { cancelled = true; };
@@ -70,37 +57,28 @@ export function PageTransition() {
 
   return (
     <>
-      <motion.div animate={content} style={{ willChange: 'opacity' }}>
-        {/* Suspense is INSIDE this motion.div so a lazy chunk load doesn't
-            unmount the curtain (the curtain is the sibling motion.div below).
-            On first page load the fallback shows under the empty curtain.
-            On route navigation the curtain is fully covering, so the fallback
-            is invisible — the wipe completes cleanly even on slow networks. */}
+      <div>
         <Suspense fallback={<div style={{ minHeight: '100vh', background: '#000000' }} />}>
           {shown}
         </Suspense>
-      </motion.div>
+      </div>
 
       <motion.div
-        ref={curtainRef}
         aria-hidden="true"
-        initial={{ scaleY: 0 }}
+        initial={{ opacity: 0 }}
         animate={curtain}
         style={{
           position: 'fixed',
           inset: 0,
           zIndex: 1200,
           background: theme.base,
-          transformOrigin: 'bottom',
           display: 'grid',
           placeItems: 'center',
           pointerEvents: 'none',
-          willChange: 'transform',
+          willChange: 'opacity',
         }}
       >
-        <motion.span
-          animate={mark}
-          initial={{ opacity: 0 }}
+        <span
           style={{
             fontFamily: theme.display,
             fontWeight: 700,
@@ -112,7 +90,7 @@ export function PageTransition() {
           }}
         >
           XDGE
-        </motion.span>
+        </span>
       </motion.div>
     </>
   );
