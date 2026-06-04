@@ -1,4 +1,12 @@
-html, body { margin: 0; padding: 0; background: #000000; color: #FFFFFF; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #000000;
+  color: #FFFFFF;
+  /* Stop scroll momentum from chaining into element scrolls — prevents
+     sub-pixel snap glitches when a sticky-pin section "releases" mid-flick. */
+  overscroll-behavior: none;
+}
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', system-ui, sans-serif;
@@ -167,8 +175,10 @@ p { letter-spacing: -0.003em; }
 .xg-hero-grain {
   position: absolute;
   inset: 0;
-  opacity: 0.08;
-  mix-blend-mode: overlay;
+  /* mix-blend-mode: overlay removed — blend modes force the whole layer to
+     re-rasterize on every composite, which compounded with hero canvas paints
+     during scroll. Plain low opacity reads almost identically over black. */
+  opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   pointer-events: none;
 }
@@ -430,15 +440,11 @@ input, textarea, select { cursor: text; }
   .xg-about-image-sticky { position: static; max-width: 480px; margin: 0 auto; }
 }
 
-/* ── Defer offscreen rendering for heavy sections ── */
-section[data-screen-label] {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 800px;
-}
-/* Hero sections render eagerly — they're the first thing seen */
-section[data-screen-label^="01"] {
-  content-visibility: visible;
-}
+/* content-visibility: auto removed — it was the primary cause of the
+   visible "stutter" as each section came into the viewport: the browser
+   was forced to layout + paint the section fresh at the moment of entry,
+   on top of whatever else scroll was doing. Eager render trades a bit of
+   memory for buttery-smooth section-to-section scroll. */
 
 /* ── Sticky-pin banner stack: banner stays fixed while next section slides over ── */
 .xg-stick-wrap { position: relative; }
