@@ -36,21 +36,21 @@ export function Hero() {
       <HeroAmbient />
       <div style={{
         flex: 1,
-        padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(40px, 6vw, 64px)',
-        display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-        gap: 32,
+        padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(32px, 4vw, 56px)',
+        display: 'flex', flexDirection: 'column',
+        gap: 'clamp(32px, 5vw, 56px)',
       }}>
-        <div style={{ marginTop: 24, position: 'relative' }}>
+        <div style={{ position: 'relative' }}>
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.05 }}
             style={{
               fontFamily: theme.display, fontWeight: 700,
-              fontSize: 'clamp(22px, 2.8vw, 40px)',
+              fontSize: 'clamp(18px, 2vw, 30px)',
               lineHeight: 1, letterSpacing: '-0.01em',
               color: theme.base,
-              marginBottom: 'clamp(8px, 1.5vw, 16px)',
+              marginBottom: 'clamp(6px, 1vw, 12px)',
               textTransform: 'capitalize',
             }}
           >
@@ -63,24 +63,20 @@ export function Hero() {
             transition={{ duration: 0.45, delay: 0.3 }}
             style={{
               display: 'block',
-              marginBlockStart: '1.33em',
-              marginBlockEnd: '1.33em',
-              marginInlineStart: 0,
-              marginInlineEnd: 0,
+              margin: 'clamp(10px, 1.4vw, 18px) 0 0',
               fontFamily: theme.displayTight,
-              fontWeight: 'bold',
-              fontSize: 'clamp(28px, 5.5vw, 76px)',
-              lineHeight: 1.1, letterSpacing: '-0.01em',
+              fontWeight: 500,
+              fontSize: 'clamp(16px, 1.9vw, 26px)',
+              lineHeight: 1.3, letterSpacing: '-0.005em',
               color: theme.base,
-              maxWidth: '20ch',
-              unicodeBidi: 'isolate',
+              maxWidth: '36ch',
             }}
           >
             Lead Your Own Opportunities
           </motion.h4>
         </div>
 
-        <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
+        <div className="xg-hero-body" style={{ alignItems: 'flex-end', marginTop: 'auto' }}>
           <div className="xg-hide-md" />
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -88,27 +84,26 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.5 }}
             style={{
               display: 'flex', flexDirection: 'column',
-              gap: 'clamp(16px, 2.5vw, 28px)',
+              gap: 'clamp(10px, 1.4vw, 16px)',
               maxWidth: 520,
             }}
           >
             <p style={{
               fontFamily: '"Inter", "Inter Display", "Inter Placeholder", sans-serif',
-              fontSize: 40,
-              lineHeight: '1.17em',
-              letterSpacing: '0em',
+              fontSize: 'clamp(20px, 2.2vw, 30px)',
+              lineHeight: 1.2,
+              letterSpacing: '-0.005em',
               color: theme.base,
               margin: 0,
-              fontWeight: 400,
+              fontWeight: 500,
               textAlign: 'left',
             }}>
               Build The Leader Behind What Inspires You.
             </p>
             <p style={{
               fontFamily: '"Inter", "Inter Display", "Inter Placeholder", sans-serif',
-              fontSize: 28,
-              lineHeight: 1.3,
-              letterSpacing: '0em',
+              fontSize: 'clamp(14px, 1.4vw, 17px)',
+              lineHeight: 1.45,
               color: theme.subtitle,
               margin: 0,
               fontWeight: 400,

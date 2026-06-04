@@ -66,32 +66,29 @@ export function Footer() {
         overflow: 'hidden', borderTop: `1px solid ${theme.borderDark}`,
       }}
     >
-      {/* Marquee wordmark */}
+      {/* Marquee wordmark — CSS keyframe animation runs on the compositor
+          thread (independent of main-thread JS). Removed background-clip:text
+          since it forced re-rasterization of every glyph on every frame the
+          element moved, which combined with JS animation caused the tearing
+          / "behind" effect. Solid white text now translates on the GPU. */}
       <div style={{
         overflow: 'hidden',
         padding: 'clamp(40px, 6vw, 64px) 0 clamp(24px, 4vw, 40px)',
         WebkitMaskImage: 'linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%)',
         maskImage: 'linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%)',
       }}>
-        <motion.div
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+        <div
+          className="xdge-footer-marquee"
           style={{
             fontFamily: theme.display, fontWeight: 900,
             fontSize: 'clamp(72px, 15vw, 220px)',
             lineHeight: 0.95, letterSpacing: '-0.01em',
-            display: 'flex', whiteSpace: 'nowrap',
-            willChange: 'transform',
-            background: 'linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 60%, rgba(168,168,168,0.6) 100%)',
-            WebkitBackgroundClip: 'text',
-            backgroundClip: 'text',
-            color: 'transparent',
-            WebkitTextFillColor: 'transparent',
+            color: theme.base,
           }}
         >
           <span style={{ paddingRight: '0.35em' }}>CAREER · UNIVERSITY · SCHOOL ·</span>
           <span style={{ paddingRight: '0.35em' }}>CAREER · UNIVERSITY · SCHOOL ·</span>
-        </motion.div>
+        </div>
       </div>
 
       <div style={{
