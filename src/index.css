@@ -449,6 +449,40 @@ input, textarea, select { cursor: text; }
    on top of whatever else scroll was doing. Eager render trades a bit of
    memory for buttery-smooth section-to-section scroll. */
 
+/* ── Curtain — CSS-transition crossfade (compositor-thread only) ────────────
+   The class toggles opacity. The transition runs on the GPU compositor,
+   independent of main thread. Stays smooth even while React mounts the
+   new page. */
+.xg-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background: #FFFFFF;
+  opacity: 0;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+  transition: opacity 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+  transform: translateZ(0);
+}
+.xg-curtain.is-show {
+  opacity: 1;
+  transition-duration: 0.28s;
+}
+.xg-curtain-mark {
+  font-family: 'Oswald', 'Anton', Impact, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #000000;
+  font-size: clamp(48px, 9vw, 120px);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .xg-curtain { transition: none; }
+}
+
 /* ── Sticky-pin banner stack: banner stays fixed while next section slides over ── */
 .xg-stick-wrap { position: relative; }
 .xg-stick-wrap > .xg-stick-pin {

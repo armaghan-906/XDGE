@@ -1,30 +1,28 @@
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { useLocation, useOutlet } from 'react-router-dom';
-import { motion, useAnimationControls } from 'framer-motion';
-import { theme } from '../theme';
 
 /**
- * PageTransition — opacity-only curtain crossfade.
+ * PageTransition — CSS-transition curtain crossfade.
  *
- * Replaced the earlier scaleY sweep with a pure opacity fade. Opacity
- * transitions on a fixed-position element are composited entirely on the
- * GPU — there is zero main-thread paint cost while the curtain shows or
- * hides. This eliminates the perceived jerk during route changes,
- * especially on production where the lazy chunk load was competing for
- * main-thread time with the previous scaleY animation.
+ * The curtain's opacity is driven by a CSS class toggle, NOT by JS animation.
+ * Why this matters: CSS opacity transitions run on the browser's compositor
+ * thread independently of the main thread. When React mounts the new page
+ * (which can block the main thread for 100-200ms with dozens of components
+ * initializing), a framer-motion-driven opacity animation would stall in that
+ * window — visible as a jerk. The CSS transition keeps playing smoothly
+ * regardless of what JS is doing.
  *
  * Suspense is INSIDE this component so a slow lazy chunk doesn't unmount
  * the curtain mid-fade.
  */
 
-const EASE = [0.4, 0, 0.2, 1];
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export function PageTransition() {
   const { pathname } = useLocation();
   const outlet = useOutlet();
   const [shown, setShown] = useState(outlet);
-
-  const curtain = useAnimationControls();
+  const [covering, setCovering] = useState(false);
   const firstRender = useRef(true);
 
   useEffect(() => {
@@ -36,19 +34,24 @@ export function PageTransition() {
 
     let cancelled = false;
     const run = async () => {
-      // 1 · Cover — overlay fades in (GPU-composited, no main-thread cost).
-      await curtain.start({ opacity: 1, transition: { duration: 0.28, ease: EASE } });
+      // 1 · Cover — CSS class toggle, browser handles opacity 0 → 1 on the
+      //              compositor thread. Main thread is free.
+      setCovering(true);
+      await sleep(280);
       if (cancelled) return;
 
-      // 2 · Swap — new page mounts behind the overlay, scroll resets.
+      // 2 · Swap — new page mounts behind the (fully opaque) curtain.
+      //            React's mount can block main thread; CSS transition is
+      //            already complete so there's nothing to jerk.
       setShown(outlet);
       window.scrollTo(0, 0);
-      // Brief settle so the new page commits before we start uncovering.
-      await new Promise((r) => setTimeout(r, 140));
+      // Generous settle so the new page's initial render commits + most
+      // framer-motion entrance hooks fire before we start uncovering.
+      await sleep(260);
       if (cancelled) return;
 
-      // 3 · Reveal — overlay fades out.
-      await curtain.start({ opacity: 0, transition: { duration: 0.32, ease: EASE } });
+      // 3 · Reveal — CSS class toggle, opacity 1 → 0 on compositor.
+      setCovering(false);
     };
     run();
     return () => { cancelled = true; };
@@ -62,36 +65,12 @@ export function PageTransition() {
           {shown}
         </Suspense>
       </div>
-
-      <motion.div
+      <div
         aria-hidden="true"
-        initial={{ opacity: 0 }}
-        animate={curtain}
-        style={{
-          position: 'fixed',
-          inset: 0,
-          zIndex: 1200,
-          background: theme.base,
-          display: 'grid',
-          placeItems: 'center',
-          pointerEvents: 'none',
-          willChange: 'opacity',
-        }}
+        className={`xg-curtain${covering ? ' is-show' : ''}`}
       >
-        <span
-          style={{
-            fontFamily: theme.display,
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            color: theme.dark,
-            fontSize: 'clamp(48px, 9vw, 120px)',
-            letterSpacing: '-0.02em',
-            lineHeight: 1,
-          }}
-        >
-          XDGE
-        </span>
-      </motion.div>
+        <span className="xg-curtain-mark">XDGE</span>
+      </div>
     </>
   );
 }
