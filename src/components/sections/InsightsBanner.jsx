@@ -4,7 +4,7 @@ import { theme } from '../../theme';
 export function InsightsBanner() {
   return (
     <section
-      className="xg-stick-pin"
+      className="xg-stick-pin xg-stick-pin--natural"
       data-screen-label="Insights Banner"
       data-section-theme="dark"
       style={{
@@ -12,11 +12,11 @@ export function InsightsBanner() {
         background: theme.dark,
         overflow: 'hidden',
         lineHeight: 0,
-        padding: 'clamp(20px, 3vw, 48px) 0',
+        padding: 0,
       }}
     >
       <motion.img
-        src="/assets/insights-banner.webp"
+        src="/assets/new/pic-lead-2.webp"
         alt=""
         loading="lazy"
         decoding="async"

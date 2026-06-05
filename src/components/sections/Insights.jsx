@@ -75,7 +75,7 @@ export function Insights() {
                 background: theme.dark,
               }}>
                 <motion.img
-                  src={i === 2 ? '/assets/experience-top-banner.webp' : `/assets/right-for-me-${i + 1}.webp`}
+                  src={`/assets/new/pic-new-${i + 1}.webp`}
                   alt={p.title}
                   loading="lazy"
                   decoding="async"

@@ -23,14 +23,19 @@ export function PageTransition() {
   const outlet = useOutlet();
   const [shown, setShown] = useState(outlet);
   const [covering, setCovering] = useState(false);
-  const firstRender = useRef(true);
+  // Compare against the previous pathname instead of a "firstRender" flag.
+  // useRef is initialised to the current pathname, so on every first effect
+  // run (including React StrictMode's double-invoke in dev), the ref already
+  // equals the current pathname and the curtain is skipped. It only fires
+  // when pathname actually changes (real navigation).
+  const prevPathname = useRef(pathname);
 
   useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
+    if (prevPathname.current === pathname) {
       setShown(outlet);
       return;
     }
+    prevPathname.current = pathname;
 
     let cancelled = false;
     const run = async () => {
@@ -66,6 +71,10 @@ export function PageTransition() {
       <div
         aria-hidden="true"
         className={`xg-curtain${covering ? ' is-show' : ''}`}
+        // Inline opacity to guarantee invisibility from the very first paint,
+        // even if CSS hasn't fully applied yet. Prevents the white-flash FOUC
+        // that was happening on initial page load.
+        style={{ opacity: covering ? 1 : 0 }}
       >
         <span className="xg-curtain-mark">XDGE</span>
       </div>

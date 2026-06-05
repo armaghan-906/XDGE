@@ -79,6 +79,14 @@ article[data-cursor="grow"],
   }
 }
 
+/* While the user is actively scrolling, suppress pointer events sitewide.
+   The cursor passing over cards as the page moves was firing hover events
+   that triggered card-lift animations — looked exactly like scroll-time
+   flicker. With pointer events off during the 160ms scroll window, no
+   hovers can fire. The instant scroll stops, hover works again.
+   body.is-scrolling is toggled by a passive scroll listener in main.jsx. */
+body.is-scrolling { pointer-events: none; }
+
 /* Inline link underline reveal — premium agency feel */
 .xg-link {
   position: relative;
@@ -137,13 +145,10 @@ p { letter-spacing: -0.003em; }
 .xg-hero-orb {
   position: absolute;
   border-radius: 50%;
-  /* filter: blur(60px) removed — was the single largest remaining GPU cost
-     in the hero. Every scroll/transform on the orb forced a re-blur of a
-     huge offscreen buffer. The radial gradients below fade to transparent
-     gradually enough to read as soft glow without the filter. */
   opacity: 0.55;
-  will-change: transform;
-  contain: layout paint;
+  /* will-change + contain removed: with no animation, these GPU hints
+     just keep extra layers alive for no benefit and were contributing
+     to scroll compositing pressure. */
 }
 .xg-hero-orb-blue {
   top: -15%;
@@ -186,24 +191,12 @@ p { letter-spacing: -0.003em; }
   pointer-events: none;
 }
 
-/* CSS-keyframe orb drifts — browser auto-pauses composited transforms
-   when the parent section is offscreen, so the 5 non-home heroes don't
-   keep ticking framer-motion rAF after the user has scrolled past. */
-@keyframes xg-orb-a {
-  0%, 100% { transform: translate3d(-10%, -5%, 0) scale(1); }
-  50%      { transform: translate3d(10%, 8%, 0) scale(1.15); }
-}
-@keyframes xg-orb-b {
-  0%, 100% { transform: translate3d(8%, 10%, 0) scale(1.1); }
-  50%      { transform: translate3d(-12%, -8%, 0) scale(0.95); }
-}
-@keyframes xg-orb-c {
-  0%, 100% { transform: translate3d(-5%, 12%, 0) scale(0.9); }
-  50%      { transform: translate3d(12%, -10%, 0) scale(1.2); }
-}
-.xg-orb-drift-a { animation: xg-orb-a 24s ease-in-out infinite; }
-.xg-orb-drift-b { animation: xg-orb-b 30s ease-in-out infinite; }
-.xg-orb-drift-c { animation: xg-orb-c 36s ease-in-out infinite; }
+/* Orb drift animations DISABLED — the constantly-animating composited
+   layers (3 orbs × infinite transforms) were causing background
+   compositing work that interfered with scroll smoothness. Orbs are
+   now static gradient circles. The hero still reads as atmospheric
+   thanks to the radial gradients on each orb. */
+.xg-orb-drift-a, .xg-orb-drift-b, .xg-orb-drift-c { animation: none; }
 
 /* Ensure hero content sits above ambient — but never re-position the ambient layer itself */
 section[data-screen-label^="01"] > div:not(.xg-hero-ambient) { position: relative; z-index: 2; }
@@ -508,25 +501,63 @@ section:has(> .xg-hero-ambient) { contain: none; }
   .xg-curtain { transition: none; }
 }
 
-/* Sticky-pin banner stack DISABLED — the sticky → released transition at
-   the end of each pinned section was causing visible flicker on every
-   non-Programmes page (Programmes is the only page without xg-stick-wrap,
-   which is exactly why it was the only smooth page). Banners now render
-   as normal flow sections: image sits at natural aspect ratio, next
-   section follows normally. Class structure preserved for backwards
-   compatibility. */
+/* Sticky-pin restored — big banner pins at 100vh while the following
+   section scrolls UP over it. The scroll-time hover flicker that was
+   killed by disabling sticky-pin is now prevented by
+   `body.is-scrolling { pointer-events: none }` above, so cards can't
+   fire hover animations mid-scroll. */
 .xg-stick-wrap { position: relative; }
 .xg-stick-wrap > .xg-stick-pin {
-  position: relative;
-  height: auto;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
+  z-index: 1;
+  padding: 0 !important;
   display: block;
+  will-change: transform;
+  transform: translateZ(0);
 }
 .xg-stick-wrap > .xg-stick-pin img {
-  width: 100%;
-  height: auto;
+  width: 100% !important;
+  height: 100% !important;
   object-fit: cover;
   display: block;
+}
+
+/* Natural-aspect sticky banner — banner still pins (sticky animation
+   preserved), but its height is determined by the image's natural
+   aspect ratio rather than forced to 100vh. Image fills the banner
+   completely (no whitespace) AND shows the whole picture (no crop). */
+.xg-stick-wrap > .xg-stick-pin--natural {
+  height: auto;
+}
+.xg-stick-wrap > .xg-stick-pin--natural img {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: unset;
+}
+.xg-stick-wrap > section:not(.xg-stick-pin) {
+  position: relative;
+  z-index: 2;
+}
+
+/* Scroll-driven parallax on the pinned banner image — image drifts
+   subtly from -6% → +6% Y as the user scrolls through the banner's
+   section. Runs entirely on the compositor thread (no JS, no rAF) via
+   CSS scroll-driven animations. Falls back to no animation in browsers
+   that don't yet support it. */
+@supports (animation-timeline: view()) {
+  .xg-stick-wrap > .xg-stick-pin:not(.xg-stick-pin--natural) img {
+    animation: xg-banner-parallax linear both;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+  }
+  @keyframes xg-banner-parallax {
+    from { transform: translateY(-6%) scale(1.06); }
+    to   { transform: translateY(6%)  scale(1.06); }
+  }
 }
 
 /* ── Responsive grid utilities ──────────────────────────── */

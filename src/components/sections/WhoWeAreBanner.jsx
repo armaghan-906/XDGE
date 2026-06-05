@@ -16,7 +16,7 @@ export function WhoWeAreBanner() {
       }}
     >
       <motion.img
-        src="/assets/who-we-are-banner.webp"
+        src="/assets/new/pic-lead-4.webp"
         alt=""
         loading="lazy"
         decoding="async"

@@ -1,13 +1,20 @@
 import { motion } from 'framer-motion';
 import { fadeUp, stagger } from '../../theme';
 
+// Fire reveals when section is just barely entering viewport (5-8%).
+// User sees content smoothly rising into place as they scroll into the
+// section — the motion is the point. Higher thresholds (20%+) made
+// reveals look like "things popping in late" once user already arrived.
+const REVEAL_VIEWPORT = { once: true, amount: 0.08 };
+const GROUP_VIEWPORT = { once: true, amount: 0.05 };
+
 export function Reveal({ children, variants = fadeUp, ...rest }) {
   return (
     <motion.div
       variants={variants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={REVEAL_VIEWPORT}
       {...rest}
     >
       {children}
@@ -21,7 +28,7 @@ export function Group({ children, ...rest }) {
       variants={stagger}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={GROUP_VIEWPORT}
       {...rest}
     >
       {children}
