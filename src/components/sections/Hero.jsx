@@ -11,9 +11,9 @@ function HeroHeading() {
       style={{
         fontFamily: theme.display, fontWeight: 900,
         fontSize: 'clamp(100px, 26vw, 420px)',
-        lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
+        lineHeight: 0.8, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
-        paddingBottom: '0.06em',
+        paddingBottom: 0,
       }}
     >
       XDGE
@@ -50,7 +50,7 @@ export function Hero() {
               fontSize: 'clamp(18px, 2vw, 30px)',
               lineHeight: 1, letterSpacing: '-0.01em',
               color: theme.base,
-              marginBottom: 'clamp(6px, 1vw, 12px)',
+              marginBottom: 0,
               textTransform: 'capitalize',
             }}
           >

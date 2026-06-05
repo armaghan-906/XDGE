@@ -758,18 +758,21 @@ section:has(> .xg-hero-ambient) { contain: none; }
 .xdge-marquee:hover { animation-play-state: paused; }
 
 @keyframes xdge-footer-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 .xdge-footer-marquee {
   display: flex;
   white-space: nowrap;
   will-change: transform;
-  animation: xdge-footer-marquee 30s linear infinite;
+  animation: xdge-footer-marquee 30s linear infinite !important;
+  animation-play-state: running !important;
 }
 
+/* Only the in-page marquee respects reduced-motion. The footer wordmark
+   is a brand element and stays animated. */
 @media (prefers-reduced-motion: reduce) {
-  .xdge-marquee, .xdge-footer-marquee { animation: none; }
+  .xdge-marquee { animation: none; }
 }
 
 /* ============================================================
