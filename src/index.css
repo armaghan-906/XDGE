@@ -292,14 +292,7 @@ section[data-screen-label^="01"] > div:not(.xg-hero-ambient) { position: relativ
   .xg-glow-accent:hover::before { opacity: 0.8; }
 }
 
-/* ── SCROLL-LINKED PARALLAX ENHANCEMENT for sticky banners ────────────────── */
-.xg-stick-wrap > .xg-stick-pin::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.65) 100%);
-  pointer-events: none;
-}
+/* Sticky-pin bottom-fade overlay removed alongside the sticky behavior. */
 
 /* ── DISABLE HERO AMBIENT ON LOW-POWER / REDUCED MOTION ───────────────────── */
 @media (prefers-reduced-motion: reduce) {
@@ -492,13 +485,15 @@ section:has(> .xg-hero-ambient) { contain: none; }
   pointer-events: none;
   display: grid;
   place-items: center;
-  transition: opacity 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Slower (was 0.32s) so the fade reads as a deliberate page transition
+     rather than a quick flash. */
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: opacity;
   transform: translateZ(0);
 }
 .xg-curtain.is-show {
   opacity: 1;
-  transition-duration: 0.28s;
+  transition-duration: 0.5s;
 }
 .xg-curtain-mark {
   font-family: 'Oswald', 'Anton', Impact, sans-serif;
@@ -513,31 +508,25 @@ section:has(> .xg-hero-ambient) { contain: none; }
   .xg-curtain { transition: none; }
 }
 
-/* ── Sticky-pin banner stack: banner stays fixed while next section slides over ── */
+/* Sticky-pin banner stack DISABLED — the sticky → released transition at
+   the end of each pinned section was causing visible flicker on every
+   non-Programmes page (Programmes is the only page without xg-stick-wrap,
+   which is exactly why it was the only smooth page). Banners now render
+   as normal flow sections: image sits at natural aspect ratio, next
+   section follows normally. Class structure preserved for backwards
+   compatibility. */
 .xg-stick-wrap { position: relative; }
 .xg-stick-wrap > .xg-stick-pin {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  height: 100dvh;
+  position: relative;
+  height: auto;
   overflow: hidden;
-  z-index: 1;
-  padding: 0 !important;
   display: block;
-  will-change: transform;
-  contain: paint;
-  transform: translateZ(0);
 }
 .xg-stick-wrap > .xg-stick-pin img {
-  width: 100% !important;
-  height: 100% !important;
+  width: 100%;
+  height: auto;
   object-fit: cover;
   display: block;
-}
-.xg-stick-wrap > section:not(.xg-stick-pin) {
-  position: relative;
-  z-index: 2;
-  contain: layout paint;
 }
 
 /* ── Responsive grid utilities ──────────────────────────── */
@@ -614,19 +603,7 @@ section:has(> .xg-hero-ambient) { contain: none; }
   .xg-outcomes-nav button { padding: 10px 14px !important; font-size: 11px !important; gap: 8px !important; }
 }
 
-/* Sticky-pin disabled on small screens — too tall and jumpy on phones */
-@media (max-width: 640px) {
-  .xg-stick-wrap > .xg-stick-pin {
-    position: relative;
-    top: auto;
-    height: auto;
-  }
-  .xg-stick-wrap > .xg-stick-pin img {
-    height: auto !important;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-  }
-}
+/* Mobile override no longer needed — sticky-pin disabled globally above. */
 
 /* Footer right column — push content to the right edge on desktop */
 .xg-footer-right { justify-self: end; text-align: left; }

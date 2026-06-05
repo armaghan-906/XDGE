@@ -35,19 +35,17 @@ export function PageTransition() {
     let cancelled = false;
     const run = async () => {
       // 1 · Cover — CSS class toggle, browser handles opacity 0 → 1 on the
-      //              compositor thread. Main thread is free.
+      //              compositor thread. Slower than before so it reads as a
+      //              deliberate transition rather than a quick flash/flicker.
       setCovering(true);
-      await sleep(280);
+      await sleep(500);
       if (cancelled) return;
 
       // 2 · Swap — new page mounts behind the (fully opaque) curtain.
-      //            React's mount can block main thread; CSS transition is
-      //            already complete so there's nothing to jerk.
       setShown(outlet);
       window.scrollTo(0, 0);
-      // Generous settle so the new page's initial render commits + most
-      // framer-motion entrance hooks fire before we start uncovering.
-      await sleep(260);
+      // Settle hold while the new page commits.
+      await sleep(320);
       if (cancelled) return;
 
       // 3 · Reveal — CSS class toggle, opacity 1 → 0 on compositor.
