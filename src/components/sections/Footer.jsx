@@ -131,7 +131,7 @@ export function Footer() {
             }}>Follow Us</div>
             <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
               {socials.map((s) => (
-                <motion.a
+                <a
                   key={s.name}
                   href={s.href}
                   aria-label={s.name}
@@ -144,7 +144,7 @@ export function Footer() {
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     color: theme.base, textDecoration: 'none',
                   }}
-                >{s.icon}</motion.a>
+                >{s.icon}</a>
               ))}
             </div>
           </div>
@@ -210,7 +210,7 @@ export function Footer() {
                 }}
               />
             </div>
-            <motion.button
+            <button
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
               style={{
@@ -220,7 +220,7 @@ export function Footer() {
                 color: theme.base, fontSize: 14, cursor: 'pointer', fontWeight: 500,
                 borderRadius: 4,
               }}
-            >Subscribe</motion.button>
+            >Subscribe</button>
           </div>
         </div>
 

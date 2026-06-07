@@ -18,7 +18,7 @@ export function AboutWeBring() {
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(32px, 6vw, 80px)' }}>
-          <motion.div variants={fadeUp}>
+          <div variants={fadeUp}>
             <SplitHeading
               lines={['WE BRING THE', 'PROFESSIONAL', 'WORLD TO YOU']}
               style={{
@@ -27,9 +27,9 @@ export function AboutWeBring() {
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               display: 'flex', flexDirection: 'column',
@@ -62,7 +62,7 @@ export function AboutWeBring() {
               This is leadership development that builds confidence, raises
               standards, and prepares young people to perform in the real world.
             </p>
-          </motion.div>
+          </div>
         </Group>
       </div>
     </section>

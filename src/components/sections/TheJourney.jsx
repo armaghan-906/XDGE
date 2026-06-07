@@ -88,7 +88,7 @@ export function TheJourney() {
               }}
             />
           </div>
-          <motion.p
+          <p
             variants={fadeUp}
             style={{
               fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55,
@@ -97,7 +97,7 @@ export function TheJourney() {
           >
             Six stages from where you are now to where you stand out — clear,
             structured, and built around real performance.
-          </motion.p>
+          </p>
         </Group>
 
         <div className="xg-journey-track">
@@ -109,7 +109,7 @@ export function TheJourney() {
               preserveAspectRatio="none"
               aria-hidden="true"
             >
-              <motion.path
+              <path
                 d="M 100 180 C 320 30 880 30 1100 180"
                 stroke="rgba(255,255,255,0.45)"
                 strokeWidth="2"
@@ -121,7 +121,7 @@ export function TheJourney() {
                 transition={{ duration: 1.8, ease: fadeEase, delay: 0.2 }}
               />
               {/* Arrow tip at the right end */}
-              <motion.path
+              <path
                 d="M 1090 172 L 1108 180 L 1090 188"
                 stroke="rgba(255,255,255,0.55)"
                 strokeWidth="2"
@@ -136,7 +136,7 @@ export function TheJourney() {
 
             <Group className="xg-journey-circles">
               {steps.map((s, i) => (
-                <motion.div
+                <div
                   key={i}
                   variants={fadeUp}
                   className="xg-journey-circle-cell"
@@ -153,7 +153,7 @@ export function TheJourney() {
                   }}>
                     {s.icon}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </Group>
           </div>
@@ -180,7 +180,7 @@ export function TheJourney() {
           {/* Mobile: simple vertical timeline */}
           <Group className="xg-journey-mobile">
             {steps.map((s, i) => (
-              <motion.div
+              <div
                 key={i}
                 variants={fadeUp}
                 className="xg-journey-mobile-step"
@@ -207,7 +207,7 @@ export function TheJourney() {
                     color: theme.subtitle,
                   }}>{s.desc}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </Group>
         </div>

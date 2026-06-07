@@ -1,31 +1,24 @@
 import { motion } from 'framer-motion';
+import { fadeUp, stagger } from '../../theme';
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.13, delayChildren: 0.08 } },
-};
-
-const lineVariants = {
-  hidden: { y: '110%' },
-  visible: { y: '0%', transition: { duration: 1.4, ease: [0.2, 0.7, 0.2, 1] } },
-};
-
-export function SplitHeading({ lines, style, tag = 'h2', amount = 0.4 }) {
-  const Tag = motion[tag];
+/**
+ * SplitHeading — each line animates in with a stagger.
+ * Uses once:true so it only plays once per visit.
+ */
+export function SplitHeading({ lines, style, tag = 'h2' }) {
+  const Tag = motion[tag] || motion.h2;
   return (
     <Tag
+      variants={stagger}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount }}
-      variants={containerVariants}
+      viewport={{ once: true, amount: 0.2 }}
       style={{ margin: 0, ...style }}
     >
       {lines.map((l, i) => (
-        <span key={i} style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
-          <motion.span variants={lineVariants} style={{ display: 'block' }}>
-            {l}
-          </motion.span>
-        </span>
+        <motion.span key={i} variants={fadeUp} style={{ display: 'block' }}>
+          {l}
+        </motion.span>
       ))}
     </Tag>
   );

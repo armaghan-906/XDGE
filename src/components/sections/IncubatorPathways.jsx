@@ -37,7 +37,7 @@ export function IncubatorPathways() {
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(40px, 6vw, 88px)' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(10px, 1.4vw, 18px)' }}>
-            <motion.h2
+            <h2
               variants={fadeUp}
               style={{
                 fontFamily: theme.displayTight,
@@ -50,8 +50,8 @@ export function IncubatorPathways() {
               }}
             >
               Entrepreneur &amp; Incubator Pathways
-            </motion.h2>
-            <motion.div
+            </h2>
+            <div
               variants={fadeUp}
               style={{
                 fontFamily: theme.body,
@@ -62,10 +62,10 @@ export function IncubatorPathways() {
               }}
             >
               12-16 weeks &middot; 24 sessions
-            </motion.div>
+            </div>
           </div>
 
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               display: 'flex',
@@ -94,7 +94,7 @@ export function IncubatorPathways() {
               gap: 'clamp(16px, 2vw, 22px)',
             }}>
               {items.map((it) => (
-                <motion.li
+                <li
                   key={it.name}
                   variants={fadeUp}
                   transition={{ duration: 0.55, ease: fadeEase }}
@@ -107,10 +107,10 @@ export function IncubatorPathways() {
                 >
                   <strong style={{ fontWeight: 700 }}>{it.name}</strong>
                   <span style={{ color: theme.subtitle }}> &mdash; {it.desc}</span>
-                </motion.li>
+                </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
         </Group>
       </div>
     </section>

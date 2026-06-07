@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
@@ -55,18 +55,11 @@ const groups = [
   },
 ];
 
-const fadeEase = [0.2, 0.7, 0.2, 1];
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: fadeEase } },
-};
-
-function Card({ group, index }) {
+function Card({ group }) {
   const [open, setOpen] = useState(false);
   return (
     <motion.article
-      variants={cardVariants}
+      variants={fadeUp}
       className="xg-glass-solid"
       style={{
         display: 'flex', flexDirection: 'column',
@@ -83,7 +76,7 @@ function Card({ group, index }) {
         <img
           src={group.img}
           alt={group.title}
-          loading="lazy"
+          loading="eager"
           decoding="async"
           style={{
             position: 'absolute',
@@ -140,54 +133,44 @@ function Card({ group, index }) {
           }}
         >
           <span>{open ? 'Hide details' : 'Is this right for me?'}</span>
-          <motion.span
-            animate={{ rotate: open ? 45 : 0 }}
-            transition={{ duration: 0.3, ease: fadeEase }}
+          <span
             style={{
               display: 'inline-flex',
               alignItems: 'center', justifyContent: 'center',
               fontSize: 18, lineHeight: 1,
+              transform: open ? 'rotate(45deg)' : 'rotate(0)',
             }}
-          >+</motion.span>
+          >+</span>
         </button>
 
-        <AnimatePresence initial={false}>
-          {open && (
-            <motion.div
-              key="content"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.45, ease: fadeEase }}
-              style={{ overflow: 'hidden' }}
-            >
-              <ul style={{
-                listStyle: 'none', margin: 0, padding: '4px 0 0',
-                display: 'flex', flexDirection: 'column',
-                gap: 12,
-              }}>
-                {group.bullets.map((b) => (
-                  <li
-                    key={b}
-                    style={{
-                      display: 'flex', alignItems: 'flex-start', gap: 12,
-                      fontSize: 'clamp(13px, 1.4vw, 14px)',
-                      lineHeight: 1.55,
-                      color: theme.base,
-                    }}
-                  >
-                    <span aria-hidden style={{
-                      flexShrink: 0,
-                      width: 5, height: 5, borderRadius: '50%',
-                      background: theme.base, marginTop: '0.55em',
-                    }} />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {open && (
+          <div style={{ overflow: 'hidden' }}>
+            <ul style={{
+              listStyle: 'none', margin: 0, padding: '4px 0 0',
+              display: 'flex', flexDirection: 'column',
+              gap: 12,
+            }}>
+              {group.bullets.map((b) => (
+                <li
+                  key={b}
+                  style={{
+                    display: 'flex', alignItems: 'flex-start', gap: 12,
+                    fontSize: 'clamp(13px, 1.4vw, 14px)',
+                    lineHeight: 1.55,
+                    color: theme.base,
+                  }}
+                >
+                  <span aria-hidden style={{
+                    flexShrink: 0,
+                    width: 5, height: 5, borderRadius: '50%',
+                    background: theme.base, marginTop: '0.55em',
+                  }} />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </motion.article>
   );
@@ -216,10 +199,7 @@ export function IsThisRightForMe() {
               }}
             />
           </div>
-          <motion.div
-            variants={fadeUp}
-            style={{ paddingBottom: 24, maxWidth: 480 }}
-          >
+          <motion.div variants={fadeUp} style={{ paddingBottom: 24, maxWidth: 480 }}>
             <p style={{
               fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55,
               color: theme.base, margin: '0 0 18px',

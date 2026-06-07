@@ -21,14 +21,14 @@ export function TheEdge() {
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <Group className="xg-2" style={{ alignItems: 'flex-start', marginBottom: 'clamp(48px, 7vw, 80px)' }}>
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               fontSize: 12, letterSpacing: '0.16em',
               textTransform: 'uppercase', color: theme.subtitle, fontWeight: 600,
             }}
-          >(Considered vs Selected)</motion.div>
-          <motion.p
+          >(Considered vs Selected)</div>
+          <p
             variants={fadeUp}
             style={{
               fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55,
@@ -37,11 +37,11 @@ export function TheEdge() {
           >
             Same grades. Different outcomes. Selection is shaped by what only
             stand-out applicants bring to the room.
-          </motion.p>
+          </p>
         </Group>
 
         <Group className="xg-2" style={{ gap: 24, marginBottom: 'clamp(56px, 8vw, 96px)' }}>
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               border: `1px solid ${theme.borderDark}`,
@@ -76,9 +76,9 @@ export function TheEdge() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               border: `1px solid ${theme.borderDark}`,
@@ -113,7 +113,7 @@ export function TheEdge() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </Group>
 
         <SplitHeading

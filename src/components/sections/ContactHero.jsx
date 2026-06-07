@@ -5,7 +5,7 @@ import { HeroAmbient } from '../HeroAmbient';
 function ContactHeading() {
   const ease = [0.2, 0.7, 0.2, 1];
   return (
-    <motion.h1
+    <h1
       style={{
         fontFamily: theme.display, fontWeight: 900,
         fontSize: 'clamp(64px, 14vw, 220px)',
@@ -15,19 +15,19 @@ function ContactHeading() {
         paddingBottom: '0.06em',
       }}
     >
-      <motion.span
+      <span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.0, ease, delay: 0.1 }}
         style={{ display: 'block' }}
-      >CONTACT</motion.span>
-      <motion.span
+      >CONTACT</span>
+      <span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.0, ease, delay: 0.22 }}
         style={{ display: 'block' }}
-      >US</motion.span>
-    </motion.h1>
+      >US</span>
+    </h1>
   );
 }
 
@@ -52,7 +52,7 @@ export function ContactHero() {
       }}>
         <div style={{ marginTop: 24, position: 'relative' }}>
           <ContactHeading />
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.45 }}
@@ -66,12 +66,12 @@ export function ContactHero() {
             }}
           >
             We&rsquo;d love to hear from you.
-          </motion.div>
+          </div>
         </div>
 
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
           <div className="xg-hide-md" />
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.7 }}
@@ -89,7 +89,7 @@ export function ContactHero() {
               or your organisation, we&rsquo;d be delighted to learn more about
               your goals and discuss how XDGE may be able to help.
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

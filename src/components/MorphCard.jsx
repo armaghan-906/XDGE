@@ -1,26 +1,8 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { theme } from '../theme';
 
-/**
- * MorphCard — "Transform & Morph" principle. A rounded thumbnail morphs into a
- * full banner (and back), carrying the eye between states. The image gently
- * un-zooms as it expands (a touch of "masking"), and the label fades in once open.
- *
- *   import { MorphCard } from '../MorphCard';
- *
- *   <MorphCard
- *     src="/assets/journey-banner.webp"
- *     label="The Journey"
- *     small={{ width: 180, height: 130, radius: 80 }}
- *     large={{ width: '100%', height: 320, radius: 14 }}
- *   />
- *
- * Click toggles the morph. Pass `start="large"` to begin expanded, or drive it
- * yourself by passing `open` + `onToggle` (controlled).
- */
-const EASE = [0.2, 0.7, 0.2, 1];
-
+// All animations DISABLED — MorphCard renders at its current size (small
+// or large) with no transition between states. Click toggles size instantly.
 export function MorphCard({
   src,
   alt = '',
@@ -39,13 +21,14 @@ export function MorphCard({
   const s = open ? large : small;
 
   return (
-    <motion.button
+    <button
       type="button"
       onClick={toggle}
       aria-pressed={open}
-      animate={{ width: s.width, height: s.height, borderRadius: s.radius }}
-      transition={{ duration: 0.9, ease: EASE }}
       style={{
+        width: s.width,
+        height: s.height,
+        borderRadius: s.radius,
         position: 'relative',
         overflow: 'hidden',
         padding: 0,
@@ -58,17 +41,15 @@ export function MorphCard({
       }}
       {...rest}
     >
-      <motion.img
+      <img
         src={src}
         alt={alt}
-        animate={{ scale: open ? 1.02 : 1.2 }}
-        transition={{ duration: 0.9, ease: EASE }}
+        loading="eager"
+        decoding="async"
         style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
       />
-      {label && (
-        <motion.span
-          animate={{ opacity: open ? 1 : 0, y: open ? 0 : 10 }}
-          transition={{ duration: 0.5, ease: EASE, delay: open ? 0.3 : 0 }}
+      {label && open && (
+        <span
           style={{
             position: 'absolute',
             left: 20,
@@ -85,8 +66,8 @@ export function MorphCard({
           }}
         >
           {label}
-        </motion.span>
+        </span>
       )}
-    </motion.button>
+    </button>
   );
 }

@@ -5,7 +5,7 @@ import { HeroAmbient } from '../HeroAmbient';
 function ProgrammesHeading() {
   const ease = [0.2, 0.7, 0.2, 1];
   return (
-    <motion.h1
+    <h1
       style={{
         fontFamily: theme.display, fontWeight: 900,
         fontSize: 'clamp(64px, 14vw, 220px)',
@@ -15,19 +15,19 @@ function ProgrammesHeading() {
         paddingBottom: '0.06em',
       }}
     >
-      <motion.span
+      <span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.0, ease, delay: 0.1 }}
         style={{ display: 'block' }}
-      >OUR</motion.span>
-      <motion.span
+      >OUR</span>
+      <span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.0, ease, delay: 0.22 }}
         style={{ display: 'block' }}
-      >PROGRAMMES</motion.span>
-    </motion.h1>
+      >PROGRAMMES</span>
+    </h1>
   );
 }
 
@@ -52,7 +52,7 @@ export function ProgrammesHero() {
       }}>
         <div style={{ marginTop: 24, position: 'relative' }}>
           <ProgrammesHeading />
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.45 }}
@@ -66,12 +66,12 @@ export function ProgrammesHero() {
             }}
           >
             Helping young people become the person opportunities are looking for.
-          </motion.div>
+          </div>
         </div>
 
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
           <div className="xg-hide-md" />
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.7 }}
@@ -94,7 +94,7 @@ export function ProgrammesHero() {
               capability, and leadership to stand out, seize their next
               opportunity, and shape their future.
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

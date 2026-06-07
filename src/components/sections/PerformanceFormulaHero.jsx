@@ -6,7 +6,7 @@ import { HeroAmbient } from '../HeroAmbient';
 function FormulaHeading({ y, opacity }) {
   const ease = [0.2, 0.7, 0.2, 1];
   return (
-    <motion.h1
+    <h1
       style={{
         y, opacity,
         fontFamily: theme.display, fontWeight: 900,
@@ -17,19 +17,19 @@ function FormulaHeading({ y, opacity }) {
         paddingBottom: '0.06em',
       }}
     >
-      <motion.span
+      <span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.6, ease, delay: 0.25 }}
         style={{ display: 'block' }}
-      >PERFORMANCE</motion.span>
-      <motion.span
+      >PERFORMANCE</span>
+      <span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.6, ease, delay: 0.4 }}
         style={{ display: 'block' }}
-      >FORMULA.</motion.span>
-    </motion.h1>
+      >FORMULA.</span>
+    </h1>
   );
 }
 
@@ -59,7 +59,7 @@ export function PerformanceFormulaHero() {
         gap: 32,
       }}>
         <div style={{ marginTop: 24, position: 'relative' }}>
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
@@ -73,9 +73,9 @@ export function PerformanceFormulaHero() {
             }}
           >
             Our
-          </motion.div>
+          </div>
           <FormulaHeading y={y} opacity={opacity} />
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.65 }}
@@ -89,12 +89,12 @@ export function PerformanceFormulaHero() {
             }}
           >
             Developing leaders inside &amp; out.
-          </motion.div>
+          </div>
         </div>
 
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
           <div className="xg-hide-md" />
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
@@ -121,7 +121,7 @@ export function PerformanceFormulaHero() {
             }}>
               Book a discovery call to find the right pathway for you.
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

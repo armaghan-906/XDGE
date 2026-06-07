@@ -218,7 +218,7 @@ export function ProvenOutcomes() {
               }}
             />
           </div>
-          <motion.div variants={fadeUp} style={{ paddingBottom: 24, color: '#3a3c3e' }}>
+          <div variants={fadeUp} style={{ paddingBottom: 24, color: '#3a3c3e' }}>
             <p style={{ fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55, margin: '0 0 12px', color: theme.ink, fontWeight: 500 }}>
               What Young People And Parents Say About XDGE
             </p>
@@ -226,7 +226,7 @@ export function ProvenOutcomes() {
               Real experiences from participants and families who have built
               their next step advantage through XDGE.
             </p>
-          </motion.div>
+          </div>
         </Group>
 
         {/* Pagination top row: counter | divider | arrows */}
@@ -247,7 +247,7 @@ export function ProvenOutcomes() {
           </div>
           <div style={{ flex: 1, height: 1, background: 'rgba(0,0,0,0.18)' }} />
           <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-            <motion.button
+            <button
               onClick={goPrev}
               whileHover={{ scale: 1.02, x: -2 }}
               whileTap={{ scale: 0.98 }}
@@ -269,8 +269,8 @@ export function ProvenOutcomes() {
             >
               <span style={{ display: 'inline-flex', fontSize: 18 }}>{ArrowLeft}</span>
               Previous Review
-            </motion.button>
-            <motion.button
+            </button>
+            <button
               onClick={goNext}
               whileHover={{ scale: 1.02, x: 2 }}
               whileTap={{ scale: 0.98 }}
@@ -292,14 +292,14 @@ export function ProvenOutcomes() {
             >
               See More Reviews
               <span style={{ display: 'inline-flex', fontSize: 18 }}>{ArrowRight}</span>
-            </motion.button>
+            </button>
           </div>
         </div>
 
         {/* Testimonial card */}
         <div style={{ position: 'relative', minHeight: 'clamp(280px, 32vw, 380px)' }}>
-          <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
+          <>
+            <div
               key={index}
               custom={direction}
               variants={variants}
@@ -349,8 +349,8 @@ export function ProvenOutcomes() {
                   {t.body}
                 </p>
               </div>
-            </motion.div>
-          </AnimatePresence>
+            </div>
+          </>
         </div>
       </div>
     </section>

@@ -40,7 +40,7 @@ function ServeCard({ card, index, hovered, onEnter, onLeave }) {
         <motion.img
           src={card.img}
           alt={card.t}
-          loading="lazy"
+          loading="eager"
           decoding="async"
           animate={{ scale: isHovered ? 1.06 : 1 }}
           transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}

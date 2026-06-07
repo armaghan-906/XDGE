@@ -76,16 +76,16 @@ function Bio({ intro, more }) {
             }}
           >
             {open ? 'Read Less' : 'Read More'}
-            <motion.span
+            <span
               animate={{ rotate: open ? 45 : 0 }}
               transition={{ duration: 0.3, ease: [0.2, 0.7, 0.2, 1] }}
               style={{ display: 'inline-flex', fontSize: 16, lineHeight: 1 }}
-            >+</motion.span>
+            >+</span>
           </button>
 
-          <AnimatePresence initial={false}>
+          <>
             {open && (
-              <motion.div
+              <div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
@@ -97,9 +97,9 @@ function Bio({ intro, more }) {
                   lineHeight: 1.65, margin: '12px 0 0',
                   color: '#3a3c3e',
                 }}>{more}</p>
-              </motion.div>
+              </div>
             )}
-          </AnimatePresence>
+          </>
         </>
       )}
     </div>
@@ -118,7 +118,7 @@ function Avatar({ src, alt }) {
       <img
         src={src}
         alt={alt}
-        loading="lazy"
+        loading="eager"
         decoding="async"
         style={{
           width: '100%', height: '100%',
@@ -155,7 +155,7 @@ export function AboutTeam() {
 
         <div className="xg-team-grid">
           {team.map((m, i) => (
-            <motion.div
+            <div
               key={m.name}
               variants={rowVariants}
               initial="hidden"
@@ -211,7 +211,7 @@ export function AboutTeam() {
                 }}>{m.role} · {m.credential}</div>
                 <Bio intro={m.intro} more={m.more} />
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

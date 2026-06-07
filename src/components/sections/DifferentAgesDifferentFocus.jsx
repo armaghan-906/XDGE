@@ -299,7 +299,7 @@ function Card({ slide, onOpen, dark }) {
         <img
           src={slide.img}
           alt=""
-          loading="lazy"
+          loading="eager"
           decoding="async"
           style={{
             width: '100%', height: '100%',
@@ -406,11 +406,11 @@ export function DifferentAgesDifferentFocus() {
         </Group>
       </div>
 
-      <AnimatePresence>
+      <>
         {openIndex !== null && (
           <Modal slide={slides[openIndex]} onClose={() => setOpenIndex(null)} />
         )}
-      </AnimatePresence>
+      </>
     </section>
   );
 }

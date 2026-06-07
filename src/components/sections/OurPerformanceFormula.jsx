@@ -51,11 +51,7 @@ export function PerformanceDiagram({ maxWidth = 620, dark = false } = {}) {
       background: 'radial-gradient(circle at center, rgba(110,150,200,0.16), rgba(255,255,255,0) 72%)',
     }}>
       {/* Outer ring */}
-      <motion.div
-        initial={{ scale: 0.7, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 1.2, ease: ringEase, delay: 0.05 }}
+      <div
         style={{
           position: 'absolute', inset: 0,
           borderRadius: '50%',
@@ -65,11 +61,7 @@ export function PerformanceDiagram({ maxWidth = 620, dark = false } = {}) {
         }}
       />
       {/* Middle ring */}
-      <motion.div
-        initial={{ scale: 0.7, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 1.2, ease: ringEase, delay: 0.2 }}
+      <div
         className="xg-perf-ring-middle"
         style={{
           position: 'absolute', inset: '14%',
@@ -79,11 +71,7 @@ export function PerformanceDiagram({ maxWidth = 620, dark = false } = {}) {
         }}
       />
       {/* Inner ring */}
-      <motion.div
-        initial={{ scale: 0.7, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 1.2, ease: ringEase, delay: 0.35 }}
+      <div
         className="xg-perf-ring-inner"
         style={{
           position: 'absolute', inset: '32%',
@@ -94,11 +82,7 @@ export function PerformanceDiagram({ maxWidth = 620, dark = false } = {}) {
       />
 
       {/* Labels (fade in after rings) */}
-      <motion.div
-        initial={{ opacity: 0, y: -8 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6, ease: ringEase, delay: 0.7 }}
+      <div
         style={{
           position: 'absolute',
           top: '4%', left: '28%', right: '28%',
@@ -122,13 +106,9 @@ export function PerformanceDiagram({ maxWidth = 620, dark = false } = {}) {
         }}>
           Execution Power &amp; Impact
         </div>
-      </motion.div>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: -8 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6, ease: ringEase, delay: 0.85 }}
+      <div
         style={{
           position: 'absolute',
           top: '20%', left: '22%', right: '22%',
@@ -152,18 +132,15 @@ export function PerformanceDiagram({ maxWidth = 620, dark = false } = {}) {
         }}>
           Performance Habits &amp; Skill Set
         </div>
-      </motion.div>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, scale: 0.92, y: '-50%' }}
-        whileInView={{ opacity: 1, scale: 1, y: '-50%' }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6, ease: ringEase, delay: 1.0 }}
+      <div
         style={{
           position: 'absolute',
           top: '50%', left: '32%', right: '32%',
           textAlign: 'center',
           color: fg,
+          transform: 'translateY(-50%)'
         }}
       >
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, justifyContent: 'center' }}>
@@ -182,7 +159,7 @@ export function PerformanceDiagram({ maxWidth = 620, dark = false } = {}) {
         }}>
           Leadership Thinking<br />&amp; Winning Mindset
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

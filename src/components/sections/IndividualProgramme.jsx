@@ -64,7 +64,7 @@ export function IndividualProgramme() {
           }}
         />
 
-        <motion.p
+        <p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -85,7 +85,7 @@ export function IndividualProgramme() {
           clear focus on preparing you for your next level. It suits those who
           perform best in a personalised setting and want direct coaching,
           focused development, and a structured path to accelerate results.
-        </motion.p>
+        </p>
 
         <div style={{
           height: 1, background: 'rgba(255,255,255,0.2)',
@@ -93,7 +93,7 @@ export function IndividualProgramme() {
         }} />
 
         <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(32px, 6vw, 88px)' }}>
-          <motion.div variants={fadeUp}>
+          <div variants={fadeUp}>
             <h3 style={{
               fontFamily: theme.display, fontWeight: 900,
               fontSize: 'clamp(36px, 5vw, 64px)',
@@ -104,9 +104,9 @@ export function IndividualProgramme() {
             }}>
               Inside The Programme
             </h3>
-          </motion.div>
+          </div>
 
-          <motion.ul
+          <ul
             variants={listContainer}
             initial="hidden"
             whileInView="visible"
@@ -118,7 +118,7 @@ export function IndividualProgramme() {
             }}
           >
             {items.map((it) => (
-              <motion.li
+              <li
                 key={it.title}
                 variants={listItem}
                 style={{
@@ -149,9 +149,9 @@ export function IndividualProgramme() {
                     color: theme.subtitle,
                   }}>{it.desc}</p>
                 </div>
-              </motion.li>
+              </li>
             ))}
-          </motion.ul>
+          </ul>
         </Group>
       </div>
     </section>

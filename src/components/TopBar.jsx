@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { theme } from '../theme';
@@ -89,8 +89,12 @@ export function TopBar() {
     return () => { document.body.style.overflow = ''; };
   }, [open]);
 
-  // Detect which section's bg is currently behind the header band, switch colors accordingly
+  // Detect which section's bg is currently behind the header band, switch colors accordingly.
+  // Throttled with rAF to avoid React re-renders on every scroll tick (was a major
+  // source of scroll jank — every setState during scroll forces a reconciliation pass).
+  const currentThemeRef = useRef(sectionTheme);
   useEffect(() => {
+    let rafId = 0;
     const update = () => {
       const probeY = 32;
       const sections = document.querySelectorAll('[data-section-theme]');
@@ -101,13 +105,22 @@ export function TopBar() {
           current = sec.getAttribute('data-section-theme') || 'dark';
         }
       }
-      setSectionTheme(current);
+      // Only trigger a React re-render if the theme actually changed
+      if (current !== currentThemeRef.current) {
+        currentThemeRef.current = current;
+        setSectionTheme(current);
+      }
     };
     update();
-    window.addEventListener('scroll', update, { passive: true });
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(update);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', update);
     return () => {
-      window.removeEventListener('scroll', update);
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', update);
     };
   }, []);
@@ -118,7 +131,7 @@ export function TopBar() {
 
   return (
     <>
-      <motion.header
+      <header
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
@@ -132,7 +145,7 @@ export function TopBar() {
           gap: 16,
         }}>
           <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-            <MotionLink
+            <Link
               to="/"
               animate={{ color: fg, borderColor: fg }}
               transition={{ duration: 0.3 }}
@@ -143,8 +156,8 @@ export function TopBar() {
                 fontFamily: 'serif', fontSize: 14, flexShrink: 0,
                 lineHeight: 1, textDecoration: 'none',
               }}
-            >X</MotionLink>
-            <MotionLink
+            >X</Link>
+            <Link
               to="/"
               className="xg-hide-sm"
               animate={{ color: fg }}
@@ -155,7 +168,7 @@ export function TopBar() {
                 paddingTop: 6, fontWeight: 500,
                 textDecoration: 'none', whiteSpace: 'nowrap',
               }}
-            >Our Programs</MotionLink>
+            >Our Programs</Link>
           </div>
 
           <button
@@ -171,33 +184,33 @@ export function TopBar() {
               cursor: 'pointer',
             }}
           >
-            <motion.span
-              animate={{
-                rotate: open ? 45 : 0,
-                y: open ? 5 : 0,
-                x: open ? 0 : -4,
-                backgroundColor: fg,
+            <span
+              style={{
+                width: 34, height: 2, display: 'block',
+                background: fg,
+                transformOrigin: 'center',
+                transform: open
+                  ? 'translate(0px, 5px) rotate(45deg)'
+                  : 'translate(-4px, 0) rotate(0)',
               }}
-              transition={{ duration: 0.4, ease: overlayEase }}
-              style={{ width: 34, height: 2, transformOrigin: 'center', display: 'block' }}
             />
-            <motion.span
-              animate={{
-                rotate: open ? -45 : 0,
-                y: open ? -5 : 0,
-                x: open ? 0 : 5,
-                backgroundColor: fg,
+            <span
+              style={{
+                width: 28, height: 2, display: 'block',
+                background: fg,
+                transformOrigin: 'center',
+                transform: open
+                  ? 'translate(0px, -5px) rotate(-45deg)'
+                  : 'translate(5px, 0) rotate(0)',
               }}
-              transition={{ duration: 0.4, ease: overlayEase }}
-              style={{ width: 28, height: 2, transformOrigin: 'center', display: 'block' }}
             />
           </button>
         </div>
-      </motion.header>
+      </header>
 
-      <AnimatePresence>
+      <>
         {open && (
-          <motion.div
+          <div
             key="menu-overlay"
             initial={{ y: '-100%' }}
             animate={{ y: '0%' }}
@@ -218,7 +231,7 @@ export function TopBar() {
                 display: 'flex', flexDirection: 'column',
                 justifyContent: 'space-between', gap: 32,
               }}>
-                <motion.div
+                <div
                   initial={{ y: 28, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ opacity: 0, transition: { duration: 0.2 } }}
@@ -242,9 +255,9 @@ export function TopBar() {
                   }}>
                     Career &middot; University &middot; School
                   </div>
-                </motion.div>
+                </div>
 
-                <motion.div
+                <div
                   className="xg-menu-image"
                   initial={{ y: 28, opacity: 0, scale: 1.05 }}
                   animate={{ y: 0, opacity: 1, scale: 1 }}
@@ -261,10 +274,10 @@ export function TopBar() {
                     alt="XDGE workspace"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   />
-                </motion.div>
+                </div>
               </div>
 
-              <motion.nav
+              <nav
                 variants={linkContainerVariants}
                 initial="hidden"
                 animate="visible"
@@ -308,7 +321,7 @@ export function TopBar() {
                   if (item.to) {
                     return (
                       <span key={item.label} style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
-                        <MotionLink to={item.to} {...sharedProps} style={parentStyle}>{item.label}</MotionLink>
+                        <Link to={item.to} {...sharedProps} style={parentStyle}>{item.label}</Link>
                       </span>
                     );
                   }
@@ -317,10 +330,10 @@ export function TopBar() {
                   return (
                     <div key={item.label} style={{ display: 'block' }}>
                       <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
-                        <motion.span
+                        <span
                           variants={linkVariants}
                           style={parentStyle}
-                        >{item.label}</motion.span>
+                        >{item.label}</span>
                       </span>
                       {item.children && (
                         <div style={{
@@ -332,11 +345,11 @@ export function TopBar() {
                         }}>
                           {item.children.map((child) => (
                             <span key={child.label} style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
-                              <MotionLink
+                              <Link
                                 to={child.to}
                                 {...sharedProps}
                                 style={childStyle}
-                              >{child.label}</MotionLink>
+                              >{child.label}</Link>
                             </span>
                           ))}
                         </div>
@@ -344,14 +357,14 @@ export function TopBar() {
                     </div>
                   );
                 })}
-              </motion.nav>
+              </nav>
 
               <div style={{
                 display: 'flex', flexDirection: 'column',
                 justifyContent: 'space-between', gap: 32,
                 textAlign: 'right',
               }}>
-                <motion.nav
+                <nav
                   variants={secondaryContainerVariants}
                   initial="hidden"
                   animate="visible"
@@ -382,16 +395,16 @@ export function TopBar() {
                     return (
                       <span key={label} style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
                         {to ? (
-                          <MotionLink to={to} {...motionProps}>{label}</MotionLink>
+                          <Link to={to} {...motionProps}>{label}</Link>
                         ) : (
-                          <motion.a href={href} {...motionProps}>{label}</motion.a>
+                          <a href={href} {...motionProps}>{label}</a>
                         )}
                       </span>
                     );
                   })}
-                </motion.nav>
+                </nav>
 
-                <motion.div
+                <div
                   initial={{ y: 16, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ opacity: 0, transition: { duration: 0.2 } }}
@@ -407,7 +420,7 @@ export function TopBar() {
                     justifyContent: 'flex-end', flexWrap: 'wrap',
                   }}>
                     {socialLinks.map((s) => (
-                      <motion.a
+                      <a
                         key={s.name}
                         href={s.href}
                         aria-label={s.name}
@@ -420,15 +433,15 @@ export function TopBar() {
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
                           color: theme.ink, textDecoration: 'none',
                         }}
-                      >{s.icon}</motion.a>
+                      >{s.icon}</a>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
+      </>
     </>
   );
 }

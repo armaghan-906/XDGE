@@ -77,7 +77,7 @@ export function WhatYouLeaveWithList() {
 
         <div className="xg-leave-list">
           {items.map((it) => (
-            <motion.div
+            <div
               key={it.title}
               variants={rowVariants}
               initial="hidden"
@@ -95,7 +95,7 @@ export function WhatYouLeaveWithList() {
                   <img
                     src={it.img}
                     alt=""
-                    loading="lazy"
+                    loading="eager"
                     decoding="async"
                     style={{
                       width: '100%', height: '100%',
@@ -122,7 +122,7 @@ export function WhatYouLeaveWithList() {
                   maxWidth: 640,
                 }}>{it.desc}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

@@ -135,7 +135,7 @@ export function ContactForm() {
         }}
       >
         <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
-          <motion.h2
+          <h2
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.2, 0.7, 0.2, 1] }}
@@ -147,8 +147,8 @@ export function ContactForm() {
             }}
           >
             Thank you &mdash; your message is on its way.
-          </motion.h2>
-          <motion.p
+          </h2>
+          <p
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.2, 0.7, 0.2, 1] }}
@@ -159,7 +159,7 @@ export function ContactForm() {
           >
             We&rsquo;ll be in touch shortly. If you&rsquo;d like to skip the queue,
             you can also book a discovery meeting below.
-          </motion.p>
+          </p>
         </div>
       </section>
     );
@@ -177,7 +177,7 @@ export function ContactForm() {
       <form onSubmit={onSubmit} style={{ maxWidth: 880, margin: '0 auto' }}>
         <Group style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(28px, 3.6vw, 44px)' }}>
           {/* Row 1: Your Name */}
-          <motion.label variants={fadeUp} style={{ display: 'block' }}>
+          <label variants={fadeUp} style={{ display: 'block' }}>
             <span style={fieldLabel}>Your Name</span>
             <input
               required
@@ -188,10 +188,10 @@ export function ContactForm() {
               style={inputBase}
               autoComplete="name"
             />
-          </motion.label>
+          </label>
 
           {/* Row 2: Guardian */}
-          <motion.label variants={fadeUp} style={{ display: 'block' }}>
+          <label variants={fadeUp} style={{ display: 'block' }}>
             <span style={fieldLabel}>Parent / Guardian Name</span>
             <input
               type="text"
@@ -201,10 +201,10 @@ export function ContactForm() {
               style={inputBase}
             />
             <div style={fieldHint}>(If participant is under 18 years of age)</div>
-          </motion.label>
+          </label>
 
           {/* Row 3: Email + Phone */}
-          <motion.div variants={fadeUp} className="xg-2" style={{ gap: 'clamp(24px, 3vw, 40px)' }}>
+          <div variants={fadeUp} className="xg-2" style={{ gap: 'clamp(24px, 3vw, 40px)' }}>
             <label style={{ display: 'block' }}>
               <span style={fieldLabel}>Email Address</span>
               <input
@@ -228,10 +228,10 @@ export function ContactForm() {
                 autoComplete="tel"
               />
             </label>
-          </motion.div>
+          </div>
 
           {/* Row 4: Location + Age */}
-          <motion.div variants={fadeUp} className="xg-2" style={{ gap: 'clamp(24px, 3vw, 40px)' }}>
+          <div variants={fadeUp} className="xg-2" style={{ gap: 'clamp(24px, 3vw, 40px)' }}>
             <label style={{ display: 'block' }}>
               <span style={fieldLabel}>Location &mdash; City / Country</span>
               <input
@@ -253,10 +253,10 @@ export function ContactForm() {
                 style={inputBase}
               />
             </label>
-          </motion.div>
+          </div>
 
           {/* Row 5: Programmes (checkboxes) */}
-          <motion.div variants={fadeUp}>
+          <div variants={fadeUp}>
             <div style={{ ...fieldLabel, marginBottom: 14 }}>Which Programme Are You Interested In?</div>
             <div className="xg-2" style={{ gap: '0 clamp(24px, 3vw, 40px)' }}>
               {programmeOptions.map((opt) => {
@@ -277,10 +277,10 @@ export function ContactForm() {
                 );
               })}
             </div>
-          </motion.div>
+          </div>
 
           {/* Row 6: Message */}
-          <motion.label variants={fadeUp} style={{ display: 'block' }}>
+          <label variants={fadeUp} style={{ display: 'block' }}>
             <span style={fieldLabel}>How Can We Help?</span>
             <textarea
               name="message"
@@ -295,10 +295,10 @@ export function ContactForm() {
                 lineHeight: 1.55,
               }}
             />
-          </motion.label>
+          </label>
 
           {/* Row 7: Preferred contact method */}
-          <motion.div variants={fadeUp}>
+          <div variants={fadeUp}>
             <div style={{ ...fieldLabel, marginBottom: 14 }}>Preferred Contact Method</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(20px, 3vw, 36px)' }}>
               {contactMethods.map((m) => {
@@ -319,10 +319,10 @@ export function ContactForm() {
                 );
               })}
             </div>
-          </motion.div>
+          </div>
 
           {/* Submit */}
-          <motion.div variants={fadeUp} style={{ paddingTop: 8 }}>
+          <div variants={fadeUp} style={{ paddingTop: 8 }}>
             <button
               type="submit"
               style={{
@@ -341,7 +341,7 @@ export function ContactForm() {
               Send Message
               <span style={{ fontSize: 18, lineHeight: 1 }}>&rarr;</span>
             </button>
-          </motion.div>
+          </div>
         </Group>
       </form>
     </section>

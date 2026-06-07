@@ -28,16 +28,16 @@ export function CapabilityBuiltInsideOut() {
           }}
           className="xg-cap-grid"
         >
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 1.2, ease: fadeEase }}
           >
             <PerformanceDiagram maxWidth={760} />
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -53,7 +53,7 @@ export function CapabilityBuiltInsideOut() {
                 textAlign: 'right',
               }}
             />
-          </motion.div>
+          </div>
         </div>
 
         <div style={{
@@ -68,7 +68,7 @@ export function CapabilityBuiltInsideOut() {
             gap: 'clamp(32px, 6vw, 80px)',
           }}
         >
-          <motion.div variants={fadeUp}>
+          <div variants={fadeUp}>
             <div style={{
               display: 'flex', flexDirection: 'column',
               gap: 8,
@@ -83,9 +83,9 @@ export function CapabilityBuiltInsideOut() {
               <div>Our behaviours shape our actions.</div>
               <div>Our actions determine our results.</div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               display: 'flex', flexDirection: 'column',
@@ -120,7 +120,7 @@ export function CapabilityBuiltInsideOut() {
               develop how you think, act, and perform.
             </p>
 
-            <motion.a
+            <a
               whileHover={{ x: 4 }}
               transition={{ duration: 0.3, ease: fadeEase }}
               href="/about"
@@ -137,8 +137,8 @@ export function CapabilityBuiltInsideOut() {
               }}
             >
               More About Us <span style={{ fontSize: 16 }}>→</span>
-            </motion.a>
-          </motion.div>
+            </a>
+          </div>
         </Group>
       </div>
     </section>

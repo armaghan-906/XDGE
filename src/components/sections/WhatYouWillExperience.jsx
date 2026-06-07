@@ -45,7 +45,7 @@ export function WhatYouWillExperience() {
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <Group className="xg-wwd-top" style={{ alignItems: 'flex-start' }}>
-          <motion.div variants={fadeUp} style={{ paddingTop: 8 }}>
+          <div variants={fadeUp} style={{ paddingTop: 8 }}>
             <div
               ref={imgRef}
               style={{
@@ -54,10 +54,10 @@ export function WhatYouWillExperience() {
                 borderRadius: 2, overflow: 'hidden', background: '#d8d6cf',
               }}
             >
-              <motion.img
+              <img
                 src="/assets/what-you-experience.webp"
                 alt="XDGE active session"
-                loading="lazy"
+                loading="eager"
                 decoding="async"
                 style={{
                   position: 'absolute', left: 0, right: 0,
@@ -71,8 +71,8 @@ export function WhatYouWillExperience() {
                 }}
               />
             </div>
-          </motion.div>
-          <motion.div variants={fadeUp}>
+          </div>
+          <div variants={fadeUp}>
             <SplitHeading
               lines={['WHAT YOU WILL', 'EXPERIENCE']}
               style={{
@@ -82,10 +82,10 @@ export function WhatYouWillExperience() {
                 textAlign: 'right',
               }}
             />
-          </motion.div>
+          </div>
         </Group>
 
-        <motion.div
+        <div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true, amount: 0.6 }}
@@ -98,7 +98,7 @@ export function WhatYouWillExperience() {
         />
 
         <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(32px, 6vw, 80px)' }}>
-          <motion.ul
+          <ul
             variants={listContainer}
             style={{
               listStyle: 'none', margin: 0, padding: 0,
@@ -108,7 +108,7 @@ export function WhatYouWillExperience() {
             }}
           >
             {bullets.map((b) => (
-              <motion.li
+              <li
                 key={b}
                 variants={listItem}
                 style={{
@@ -128,11 +128,11 @@ export function WhatYouWillExperience() {
                   }}
                 />
                 <span>{b}</span>
-              </motion.li>
+              </li>
             ))}
-          </motion.ul>
+          </ul>
 
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               display: 'flex', flexDirection: 'column',
@@ -152,7 +152,7 @@ export function WhatYouWillExperience() {
               help you develop the confidence, capability, and leadership
               skills needed to achieve your next-level goal.
             </p>
-          </motion.div>
+          </div>
         </Group>
       </div>
     </section>

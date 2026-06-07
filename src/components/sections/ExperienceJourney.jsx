@@ -131,7 +131,7 @@ export function ExperienceJourney() {
               }}
             />
           </div>
-          <motion.p
+          <p
             variants={fadeUp}
             style={{
               fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55,
@@ -140,7 +140,7 @@ export function ExperienceJourney() {
           >
             Six stages from where you are now to where you stand out — clear,
             structured, and built around real performance.
-          </motion.p>
+          </p>
         </Group>
 
         <div className="xg-journey-track">
@@ -151,7 +151,7 @@ export function ExperienceJourney() {
               preserveAspectRatio="none"
               aria-hidden="true"
             >
-              <motion.path
+              <path
                 d="M 100 180 C 320 30 880 30 1100 180"
                 stroke="rgba(255,255,255,0.45)"
                 strokeWidth="2"
@@ -162,7 +162,7 @@ export function ExperienceJourney() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 1.8, ease: fadeEase, delay: 0.2 }}
               />
-              <motion.path
+              <path
                 d="M 1090 172 L 1108 180 L 1090 188"
                 stroke="rgba(255,255,255,0.55)"
                 strokeWidth="2"
@@ -177,7 +177,7 @@ export function ExperienceJourney() {
 
             <Group className="xg-journey-circles">
               {steps.map((s, i) => (
-                <motion.div
+                <div
                   key={i}
                   variants={fadeUp}
                   className="xg-journey-circle-cell"
@@ -194,7 +194,7 @@ export function ExperienceJourney() {
                   }}>
                     {s.icon}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </Group>
           </div>
@@ -236,7 +236,7 @@ export function ExperienceJourney() {
 
           <Group className="xg-journey-mobile">
             {steps.map((s) => (
-              <motion.div
+              <div
                 key={s.n}
                 variants={fadeUp}
                 className="xg-journey-mobile-step"
@@ -276,12 +276,12 @@ export function ExperienceJourney() {
                     color: theme.subtitle,
                   }}>{s.line2}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </Group>
         </div>
 
-        <motion.p
+        <p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
@@ -300,7 +300,7 @@ export function ExperienceJourney() {
           }}
         >
           From potential to proven performance.
-        </motion.p>
+        </p>
       </div>
     </section>
   );

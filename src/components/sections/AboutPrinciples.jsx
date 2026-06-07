@@ -65,7 +65,7 @@ export function AboutPrinciples() {
           }}
         />
 
-        <motion.div
+        <div
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
@@ -95,11 +95,11 @@ export function AboutPrinciples() {
             develop leaders. These principles shape every programme, every
             experience, and every outcome we deliver.
           </p>
-        </motion.div>
+        </div>
 
         <div className="xg-principles-list">
           {principles.map((p) => (
-            <motion.div
+            <div
               key={p.n}
               variants={rowVariants}
               initial="hidden"
@@ -141,7 +141,7 @@ export function AboutPrinciples() {
                   <img
                     src={p.img}
                     alt=""
-                    loading="lazy"
+                    loading="eager"
                     decoding="async"
                     style={{
                       width: '100%', height: '100%',
@@ -152,7 +152,7 @@ export function AboutPrinciples() {
                   />
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

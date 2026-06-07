@@ -5,7 +5,7 @@ import { HeroAmbient } from '../HeroAmbient';
 
 function OutcomesHeading({ y, opacity }) {
   return (
-    <motion.h1
+    <h1
       style={{
         y, opacity,
         fontFamily: theme.display, fontWeight: 900,
@@ -16,13 +16,13 @@ function OutcomesHeading({ y, opacity }) {
         paddingBottom: '0.06em',
       }}
     >
-      <motion.span
+      <span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.8, ease: [0.2, 0.7, 0.2, 1], delay: 0.35 }}
         style={{ display: 'inline-block' }}
-      >OUTCOMES.</motion.span>
-    </motion.h1>
+      >OUTCOMES.</span>
+    </h1>
   );
 }
 
@@ -52,7 +52,7 @@ export function OutcomesHero() {
         gap: 32,
       }}>
         <div style={{ marginTop: 24, position: 'relative' }}>
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
@@ -66,9 +66,9 @@ export function OutcomesHero() {
             }}
           >
             The
-          </motion.div>
+          </div>
           <OutcomesHeading y={y} opacity={opacity} />
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.65 }}
@@ -82,12 +82,12 @@ export function OutcomesHero() {
             }}
           >
             Built for your next opportunity. Proven through action.
-          </motion.div>
+          </div>
         </div>
 
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
           <div className="xg-hide-md" />
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
@@ -115,7 +115,7 @@ export function OutcomesHero() {
               Prepared to perform in interviews, with clear evidence of your
               leadership and readiness for future opportunities.
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -3,11 +3,23 @@ html, body {
   padding: 0;
   background: #000000;
   color: #FFFFFF;
-  /* Stop scroll momentum from chaining into element scrolls — prevents
-     sub-pixel snap glitches when a sticky-pin section "releases" mid-flick. */
   overscroll-behavior: none;
 }
-html { scroll-behavior: smooth; }
+/* scroll-behavior: smooth REMOVED — it fights with active user scrolling,
+   causing perceived "sticking" at section boundaries as the browser tries
+   to animate to a position the user is already scrolling past. */
+
+/* ──────────────────────────────────────────────────────────────────────
+   GLOBAL ANIMATION KILL — REMOVED.
+   The previous rules (animation-duration: 0s !important; transition-duration:
+   0s !important on *) were conflicting with Framer Motion's inline style
+   engine. FM sets initial opacity:0 and transform:translateY(...) then
+   animates them — but the CSS overrides killed the transition, leaving
+   elements in a half-state that snapped visually during scroll. The
+   [style*="opacity: 0"] { opacity: 1 !important } hack then fought
+   with FM's own opacity management, causing flash-pop on section entry.
+   Both are now removed so FM handles reveal animations correctly.
+   ────────────────────────────────────────────────────────────────────── */
 body {
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -79,13 +91,9 @@ article[data-cursor="grow"],
   }
 }
 
-/* While the user is actively scrolling, suppress pointer events sitewide.
-   The cursor passing over cards as the page moves was firing hover events
-   that triggered card-lift animations — looked exactly like scroll-time
-   flicker. With pointer events off during the 160ms scroll window, no
-   hovers can fire. The instant scroll stops, hover works again.
-   body.is-scrolling is toggled by a passive scroll listener in main.jsx. */
-body.is-scrolling { pointer-events: none; }
+/* body.is-scrolling pointer-events rule removed — was causing global
+   flicker on some browsers (the cursor / hover state transitions on
+   class toggle every scroll burst were noticeable). */
 
 /* Inline link underline reveal — premium agency feel */
 .xg-link {
@@ -201,49 +209,16 @@ p { letter-spacing: -0.003em; }
 /* Ensure hero content sits above ambient — but never re-position the ambient layer itself */
 section[data-screen-label^="01"] > div:not(.xg-hero-ambient) { position: relative; z-index: 2; }
 
-/* ── GLASS-MORPHISM CARD — premium translucent surface ─────────────────────── */
-.xg-glass {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(14px) saturate(150%);
-  -webkit-backdrop-filter: blur(14px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: background 0.5s var(--xg-ease), border-color 0.5s var(--xg-ease), box-shadow 0.5s var(--xg-ease), transform 0.5s var(--xg-ease);
-}
-/* Solid variant — same look without backdrop-filter for grids that scroll heavily.
-   Avoids per-scroll-frame blur re-rasterization that causes jank on glass-card grids. */
+/* Glass cards — backdrop-filter and hover lifts removed. Plain translucent
+   surfaces with borders. No paint-expensive blurs during scroll. */
+.xg-glass,
 .xg-glass-solid {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.10);
-  transition: background 0.5s var(--xg-ease), border-color 0.5s var(--xg-ease), box-shadow 0.5s var(--xg-ease), transform 0.5s var(--xg-ease);
-}
-@media (hover: hover) {
-  .xg-glass-solid:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 22px 60px -28px rgba(0, 0, 0, 0.7);
-    transform: translateY(-6px);
-  }
 }
 .xg-glass-light {
   background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  transition: background 0.5s var(--xg-ease), border-color 0.5s var(--xg-ease), box-shadow 0.5s var(--xg-ease), transform 0.5s var(--xg-ease);
-}
-@media (hover: hover) {
-  .xg-glass:hover {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(255, 255, 255, 0.28);
-    box-shadow: 0 22px 60px -28px rgba(0, 0, 0, 0.7), 0 0 50px -16px rgba(255, 255, 255, 0.18);
-    transform: translateY(-6px);
-  }
-  .xg-glass-light:hover {
-    background: rgba(255, 255, 255, 0.65);
-    border-color: rgba(0, 0, 0, 0.25);
-    box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.18);
-    transform: translateY(-6px);
-  }
 }
 
 /* ── ANIMATED GRADIENT DIVIDER ─────────────────────────────────────────────── */
@@ -429,16 +404,12 @@ input, textarea, select { cursor: text; }
   .xg-about-image-sticky { position: static; max-width: 480px; margin: 0 auto; }
 }
 
-/* content-visibility: auto removed — it caused per-section stutter on
-   viewport entry. Replaced with `contain: content` (= layout + style + paint
-   containment) which tells the browser each section is self-contained.
-   Painting one section can't invalidate paint on another, so scrolling
-   doesn't trigger ripple-repaints across sections. */
-section[data-screen-label] { contain: content; }
-/* Heroes opt out — they create stacking contexts via inline position:relative
-   + the .xg-hero-ambient absolute layer, which conflict with paint containment. */
-section[data-screen-label^="01"] { contain: none; }
-section:has(> .xg-hero-ambient) { contain: none; }
+/* contain: content REMOVED — it was creating new formatting contexts at each
+   section boundary. Combined with the global animation kill, this caused
+   visible judder/sticking as each section entered containment during scroll.
+   Modern browsers handle section repaints efficiently enough without explicit
+   containment. The heroes still use their own stacking context naturally. */
+section[data-screen-label] { contain: none; }
 
 /* ── Programme tier cards — lift + image zoom on hover (light theme) ────── */
 .xg-tier-card {
@@ -502,63 +473,56 @@ section:has(> .xg-hero-ambient) { contain: none; }
 }
 
 /* Sticky-pin restored — big banner pins at 100vh while the following
-   section scrolls UP over it. The scroll-time hover flicker that was
-   killed by disabling sticky-pin is now prevented by
-   `body.is-scrolling { pointer-events: none }` above, so cards can't
-   fire hover animations mid-scroll. */
-.xg-stick-wrap { position: relative; }
+   section scrolls UP over it. The z-index ensures the second child
+   (the content section) layers above the sticky banner. */
+.xg-stick-wrap { 
+  position: relative; 
+  z-index: 1;
+}
 .xg-stick-wrap > .xg-stick-pin {
   position: sticky;
   top: 0;
   height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1;
-  padding: 0 !important;
-  display: block;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
   will-change: transform;
-  transform: translateZ(0);
+}
+.xg-stick-wrap > .xg-stick-pin--natural {
+  position: sticky;
+  top: 0;
+  height: auto;
+  max-height: 100vh;
+  display: block;
+  z-index: 1;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 .xg-stick-wrap > .xg-stick-pin img {
-  width: 100% !important;
-  height: 100% !important;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
-
-/* Natural-aspect sticky banner — banner still pins (sticky animation
-   preserved), but its height is determined by the image's natural
-   aspect ratio rather than forced to 100vh. Image fills the banner
-   completely (no whitespace) AND shows the whole picture (no crop). */
-.xg-stick-wrap > .xg-stick-pin--natural {
-  height: auto;
-}
 .xg-stick-wrap > .xg-stick-pin--natural img {
-  width: 100% !important;
-  height: auto !important;
-  object-fit: unset;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
 }
-.xg-stick-wrap > section:not(.xg-stick-pin) {
+/* Ensure the section that follows the pinned banner scrolls over it */
+.xg-stick-wrap > :nth-child(2) {
   position: relative;
   z-index: 2;
 }
 
-/* Scroll-driven parallax on the pinned banner image — image drifts
-   subtly from -6% → +6% Y as the user scrolls through the banner's
-   section. Runs entirely on the compositor thread (no JS, no rAF) via
-   CSS scroll-driven animations. Falls back to no animation in browsers
-   that don't yet support it. */
-@supports (animation-timeline: view()) {
-  .xg-stick-wrap > .xg-stick-pin:not(.xg-stick-pin--natural) img {
-    animation: xg-banner-parallax linear both;
-    animation-timeline: view();
-    animation-range: cover 0% cover 100%;
-  }
-  @keyframes xg-banner-parallax {
-    from { transform: translateY(-6%) scale(1.06); }
-    to   { transform: translateY(6%)  scale(1.06); }
-  }
-}
+/* Scroll-driven banner parallax removed — animation-timeline: view()
+   support is patchy across browsers and was causing flicker on some
+   machines. Banner image stays static within its sticky-pin frame. */
 
 /* ── Responsive grid utilities ──────────────────────────── */
 .xg-2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 48px); }
@@ -598,7 +562,7 @@ section:has(> .xg-hero-ambient) { contain: none; }
 
 /* Global small-screen safety: prevent any element overflowing horizontally */
 @media (max-width: 640px) {
-  html, body { overflow-x: hidden; }
+  html, body { overflow-x: clip; }
   img, video { max-width: 100%; height: auto; }
 }
 
@@ -757,22 +721,11 @@ section:has(> .xg-hero-ambient) { contain: none; }
 }
 .xdge-marquee:hover { animation-play-state: paused; }
 
-@keyframes xdge-footer-marquee {
-  0%   { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-50%, 0, 0); }
-}
+/* Footer marquee — runs on the CSS compositor thread, no main-thread cost. */
 .xdge-footer-marquee {
   display: flex;
   white-space: nowrap;
-  will-change: transform;
-  animation: xdge-footer-marquee 30s linear infinite !important;
-  animation-play-state: running !important;
-}
-
-/* Only the in-page marquee respects reduced-motion. The footer wordmark
-   is a brand element and stays animated. */
-@media (prefers-reduced-motion: reduce) {
-  .xdge-marquee { animation: none; }
+  animation: xdge-marquee 60s linear infinite;
 }
 
 /* ============================================================

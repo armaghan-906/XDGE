@@ -28,7 +28,7 @@ export function PerformanceFormulaCTA() {
         />
 
         <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(40px, 8vw, 120px)' }}>
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               display: 'flex', flexDirection: 'column',
@@ -44,7 +44,7 @@ export function PerformanceFormulaCTA() {
                 <img
                   src="/assets/blog-02.webp"
                   alt=""
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
                   style={{
                     width: '100%', height: '100%',
@@ -62,7 +62,7 @@ export function PerformanceFormulaCTA() {
                 <img
                   src="/assets/blog-01.webp"
                   alt=""
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
                   style={{
                     width: '100%', height: '100%',
@@ -80,9 +80,9 @@ export function PerformanceFormulaCTA() {
             }}>
               Available 9AM &ndash; 6PM (GMT) Mon&ndash;Fri
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               display: 'flex', flexDirection: 'column',
@@ -111,7 +111,7 @@ export function PerformanceFormulaCTA() {
               limiting performance and create the path forward.
             </p>
 
-            <motion.a
+            <a
               whileHover={{ x: 4 }}
               transition={{ duration: 0.3, ease: fadeEase }}
               href="#"
@@ -128,8 +128,8 @@ export function PerformanceFormulaCTA() {
               }}
             >
               Book A Strategy Session <span style={{ fontSize: 18 }}>→</span>
-            </motion.a>
-          </motion.div>
+            </a>
+          </div>
         </Group>
       </div>
     </section>

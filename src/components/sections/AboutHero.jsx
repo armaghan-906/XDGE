@@ -32,7 +32,7 @@ export function AboutHero() {
         <div className="xg-about-grid">
           <div className="xg-about-image-col">
             <div className="xg-about-image-sticky">
-              <motion.div
+              <div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -57,7 +57,7 @@ export function AboutHero() {
                     display: 'block',
                   }}
                 />
-              </motion.div>
+              </div>
             </div>
           </div>
 
@@ -68,7 +68,7 @@ export function AboutHero() {
               gap: 'clamp(20px, 2.5vw, 28px)',
             }}
           >
-            <motion.p
+            <p
               variants={fadeUp}
               style={{
                 fontFamily: theme.italic, fontStyle: 'italic',
@@ -80,9 +80,9 @@ export function AboutHero() {
               }}
             >
               We believe leadership starts long before someone receives a title.
-            </motion.p>
+            </p>
 
-            <motion.p
+            <p
               variants={fadeUp}
               style={{
                 fontSize: 'clamp(16px, 1.7vw, 19px)',
@@ -93,9 +93,9 @@ export function AboutHero() {
               It starts when an individual takes ownership of an idea, stands
               behind something they care about, and develops the confidence to
               make a positive impact.
-            </motion.p>
+            </p>
 
-            <motion.p
+            <p
               variants={fadeUp}
               style={{
                 fontSize: 'clamp(16px, 1.7vw, 19px)',
@@ -108,7 +108,7 @@ export function AboutHero() {
               coaching, and exposure to experienced professionals and leaders,
               young people develop the confidence, professional skills, and
               leadership capability to prepare for what comes next.
-            </motion.p>
+            </p>
           </Group>
         </div>
       </div>

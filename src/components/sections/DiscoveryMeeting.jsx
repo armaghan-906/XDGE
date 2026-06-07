@@ -23,7 +23,7 @@ export function DiscoveryMeeting() {
           gap: 'clamp(32px, 5vw, 56px)',
           alignItems: 'flex-start',
         }}>
-          <motion.h2
+          <h2
             variants={fadeUp}
             style={{
               fontFamily: theme.displayTight,
@@ -37,9 +37,9 @@ export function DiscoveryMeeting() {
             }}
           >
             Schedule a Discovery Meeting
-          </motion.h2>
+          </h2>
 
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               display: 'flex',
@@ -69,10 +69,10 @@ export function DiscoveryMeeting() {
               discuss your goals, explore suitable pathways, and determine
               whether XDGE is the right fit.
             </p>
-          </motion.div>
+          </div>
 
           {/* Calendly inline embed */}
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               width: '100%',
@@ -85,7 +85,7 @@ export function DiscoveryMeeting() {
             <iframe
               title="Schedule a discovery meeting with Nicola Mann"
               src={EMBED_URL}
-              loading="lazy"
+              loading="eager"
               style={{
                 width: '100%',
                 height: 'clamp(720px, 95vh, 1000px)',
@@ -93,9 +93,9 @@ export function DiscoveryMeeting() {
                 display: 'block',
               }}
             />
-          </motion.div>
+          </div>
 
-          <motion.a
+          <a
             variants={fadeUp}
             href={CALENDLY_URL}
             target="_blank"
@@ -121,9 +121,9 @@ export function DiscoveryMeeting() {
           >
             Open Scheduler in New Tab
             <span style={{ fontSize: 16, lineHeight: 1 }}>&rarr;</span>
-          </motion.a>
+          </a>
 
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               marginTop: 'clamp(16px, 2.4vw, 32px)',
@@ -151,7 +151,7 @@ export function DiscoveryMeeting() {
             }}>
               Founder, The XDGE
             </div>
-          </motion.div>
+          </div>
         </Group>
       </div>
     </section>

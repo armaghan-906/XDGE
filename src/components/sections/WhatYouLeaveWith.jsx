@@ -122,7 +122,7 @@ export function WhatYouLeaveWith() {
           }}
         />
 
-        <motion.p
+        <p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -138,11 +138,11 @@ export function WhatYouLeaveWith() {
           }}
         >
           Proof of your capability. Ready for selection.
-        </motion.p>
+        </p>
 
         <Group className="xg-leave-grid">
           {items.map((it, i) => (
-            <motion.div
+            <div
               key={i}
               variants={itemVariants}
               style={{
@@ -150,7 +150,7 @@ export function WhatYouLeaveWith() {
                 gap: 'clamp(16px, 2vw, 24px)',
               }}
             >
-              <motion.div
+              <div
                 variants={iconVariants}
                 style={{
                   width: 44, height: 44,
@@ -161,9 +161,9 @@ export function WhatYouLeaveWith() {
                 }}
               >
                 {it.icon}
-              </motion.div>
+              </div>
               <div style={{ overflow: 'hidden' }}>
-                <motion.h3
+                <h3
                   variants={titleVariants}
                   style={{
                     fontSize: 'clamp(16px, 1.8vw, 20px)',
@@ -172,8 +172,8 @@ export function WhatYouLeaveWith() {
                     color: theme.base,
                     letterSpacing: '-0.005em',
                   }}
-                >{it.title}</motion.h3>
-                <motion.p
+                >{it.title}</h3>
+                <p
                   variants={descVariants}
                   style={{
                     fontSize: 'clamp(13px, 1.4vw, 15px)',
@@ -181,9 +181,9 @@ export function WhatYouLeaveWith() {
                     lineHeight: 1.5,
                     color: theme.subtitle,
                   }}
-                >{it.desc}</motion.p>
+                >{it.desc}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </Group>
       </div>

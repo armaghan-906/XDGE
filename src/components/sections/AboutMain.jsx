@@ -22,7 +22,7 @@ export function AboutMain() {
             margin: '0 auto',
           }}
         >
-          <motion.p
+          <p
             variants={fadeUp}
             style={{
               fontFamily: theme.italic, fontStyle: 'italic',
@@ -37,7 +37,7 @@ export function AboutMain() {
             Real leadership insight comes from people who have led teams, built
             organisations, solved complex problems, and know how to inspire
             performance in demanding environments.
-          </motion.p>
+          </p>
         </Group>
       </div>
     </section>

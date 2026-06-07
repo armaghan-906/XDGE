@@ -15,7 +15,7 @@ export function ApplyClosing() {
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(40px, 6vw, 88px)' }}>
-          <motion.h2
+          <h2
             variants={fadeUp}
             style={{
               fontFamily: theme.displayTight,
@@ -29,9 +29,9 @@ export function ApplyClosing() {
             }}
           >
             Submit Your Enquiry
-          </motion.h2>
+          </h2>
 
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               display: 'flex',
@@ -94,7 +94,7 @@ export function ApplyClosing() {
                 Founder, The XDGE
               </div>
             </div>
-          </motion.div>
+          </div>
         </Group>
       </div>
     </section>

@@ -45,7 +45,7 @@ export function HowWeDeliver() {
           }}
         />
 
-        <motion.p
+        <p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -61,11 +61,11 @@ export function HowWeDeliver() {
           }}
         >
           Most of our programmes are delivered in both formats.
-        </motion.p>
+        </p>
 
         <Group className="xg-2" style={{ gap: 'clamp(28px, 4vw, 56px)', alignItems: 'stretch' }}>
           {formats.map((f) => (
-            <motion.article
+            <article
               key={f.title}
               variants={cardVariants}
               style={{
@@ -82,7 +82,7 @@ export function HowWeDeliver() {
                 <img
                   src={f.img}
                   alt={f.title}
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
                   style={{
                     width: '100%', height: '100%',
@@ -109,7 +109,7 @@ export function HowWeDeliver() {
                   maxWidth: 540,
                 }}>{f.desc}</p>
               </div>
-            </motion.article>
+            </article>
           ))}
         </Group>
       </div>

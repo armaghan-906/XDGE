@@ -86,7 +86,7 @@ export function HowXDGEWorks() {
           }}
         />
 
-        <motion.p
+        <p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -102,7 +102,7 @@ export function HowXDGEWorks() {
           }}
         >
           A six-stage progression from where you are now to ready for your next level.
-        </motion.p>
+        </p>
 
         <Group
           className="xg-2"
@@ -112,7 +112,7 @@ export function HowXDGEWorks() {
           }}
         >
           {stages.map((s) => (
-            <motion.div
+            <div
               key={s.n}
               variants={itemVariants}
               style={{
@@ -121,7 +121,7 @@ export function HowXDGEWorks() {
                 borderTop: '1px solid rgba(0,0,0,0.18)',
               }}
             >
-              <motion.h3
+              <h3
                 variants={titleVariants}
                 style={{
                   fontFamily: theme.display, fontWeight: 700,
@@ -131,8 +131,8 @@ export function HowXDGEWorks() {
                   textTransform: 'uppercase',
                   color: theme.ink,
                 }}
-              >{s.title}</motion.h3>
-              <motion.p
+              >{s.title}</h3>
+              <p
                 variants={descVariants}
                 style={{
                   fontSize: 'clamp(14px, 1.5vw, 16px)',
@@ -141,8 +141,8 @@ export function HowXDGEWorks() {
                   color: theme.ink,
                   fontWeight: 500,
                 }}
-              >{s.line1}</motion.p>
-              <motion.p
+              >{s.line1}</p>
+              <p
                 variants={descVariants}
                 style={{
                   fontSize: 'clamp(13px, 1.4vw, 15px)',
@@ -150,8 +150,8 @@ export function HowXDGEWorks() {
                   margin: 0,
                   color: '#3a3c3e',
                 }}
-              >{s.line2}</motion.p>
-            </motion.div>
+              >{s.line2}</p>
+            </div>
           ))}
         </Group>
       </div>

@@ -219,7 +219,7 @@ export function ApplyForm() {
         }}
       >
         <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
-          <motion.h2
+          <h2
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.2, 0.7, 0.2, 1] }}
@@ -231,8 +231,8 @@ export function ApplyForm() {
             }}
           >
             Thank you &mdash; your enquiry is in.
-          </motion.h2>
-          <motion.p
+          </h2>
+          <p
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.2, 0.7, 0.2, 1] }}
@@ -244,7 +244,7 @@ export function ApplyForm() {
             Nicola and the team will personally review what you&rsquo;ve shared
             and be in touch shortly to discuss the right pathway for your
             goals.
-          </motion.p>
+          </p>
         </div>
       </section>
     );
@@ -263,7 +263,7 @@ export function ApplyForm() {
         <Group style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(48px, 6vw, 80px)' }}>
 
           {/* ── Section: Parent / Guardian Information ── */}
-          <motion.fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
+          <fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
             <legend style={{ ...sectionTitle, width: '100%' }}>Parent / Guardian Information</legend>
             <div style={sectionHint}>(Required if the participant is under 18 years of age)</div>
 
@@ -283,10 +283,10 @@ export function ApplyForm() {
                 </label>
               </div>
             </div>
-          </motion.fieldset>
+          </fieldset>
 
           {/* ── Section: Participant Information ── */}
-          <motion.fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
+          <fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
             <legend style={{ ...sectionTitle, width: '100%' }}>Participant Information</legend>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(28px, 3.4vw, 40px)', marginTop: 'clamp(28px, 3.4vw, 40px)' }}>
@@ -305,10 +305,10 @@ export function ApplyForm() {
                 </label>
               </div>
             </div>
-          </motion.fieldset>
+          </fieldset>
 
           {/* ── Section: Programme Interest ── */}
-          <motion.fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
+          <fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
             <legend style={{ ...sectionTitle, width: '100%' }}>Which Programme Interests You?</legend>
             <div style={sectionHint}>(Select all that apply)</div>
 
@@ -320,10 +320,10 @@ export function ApplyForm() {
                 onToggle={toggle('programmes')}
               />
             </div>
-          </motion.fieldset>
+          </fieldset>
 
           {/* ── Section: Achievements ── */}
-          <motion.fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
+          <fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
             <legend style={{ ...sectionTitle, width: '100%' }}>What Are You Hoping To Achieve?</legend>
             <div style={sectionHint}>(Select all that apply)</div>
 
@@ -346,10 +346,10 @@ export function ApplyForm() {
                 style={{ ...inputBase, resize: 'vertical', minHeight: 80, padding: '12px 0 14px', lineHeight: 1.5 }}
               />
             </label>
-          </motion.fieldset>
+          </fieldset>
 
           {/* ── Section: Your Goals ── */}
-          <motion.fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
+          <fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
             <legend style={{ ...sectionTitle, width: '100%' }}>Your Goals</legend>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(28px, 3.4vw, 40px)', marginTop: 'clamp(28px, 3.4vw, 40px)' }}>
@@ -372,10 +372,10 @@ export function ApplyForm() {
                 />
               </label>
             </div>
-          </motion.fieldset>
+          </fieldset>
 
           {/* ── Section: Preferred Learning Format ── */}
-          <motion.fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
+          <fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
             <legend style={{ ...sectionTitle, width: '100%' }}>Preferred Learning Format</legend>
 
             <div style={{ marginTop: 'clamp(20px, 2.4vw, 28px)', display: 'flex', flexWrap: 'wrap', gap: 'clamp(20px, 3vw, 36px)' }}>
@@ -397,10 +397,10 @@ export function ApplyForm() {
                 );
               })}
             </div>
-          </motion.fieldset>
+          </fieldset>
 
           {/* ── Section: How Did You Hear ── */}
-          <motion.fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
+          <fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
             <legend style={{ ...sectionTitle, width: '100%' }}>How Did You Hear About XDGE?</legend>
 
             <div style={{ marginTop: 'clamp(20px, 2.4vw, 28px)' }}>
@@ -411,10 +411,10 @@ export function ApplyForm() {
                 onToggle={toggle('source')}
               />
             </div>
-          </motion.fieldset>
+          </fieldset>
 
           {/* Submit */}
-          <motion.div variants={fadeUp} style={{ paddingTop: 8 }}>
+          <div variants={fadeUp} style={{ paddingTop: 8 }}>
             <button
               type="submit"
               style={{
@@ -433,7 +433,7 @@ export function ApplyForm() {
               Submit Your Enquiry
               <span style={{ fontSize: 18, lineHeight: 1 }}>&rarr;</span>
             </button>
-          </motion.div>
+          </div>
         </Group>
       </form>
     </section>

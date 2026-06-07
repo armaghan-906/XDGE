@@ -1,20 +1,18 @@
 import { motion } from 'framer-motion';
 import { fadeUp, stagger } from '../../theme';
 
-// Fire reveals when section is just barely entering viewport (5-8%).
-// User sees content smoothly rising into place as they scroll into the
-// section — the motion is the point. Higher thresholds (20%+) made
-// reveals look like "things popping in late" once user already arrived.
-const REVEAL_VIEWPORT = { once: true, amount: 0.08 };
-const GROUP_VIEWPORT = { once: true, amount: 0.05 };
-
+/**
+ * Reveal — scroll-triggered fade-up with Framer Motion.
+ * Uses `once: true` so each element only animates in once (no re-trigger on scroll back).
+ * `amount: 0.15` means the animation fires when 15% of the element is in the viewport.
+ */
 export function Reveal({ children, variants = fadeUp, ...rest }) {
   return (
     <motion.div
       variants={variants}
       initial="hidden"
       whileInView="visible"
-      viewport={REVEAL_VIEWPORT}
+      viewport={{ once: true, amount: 0.15 }}
       {...rest}
     >
       {children}
@@ -28,7 +26,7 @@ export function Group({ children, ...rest }) {
       variants={stagger}
       initial="hidden"
       whileInView="visible"
-      viewport={GROUP_VIEWPORT}
+      viewport={{ once: true, amount: 0.1 }}
       {...rest}
     >
       {children}

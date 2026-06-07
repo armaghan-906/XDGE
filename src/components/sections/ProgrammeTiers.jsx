@@ -99,7 +99,7 @@ const tiers = [
 
 function ProgrammeCard({ card }) {
   return (
-    <motion.article
+    <article
       variants={fadeUp}
       className="xg-tier-card"
       data-cursor="grow"
@@ -122,7 +122,7 @@ function ProgrammeCard({ card }) {
         <img
           src={card.img}
           alt=""
-          loading="lazy"
+          loading="eager"
           decoding="async"
           style={{
             position: 'absolute',
@@ -173,7 +173,7 @@ function ProgrammeCard({ card }) {
           {card.desc}
         </p>
       </div>
-    </motion.article>
+    </article>
   );
 }
 
@@ -204,7 +204,7 @@ export function ProgrammeTiers() {
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         {tiers.map((tier, i) => (
           <div key={tier.heading}>
-            <motion.h3
+            <h3
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
@@ -221,7 +221,7 @@ export function ProgrammeTiers() {
               }}
             >
               {tier.heading}
-            </motion.h3>
+            </h3>
 
             <Group
               className="xg-3"

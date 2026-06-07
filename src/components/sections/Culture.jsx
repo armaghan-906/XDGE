@@ -22,14 +22,14 @@ export function Culture() {
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <Group className="xg-2" style={{ alignItems: 'flex-start', marginBottom: 'clamp(40px, 6vw, 64px)' }}>
           <div>
-            <motion.div
+            <div
               variants={fadeUp}
               style={{
                 fontSize: 12, letterSpacing: '0.16em',
                 textTransform: 'uppercase', color: '#7d7e7c',
                 marginBottom: 28, fontWeight: 600,
               }}
-            >(Considered vs Selected)</motion.div>
+            >(Considered vs Selected)</div>
             <SplitHeading
               lines={['OUR', 'CULTURE']}
               style={{
@@ -39,7 +39,7 @@ export function Culture() {
               }}
             />
           </div>
-          <motion.p
+          <p
             variants={fadeUp}
             style={{
               fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55,
@@ -49,11 +49,11 @@ export function Culture() {
           >
             Same grades. Different outcomes. Selection is shaped by what only
             stand-out applicants bring to the room.
-          </motion.p>
+          </p>
         </Group>
 
         <Group className="xg-2" style={{ gap: 24, marginBottom: 'clamp(48px, 7vw, 80px)' }}>
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               border: `1px solid ${theme.borderLight}`,
@@ -89,9 +89,9 @@ export function Culture() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               border: `1px solid ${theme.borderLight}`,
@@ -127,7 +127,7 @@ export function Culture() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </Group>
 
         <SplitHeading

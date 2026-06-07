@@ -25,10 +25,10 @@ export function WhoWeAre() {
                 borderRadius: 2, overflow: 'hidden', background: '#d8d6cf',
               }}
             >
-              <motion.img
+              <img
                 src="/assets/who-we-are.webp"
                 alt="XDGE coaching session"
-                loading="lazy"
+                loading="eager"
                 decoding="async"
                 style={{
                   position: 'absolute', inset: 0,

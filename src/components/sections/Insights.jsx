@@ -77,7 +77,7 @@ export function Insights() {
                 <motion.img
                   src={`/assets/new/pic-new-${i + 1}.webp`}
                   alt={p.title}
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}

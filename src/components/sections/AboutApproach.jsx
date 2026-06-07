@@ -24,7 +24,7 @@ export function AboutApproach() {
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(32px, 6vw, 80px)' }}>
-          <motion.div variants={fadeUp}>
+          <div variants={fadeUp}>
             <SplitHeading
               lines={['OUR', 'APPROACH']}
               style={{
@@ -33,9 +33,9 @@ export function AboutApproach() {
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               display: 'flex', flexDirection: 'column',
@@ -82,7 +82,7 @@ export function AboutApproach() {
                 >{d}</li>
               ))}
             </ul>
-          </motion.div>
+          </div>
         </Group>
       </div>
     </section>

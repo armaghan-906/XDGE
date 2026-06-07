@@ -60,7 +60,7 @@ export function StandardsExpectations() {
               }}
             />
           </div>
-          <motion.p
+          <p
             variants={fadeUp}
             style={{
               fontSize: 'clamp(15px, 1.6vw, 18px)', lineHeight: 1.55,
@@ -69,7 +69,7 @@ export function StandardsExpectations() {
           >
             This is a high-standard environment for individuals who are serious
             about what they care about and ready to build the leadership behind it.
-          </motion.p>
+          </p>
         </Group>
 
         <Group
@@ -80,7 +80,7 @@ export function StandardsExpectations() {
           }}
         >
           {items.map((it, i) => (
-            <motion.article
+            <article
               key={it.title}
               variants={cardVariants}
               whileHover={{ y: -4, borderColor: theme.ink }}
@@ -115,7 +115,7 @@ export function StandardsExpectations() {
                 margin: 0,
                 color: '#3a3c3e',
               }}>{it.desc}</p>
-            </motion.article>
+            </article>
           ))}
         </Group>
       </div>

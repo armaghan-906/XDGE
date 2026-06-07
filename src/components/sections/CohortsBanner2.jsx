@@ -18,7 +18,7 @@ export function CohortsBanner2() {
       <motion.img
         src="/assets/cohorts-banner-2.webp"
         alt=""
-        loading="lazy"
+        loading="eager"
         decoding="async"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}

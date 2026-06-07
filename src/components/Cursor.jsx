@@ -1,23 +1,23 @@
-import { useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
 const SIZE = 24;
 const INTERACTIVE = 'a, button, [role="button"], [data-cursor="grow"], input, textarea, select';
 
+// Plain-JS custom cursor — no framer-motion. Outer wrapper tracks mouse
+// position via direct transform updates (every mousemove). Inner element
+// handles the scale-on-hover/press state via React.
 export function Cursor() {
+  const wrapRef = useRef(null);
   const [hovering, setHovering] = useState(false);
   const [pressed, setPressed] = useState(false);
-  const x = useMotionValue(-100);
-  const y = useMotionValue(-100);
-  const sx = useSpring(x, { stiffness: 500, damping: 40, mass: 0.4 });
-  const sy = useSpring(y, { stiffness: 500, damping: 40, mass: 0.4 });
 
   useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
     const move = (e) => {
-      x.set(e.clientX);
-      y.set(e.clientY);
+      wrap.style.transform = `translate3d(${e.clientX - SIZE / 2}px, ${e.clientY - SIZE / 2}px, 0)`;
     };
-    const isInteractive = (el) => !!(el && el.closest && el.closest(INTERACTIVE));
+    const isInteractive = (target) => !!(target && target.closest && target.closest(INTERACTIVE));
     const over = (e) => { if (isInteractive(e.target)) setHovering(true); };
     const out = (e) => { if (isInteractive(e.target)) setHovering(false); };
     const down = () => setPressed(true);
@@ -35,25 +35,33 @@ export function Cursor() {
       document.removeEventListener('mousedown', down);
       document.removeEventListener('mouseup', up);
     };
-  }, [x, y]);
+  }, []);
 
+  const scale = pressed ? 0.8 : hovering ? 1.8 : 1;
   return (
-    <motion.div
-      className="xdge-cursor"
+    <div
+      ref={wrapRef}
+      aria-hidden="true"
       style={{
         position: 'fixed',
-        top: -SIZE / 2, left: -SIZE / 2,
-        x: sx, y: sy,
+        top: 0, left: 0,
         width: SIZE, height: SIZE,
-        borderRadius: '50%',
-        background: 'rgba(0,0,0,0.85)',
-        border: '1px solid rgba(255,255,255,0.6)',
         pointerEvents: 'none',
         zIndex: 9999,
+        transform: 'translate3d(-100px, -100px, 0)',
         willChange: 'transform',
       }}
-      animate={{ scale: pressed ? 0.8 : hovering ? 1.8 : 1 }}
-      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-    />
+    >
+      <div
+        className="xdge-cursor"
+        style={{
+          width: SIZE, height: SIZE,
+          borderRadius: '50%',
+          background: 'rgba(0,0,0,0.85)',
+          border: '1px solid rgba(255,255,255,0.6)',
+          transform: `scale(${scale})`,
+        }}
+      />
+    </div>
   );
 }

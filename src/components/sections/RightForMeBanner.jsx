@@ -15,15 +15,11 @@ export function RightForMeBanner() {
         padding: 'clamp(20px, 3vw, 48px) 0',
       }}
     >
-      <motion.img
+      <img
         src="/assets/right-for-me-banner.webp"
         alt=""
-        loading="lazy"
+        loading="eager"
         decoding="async"
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 1.2, ease: [0.2, 0.7, 0.2, 1] }}
         style={{
           width: '100%',
           height: 'auto',

@@ -19,7 +19,7 @@ export function ClosingCTA() {
           display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
           gap: 16, marginBottom: 'clamp(24px, 4vw, 40px)',
         }}>
-          <motion.div
+          <div
             initial={{ opacity: 0, scale: 0.92, y: 12 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -37,8 +37,8 @@ export function ClosingCTA() {
               alt=""
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
-          </motion.div>
-          <motion.div
+          </div>
+          <div
             initial={{ opacity: 0, scale: 0.92, y: 12 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -56,7 +56,7 @@ export function ClosingCTA() {
               alt=""
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
-          </motion.div>
+          </div>
         </div>
 
         <SplitHeading
@@ -71,7 +71,7 @@ export function ClosingCTA() {
         />
 
         <Group className="xg-2" style={{ alignItems: 'flex-end' }}>
-          <motion.p
+          <p
             variants={fadeUp}
             style={{
               fontSize: 'clamp(15px, 1.7vw, 18px)', lineHeight: 1.55,
@@ -80,15 +80,15 @@ export function ClosingCTA() {
           >
             Let's talk about your ambition and how we can help you operate
             at next level standard.
-          </motion.p>
-          <motion.div
+          </p>
+          <div
             variants={fadeUp}
             style={{
               justifySelf: 'end',
               display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center',
             }}
           >
-            <motion.a
+            <a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               href="#"
@@ -97,8 +97,8 @@ export function ClosingCTA() {
                 background: theme.base, color: theme.ink, borderRadius: 999,
                 textDecoration: 'none', fontSize: 14, fontWeight: 600, letterSpacing: '0.005em',
               }}
-            >Book A Call <span style={{ fontSize: 16 }}>→</span></motion.a>
-            <motion.a
+            >Book A Call <span style={{ fontSize: 16 }}>→</span></a>
+            <a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               href="#"
@@ -108,8 +108,8 @@ export function ClosingCTA() {
                 border: `1px solid ${theme.base}`,
                 textDecoration: 'none', fontSize: 14, fontWeight: 600, letterSpacing: '0.005em',
               }}
-            >Apply <span style={{ fontSize: 16 }}>→</span></motion.a>
-          </motion.div>
+            >Apply <span style={{ fontSize: 16 }}>→</span></a>
+          </div>
         </Group>
       </div>
     </section>

@@ -50,7 +50,7 @@ export function TheReality() {
             marginBottom: 'clamp(28px, 4vw, 44px)',
           }}
         >
-          <motion.div variants={fadeUp} style={{ textAlign: 'center' }}>
+          <div variants={fadeUp} style={{ textAlign: 'center' }}>
             <div style={{
               fontFamily: theme.display, fontWeight: 900,
               fontSize: 'clamp(40px, 5vw, 70px)',
@@ -66,9 +66,9 @@ export function TheReality() {
             }}>
               Top Colleges Admit only<br />5% of Applicants
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeUp} style={{ textAlign: 'center' }}>
+          <div variants={fadeUp} style={{ textAlign: 'center' }}>
             <div style={{
               fontFamily: theme.display, fontWeight: 900,
               fontSize: 'clamp(40px, 5vw, 70px)',
@@ -84,10 +84,10 @@ export function TheReality() {
             }}>
               Top employers interview only<br />3% of applicants.
             </p>
-          </motion.div>
+          </div>
         </Group>
 
-        <motion.div
+        <div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true, amount: 0.6 }}
@@ -119,19 +119,19 @@ export function TheReality() {
             whiteSpace: 'nowrap',
             marginBottom: 'clamp(40px, 6vw, 64px)',
           }}>
-            <motion.div variants={fadeUp} style={pillStyle}>Grades</motion.div>
-            <motion.div
+            <div variants={fadeUp} style={pillStyle}>Grades</div>
+            <div
               variants={fadeUp}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
                 fontSize: 'clamp(28px, 4vw, 56px)',
                 lineHeight: 1, color: theme.ink,
               }}
-            >+</motion.div>
-            <motion.div variants={fadeUp} style={pillStyle}>Your Stand Out Edge</motion.div>
+            >+</div>
+            <div variants={fadeUp} style={pillStyle}>Your Stand Out Edge</div>
           </div>
 
-          <motion.div
+          <div
             variants={fadeUp}
             style={{
               display: 'flex',
@@ -163,7 +163,7 @@ export function TheReality() {
               Grades get you considered.<br />
               Your Edge gets you chosen.
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

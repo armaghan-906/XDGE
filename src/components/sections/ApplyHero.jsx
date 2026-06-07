@@ -5,7 +5,7 @@ import { HeroAmbient } from '../HeroAmbient';
 function ApplyHeading() {
   const ease = [0.2, 0.7, 0.2, 1];
   return (
-    <motion.h1
+    <h1
       style={{
         fontFamily: theme.display, fontWeight: 900,
         fontSize: 'clamp(56px, 12vw, 200px)',
@@ -15,19 +15,19 @@ function ApplyHeading() {
         paddingBottom: '0.06em',
       }}
     >
-      <motion.span
+      <span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.0, ease, delay: 0.1 }}
         style={{ display: 'block' }}
-      >READY TO BUILD</motion.span>
-      <motion.span
+      >READY TO BUILD</span>
+      <span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.0, ease, delay: 0.22 }}
         style={{ display: 'block' }}
-      >YOUR EDGE?</motion.span>
-    </motion.h1>
+      >YOUR EDGE?</span>
+    </h1>
   );
 }
 
@@ -56,7 +56,7 @@ export function ApplyHero() {
 
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
           <div className="xg-hide-md" />
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.55 }}
@@ -73,7 +73,7 @@ export function ApplyHero() {
               Tell us a little about yourself and we&rsquo;ll help identify the
               right pathway for your goals, interests, and ambitions.
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
