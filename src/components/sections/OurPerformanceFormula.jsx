@@ -224,9 +224,9 @@ export function OurPerformanceFormula({ dark = false, diagramMaxWidth } = {}) {
             </motion.div>
           </div>
 
-          <motion.div variants={fadeUp}>
+          <div>
             <PerformanceDiagram dark={dark} maxWidth={diagramMaxWidth ?? 620} />
-          </motion.div>
+          </div>
         </Group>
       </div>
     </section>
