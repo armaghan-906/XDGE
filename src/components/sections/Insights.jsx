@@ -74,11 +74,15 @@ export function Insights() {
                 overflow: 'hidden',
                 background: theme.dark,
               }}>
-                <img
+                <motion.img
                   src={`/assets/new/pic-new-${i + 1}.webp`}
                   alt={p.title}
                   loading="eager"
                   decoding="async"
+                  variants={{
+                    hidden: { scale: 1.15 },
+                    visible: { scale: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
+                  }}
                   style={{
                     width: '100%', height: '100%',
                     objectFit: 'cover',

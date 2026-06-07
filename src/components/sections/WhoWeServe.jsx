@@ -37,21 +37,27 @@ function ServeCard({ card, index, hovered, onEnter, onLeave }) {
         aspectRatio: '4/3',
         background: '#0e0e0e',
       }}>
-        <motion.img
-          src={card.img}
-          alt={card.t}
-          loading="eager"
-          decoding="async"
-          animate={{ scale: isHovered ? 1.06 : 1 }}
-          transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%', height: '100%',
-            objectFit: 'cover',
-            willChange: 'transform',
+        <motion.div
+          variants={{
+            hidden: { scale: 1.15 },
+            visible: { scale: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
           }}
-        />
+          style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}
+        >
+          <motion.img
+            src={card.img}
+            alt={card.t}
+            loading="eager"
+            decoding="async"
+            animate={{ scale: isHovered ? 1.06 : 1 }}
+            transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
+            style={{
+              width: '100%', height: '100%',
+              objectFit: 'cover',
+              willChange: 'transform',
+            }}
+          />
+        </motion.div>
         <div style={{
           position: 'absolute', inset: 0,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
