@@ -69,13 +69,6 @@ const slides = [
   },
 ];
 
-const fadeEase = [0.2, 0.7, 0.2, 1];
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: fadeEase } },
-};
-
 function Bullets({ items, dark }) {
   return (
     <ul style={{
@@ -145,7 +138,7 @@ function Modal({ slide, onClose }) {
         initial={{ y: 40, opacity: 0, scale: 0.97 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
         exit={{ y: 20, opacity: 0, scale: 0.98 }}
-        transition={{ duration: 0.55, ease: fadeEase }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         onClick={(e) => e.stopPropagation()}
         style={{
           position: 'relative',
@@ -272,9 +265,9 @@ function Card({ slide, onOpen, dark }) {
 
   return (
     <motion.button
-      variants={cardVariants}
+      variants={fadeUp}
       whileHover={{ y: -6 }}
-      transition={{ duration: 0.3, ease: fadeEase }}
+      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
       onClick={onOpen}
       data-cursor="grow"
       style={{
@@ -382,7 +375,7 @@ export function DifferentAgesDifferentFocus() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, ease: fadeEase, delay: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           style={{
             fontSize: 'clamp(18px, 2vw, 24px)',
             lineHeight: 1.45,

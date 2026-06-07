@@ -40,5 +40,5 @@ export const fadeUp = {
 
 export const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.2, delayChildren: 0.1 } },
 };
