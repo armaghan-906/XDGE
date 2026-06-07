@@ -15,12 +15,12 @@ export default function TheExperience() {
       
         <ExperienceTopBanner />
         <WhatYouWillExperience />
-      </div>
+      
       <ExperienceJourney />
       
         <JourneyBanner />
         <IsThisRightForMe />
-      </div>
+      
       <StandardsExpectations />
       <RightForMeBanner />
       <DifferentAgesDifferentFocus />

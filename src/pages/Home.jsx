@@ -17,7 +17,7 @@ export default function Home() {
       
         <WhoWeAreBanner />
         <WhoWeServe />
-      </div>
+      
       <IsThisRightForMe />
       <WhoWeAre />
       <TheJourney />
@@ -27,7 +27,7 @@ export default function Home() {
       
         <InsightsBanner />
         <Insights />
-      </div>
+      
     </>
   );
 }

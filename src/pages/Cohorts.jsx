@@ -13,13 +13,13 @@ export default function Cohorts() {
       
         <CohortsBanner />
         <HowWeDeliver />
-      </div>
+      
       <IndividualProgramme />
       <CohortProgramme />
       
         <CohortsBanner2 />
         <ProgrammeFitCTA />
-      </div>
+      
     </>
   );
 }
