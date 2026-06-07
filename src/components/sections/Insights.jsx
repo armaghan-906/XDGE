@@ -74,15 +74,11 @@ export function Insights() {
                 overflow: 'hidden',
                 background: theme.dark,
               }}>
-                <motion.img
+                <img
                   src={`/assets/new/pic-new-${i + 1}.webp`}
                   alt={p.title}
                   loading="eager"
                   decoding="async"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 1.0, ease: [0.2, 0.7, 0.2, 1] }}
                   style={{
                     width: '100%', height: '100%',
                     objectFit: 'cover',
