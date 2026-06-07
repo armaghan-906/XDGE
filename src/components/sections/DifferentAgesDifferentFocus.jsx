@@ -128,8 +128,6 @@ function Modal({ slide, onClose }) {
       style={{
         position: 'fixed', inset: 0, zIndex: 100,
         background: 'radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.12) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 60%), rgba(0,0,0,0.88)',
-        backdropFilter: 'blur(8px) saturate(120%)',
-        WebkitBackdropFilter: 'blur(8px) saturate(120%)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         padding: 'clamp(16px, 4vw, 40px)',
       }}

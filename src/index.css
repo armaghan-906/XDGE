@@ -5,6 +5,11 @@ html, body {
   color: #FFFFFF;
   overscroll-behavior: none;
 }
+
+#root {
+  position: relative;
+  min-height: 100vh;
+}
 /* scroll-behavior: smooth REMOVED — it fights with active user scrolling,
    causing perceived "sticking" at section boundaries as the browser tries
    to animate to a position the user is already scrolling past. */

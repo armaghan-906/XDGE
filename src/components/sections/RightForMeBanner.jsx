@@ -4,7 +4,6 @@ import { theme } from '../../theme';
 export function RightForMeBanner() {
   return (
     <section
-      className="xg-stick-pin"
       data-screen-label="Right For Me Banner"
       data-section-theme="dark"
       style={{

@@ -22,10 +22,8 @@ export default function TheExperience() {
         <IsThisRightForMe />
       </div>
       <StandardsExpectations />
-      <div className="xg-stick-wrap">
-        <RightForMeBanner />
-        <DifferentAgesDifferentFocus />
-      </div>
+      <RightForMeBanner />
+      <DifferentAgesDifferentFocus />
     </>
   );
 }
