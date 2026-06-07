@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <div className="xg-stick-wrap">
+      
         <WhoWeAreBanner />
         <WhoWeServe />
       </div>
@@ -24,7 +24,7 @@ export default function Home() {
       <OurPerformanceFormula diagramMaxWidth={1400} />
       <WhatYouLeaveWith />
       <ProvenOutcomes />
-      <div className="xg-stick-wrap">
+      
         <InsightsBanner />
         <Insights />
       </div>

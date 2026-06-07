@@ -4,7 +4,7 @@ import { theme } from '../../theme';
 export function CohortsBanner2() {
   return (
     <section
-      className="xg-stick-pin"
+      
       data-screen-label="Cohorts Banner 2"
       data-section-theme="dark"
       style={{
