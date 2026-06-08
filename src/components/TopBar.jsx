@@ -211,7 +211,10 @@ export function TopBar() {
       <AnimatePresence>
         {open && (
           <motion.div key="menu-overlay"
-            
+            initial={{ y: '-100%' }}
+            animate={{ y: '0%' }}
+            exit={{ y: '-100%' }}
+            transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
             style={{
               position: 'fixed', inset: 0,
               background: theme.base,
