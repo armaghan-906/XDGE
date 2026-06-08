@@ -485,27 +485,19 @@ section[data-screen-label] { contain: none; }
   z-index: 1;
 }
 .xg-stick-wrap > .xg-stick-pin {
-  position: sticky;
-  top: 0;
+  position: relative;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1;
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
-  will-change: transform;
 }
 .xg-stick-wrap > .xg-stick-pin--natural {
-  position: sticky;
-  top: 0;
+  position: relative;
   height: auto;
   max-height: 100vh;
   display: block;
   z-index: 1;
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
-  will-change: transform;
 }
 .xg-stick-wrap > .xg-stick-pin img {
   width: 100%;

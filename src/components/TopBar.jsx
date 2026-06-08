@@ -90,39 +90,31 @@ export function TopBar() {
   }, [open]);
 
   // Detect which section's bg is currently behind the header band, switch colors accordingly.
-  // Throttled with rAF to avoid React re-renders on every scroll tick (was a major
-  // source of scroll jank — every setState during scroll forces a reconciliation pass).
+  // Using IntersectionObserver eliminates forced synchronous layout (layout thrashing) on scroll.
   const currentThemeRef = useRef(sectionTheme);
   useEffect(() => {
-    let rafId = 0;
-    const update = () => {
-      const probeY = 32;
-      const sections = document.querySelectorAll('[data-section-theme]');
-      let current = 'dark';
-      for (const sec of sections) {
-        const rect = sec.getBoundingClientRect();
-        if (rect.top <= probeY && rect.bottom > probeY) {
-          current = sec.getAttribute('data-section-theme') || 'dark';
-        }
+    const sections = document.querySelectorAll('[data-section-theme]');
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const current = entry.target.getAttribute('data-section-theme') || 'dark';
+            if (current !== currentThemeRef.current) {
+              currentThemeRef.current = current;
+              setSectionTheme(current);
+            }
+          }
+        });
+      },
+      { 
+        // Triggers when a section crosses the top 32px
+        rootMargin: '-32px 0px -99% 0px' 
       }
-      // Only trigger a React re-render if the theme actually changed
-      if (current !== currentThemeRef.current) {
-        currentThemeRef.current = current;
-        setSectionTheme(current);
-      }
-    };
-    update();
-    const onScroll = () => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(update);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', update);
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', update);
-    };
+    );
+
+    sections.forEach(s => observer.observe(s));
+    return () => observer.disconnect();
   }, []);
 
   const overCream = open || sectionTheme === 'light';

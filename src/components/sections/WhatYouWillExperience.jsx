@@ -54,7 +54,7 @@ export function WhatYouWillExperience() {
                 borderRadius: 2, overflow: 'hidden', background: '#d8d6cf',
               }}
             >
-              <img
+              <motion.img
                 src="/assets/what-you-experience.webp"
                 alt="XDGE active session"
                 loading="eager"
@@ -85,7 +85,7 @@ export function WhatYouWillExperience() {
           </div>
         </Group>
 
-        <div
+        <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true, amount: 0.6 }}

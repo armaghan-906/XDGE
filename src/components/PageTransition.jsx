@@ -1,6 +1,6 @@
 import { Suspense, useEffect } from 'react';
 import { useLocation, useOutlet } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export function PageTransition() {
   const { pathname } = useLocation();
@@ -12,15 +12,18 @@ export function PageTransition() {
   }, [pathname]);
 
   return (
-    <motion.div
-      key={pathname}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.35, ease: 'easeOut' }}
-    >
-      <Suspense fallback={<div style={{ minHeight: '100vh', background: '#000000' }} />}>
-        {outlet}
-      </Suspense>
-    </motion.div>
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={pathname}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.35, ease: 'easeOut' }}
+      >
+        <Suspense fallback={<div style={{ minHeight: '100vh', background: '#000000' }} />}>
+          {outlet}
+        </Suspense>
+      </motion.div>
+    </AnimatePresence>
   );
 }
