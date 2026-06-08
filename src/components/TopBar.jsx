@@ -208,14 +208,10 @@ export function TopBar() {
         </div>
       </header>
 
-      <>
+      <AnimatePresence>
         {open && (
-          <div
-            key="menu-overlay"
-            initial={{ y: '-100%' }}
-            animate={{ y: '0%' }}
-            exit={{ y: '-100%' }}
-            transition={{ duration: 0.85, ease: overlayEase }}
+          <motion.div key="menu-overlay"
+            
             style={{
               position: 'fixed', inset: 0,
               background: theme.base,
@@ -231,12 +227,7 @@ export function TopBar() {
                 display: 'flex', flexDirection: 'column',
                 justifyContent: 'space-between', gap: 32,
               }}>
-                <div
-                  initial={{ y: 28, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                  transition={{ duration: 0.85, delay: 0.4, ease: fadeEase }}
-                >
+                <div>
                   <div style={{
                     fontFamily: theme.display, fontWeight: 900,
                     fontSize: 'clamp(48px, 7vw, 110px)',
@@ -259,10 +250,6 @@ export function TopBar() {
 
                 <div
                   className="xg-menu-image"
-                  initial={{ y: 28, opacity: 0, scale: 1.05 }}
-                  animate={{ y: 0, opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                  transition={{ duration: 1.0, delay: 0.85, ease: fadeEase }}
                   style={{
                     width: '100%', maxWidth: 420,
                     aspectRatio: '16/9', overflow: 'hidden',
@@ -278,10 +265,8 @@ export function TopBar() {
               </div>
 
               <nav
-                variants={linkContainerVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
+                
+                
                 style={{
                   display: 'flex', flexDirection: 'column',
                   justifyContent: 'flex-end',
@@ -365,10 +350,8 @@ export function TopBar() {
                 textAlign: 'right',
               }}>
                 <nav
-                  variants={secondaryContainerVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
+                  
+                  
                   style={{
                     display: 'flex', flexDirection: 'column',
                     gap: 'clamp(2px, 0.4vw, 4px)',
@@ -404,12 +387,7 @@ export function TopBar() {
                   })}
                 </nav>
 
-                <div
-                  initial={{ y: 16, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                  transition={{ duration: 0.7, delay: 0.85, ease: fadeEase }}
-                >
+                <div>
                   <div style={{
                     fontSize: 11, letterSpacing: '0.16em',
                     textTransform: 'uppercase', color: '#7d7e7c',
@@ -439,9 +417,9 @@ export function TopBar() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
-      </>
+      </AnimatePresence>
     </>
   );
 }

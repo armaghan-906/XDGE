@@ -1,22 +1,29 @@
 import { Suspense, useEffect } from 'react';
 import { useLocation, useOutlet } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
-/**
- * PageTransition — animations DISABLED by user request.
- * Renders the routed outlet directly with no curtain wipe / crossfade.
- * Scroll resets to top on each navigation.
- */
 export function PageTransition() {
   const { pathname } = useLocation();
   const outlet = useOutlet();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Small delay to prevent scroll jump before unmount
+    setTimeout(() => { window.scrollTo(0, 0); }, 50);
   }, [pathname]);
 
   return (
-    <Suspense fallback={<div style={{ minHeight: '100vh', background: '#000000' }} />}>
-      {outlet}
-    </Suspense>
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={pathname}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, transition: { duration: 0.2 } }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+      >
+        <Suspense fallback={<div style={{ minHeight: '100vh', background: '#000000' }} />}>
+          {outlet}
+        </Suspense>
+      </motion.div>
+    </AnimatePresence>
   );
 }
