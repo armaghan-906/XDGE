@@ -8,10 +8,10 @@ export default function About() {
   return (
     <>
       <AboutHero />
-      
+      <div className="xg-stick-wrap">
         <AboutBanner />
         <AboutTeam />
-      
+      </div>
       <AboutPrinciples />
       <StepIntoNextLevel />
     </>

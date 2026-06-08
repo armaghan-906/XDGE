@@ -12,15 +12,15 @@ export default function TheExperience() {
   return (
     <>
       <ExperienceHero />
-      
+      <div className="xg-stick-wrap">
         <ExperienceTopBanner />
         <WhatYouWillExperience />
-      
+      </div>
       <ExperienceJourney />
-      
+      <div className="xg-stick-wrap">
         <JourneyBanner />
         <IsThisRightForMe />
-      
+      </div>
       <StandardsExpectations />
       <RightForMeBanner />
       <DifferentAgesDifferentFocus />

@@ -10,16 +10,16 @@ export default function Cohorts() {
   return (
     <>
       <CohortsHero />
-      
+      <div className="xg-stick-wrap">
         <CohortsBanner />
         <HowWeDeliver />
-      
+      </div>
       <IndividualProgramme />
       <CohortProgramme />
-      
+      <div className="xg-stick-wrap">
         <CohortsBanner2 />
         <ProgrammeFitCTA />
-      
+      </div>
     </>
   );
 }

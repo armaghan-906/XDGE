@@ -4,7 +4,7 @@ import { theme } from '../../theme';
 export function WhoWeAreBanner() {
   return (
     <section
-      
+      className="xg-stick-pin"
       data-screen-label="Who We Are Banner"
       data-section-theme="dark"
       style={{

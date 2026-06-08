@@ -4,7 +4,7 @@ import { theme } from '../../theme';
 export function InsightsBanner() {
   return (
     <section
-      
+      className="xg-stick-pin xg-stick-pin--natural"
       data-screen-label="Insights Banner"
       data-section-theme="dark"
       style={{

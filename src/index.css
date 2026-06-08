@@ -722,7 +722,7 @@ section[data-screen-label] { contain: none; }
   gap: 24px;
   padding-left: 24px;
   will-change: transform;
-  animation: xdge-marquee 60s linear infinite;
+  animation: xdge-marquee 20s linear infinite;
 }
 .xdge-marquee:hover { animation-play-state: paused; }
 
@@ -730,7 +730,7 @@ section[data-screen-label] { contain: none; }
 .xdge-footer-marquee {
   display: flex;
   white-space: nowrap;
-  animation: xdge-marquee 60s linear infinite;
+  animation: xdge-marquee 20s linear infinite;
 }
 
 /* ============================================================

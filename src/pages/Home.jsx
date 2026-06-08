@@ -14,20 +14,20 @@ export default function Home() {
   return (
     <>
       <Hero />
-      
+      <div className="xg-stick-wrap">
         <WhoWeAreBanner />
         <WhoWeServe />
-      
+      </div>
       <IsThisRightForMe />
       <WhoWeAre />
       <TheJourney />
       <OurPerformanceFormula diagramMaxWidth={1400} />
       <WhatYouLeaveWith />
       <ProvenOutcomes />
-      
+      <div className="xg-stick-wrap">
         <InsightsBanner />
         <Insights />
-      
+      </div>
     </>
   );
 }
