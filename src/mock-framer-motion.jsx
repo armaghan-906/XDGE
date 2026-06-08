@@ -3,37 +3,40 @@ import React from 'react';
 // A lightweight mock of framer-motion to completely eliminate scroll overhead,
 // layout thrashing, and animation flickering.
 
-export const motion = new Proxy({}, {
-  get: (_, tag) => {
-    return React.forwardRef((props, ref) => {
-      const { 
-        initial, animate, exit, variants, transition, whileHover, whileTap, whileInView, 
-        viewport, layout, layoutId, onViewportEnter, onViewportLeave, style,
-        ...rest 
-      } = props;
-      
-      // Strip any MotionValues from the style object
-      let cleanStyle = undefined;
-      if (style) {
-        cleanStyle = { ...style };
-        for (const key in cleanStyle) {
-          if (cleanStyle[key] && typeof cleanStyle[key].get === 'function') {
-            cleanStyle[key] = cleanStyle[key].get();
-          }
+const motionFactory = (tag) => {
+  return React.forwardRef((props, ref) => {
+    const { 
+      initial, animate, exit, variants, transition, whileHover, whileTap, whileInView, 
+      viewport, layout, layoutId, onViewportEnter, onViewportLeave, style,
+      ...rest 
+    } = props;
+    
+    // Strip any MotionValues from the style object
+    let cleanStyle = undefined;
+    if (style) {
+      cleanStyle = { ...style };
+      for (const key in cleanStyle) {
+        if (cleanStyle[key] && typeof cleanStyle[key].get === 'function') {
+          cleanStyle[key] = cleanStyle[key].get();
         }
       }
+    }
 
-      // Filter out any other custom motion props that React might complain about
-      const domProps = {};
-      for (const key in rest) {
-        if (!key.startsWith('onPan') && !key.startsWith('onHover') && !key.startsWith('onTap') && !key.startsWith('drag')) {
-          domProps[key] = rest[key];
-        }
+    // Filter out any other custom motion props that React might complain about
+    const domProps = {};
+    for (const key in rest) {
+      if (!key.startsWith('onPan') && !key.startsWith('onHover') && !key.startsWith('onTap') && !key.startsWith('drag')) {
+        domProps[key] = rest[key];
       }
+    }
 
-      return React.createElement(tag, { ref, style: cleanStyle, ...domProps });
-    });
-  }
+    return React.createElement(tag, { ref, style: cleanStyle, ...domProps });
+  });
+};
+
+export const motion = new Proxy(motionFactory, {
+  get: (_, tag) => motionFactory(tag),
+  apply: (_, __, args) => motionFactory(args[0])
 });
 
 export const AnimatePresence = ({ children }) => <>{children}</>;
