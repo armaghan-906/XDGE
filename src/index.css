@@ -722,7 +722,8 @@ section[data-screen-label] { contain: none; }
 .xdge-footer-marquee {
   display: flex;
   white-space: nowrap;
-  animation: xdge-marquee 20s linear infinite;
+  animation: xdge-marquee 50s linear infinite;
+  will-change: transform;
 }
 
 /* ============================================================

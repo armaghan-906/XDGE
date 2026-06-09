@@ -66,7 +66,7 @@ export function Hero() {
               margin: 'clamp(10px, 1.4vw, 18px) 0 0',
               fontFamily: theme.displayTight,
               fontWeight: 500,
-              fontSize: 'clamp(16px, 1.9vw, 26px)',
+              fontSize: 'clamp(18.5px, 2.2vw, 30px)',
               lineHeight: 1.3, letterSpacing: '-0.005em',
               color: theme.base,
               maxWidth: '36ch',
@@ -108,7 +108,7 @@ export function Hero() {
               margin: 0,
               fontWeight: 400,
             }}>
-              Professional Leadership Development Reengineered for Ages 12&ndash;24+
+              Build real-world experience, leadership capability, and professional skills that help you stand out in applications, interviews, and future opportunities.
             </p>
           </motion.div>
         </div>

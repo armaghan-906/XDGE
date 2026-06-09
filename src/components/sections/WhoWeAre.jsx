@@ -98,39 +98,40 @@ export function WhoWeAre() {
             variants={fadeUp}
             style={{
               display: 'flex', flexDirection: 'column',
-              gap: 'clamp(16px, 2vw, 22px)',
               alignItems: 'flex-end',
             }}
           >
-            <p style={{
-              fontSize: 'clamp(14px, 1.5vw, 16px)',
-              lineHeight: 1.6, margin: 0,
-              color: '#3a3c3e', maxWidth: 480,
+            <ul style={{
+              display: 'flex', flexDirection: 'column',
+              gap: 'clamp(12px, 1.5vw, 16px)',
+              margin: 0, padding: 0, listStyle: 'none',
+              maxWidth: 480, width: '100%',
             }}>
-              We bring the professional world to young people through meaningful,
-              high-challenge experiences modelled on elite professional leadership
-              development — carefully adapted to be supportive, empowering, and
-              relevant to the young people we serve.
-            </p>
-            <p style={{
-              fontSize: 'clamp(14px, 1.5vw, 16px)',
-              lineHeight: 1.6, margin: 0,
-              color: '#3a3c3e', maxWidth: 480,
-            }}>
-              Designed to develop the leader behind their ambition, our programmes
-              combine stretch, support, and real-world relevance to build mindset,
-              professional capability, and the personal edge that lasts far beyond
-              the programme.
-            </p>
-            <p style={{
-              fontSize: 'clamp(14px, 1.5vw, 16px)',
-              lineHeight: 1.6, margin: 0,
-              color: '#3a3c3e', maxWidth: 480,
-            }}>
-              From school entrance and university applications to internships,
-              careers, and early leadership development, we prepare young people
-              to stand out where it matters most.
-            </p>
+              {[
+                "Leadership Experts, University Professors, Senior Leaders, Investors, Entrepreneurs",
+                "All Masters or PhD Qualified",
+                "20+ Years of Senior Leadership Experience",
+                "Experience Across Multiple Industries Around The Globe",
+                "On a Mission to Give Young People the Practical Wisdom, Leadership Skills, and Competitive Edge We Wish We'd Had Sooner"
+              ].map((text, i) => (
+                <li
+                  key={i}
+                  style={{
+                    fontSize: 'clamp(14px, 1.5vw, 16px)',
+                    lineHeight: 1.5, color: '#3a3c3e',
+                    position: 'relative',
+                    paddingLeft: 24,
+                  }}
+                >
+                  <span style={{
+                    position: 'absolute', left: 0, top: '0.45em',
+                    width: 5, height: 5, borderRadius: '50%',
+                    background: theme.ink
+                  }} />
+                  {text}
+                </li>
+              ))}
+            </ul>
           </motion.div>
         </Group>
       </div>

@@ -104,10 +104,7 @@ export function AboutHero() {
               }}
             >
               XDGE was built to create those opportunities for young people
-              ages 12&ndash;24+. Through meaningful projects, expert leadership
-              coaching, and exposure to experienced professionals and leaders,
-              young people develop the confidence, professional skills, and
-              leadership capability to prepare for what comes next.
+              ages 12&ndash;24+.
             </p>
           </Group>
         </div>
