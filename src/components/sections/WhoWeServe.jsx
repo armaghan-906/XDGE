@@ -8,7 +8,7 @@ import { Magnetic } from '../Magnetic';
 const cards = [
   { year: 'The XDGE', t: 'Early Career & Professional Advantage', d: '', img: '/assets/graduates-card.webp' },
   { year: 'The XDGE', t: 'University Entry Edge', d: '', img: '/assets/serve-02.webp' },
-  { year: 'The XDGE', t: 'School Entry Edge', d: '', img: '/assets/serve-03.webp' },
+  { year: 'The XDGE', t: 'School Entry Edge', d: '', img: '/assets/school-entry-edge.png' },
   { year: 'The XDGE', t: 'Early Leadership Foundations', d: '', img: '/assets/serve-04.webp' },
 ];
 
