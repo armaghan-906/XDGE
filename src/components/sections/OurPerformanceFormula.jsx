@@ -198,7 +198,7 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
               lines={['OUR PERFORMANCE', 'FORMULA']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: '50px',
+                fontSize: '37px',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
                 marginBottom: 'clamp(20px, 3vw, 28px)',
               }}
