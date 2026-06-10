@@ -7,7 +7,7 @@ export function ClosingCTA() {
   return (
     <section data-screen-label="08 CTA" data-section-theme="dark" style={{
       background: theme.dark, color: theme.base,
-      padding: 'clamp(32px, 4vw, 40px) clamp(20px, 4vw, 40px) clamp(64px, 10vw, 120px)',
+      padding: 'clamp(32px, 4vw, 40px) clamp(20px, 4vw, 40px) clamp(120px, 15vw, 240px)',
     }}>
       <div style={{
         maxWidth: 1280, margin: '0 auto',

@@ -45,7 +45,7 @@ export function StandardsExpectations() {
       style={{
         background: theme.dark,
         color: theme.base,
-        padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(120px, 15vw, 240px) clamp(20px, 4vw, 40px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>

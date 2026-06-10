@@ -34,7 +34,7 @@ export function WhoItsFor() {
       data-section-theme="dark"
       style={{
         background: theme.dark, color: theme.base,
-        padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px) clamp(56px, 8vw, 100px)',
+        padding: 'clamp(120px, 15vw, 240px) clamp(20px, 4vw, 40px) clamp(56px, 8vw, 100px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>

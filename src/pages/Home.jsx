@@ -13,7 +13,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <DragWheelCarousel />
       <div className="xg-stick-wrap">
         <WhoWeServe />
       </div>
@@ -21,6 +20,7 @@ export default function Home() {
       <WhoWeAre />
       <TheJourney />
       <OurPerformanceFormula diagramMaxWidth={1400} />
+      <DragWheelCarousel />
       <WhatYouLeaveWith />
       <ProvenOutcomes />
       <div className="xg-stick-wrap">

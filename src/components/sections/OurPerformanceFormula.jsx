@@ -181,18 +181,18 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
         color: fg,
         position: 'relative',
         overflow: 'hidden',
-        padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(120px, 15vw, 240px) clamp(20px, 4vw, 40px)',
       }}
     >
       <FloatingVideo 
-        src="/assets/videos/simple_12.mp4" 
+        src="/assets/videos/lightning_1.mp4" 
         style={{ top: 120, left: 0, opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(1.2)' }} 
       />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
-        <Group className={`${diagramMaxWidth ? 'xg-perf-grid' : ''}`} style={{
+        <Group style={{
           display: 'flex', flexDirection: 'column',
           alignItems: 'flex-start',
-          gap: 'clamp(40px, 6vw, 80px)',
+          gap: 'clamp(64px, 10vw, 120px)',
         }}>
           <div>
             <SplitHeading

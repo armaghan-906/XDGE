@@ -206,12 +206,12 @@ export function ProvenOutcomes() {
         color: theme.base,
         position: 'relative',
         overflow: 'hidden',
-        padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(120px, 15vw, 240px) clamp(20px, 4vw, 40px)',
       }}
     >
       <FloatingVideo 
-        src="/assets/videos/gold_swirls.mp4" 
-        style={{ bottom: 80, left: 80 }} 
+        src="/assets/videos/lightning_2.mp4" 
+        style={{ bottom: 80, left: 80, opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(1.5)' }} 
       />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <Group style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 'clamp(40px, 6vw, 64px)', gap: 16 }}>

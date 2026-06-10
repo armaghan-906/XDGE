@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
@@ -12,13 +12,12 @@ const cards = [
   { year: 'The XDGE', t: 'Early Leadership Foundations', d: '', img: '/assets/serve-04.webp' },
 ];
 
-function ServeCard({ card, index, hovered, onEnter, onLeave }) {
-  const isHovered = hovered === index;
+function ServeCard({ card, hovered, onEnter, onLeave, style }) {
+  const isHovered = hovered;
 
   return (
     <motion.a
       href="#"
-      variants={fadeUp}
       data-cursor="grow"
       className="xg-glass-solid xg-tilt"
       onMouseEnter={onEnter}
@@ -29,6 +28,7 @@ function ServeCard({ card, index, hovered, onEnter, onLeave }) {
         display: 'flex', flexDirection: 'column',
         overflow: 'hidden',
         borderRadius: 4,
+        ...style,
       }}
     >
       <div style={{
@@ -42,6 +42,8 @@ function ServeCard({ card, index, hovered, onEnter, onLeave }) {
             hidden: { scale: 1.15 },
             visible: { scale: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
           }}
+          initial="hidden"
+          animate="visible"
           style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}
         >
           <motion.img
@@ -89,8 +91,8 @@ function ServeCard({ card, index, hovered, onEnter, onLeave }) {
         </div>
         <h3 style={{
           fontFamily: theme.display,
-          fontSize: 'clamp(28px, 3.6vw, 48px)',
-          lineHeight: 1.0,
+          fontSize: 'clamp(24px, 3vw, 36px)',
+          lineHeight: 1.05,
           margin: 0,
           letterSpacing: '-0.01em',
           fontWeight: 900,
@@ -128,10 +130,19 @@ function ServeCard({ card, index, hovered, onEnter, onLeave }) {
   );
 }
 
-import { VideoBackground } from '../primitives/VideoBackground';
+import { FloatingVideo } from '../primitives/FloatingVideo';
 
 export function WhoWeServe() {
-  const [hovered, setHovered] = useState(null);
+  const [hovered, setHovered] = useState(false);
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    // infinite loop with delay, doesn't pause on hover
+    const timer = setInterval(() => {
+      setIndex((i) => (i + 1) % cards.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [hovered]);
 
   return (
     <section data-screen-label="05 Who We Serve" data-section-theme="dark" style={{
@@ -140,6 +151,10 @@ export function WhoWeServe() {
       overflow: 'hidden',
       padding: 'clamp(64px, 7.5vw, 96px) clamp(20px, 4vw, 40px) clamp(56px, 6vw, 80px)',
     }}>
+      <FloatingVideo 
+        src="/assets/videos/smoke_shockwave.mp4" 
+        style={{ top: '25%', right: -40, opacity: 0.5, mixBlendMode: 'screen', transform: 'scale(1.5)' }} 
+      />
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <Group style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 'clamp(32px, 6vw, 56px)', gap: 16 }}>
           <div>
@@ -180,17 +195,45 @@ export function WhoWeServe() {
           </motion.div>
         </Group>
 
-        <Group className="xg-2" style={{ gap: 24 }}>
-          {cards.map((c, i) => (
-            <ServeCard
-              key={i}
-              card={c}
-              index={i}
-              hovered={hovered}
-              onEnter={() => setHovered(i)}
-              onLeave={() => setHovered(null)}
-            />
-          ))}
+        <Group style={{ width: '100%', maxWidth: 640, margin: '0 auto', position: 'relative' }}>
+          <div style={{ position: 'relative', minHeight: 'clamp(550px, 65vw, 800px)' }}>
+            <AnimatePresence>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.5, ease: [0.2, 0.7, 0.2, 1] }}
+                style={{ position: 'absolute', inset: 0 }}
+              >
+                <ServeCard
+                  card={cards[index]}
+                  hovered={hovered}
+                  onEnter={() => setHovered(true)}
+                  onLeave={() => setHovered(false)}
+                  style={{ width: '100%', height: '100%' }}
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+          
+          <div style={{
+            display: 'flex', gap: 8, justifyContent: 'center', marginTop: 32
+          }}>
+            {cards.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIndex(i)}
+                style={{
+                  width: 10, height: 10, borderRadius: '50%',
+                  background: i === index ? theme.base : 'rgba(255,255,255,0.2)',
+                  border: 'none', cursor: 'pointer',
+                  padding: 0,
+                  transition: 'background 0.3s ease',
+                }}
+              />
+            ))}
+          </div>
         </Group>
       </div>
     </section>

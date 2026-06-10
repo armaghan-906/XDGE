@@ -523,7 +523,7 @@ section[data-screen-label] { contain: none; }
 
 /* ── Responsive grid utilities ──────────────────────────── */
 .xg-2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 48px); }
-.xg-perf-grid { grid-template-columns: 1fr 1.8fr; }
+.xg-perf-grid { grid-template-columns: 0.8fr 2.2fr; align-items: flex-end; }
 @media (max-width: 900px) {
   .xg-perf-grid { grid-template-columns: 1fr; }
 }

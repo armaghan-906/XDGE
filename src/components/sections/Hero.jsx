@@ -76,42 +76,7 @@ export function Hero() {
           </motion.h4>
         </div>
 
-        <div className="xg-hero-body" style={{ alignItems: 'flex-end', marginTop: 'auto' }}>
-          <div className="xg-hide-md" />
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            style={{
-              display: 'flex', flexDirection: 'column',
-              gap: 'clamp(10px, 1.4vw, 16px)',
-              maxWidth: 520,
-            }}
-          >
-            <p style={{
-              fontFamily: theme.body,
-              fontSize: 'clamp(20px, 2.2vw, 30px)',
-              lineHeight: 1.2,
-              letterSpacing: '-0.005em',
-              color: theme.base,
-              margin: 0,
-              fontWeight: 500,
-              textAlign: 'left',
-            }}>
-              Build The Leader Behind What Inspires You.
-            </p>
-            <p style={{
-              fontFamily: theme.body,
-              fontSize: 'clamp(14px, 1.4vw, 17px)',
-              lineHeight: 1.45,
-              color: theme.subtitle,
-              margin: 0,
-              fontWeight: 400,
-            }}>
-              Build real-world experience, leadership capability, and professional skills that help you stand out in applications, interviews, and future opportunities.
-            </p>
-          </motion.div>
-        </div>
+
       </div>
     </section>
   );
