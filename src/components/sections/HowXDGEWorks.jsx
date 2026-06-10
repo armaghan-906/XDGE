@@ -80,7 +80,7 @@ export function HowXDGEWorks() {
           lines={['HOW XDGE', 'WORKS']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(48px, 12vw, 180px)',
+            fontSize: 'clamp(36px, 5.5vw, 86px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(24px, 4vw, 40px)',
           }}

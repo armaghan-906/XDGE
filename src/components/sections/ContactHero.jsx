@@ -8,7 +8,7 @@ function ContactHeading() {
     <h1
       style={{
         fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(64px, 14vw, 220px)',
+        fontSize: 'clamp(36px, 5.5vw, 106px)',
         lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
         overflow: 'hidden',
@@ -79,7 +79,7 @@ export function ContactHero() {
             style={{ maxWidth: 560 }}
           >
             <p style={{
-              fontFamily: '"Inter", "Inter Display", sans-serif',
+              fontFamily: theme.body,
               fontSize: 'clamp(16px, 1.6vw, 19px)',
               lineHeight: 1.5,
               color: theme.base,

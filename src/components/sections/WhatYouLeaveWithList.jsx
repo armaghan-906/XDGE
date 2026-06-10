@@ -69,7 +69,7 @@ export function WhatYouLeaveWithList() {
           lines={['WHAT YOU', 'LEAVE WITH.']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(64px, 13vw, 200px)',
+            fontSize: 'clamp(36px, 5.5vw, 96px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(48px, 7vw, 88px)',
           }}
@@ -90,7 +90,7 @@ export function WhatYouLeaveWithList() {
                   width: '100%',
                   aspectRatio: '1 / 1',
                   overflow: 'hidden',
-                  background: '#0e0e0e',
+                  background: '#000000',
                 }}>
                   <img
                     src={it.img}

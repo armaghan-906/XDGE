@@ -39,7 +39,7 @@ export function HowWeDeliver() {
           lines={['HOW WE', 'DELIVER']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(56px, 13vw, 200px)',
+            fontSize: 'clamp(36px, 5.5vw, 96px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(24px, 4vw, 36px)',
           }}
@@ -77,7 +77,7 @@ export function HowWeDeliver() {
                 width: '100%',
                 aspectRatio: '1 / 1',
                 overflow: 'hidden',
-                background: '#0e0e0e',
+                background: '#000000',
               }}>
                 <img
                   src={f.img}

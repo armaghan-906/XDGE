@@ -175,7 +175,7 @@ function Modal({ slide, onClose }) {
 
         <h2 style={{
           fontFamily: theme.display, fontWeight: 900,
-          fontSize: 'clamp(32px, 6vw, 88px)',
+          fontSize: 'clamp(32px, 5.5vw, 64px)',
           lineHeight: 0.95, letterSpacing: '-0.02em',
           margin: '0 0 clamp(24px, 4vw, 40px)',
           color: theme.base,
@@ -259,7 +259,7 @@ function Card({ slide, onOpen, dark }) {
   const subColor = dark ? theme.subtitle : theme.subtitle;
   const ctaColor = dark ? theme.base : theme.ink;
   const borderColor = dark ? theme.borderDark : 'rgba(0,0,0,0.2)';
-  const imgBg = dark ? theme.dark : '#0e0e0e';
+  const imgBg = dark ? theme.dark : '#000000';
 
   return (
     <motion.button
@@ -363,7 +363,7 @@ export function DifferentAgesDifferentFocus() {
           lines={['HOW DOES XDGE DIFFER', 'BY AGE AND OUTCOMES?']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(40px, 7vw, 110px)',
+            fontSize: 'clamp(36px, 5.5vw, 66px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(28px, 4vw, 40px)',
           }}

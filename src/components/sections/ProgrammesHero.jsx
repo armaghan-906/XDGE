@@ -8,7 +8,7 @@ function ProgrammesHeading() {
     <h1
       style={{
         fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(64px, 14vw, 220px)',
+        fontSize: 'clamp(36px, 5.5vw, 106px)',
         lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
         overflow: 'hidden',
@@ -83,7 +83,7 @@ export function ProgrammesHero() {
             }}
           >
             <p style={{
-              fontFamily: '"Inter", "Inter Display", sans-serif',
+              fontFamily: theme.body,
               fontSize: 'clamp(18px, 1.8vw, 22px)',
               lineHeight: 1.4,
               color: theme.base,

@@ -10,7 +10,7 @@ function HeroHeading() {
       transition={{ duration: 0.5, ease: [0.2, 0.7, 0.2, 1], delay: 0.1 }}
       style={{
         fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(100px, 26vw, 420px)',
+        fontSize: 'clamp(36px, 5.5vw, 120px)',
         lineHeight: 0.8, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
         paddingBottom: 0,
@@ -89,7 +89,7 @@ export function Hero() {
             }}
           >
             <p style={{
-              fontFamily: '"Inter", "Inter Display", "Inter Placeholder", sans-serif',
+              fontFamily: theme.body,
               fontSize: 'clamp(20px, 2.2vw, 30px)',
               lineHeight: 1.2,
               letterSpacing: '-0.005em',
@@ -101,7 +101,7 @@ export function Hero() {
               Build The Leader Behind What Inspires You.
             </p>
             <p style={{
-              fontFamily: '"Inter", "Inter Display", "Inter Placeholder", sans-serif',
+              fontFamily: theme.body,
               fontSize: 'clamp(14px, 1.4vw, 17px)',
               lineHeight: 1.45,
               color: theme.subtitle,

@@ -15,7 +15,7 @@ export function WhatWeDo() {
             <div
               style={{
                 width: '70%', maxWidth: 360, aspectRatio: '4/5',
-                borderRadius: 2, overflow: 'hidden', background: '#0e0e0e',
+                borderRadius: 2, overflow: 'hidden', background: '#000000',
               }}
             >
               <motion.img
@@ -33,7 +33,7 @@ export function WhatWeDo() {
             lines={['WHAT', 'WE DO']}
             style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(64px, 16vw, 260px)',
+              fontSize: 'clamp(36px, 5.5vw, 72px)',
               lineHeight: 0.92, letterSpacing: '-0.02em',
               textAlign: 'right',
             }}

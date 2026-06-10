@@ -30,7 +30,7 @@ export function WhoWeAre() {
               style={{
                 position: 'relative',
                 width: '100%', maxWidth: 900, aspectRatio: '16/9',
-                borderRadius: 2, overflow: 'hidden', background: '#0e0e0e',
+                borderRadius: 2, overflow: 'hidden', background: '#000000',
               }}
             >
               <motion.img
@@ -57,7 +57,7 @@ export function WhoWeAre() {
               lines={['WHO WE', 'ARE']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(56px, 11vw, 180px)',
+                fontSize: 'clamp(36px, 5.5vw, 108px)',
                 lineHeight: 0.92, letterSpacing: '-0.02em',
                 textAlign: 'right',
               }}

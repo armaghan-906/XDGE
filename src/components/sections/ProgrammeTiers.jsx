@@ -117,7 +117,7 @@ function ProgrammeCard({ card }) {
         width: '100%',
         aspectRatio: '1 / 1',
         overflow: 'hidden',
-        background: '#0e0e0e',
+        background: '#000000',
       }}>
         <img
           src={card.img}

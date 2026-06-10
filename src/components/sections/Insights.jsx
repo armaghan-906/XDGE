@@ -36,13 +36,13 @@ export function Insights() {
         style={{ top: 80, right: -40, opacity: 0.5, mixBlendMode: 'screen', transform: 'scale(1.5)' }} 
       />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
-        <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(32px, 6vw, 56px)' }}>
+        <Group style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 'clamp(32px, 6vw, 56px)', gap: 16 }}>
           <div>
             <SplitHeading
               lines={['INSIGHTS']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(56px, 14vw, 220px)',
+                fontSize: 'clamp(36px, 5.5vw, 72px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />
@@ -68,11 +68,12 @@ export function Insights() {
               key={i}
               href="#"
               variants={fadeUp}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.3 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              className="xg-glass-solid"
               style={{
                 display: 'block', textDecoration: 'none', color: theme.base,
-                border: `1px solid ${theme.borderDark}`, overflow: 'hidden',
+                overflow: 'hidden', borderRadius: 8,
               }}
             >
               <div style={{
@@ -80,7 +81,6 @@ export function Insights() {
                 width: '100%',
                 aspectRatio: '1/1',
                 overflow: 'hidden',
-                background: theme.dark,
               }}>
                 <motion.img
                   src={`/assets/new/pic-new-${i + 1}.webp`}
@@ -112,8 +112,8 @@ export function Insights() {
                 </div>
                 <h3 style={{
                   fontFamily: theme.body,
-                  fontSize: 'clamp(16px, 1.6vw, 19px)',
-                  lineHeight: 1.25,
+                  fontSize: 'clamp(15px, 1.4vw, 18px)',
+                  lineHeight: 1.35,
                   letterSpacing: '-0.005em',
                   margin: 0, fontWeight: 700,
                   color: theme.base,

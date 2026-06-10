@@ -44,14 +44,25 @@ export function WhatYouWillExperience() {
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <Group className="xg-wwd-top" style={{ alignItems: 'flex-start' }}>
-          <div variants={fadeUp} style={{ paddingTop: 8 }}>
+        <Group style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 'clamp(40px, 6vw, 64px)', gap: 32 }}>
+          <div variants={fadeUp} style={{ width: '100%' }}>
+            <SplitHeading
+              lines={['WHAT YOU WILL', 'EXPERIENCE']}
+              style={{
+                fontFamily: theme.display, fontWeight: 900,
+                fontSize: 'clamp(36px, 5.5vw, 102px)',
+                lineHeight: 0.92, letterSpacing: '-0.02em',
+                textAlign: 'left',
+              }}
+            />
+          </div>
+          <div variants={fadeUp} style={{ width: '100%', paddingTop: 16 }}>
             <div
               ref={imgRef}
               style={{
                 position: 'relative',
-                width: '100%', maxWidth: 700, aspectRatio: '16/9',
-                borderRadius: 2, overflow: 'hidden', background: '#0e0e0e',
+                width: '100%', aspectRatio: '16/9',
+                borderRadius: 4, overflow: 'hidden', background: '#000000',
               }}
             >
               <motion.img
@@ -71,17 +82,6 @@ export function WhatYouWillExperience() {
                 }}
               />
             </div>
-          </div>
-          <div variants={fadeUp}>
-            <SplitHeading
-              lines={['WHAT YOU WILL', 'EXPERIENCE']}
-              style={{
-                fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(48px, 11vw, 170px)',
-                lineHeight: 0.92, letterSpacing: '-0.02em',
-                textAlign: 'right',
-              }}
-            />
           </div>
         </Group>
 

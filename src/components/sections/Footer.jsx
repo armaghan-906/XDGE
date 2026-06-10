@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { theme } from '../../theme';
+import { Logo } from '../Logo';
 
 const companyLinks = [
   { label: 'Home', to: '/' },
@@ -81,7 +82,7 @@ export function Footer() {
           className="xdge-footer-marquee"
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(72px, 15vw, 220px)',
+            fontSize: 'clamp(36px, 5.5vw, 106px)',
             lineHeight: 0.95, letterSpacing: '-0.01em',
             color: theme.base,
           }}

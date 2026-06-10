@@ -189,8 +189,9 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
         style={{ top: 120, left: 0, opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(1.2)' }} 
       />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
-        <Group className={`xg-2 ${diagramMaxWidth ? 'xg-perf-grid' : ''}`} style={{
-          alignItems: 'center',
+        <Group className={`${diagramMaxWidth ? 'xg-perf-grid' : ''}`} style={{
+          display: 'flex', flexDirection: 'column',
+          alignItems: 'flex-start',
           gap: 'clamp(40px, 6vw, 80px)',
         }}>
           <div>
@@ -198,7 +199,7 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
               lines={['OUR PERFORMANCE', 'FORMULA']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(48px, 5vw, 140px)',
+                fontSize: 'clamp(36px, 5.5vw, 72px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
                 marginBottom: 'clamp(20px, 3vw, 28px)',
               }}
@@ -234,7 +235,7 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
             </motion.div>
           </div>
 
-          <div>
+          <div style={{ width: '100%' }}>
             <PerformanceDiagram dark={dark} maxWidth={diagramMaxWidth ?? 620} />
           </div>
         </Group>

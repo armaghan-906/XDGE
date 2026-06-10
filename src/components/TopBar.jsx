@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { theme } from '../theme';
+import { Logo } from './Logo';
 
 const MotionLink = motion(Link);
 
@@ -138,16 +139,13 @@ export function TopBar() {
           <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
             <Link
               to="/"
-              animate={{ color: fg, borderColor: fg }}
-              transition={{ duration: 0.3 }}
               style={{
-                width: 28, height: 28,
-                borderWidth: 1.5, borderStyle: 'solid',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: 'serif', fontSize: 14, flexShrink: 0,
-                lineHeight: 1, textDecoration: 'none',
+                textDecoration: 'none',
               }}
-            >X</Link>
+            >
+              <Logo style={{ fontSize: 28 }} />
+            </Link>
             <Link
               to="/"
               className="xg-hide-sm"
@@ -212,7 +210,7 @@ export function TopBar() {
               color: theme.base,
               zIndex: 1000,
               display: 'flex', flexDirection: 'column',
-              padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 48px) clamp(40px, 5vw, 56px)',
+              padding: 'clamp(96px, 9vw, 112px) clamp(20px, 4vw, 48px) clamp(40px, 5vw, 56px)',
               overflowY: 'auto',
             }}
           >
@@ -222,14 +220,13 @@ export function TopBar() {
                 justifyContent: 'space-between', gap: 32,
               }}>
                 <div>
-                  <div style={{
-                    fontFamily: theme.display, fontWeight: 900,
-                    fontSize: 'clamp(48px, 7vw, 110px)',
-                    lineHeight: 0.95, letterSpacing: '-0.02em',
-                    textTransform: 'uppercase',
-                    color: theme.base,
-                  }}>
-                    XDGE<span style={{ marginLeft: '0.05em' }}>.</span>
+                  <div style={{ paddingBottom: 16 }}>
+                    <Logo style={{ fontSize: 'clamp(36px, 5.3vw, 64px)' }} />
+                    <span style={{ 
+                      fontFamily: theme.display, fontWeight: 900,
+                      fontSize: 'clamp(36px, 5.3vw, 64px)', color: theme.base,
+                      marginLeft: '0.05em' 
+                    }}>.</span>
                   </div>
                   <div style={{
                     marginTop: 8,
@@ -247,7 +244,7 @@ export function TopBar() {
                   style={{
                     width: '100%', maxWidth: 420,
                     aspectRatio: '16/9', overflow: 'hidden',
-                    background: '#0e0e0e',
+                    background: '#000000',
                   }}
                 >
                   <img
@@ -271,7 +268,7 @@ export function TopBar() {
                   const parentStyle = {
                     display: 'block',
                     fontFamily: theme.display,
-                    fontSize: 'clamp(40px, 7.5vw, 110px)',
+                    fontSize: 'clamp(36px, 5.5vw, 64px)',
                     lineHeight: 0.95, letterSpacing: '-0.02em',
                     color: theme.base, textDecoration: 'none',
                     textTransform: 'uppercase',

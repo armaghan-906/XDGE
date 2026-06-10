@@ -9,7 +9,7 @@ function CohortsHeading({ y, opacity }) {
       style={{
         y, opacity,
         fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(56px, 14vw, 220px)',
+        fontSize: 'clamp(36px, 5.5vw, 106px)',
         lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
         overflow: 'hidden',

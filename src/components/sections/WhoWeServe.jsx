@@ -8,7 +8,7 @@ import { Magnetic } from '../Magnetic';
 const cards = [
   { year: 'The XDGE', t: 'Early Career & Professional Advantage', d: '', img: '/assets/graduates-card.webp' },
   { year: 'The XDGE', t: 'University Entry Edge', d: '', img: '/assets/serve-02.webp' },
-  { year: 'The XDGE', t: 'School Entry Edge', d: '', img: '/assets/school-entry-edge.png' },
+  { year: 'The XDGE', t: 'School Entry Edge', d: '', img: '/assets/school-entry-edge.jpg' },
   { year: 'The XDGE', t: 'Early Leadership Foundations', d: '', img: '/assets/serve-04.webp' },
 ];
 
@@ -35,7 +35,7 @@ function ServeCard({ card, index, hovered, onEnter, onLeave }) {
         position: 'relative',
         overflow: 'hidden',
         aspectRatio: '4/3',
-        background: '#0e0e0e',
+        background: '#000000',
       }}>
         <motion.div
           variants={{
@@ -138,16 +138,16 @@ export function WhoWeServe() {
       background: theme.dark, color: theme.base,
       position: 'relative',
       overflow: 'hidden',
-      padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px) clamp(56px, 8vw, 100px)',
+      padding: 'clamp(64px, 7.5vw, 96px) clamp(20px, 4vw, 40px) clamp(56px, 6vw, 80px)',
     }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(32px, 6vw, 56px)' }}>
+        <Group style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 'clamp(32px, 6vw, 56px)', gap: 16 }}>
           <div>
             <SplitHeading
               lines={['WHO IS', 'IT FOR']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(48px, 12vw, 180px)',
+                fontSize: 'clamp(36px, 5.5vw, 72px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />

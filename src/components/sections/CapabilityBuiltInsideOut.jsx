@@ -48,7 +48,7 @@ export function CapabilityBuiltInsideOut() {
               lines={['CAPABILITY', 'BUILT', 'INSIDE', 'OUT']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(56px, 7vw, 170px)',
+                fontSize: 'clamp(36px, 5.5vw, 102px)',
                 lineHeight: 0.92, letterSpacing: '-0.02em',
                 textAlign: 'right',
               }}

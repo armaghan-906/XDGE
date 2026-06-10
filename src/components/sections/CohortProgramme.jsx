@@ -58,7 +58,7 @@ export function CohortProgramme() {
           lines={['COHORT', 'PROGRAM', 'DELIVERY']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(56px, 12vw, 180px)',
+            fontSize: 'clamp(36px, 5.5vw, 86px)',
             lineHeight: 0.92, letterSpacing: '-0.02em',
             marginBottom: 'clamp(28px, 4vw, 40px)',
           }}

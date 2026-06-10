@@ -86,13 +86,13 @@ export function TheJourney() {
         style={{ top: 80, right: 80 }} 
       />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
-        <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(56px, 8vw, 96px)' }}>
+        <Group style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 'clamp(56px, 8vw, 96px)', gap: 16 }}>
           <div>
             <SplitHeading
               lines={['THE JOURNEY']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(56px, 14vw, 220px)',
+                fontSize: 'clamp(36px, 5.5vw, 72px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />
@@ -172,8 +172,8 @@ export function TheJourney() {
               <div key={i} className="xg-journey-label-cell">
                 <h3 style={{
                   fontFamily: theme.display, fontWeight: 700,
-                  fontSize: 'clamp(14px, 1.4vw, 17px)',
-                  lineHeight: 1.18, letterSpacing: '-0.005em',
+                  fontSize: 'clamp(12px, 1.2vw, 15px)',
+                  lineHeight: 1.2, letterSpacing: '-0.005em',
                   margin: '0 0 10px',
                   textTransform: 'uppercase',
                   color: theme.base,
@@ -206,8 +206,8 @@ export function TheJourney() {
                 <div>
                   <h3 style={{
                     fontFamily: theme.display, fontWeight: 700,
-                    fontSize: 17, lineHeight: 1.2, letterSpacing: '-0.005em',
-                    margin: '0 0 8px',
+                    fontSize: 15, lineHeight: 1.2, letterSpacing: '-0.005em',
+                    margin: '0 0 6px',
                     textTransform: 'uppercase',
                     color: theme.base,
                   }}>{s.title}</h3>

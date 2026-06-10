@@ -49,14 +49,15 @@ export function StandardsExpectations() {
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(40px, 6vw, 64px)' }}>
-          <div>
+        <Group style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 'clamp(40px, 6vw, 64px)', gap: 32 }}>
+          <div style={{ width: '100%' }}>
             <SplitHeading
               lines={['STANDARDS &', 'EXPECTATIONS']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(48px, 11vw, 170px)',
+                fontSize: 'clamp(36px, 5.5vw, 102px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
+                textAlign: 'left',
               }}
             />
           </div>
@@ -64,7 +65,7 @@ export function StandardsExpectations() {
             variants={fadeUp}
             style={{
               fontSize: 'clamp(15px, 1.6vw, 18px)', lineHeight: 1.55,
-              color: theme.base, margin: 0, paddingBottom: 24, maxWidth: 480,
+              color: theme.base, margin: 0, maxWidth: 800,
             }}
           >
             This is a high-standard environment for individuals who are serious

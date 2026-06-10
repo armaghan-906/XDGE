@@ -21,7 +21,7 @@ export function ProgrammeFitCTA() {
           lines={['DISCOVER HOW', 'WE ENSURE THE', 'RIGHT PROGRAMME', 'FIT.']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(48px, 10vw, 160px)',
+            fontSize: 'clamp(36px, 5.5vw, 96px)',
             lineHeight: 0.92, letterSpacing: '-0.02em',
             marginBottom: 'clamp(48px, 7vw, 88px)',
           }}
@@ -39,7 +39,7 @@ export function ProgrammeFitCTA() {
               <div style={{
                 width: 'clamp(120px, 14vw, 180px)',
                 aspectRatio: '1 / 1',
-                overflow: 'hidden', background: '#0e0e0e',
+                overflow: 'hidden', background: '#000000',
               }}>
                 <img
                   src="/assets/blog-02.webp"
@@ -57,7 +57,7 @@ export function ProgrammeFitCTA() {
               <div style={{
                 width: 'clamp(120px, 14vw, 180px)',
                 aspectRatio: '1 / 1',
-                overflow: 'hidden', background: '#0e0e0e',
+                overflow: 'hidden', background: '#000000',
               }}>
                 <img
                   src="/assets/blog-01.webp"

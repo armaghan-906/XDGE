@@ -194,6 +194,7 @@ export function ProvenOutcomes() {
 
   const variants = {
     enter: (dir) => ({ opacity: 0, y: dir > 0 ? 24 : -24 }),
+    center: { opacity: 1, y: 0 },
     exit: (dir) => ({ opacity: 0, y: dir > 0 ? -24 : 24 }),
   };
   return (
@@ -210,16 +211,16 @@ export function ProvenOutcomes() {
     >
       <FloatingVideo 
         src="/assets/videos/gold_swirls.mp4" 
-        style={{ top: 80, left: 80 }} 
+        style={{ bottom: 80, left: 80 }} 
       />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
-        <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(40px, 6vw, 64px)' }}>
+        <Group style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 'clamp(40px, 6vw, 64px)', gap: 16 }}>
           <div>
             <SplitHeading
               lines={['REVIEWS']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(48px, 12vw, 180px)',
+                fontSize: 'clamp(36px, 5.5vw, 72px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />
@@ -303,9 +304,9 @@ export function ProvenOutcomes() {
         </div>
 
         {/* Testimonial card */}
-        <div style={{ position: 'relative', minHeight: 'clamp(280px, 32vw, 380px)' }}>
-          <>
-            <div
+        <div style={{ position: 'relative', minHeight: 'clamp(320px, 40vw, 480px)' }}>
+          <AnimatePresence mode="wait">
+            <motion.div
               key={index}
               custom={direction}
               variants={variants}
@@ -316,8 +317,8 @@ export function ProvenOutcomes() {
               className="xg-outcomes-card"
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'minmax(180px, 240px) 1fr',
-                gap: 'clamp(24px, 5vw, 80px)',
+                gridTemplateColumns: 'minmax(140px, 200px) 1fr',
+                gap: 'clamp(16px, 4vw, 56px)',
                 alignItems: 'flex-start',
               }}
             >
@@ -355,8 +356,8 @@ export function ProvenOutcomes() {
                   {t.body}
                 </p>
               </div>
-            </div>
-          </>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

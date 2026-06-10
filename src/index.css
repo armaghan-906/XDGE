@@ -26,7 +26,7 @@ html, body {
    Both are now removed so FM handles reveal animations correctly.
    ────────────────────────────────────────────────────────────────────── */
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Outfit', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -218,6 +218,8 @@ section[data-screen-label^="01"] > div:not(.xg-hero-ambient) { position: relativ
 .xg-glass-solid {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 .xg-glass-light {
   background: rgba(255, 255, 255, 0.45);
@@ -463,8 +465,8 @@ section[data-screen-label] { contain: none; }
   transition-duration: 0.5s;
 }
 .xg-curtain-mark {
-  font-family: 'Oswald', 'Anton', Impact, sans-serif;
-  font-weight: 700;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
   text-transform: uppercase;
   color: #FFFFFF;
   font-size: clamp(48px, 9vw, 120px);
@@ -757,8 +759,8 @@ section[data-screen-label] { contain: none; }
   border: 1px solid #2A2A2A;
   border-radius: 100px;
   padding: 12px 22px;
-  font-family: 'Oswald', 'Anton', Impact, sans-serif;
-  font-weight: 600;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
   font-size: 13px;
   letter-spacing: 0.06em;
   text-transform: uppercase;

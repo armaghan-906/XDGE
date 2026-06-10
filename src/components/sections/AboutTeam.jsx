@@ -112,7 +112,7 @@ function Avatar({ src, alt }) {
       position: 'relative',
       width: '100%',
       aspectRatio: '1 / 1',
-      background: '#0e0e0e',
+      background: '#000000',
       overflow: 'hidden',
     }}>
       <img
@@ -147,7 +147,7 @@ export function AboutTeam() {
           lines={['THE TEAM']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(72px, 16vw, 240px)',
+            fontSize: 'clamp(36px, 5.5vw, 115px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(40px, 6vw, 72px)',
           }}

@@ -59,7 +59,7 @@ export function AboutPrinciples() {
           lines={['WHY XDGE', 'EXISTS']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(64px, 14vw, 220px)',
+            fontSize: 'clamp(36px, 5.5vw, 106px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(28px, 4vw, 40px)',
           }}
@@ -109,7 +109,7 @@ export function AboutPrinciples() {
             >
               <div className="xg-principle-num" style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(96px, 14vw, 220px)',
+                fontSize: 'clamp(36px, 5.5vw, 106px)',
                 lineHeight: 0.9, letterSpacing: '-0.03em',
                 color: theme.base,
               }}>{p.n}</div>
@@ -136,7 +136,7 @@ export function AboutPrinciples() {
                   width: '100%',
                   aspectRatio: '4 / 3',
                   overflow: 'hidden',
-                  background: '#0e0e0e',
+                  background: '#000000',
                 }}>
                   <img
                     src={p.img}

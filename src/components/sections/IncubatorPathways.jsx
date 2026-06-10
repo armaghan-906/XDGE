@@ -42,7 +42,7 @@ export function IncubatorPathways() {
               style={{
                 fontFamily: theme.displayTight,
                 fontWeight: 600,
-                fontSize: 'clamp(40px, 6.4vw, 88px)',
+                fontSize: 'clamp(36px, 5.5vw, 64px)',
                 lineHeight: 1.05,
                 letterSpacing: '-0.02em',
                 margin: 0,

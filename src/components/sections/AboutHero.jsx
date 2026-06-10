@@ -24,7 +24,7 @@ export function AboutHero() {
           lines={['ABOUT US']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(80px, 17vw, 260px)',
+            fontSize: 'clamp(36px, 5.5vw, 120px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(48px, 7vw, 80px)',
           }}
@@ -43,7 +43,7 @@ export function AboutHero() {
                   width: '100%',
                   aspectRatio: '4/5',
                   overflow: 'hidden',
-                  background: '#0e0e0e',
+                  background: '#000000',
                 }}
               >
                 <img

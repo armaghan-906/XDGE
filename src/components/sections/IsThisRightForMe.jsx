@@ -61,9 +61,11 @@ function Card({ group }) {
     <motion.article
       variants={fadeUp}
       className="xg-glass-solid"
+      whileHover={{ y: -8, scale: 1.02 }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
       style={{
         display: 'flex', flexDirection: 'column',
-        overflow: 'hidden',
+        overflow: 'hidden', borderRadius: 8,
       }}
     >
       <div style={{
@@ -71,7 +73,6 @@ function Card({ group }) {
         width: '100%',
         aspectRatio: '1/1',
         overflow: 'hidden',
-        background: theme.dark,
       }}>
         <motion.img
           src={group.img}
@@ -206,7 +207,7 @@ export function IsThisRightForMe() {
               lines={['IS THIS', 'RIGHT FOR ME']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(48px, 11vw, 170px)',
+                fontSize: 'clamp(36px, 5.5vw, 102px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />
