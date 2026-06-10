@@ -106,7 +106,7 @@ function ProgrammeCard({ card }) {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        background: theme.base,
+        background: theme.dark,
         border: `1px solid ${theme.borderLight}`,
         borderRadius: 4,
         overflow: 'hidden',
@@ -117,7 +117,7 @@ function ProgrammeCard({ card }) {
         width: '100%',
         aspectRatio: '1 / 1',
         overflow: 'hidden',
-        background: '#f3f3f1',
+        background: '#0e0e0e',
       }}>
         <img
           src={card.img}
@@ -146,7 +146,7 @@ function ProgrammeCard({ card }) {
           fontSize: 13,
           fontWeight: 700,
           letterSpacing: '0.04em',
-          color: theme.ink,
+          color: theme.base,
         }}>
           {card.duration}
         </div>
@@ -158,7 +158,7 @@ function ProgrammeCard({ card }) {
           lineHeight: 1.15,
           letterSpacing: '-0.01em',
           margin: 0,
-          color: theme.ink,
+          color: theme.base,
         }}>
           {card.title}
         </h4>
@@ -168,7 +168,7 @@ function ProgrammeCard({ card }) {
           fontSize: 'clamp(13px, 1.35vw, 15px)',
           lineHeight: 1.55,
           margin: 0,
-          color: '#5b5c5a',
+          color: theme.subtitle,
         }}>
           {card.desc}
         </p>
@@ -194,10 +194,10 @@ export function ProgrammeTiers() {
   return (
     <section
       data-screen-label="Programme Tiers"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base,
-        color: theme.ink,
+        background: theme.dark,
+        color: theme.base,
         padding: 'clamp(96px, 14vw, 180px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -216,7 +216,7 @@ export function ProgrammeTiers() {
                 lineHeight: 1.25,
                 letterSpacing: '-0.005em',
                 margin: '0 0 clamp(28px, 4vw, 40px)',
-                color: theme.ink,
+                color: theme.base,
                 maxWidth: '60ch',
               }}
             >

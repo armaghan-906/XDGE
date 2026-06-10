@@ -36,10 +36,10 @@ export function WhatYouWillExperience() {
   return (
     <section
       data-screen-label="What You Will Experience"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base,
-        color: theme.ink,
+        background: theme.dark,
+        color: theme.base,
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -51,7 +51,7 @@ export function WhatYouWillExperience() {
               style={{
                 position: 'relative',
                 width: '100%', maxWidth: 700, aspectRatio: '16/9',
-                borderRadius: 2, overflow: 'hidden', background: '#d8d6cf',
+                borderRadius: 2, overflow: 'hidden', background: '#0e0e0e',
               }}
             >
               <motion.img
@@ -91,7 +91,7 @@ export function WhatYouWillExperience() {
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 1.1, ease: [0.2, 0.7, 0.2, 1] }}
           style={{
-            height: 1, background: 'rgba(0,0,0,0.18)',
+            height: 1, background: 'rgba(255,255,255,0.18)',
             margin: 'clamp(48px, 7vw, 80px) 0 clamp(40px, 6vw, 56px)',
             transformOrigin: 'left',
           }}
@@ -115,7 +115,7 @@ export function WhatYouWillExperience() {
                   display: 'flex', alignItems: 'flex-start', gap: 14,
                   fontSize: 'clamp(15px, 1.6vw, 18px)',
                   lineHeight: 1.5,
-                  color: theme.ink,
+                  color: theme.base,
                 }}
               >
                 <span
@@ -143,7 +143,7 @@ export function WhatYouWillExperience() {
             <p style={{
               fontSize: 'clamp(15px, 1.6vw, 17px)',
               lineHeight: 1.6, margin: 0,
-              color: theme.ink,
+              color: theme.base,
               fontWeight: 500,
               maxWidth: 540,
             }}>

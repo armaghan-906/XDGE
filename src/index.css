@@ -61,9 +61,7 @@ section[data-section-theme="dark"][data-screen-label^="01"]::before {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(80% 60% at 50% 0%, rgba(255, 255, 255, 0.06), transparent 70%),
-    radial-gradient(60% 50% at 100% 100%, rgba(255, 255, 255, 0.04), transparent 70%);
+  /* background removed */
   pointer-events: none;
   z-index: 0;
 }
@@ -449,7 +447,7 @@ section[data-screen-label] { contain: none; }
   position: fixed;
   inset: 0;
   z-index: 1200;
-  background: #FFFFFF;
+  background: #000000;
   opacity: 0;
   pointer-events: none;
   display: grid;
@@ -468,7 +466,7 @@ section[data-screen-label] { contain: none; }
   font-family: 'Oswald', 'Anton', Impact, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
-  color: #000000;
+  color: #FFFFFF;
   font-size: clamp(48px, 9vw, 120px);
   letter-spacing: -0.02em;
   line-height: 1;

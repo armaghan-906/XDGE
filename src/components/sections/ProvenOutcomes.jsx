@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
@@ -165,6 +165,8 @@ const ArrowRight = (
   </svg>
 );
 
+import { FloatingVideo } from '../primitives/FloatingVideo';
+
 export function ProvenOutcomes() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -192,21 +194,25 @@ export function ProvenOutcomes() {
 
   const variants = {
     enter: (dir) => ({ opacity: 0, y: dir > 0 ? 24 : -24 }),
-    center: { opacity: 1, y: 0 },
     exit: (dir) => ({ opacity: 0, y: dir > 0 ? -24 : 24 }),
   };
-
   return (
     <section
       data-screen-label="Proven Outcomes"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base,
-        color: theme.ink,
+        background: theme.dark,
+        color: theme.base,
+        position: 'relative',
+        overflow: 'hidden',
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+      <FloatingVideo 
+        src="/assets/videos/gold_swirls.mp4" 
+        style={{ top: 80, left: 80 }} 
+      />
+      <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(40px, 6vw, 64px)' }}>
           <div>
             <SplitHeading
@@ -218,11 +224,11 @@ export function ProvenOutcomes() {
               }}
             />
           </div>
-          <div variants={fadeUp} style={{ paddingBottom: 24, color: '#3a3c3e' }}>
-            <p style={{ fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55, margin: '0 0 12px', color: theme.ink, fontWeight: 500 }}>
+          <div variants={fadeUp} style={{ paddingBottom: 24, color: theme.subtitle }}>
+            <p style={{ fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55, margin: '0 0 12px', color: theme.base, fontWeight: 500 }}>
               What Young People And Parents Say About XDGE
             </p>
-            <p style={{ fontSize: 14, lineHeight: 1.55, color: '#7d7e7c', margin: 0, maxWidth: 480 }}>
+            <p style={{ fontSize: 14, lineHeight: 1.55, color: theme.subtitle, margin: 0, maxWidth: 480 }}>
               Real experiences from participants and families who have built
               their next step advantage through XDGE.
             </p>
@@ -238,14 +244,14 @@ export function ProvenOutcomes() {
         }}>
           <div style={{
             fontSize: 13,
-            color: theme.ink,
+            color: theme.base,
             fontWeight: 600,
             letterSpacing: '0.04em',
             minWidth: 56,
           }}>
             {String(index + 1).padStart(2, '0')} - {String(total).padStart(2, '0')}
           </div>
-          <div style={{ flex: 1, height: 1, background: 'rgba(0,0,0,0.18)' }} />
+          <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,0.18)' }} />
           <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
             <button
               onClick={goPrev}
@@ -257,9 +263,9 @@ export function ProvenOutcomes() {
                 display: 'inline-flex', alignItems: 'center', gap: 14,
                 padding: '16px 28px',
                 borderRadius: 999,
-                border: `1px solid ${theme.ink}`,
+                border: `1px solid ${theme.base}`,
                 background: 'transparent',
-                color: theme.ink,
+                color: theme.base,
                 fontSize: 14, fontWeight: 600,
                 letterSpacing: '0.06em',
                 textTransform: 'uppercase',
@@ -281,8 +287,8 @@ export function ProvenOutcomes() {
                 padding: '16px 28px',
                 borderRadius: 999,
                 border: 'none',
-                background: theme.ink,
-                color: theme.base,
+                background: theme.base,
+                color: theme.ink,
                 fontSize: 14, fontWeight: 600,
                 letterSpacing: '0.06em',
                 textTransform: 'uppercase',
@@ -321,11 +327,11 @@ export function ProvenOutcomes() {
                   fontSize: 'clamp(28px, 3vw, 44px)',
                   lineHeight: 1, letterSpacing: '-0.01em',
                   margin: '0 0 10px',
-                  color: theme.ink,
+                  color: theme.base,
                 }}>{t.name}</h3>
                 <div style={{
                   fontSize: 13, lineHeight: 1.5,
-                  color: '#7d7e7c',
+                  color: theme.subtitle,
                 }}>{t.role}</div>
               </div>
 
@@ -335,14 +341,14 @@ export function ProvenOutcomes() {
                   fontSize: 'clamp(22px, 2.6vw, 36px)',
                   lineHeight: 1.18, letterSpacing: '-0.005em',
                   margin: '0 0 24px',
-                  color: theme.ink,
+                  color: theme.base,
                 }}>
                   {t.headline}
                 </h2>
                 <p style={{
                   fontSize: 'clamp(14px, 1.4vw, 16px)',
                   lineHeight: 1.65,
-                  color: '#3a3c3e',
+                  color: theme.subtitle,
                   margin: 0,
                   maxWidth: 640,
                 }}>

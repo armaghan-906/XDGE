@@ -78,7 +78,7 @@ export function DiscoveryMeeting() {
               width: '100%',
               borderRadius: 6,
               overflow: 'hidden',
-              background: '#fff',
+              background: '#0e0e0e',
               border: `1px solid ${theme.borderDark}`,
             }}
           >

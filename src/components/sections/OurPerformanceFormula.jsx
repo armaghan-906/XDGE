@@ -38,9 +38,9 @@ const Icons = {
   ),
 };
 
-export function PerformanceDiagram({ maxWidth = 620, dark = false } = {}) {
+export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
   const fg = dark ? theme.base : theme.ink;
-  const muted = dark ? theme.subtitle : '#7d7e7c';
+  const muted = dark ? theme.subtitle : theme.subtitle;
   return (
     <div style={{
       position: 'relative',
@@ -48,6 +48,8 @@ export function PerformanceDiagram({ maxWidth = 620, dark = false } = {}) {
       maxWidth,
       aspectRatio: '1/1',
       margin: '0 auto',
+      borderRadius: '50%',
+      overflow: 'hidden',
       background: 'radial-gradient(circle at center, rgba(110,150,200,0.16), rgba(255,255,255,0) 72%)',
     }}>
       {/* Outer ring */}
@@ -164,10 +166,12 @@ export function PerformanceDiagram({ maxWidth = 620, dark = false } = {}) {
   );
 }
 
-export function OurPerformanceFormula({ dark = false, diagramMaxWidth } = {}) {
+import { FloatingVideo } from '../primitives/FloatingVideo';
+
+export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
   const bg = dark ? theme.dark : theme.base;
   const fg = dark ? theme.base : theme.ink;
-  const muted = dark ? theme.subtitle : '#7d7e7c';
+  const muted = dark ? theme.subtitle : theme.subtitle;
   return (
     <section
       data-screen-label="Our Performance Formula"
@@ -175,10 +179,16 @@ export function OurPerformanceFormula({ dark = false, diagramMaxWidth } = {}) {
       style={{
         background: bg,
         color: fg,
+        position: 'relative',
+        overflow: 'hidden',
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+      <FloatingVideo 
+        src="/assets/videos/simple_12.mp4" 
+        style={{ top: 120, left: 0, opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(1.2)' }} 
+      />
+      <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <Group className={`xg-2 ${diagramMaxWidth ? 'xg-perf-grid' : ''}`} style={{
           alignItems: 'center',
           gap: 'clamp(40px, 6vw, 80px)',

@@ -41,10 +41,10 @@ export function StandardsExpectations() {
   return (
     <section
       data-screen-label="Standards & Expectations"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base,
-        color: theme.ink,
+        background: theme.dark,
+        color: theme.base,
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -64,7 +64,7 @@ export function StandardsExpectations() {
             variants={fadeUp}
             style={{
               fontSize: 'clamp(15px, 1.6vw, 18px)', lineHeight: 1.55,
-              color: theme.ink, margin: 0, paddingBottom: 24, maxWidth: 480,
+              color: theme.base, margin: 0, paddingBottom: 24, maxWidth: 480,
             }}
           >
             This is a high-standard environment for individuals who are serious
@@ -83,10 +83,10 @@ export function StandardsExpectations() {
             <article
               key={it.title}
               variants={cardVariants}
-              whileHover={{ y: -4, borderColor: theme.ink }}
+              whileHover={{ y: -4, borderColor: theme.base }}
               transition={{ duration: 0.3, ease: fadeEase }}
               style={{
-                background: 'rgba(255,255,255,0.35)',
+                background: 'rgba(255,255,255,0.08)',
                 border: '1px solid rgba(0,0,0,0.18)',
                 padding: 'clamp(24px, 3vw, 36px)',
                 display: 'flex', flexDirection: 'column',
@@ -99,7 +99,7 @@ export function StandardsExpectations() {
                 fontFamily: theme.display, fontWeight: 700,
                 fontSize: 12, letterSpacing: '0.14em',
                 textTransform: 'uppercase',
-                color: '#7d7e7c',
+                color: theme.subtitle,
               }}>{String(i + 1).padStart(2, '0')}</div>
               <h3 style={{
                 fontFamily: theme.display, fontWeight: 700,
@@ -107,13 +107,13 @@ export function StandardsExpectations() {
                 lineHeight: 1.1, letterSpacing: '-0.005em',
                 margin: 0,
                 textTransform: 'uppercase',
-                color: theme.ink,
+                color: theme.base,
               }}>{it.title}</h3>
               <p style={{
                 fontSize: 'clamp(13px, 1.4vw, 15px)',
                 lineHeight: 1.6,
                 margin: 0,
-                color: '#3a3c3e',
+                color: theme.subtitle,
               }}>{it.desc}</p>
             </article>
           ))}

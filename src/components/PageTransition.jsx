@@ -1,6 +1,7 @@
 import { Suspense, useEffect } from 'react';
 import { useLocation, useOutlet } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { theme } from '../theme';
 
 export function PageTransition() {
   const { pathname } = useLocation();
@@ -20,7 +21,7 @@ export function PageTransition() {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
       >
-        <Suspense fallback={<div style={{ minHeight: '100vh', background: '#000000' }} />}>
+        <Suspense fallback={<div style={{ minHeight: '100vh', background: theme.dark }} />}>
           {outlet}
         </Suspense>
       </motion.div>

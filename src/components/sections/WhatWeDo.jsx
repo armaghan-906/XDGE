@@ -5,8 +5,8 @@ import { SplitHeading } from '../primitives/SplitHeading';
 
 export function WhatWeDo() {
   return (
-    <section data-screen-label="02 What We Do" data-section-theme="light" style={{
-      background: theme.base, color: theme.ink,
+    <section data-screen-label="02 What We Do" data-section-theme="dark" style={{
+      background: theme.dark, color: theme.base,
       padding: 'clamp(56px, 9vw, 100px) clamp(20px, 4vw, 40px) clamp(64px, 10vw, 120px)',
     }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
@@ -15,7 +15,7 @@ export function WhatWeDo() {
             <div
               style={{
                 width: '70%', maxWidth: 360, aspectRatio: '4/5',
-                borderRadius: 2, overflow: 'hidden', background: '#d8d6cf',
+                borderRadius: 2, overflow: 'hidden', background: '#0e0e0e',
               }}
             >
               <motion.img
@@ -46,7 +46,7 @@ export function WhatWeDo() {
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 1.1, ease: [0.2, 0.7, 0.2, 1] }}
           style={{
-            height: 1, background: 'rgba(0,0,0,0.18)',
+            height: 1, background: 'rgba(255,255,255,0.18)',
             margin: '64px 0 48px', transformOrigin: 'left',
           }}
         />
@@ -59,7 +59,7 @@ export function WhatWeDo() {
             perform at the leadership standard expected at the next level.
           </motion.p>
           <motion.div variants={fadeUp} style={{ display: 'flex', flexDirection: 'column', gap: 32, alignItems: 'flex-end' }}>
-            <p style={{ fontSize: 13, lineHeight: 1.6, color: '#5a5b58', margin: 0, maxWidth: 360 }}>
+            <p style={{ fontSize: 13, lineHeight: 1.6, color: theme.subtitle, margin: 0, maxWidth: 360 }}>
               Through engaging, age-appropriate leadership training, every program mirrors
               real-world performance expectations. Participants build strong foundations in
               mindset, discipline, and behavioral leadership while developing the same tools
@@ -70,7 +70,7 @@ export function WhatWeDo() {
               href="#"
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 10,
-                color: theme.ink, textDecoration: 'none', fontSize: 14,
+                color: theme.base, textDecoration: 'none', fontSize: 14,
                 borderBottom: `1px solid ${theme.ink}`, paddingBottom: 4,
               }}
             >Xdge Programs</motion.a>

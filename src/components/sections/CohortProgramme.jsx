@@ -46,10 +46,10 @@ export function CohortProgramme() {
   return (
     <section
       data-screen-label="Cohort Program Delivery"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base,
-        color: theme.ink,
+        background: theme.dark,
+        color: theme.base,
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -72,7 +72,7 @@ export function CohortProgramme() {
           style={{
             fontSize: 'clamp(16px, 1.8vw, 20px)',
             lineHeight: 1.55,
-            color: theme.ink,
+            color: theme.base,
             margin: '0 0 clamp(56px, 8vw, 96px)',
             fontWeight: 500,
             letterSpacing: '-0.005em',
@@ -100,7 +100,7 @@ export function CohortProgramme() {
               lineHeight: 1, letterSpacing: '-0.02em',
               margin: 0,
               textTransform: 'uppercase',
-              color: theme.ink,
+              color: theme.base,
             }}>
               The Experience
             </h3>
@@ -141,12 +141,12 @@ export function CohortProgramme() {
                     fontSize: 'clamp(17px, 1.8vw, 20px)',
                     lineHeight: 1.25, letterSpacing: '-0.005em',
                     margin: '0 0 8px',
-                    color: theme.ink,
+                    color: theme.base,
                   }}>{it.title}</h4>
                   <p style={{
                     fontSize: 'clamp(14px, 1.5vw, 16px)',
                     lineHeight: 1.6, margin: 0,
-                    color: '#3a3c3e',
+                    color: theme.subtitle,
                   }}>{it.desc}</p>
                 </div>
               </motion.li>

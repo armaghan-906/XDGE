@@ -71,7 +71,7 @@ const secondaryContainerVariants = {
   exit: { transition: { staggerChildren: 0.03, staggerDirection: -1 } },
 };
 
-const GREY = '#7d7e7c';
+const GREY = theme.subtitle;
 const GREY_SUBTLE = '#9a9b97';
 
 export function TopBar() {
@@ -117,9 +117,8 @@ export function TopBar() {
     return () => observer.disconnect();
   }, []);
 
-  const overCream = open || sectionTheme === 'light';
-  const fg = overCream ? GREY : theme.base;
-  const fgSubtle = overCream ? GREY_SUBTLE : theme.subtitle;
+  const fg = theme.base;
+  const fgSubtle = theme.subtitle;
 
   return (
     <>
@@ -209,8 +208,8 @@ export function TopBar() {
             transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
             style={{
               position: 'fixed', inset: 0,
-              background: theme.base,
-              color: theme.ink,
+              background: theme.dark,
+              color: theme.base,
               zIndex: 1000,
               display: 'flex', flexDirection: 'column',
               padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 48px) clamp(40px, 5vw, 56px)',
@@ -228,7 +227,7 @@ export function TopBar() {
                     fontSize: 'clamp(48px, 7vw, 110px)',
                     lineHeight: 0.95, letterSpacing: '-0.02em',
                     textTransform: 'uppercase',
-                    color: theme.ink,
+                    color: theme.base,
                   }}>
                     XDGE<span style={{ marginLeft: '0.05em' }}>.</span>
                   </div>
@@ -237,7 +236,7 @@ export function TopBar() {
                     fontFamily: theme.body,
                     fontSize: 13, letterSpacing: '0.14em',
                     textTransform: 'uppercase',
-                    fontWeight: 600, color: theme.ink,
+                    fontWeight: 600, color: theme.base,
                   }}>
                     Career &middot; University &middot; School
                   </div>
@@ -248,7 +247,7 @@ export function TopBar() {
                   style={{
                     width: '100%', maxWidth: 420,
                     aspectRatio: '16/9', overflow: 'hidden',
-                    background: '#d8d6cf',
+                    background: '#0e0e0e',
                   }}
                 >
                   <img
@@ -274,7 +273,7 @@ export function TopBar() {
                     fontFamily: theme.display,
                     fontSize: 'clamp(40px, 7.5vw, 110px)',
                     lineHeight: 0.95, letterSpacing: '-0.02em',
-                    color: theme.ink, textDecoration: 'none',
+                    color: theme.base, textDecoration: 'none',
                     textTransform: 'uppercase',
                     fontWeight: 900,
                     whiteSpace: 'nowrap',
@@ -284,7 +283,7 @@ export function TopBar() {
                     fontFamily: theme.display,
                     fontSize: 'clamp(18px, 2.4vw, 30px)',
                     lineHeight: 1.1, letterSpacing: '-0.005em',
-                    color: theme.ink, textDecoration: 'none',
+                    color: theme.base, textDecoration: 'none',
                     textTransform: 'uppercase',
                     fontWeight: 700,
                   };
@@ -358,7 +357,7 @@ export function TopBar() {
                       fontFamily: theme.display,
                       fontSize: 'clamp(20px, 2.6vw, 38px)',
                       lineHeight: 1.05, letterSpacing: '-0.005em',
-                      color: theme.ink, textDecoration: 'none',
+                      color: theme.base, textDecoration: 'none',
                       textTransform: 'uppercase',
                       fontWeight: 900,
                     };
@@ -385,7 +384,7 @@ export function TopBar() {
                 <div>
                   <div style={{
                     fontSize: 11, letterSpacing: '0.16em',
-                    textTransform: 'uppercase', color: '#7d7e7c',
+                    textTransform: 'uppercase', color: theme.subtitle,
                     marginBottom: 12, fontWeight: 600,
                   }}>Follow Us</div>
                   <div style={{
@@ -404,7 +403,7 @@ export function TopBar() {
                           width: 36, height: 36, borderRadius: '50%',
                           border: `1px solid ${theme.borderLight}`,
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          color: theme.ink, textDecoration: 'none',
+                          color: theme.base, textDecoration: 'none',
                         }}
                       >{s.icon}</a>
                     ))}

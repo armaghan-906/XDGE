@@ -54,7 +54,7 @@ function Bio({ intro, more }) {
       <p style={{
         fontSize: 'clamp(14px, 1.5vw, 16px)',
         lineHeight: 1.65, margin: 0,
-        color: '#3a3c3e',
+        color: theme.subtitle,
       }}>{intro}</p>
 
       {more && (
@@ -69,7 +69,7 @@ function Bio({ intro, more }) {
               display: 'inline-flex', alignItems: 'center', gap: 8,
               padding: 0,
               background: 'transparent', border: 'none',
-              color: theme.ink,
+              color: theme.base,
               fontSize: 12, letterSpacing: '0.12em',
               textTransform: 'uppercase', fontWeight: 700,
               cursor: 'pointer',
@@ -95,7 +95,7 @@ function Bio({ intro, more }) {
                 <p style={{
                   fontSize: 'clamp(14px, 1.5vw, 16px)',
                   lineHeight: 1.65, margin: '12px 0 0',
-                  color: '#3a3c3e',
+                  color: theme.subtitle,
                 }}>{more}</p>
               </div>
             )}
@@ -135,10 +135,10 @@ export function AboutTeam() {
   return (
     <section
       data-screen-label="The Team"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base,
-        color: theme.ink,
+        background: theme.dark,
+        color: theme.base,
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -171,7 +171,7 @@ export function AboutTeam() {
                       fontFamily: theme.italic, fontStyle: 'italic',
                       fontSize: 'clamp(18px, 1.9vw, 22px)',
                       lineHeight: 1.4,
-                      color: theme.ink, margin: '0 0 clamp(24px, 3vw, 32px)',
+                      color: theme.base, margin: '0 0 clamp(24px, 3vw, 32px)',
                       fontWeight: 500,
                     }}>
                       Meet the XDGE core team — senior leaders dedicated to
@@ -179,7 +179,7 @@ export function AboutTeam() {
                     </p>
                     <div style={{
                       fontSize: 14, lineHeight: 1.7,
-                      color: '#3a3c3e',
+                      color: theme.subtitle,
                     }}>
                       <div>4 Core Experts</div>
                       <div>15+ Years senior leadership each</div>
@@ -202,10 +202,10 @@ export function AboutTeam() {
                   fontSize: 'clamp(20px, 2vw, 24px)',
                   lineHeight: 1.2, letterSpacing: '-0.005em',
                   margin: '0 0 6px',
-                  color: theme.ink,
+                  color: theme.base,
                 }}>{m.name}</h3>
                 <div style={{
-                  fontSize: 14, color: '#7d7e7c',
+                  fontSize: 14, color: theme.subtitle,
                   marginBottom: 'clamp(18px, 2.4vw, 24px)',
                   lineHeight: 1.4,
                 }}>{m.role} · {m.credential}</div>

@@ -12,10 +12,10 @@ export function Culture() {
   return (
     <section
       data-screen-label="04 Our Culture"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base,
-        color: theme.ink,
+        background: theme.dark,
+        color: theme.base,
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px) clamp(56px, 8vw, 100px)',
       }}
     >
@@ -26,7 +26,7 @@ export function Culture() {
               variants={fadeUp}
               style={{
                 fontSize: 12, letterSpacing: '0.16em',
-                textTransform: 'uppercase', color: '#7d7e7c',
+                textTransform: 'uppercase', color: theme.subtitle,
                 marginBottom: 28, fontWeight: 600,
               }}
             >(Considered vs Selected)</div>
@@ -44,7 +44,7 @@ export function Culture() {
             style={{
               fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55,
               margin: 0, paddingTop: 'clamp(0px, 4vw, 48px)',
-              color: '#3a3c3e', maxWidth: 480,
+              color: theme.subtitle, maxWidth: 480,
             }}
           >
             Same grades. Different outcomes. Selection is shaped by what only
@@ -78,7 +78,7 @@ export function Culture() {
                   style={{
                     display: 'flex', alignItems: 'center', gap: 14,
                     fontSize: 'clamp(15px, 1.7vw, 18px)',
-                    color: theme.ink,
+                    color: theme.base,
                   }}
                 >
                   <span style={{
@@ -116,7 +116,7 @@ export function Culture() {
                   style={{
                     display: 'flex', alignItems: 'center', gap: 14,
                     fontSize: 'clamp(15px, 1.7vw, 18px)',
-                    color: theme.ink,
+                    color: theme.base,
                   }}
                 >
                   <span style={{

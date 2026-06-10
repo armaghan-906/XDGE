@@ -22,7 +22,7 @@ const fieldLabel = {
   fontWeight: 700,
   letterSpacing: '0.16em',
   textTransform: 'uppercase',
-  color: '#5b5c5a',
+  color: theme.subtitle,
   marginBottom: 10,
   display: 'block',
 };
@@ -31,7 +31,7 @@ const fieldHint = {
   fontFamily: theme.body,
   fontSize: 12,
   fontWeight: 500,
-  color: '#8a8a87',
+  color: theme.subtitle,
   marginTop: 6,
 };
 
@@ -41,7 +41,7 @@ const inputBase = {
   background: 'transparent',
   border: 'none',
   borderBottom: '1px solid rgba(0,0,0,0.18)',
-  color: theme.ink,
+  color: theme.base,
   fontFamily: theme.body,
   fontSize: 16,
   outline: 'none',
@@ -57,7 +57,7 @@ const checkboxLabel = {
   cursor: 'pointer',
   fontFamily: theme.body,
   fontSize: 'clamp(14px, 1.4vw, 16px)',
-  color: theme.ink,
+  color: theme.base,
 };
 
 const checkboxBox = {
@@ -128,9 +128,9 @@ export function ContactForm() {
     return (
       <section
         data-screen-label="Contact Form"
-        data-section-theme="light"
+        data-section-theme="dark"
         style={{
-          background: theme.base, color: theme.ink,
+          background: theme.dark, color: theme.base,
           padding: 'clamp(96px, 14vw, 160px) clamp(20px, 4vw, 40px)',
         }}
       >
@@ -154,7 +154,7 @@ export function ContactForm() {
             transition={{ duration: 0.6, delay: 0.15, ease: [0.2, 0.7, 0.2, 1] }}
             style={{
               fontFamily: theme.body, fontSize: 17, lineHeight: 1.55,
-              color: '#5b5c5a', marginTop: 24,
+              color: theme.subtitle, marginTop: 24,
             }}
           >
             We&rsquo;ll be in touch shortly. If you&rsquo;d like to skip the queue,
@@ -168,9 +168,9 @@ export function ContactForm() {
   return (
     <section
       data-screen-label="Contact Form"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base, color: theme.ink,
+        background: theme.dark, color: theme.base,
         padding: 'clamp(72px, 11vw, 140px) clamp(20px, 4vw, 40px)',
       }}
     >

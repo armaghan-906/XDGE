@@ -100,6 +100,8 @@ const descVariants = {
   visible: { y: 0, opacity: 1, transition: { duration: 0.85, ease: fadeEase } },
 };
 
+import { FloatingVideo } from '../primitives/FloatingVideo';
+
 export function WhatYouLeaveWith() {
   return (
     <section
@@ -108,10 +110,16 @@ export function WhatYouLeaveWith() {
       style={{
         background: theme.dark,
         color: theme.base,
+        position: 'relative',
+        overflow: 'hidden',
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+      <FloatingVideo 
+        src="/assets/videos/thunder_1.mp4" 
+        style={{ top: '30%', right: 20, opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(1.3)' }} 
+      />
+      <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <SplitHeading
           lines={['WHAT YOU', 'LEAVE WITH']}
           style={{

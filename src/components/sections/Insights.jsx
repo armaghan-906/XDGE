@@ -21,13 +21,21 @@ const posts = [
   },
 ];
 
+import { FloatingVideo } from '../primitives/FloatingVideo';
+
 export function Insights() {
   return (
     <section data-screen-label="07 Insights" data-section-theme="dark" style={{
       background: theme.dark, color: theme.base,
+      position: 'relative',
+      overflow: 'hidden',
       padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px) clamp(56px, 8vw, 100px)',
     }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+      <FloatingVideo 
+        src="/assets/videos/elemental_5.mp4" 
+        style={{ top: 80, right: -40, opacity: 0.5, mixBlendMode: 'screen', transform: 'scale(1.5)' }} 
+      />
+      <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(32px, 6vw, 56px)' }}>
           <div>
             <SplitHeading

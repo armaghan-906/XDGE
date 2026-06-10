@@ -68,8 +68,8 @@ function ServeCard({ card, index, hovered, onEnter, onLeave }) {
             transition={{ duration: 0.4, ease: [0.2, 0.7, 0.2, 1] }}
             style={{
               padding: '10px 18px',
-              background: theme.base,
-              color: theme.ink,
+              background: theme.dark,
+              color: theme.base,
               borderRadius: 4,
               fontSize: 13, fontWeight: 500, letterSpacing: '0.02em',
               display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -128,12 +128,16 @@ function ServeCard({ card, index, hovered, onEnter, onLeave }) {
   );
 }
 
+import { VideoBackground } from '../primitives/VideoBackground';
+
 export function WhoWeServe() {
   const [hovered, setHovered] = useState(null);
 
   return (
     <section data-screen-label="05 Who We Serve" data-section-theme="dark" style={{
       background: theme.dark, color: theme.base,
+      position: 'relative',
+      overflow: 'hidden',
       padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px) clamp(56px, 8vw, 100px)',
     }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>

@@ -68,10 +68,10 @@ export function HowXDGEWorks() {
   return (
     <section
       data-screen-label="How XDGE Works"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base,
-        color: theme.ink,
+        background: theme.dark,
+        color: theme.base,
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -94,7 +94,7 @@ export function HowXDGEWorks() {
           style={{
             fontSize: 'clamp(20px, 2.4vw, 30px)',
             lineHeight: 1.4,
-            color: theme.ink,
+            color: theme.base,
             margin: '0 0 clamp(48px, 7vw, 88px)',
             fontWeight: 500,
             letterSpacing: '-0.005em',
@@ -129,7 +129,7 @@ export function HowXDGEWorks() {
                   lineHeight: 1.1, letterSpacing: '-0.005em',
                   margin: '0 0 clamp(12px, 1.5vw, 18px)',
                   textTransform: 'uppercase',
-                  color: theme.ink,
+                  color: theme.base,
                 }}
               >{s.title}</h3>
               <p
@@ -138,7 +138,7 @@ export function HowXDGEWorks() {
                   fontSize: 'clamp(14px, 1.5vw, 16px)',
                   lineHeight: 1.55,
                   margin: '0 0 8px',
-                  color: theme.ink,
+                  color: theme.base,
                   fontWeight: 500,
                 }}
               >{s.line1}</p>
@@ -148,7 +148,7 @@ export function HowXDGEWorks() {
                   fontSize: 'clamp(13px, 1.4vw, 15px)',
                   lineHeight: 1.55,
                   margin: 0,
-                  color: '#3a3c3e',
+                  color: theme.subtitle,
                 }}
               >{s.line2}</p>
             </div>

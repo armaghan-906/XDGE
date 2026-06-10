@@ -14,10 +14,11 @@ export function AboutHero() {
       data-section-theme="dark"
       style={{
         background: theme.dark, color: theme.base,
+        position: 'relative', overflow: 'hidden',
         padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(80px, 10vw, 120px)',
       }}
     >
-      <HeroAmbient />
+      <HeroAmbient src="/assets/videos/sparks.mp4" />
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <SplitHeading
           lines={['ABOUT US']}

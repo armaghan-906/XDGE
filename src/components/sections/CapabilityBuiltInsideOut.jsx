@@ -10,10 +10,10 @@ export function CapabilityBuiltInsideOut() {
   return (
     <section
       data-screen-label="Capability Built Inside Out"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base,
-        color: theme.ink,
+        background: theme.dark,
+        color: theme.base,
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -57,7 +57,7 @@ export function CapabilityBuiltInsideOut() {
         </div>
 
         <div style={{
-          height: 1, background: 'rgba(0,0,0,0.18)',
+          height: 1, background: 'rgba(255,255,255,0.18)',
           marginBottom: 'clamp(40px, 6vw, 64px)',
         }} />
 
@@ -76,7 +76,7 @@ export function CapabilityBuiltInsideOut() {
               fontSize: 'clamp(18px, 2vw, 24px)',
               lineHeight: 1.35,
               letterSpacing: '-0.005em',
-              color: theme.ink,
+              color: theme.base,
               maxWidth: 480,
             }}>
               <div>Our thinking shapes our behaviours.</div>
@@ -96,7 +96,7 @@ export function CapabilityBuiltInsideOut() {
             <p style={{
               fontSize: 'clamp(15px, 1.6vw, 17px)',
               lineHeight: 1.6, margin: 0,
-              color: '#3a3c3e',
+              color: theme.subtitle,
             }}>
               Most people try to improve performance by focusing on what they do.
               Real performance is built by strengthening how you think, behave,
@@ -105,7 +105,7 @@ export function CapabilityBuiltInsideOut() {
             <p style={{
               fontSize: 'clamp(15px, 1.6vw, 17px)',
               lineHeight: 1.6, margin: 0,
-              color: '#3a3c3e',
+              color: theme.subtitle,
             }}>
               When these three layers are aligned, you operate with clarity,
               consistency, and control. This is what allows you to perform at
@@ -114,7 +114,7 @@ export function CapabilityBuiltInsideOut() {
             <p style={{
               fontSize: 'clamp(15px, 1.6vw, 17px)',
               lineHeight: 1.6, margin: 0,
-              color: theme.ink, fontWeight: 500,
+              color: theme.base, fontWeight: 500,
             }}>
               This is the framework we use across every XDGE programme to
               develop how you think, act, and perform.
@@ -131,7 +131,7 @@ export function CapabilityBuiltInsideOut() {
                 display: 'inline-flex', alignItems: 'center', gap: 10,
                 padding: '14px 24px',
                 border: `1px solid ${theme.ink}`,
-                color: theme.ink, textDecoration: 'none',
+                color: theme.base, textDecoration: 'none',
                 fontSize: 13, letterSpacing: '0.08em',
                 textTransform: 'uppercase', fontWeight: 600,
               }}

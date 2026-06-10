@@ -94,7 +94,7 @@ export function ClosingCTA() {
               href="#"
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 12, padding: '18px 30px',
-                background: theme.base, color: theme.ink, borderRadius: 999,
+                background: theme.dark, color: theme.base, borderRadius: 999,
                 textDecoration: 'none', fontSize: 14, fontWeight: 600, letterSpacing: '0.005em',
               }}
             >Book A Call <span style={{ fontSize: 16 }}>→</span></a>

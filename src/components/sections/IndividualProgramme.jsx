@@ -131,7 +131,7 @@ export function IndividualProgramme() {
                   style={{
                     flexShrink: 0,
                     width: 10, height: 10,
-                    background: theme.base,
+                    background: theme.dark,
                     marginTop: 8,
                   }}
                 />

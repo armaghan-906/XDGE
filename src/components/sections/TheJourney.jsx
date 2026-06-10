@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useRef, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
@@ -65,6 +66,8 @@ const steps = [
 
 const fadeEase = [0.2, 0.7, 0.2, 1];
 
+import { FloatingVideo } from '../primitives/FloatingVideo';
+
 export function TheJourney() {
   return (
     <section
@@ -73,10 +76,16 @@ export function TheJourney() {
       style={{
         background: theme.dark,
         color: theme.base,
+        position: 'relative',
+        overflow: 'hidden',
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+      <FloatingVideo 
+        src="/assets/videos/snow.mp4" 
+        style={{ top: 80, right: 80 }} 
+      />
+      <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(56px, 8vw, 96px)' }}>
           <div>
             <SplitHeading
@@ -144,10 +153,10 @@ export function TheJourney() {
                 >
                   <div style={{
                     width: 56, height: 56, borderRadius: '50%',
-                    background: theme.base,
+                    background: theme.dark,
                     border: `1px solid ${theme.base}`,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: theme.ink,
+                    color: theme.base,
                     flexShrink: 0,
                     boxShadow: '0 4px 14px rgba(0,0,0,0.25)',
                   }}>
@@ -187,9 +196,9 @@ export function TheJourney() {
               >
                 <div style={{
                   width: 52, height: 52, borderRadius: '50%',
-                  background: theme.base,
+                  background: theme.dark,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: theme.ink,
+                  color: theme.base,
                   flexShrink: 0,
                 }}>
                   {s.icon}

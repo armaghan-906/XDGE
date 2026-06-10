@@ -3,18 +3,26 @@ import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
+import { FloatingVideo } from '../primitives/FloatingVideo';
+
 export function WhoWeAre() {
   return (
     <section
       data-screen-label="Who We Are"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base,
-        color: theme.ink,
+        background: theme.dark,
+        color: theme.base,
+        position: 'relative',
+        overflow: 'hidden',
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+      <FloatingVideo 
+        src="/assets/videos/elemental_1.mp4" 
+        style={{ bottom: 80, left: -40, opacity: 0.5, mixBlendMode: 'screen', transform: 'scale(1.5)' }} 
+      />
+      <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         {/* Top row: image (left) + huge heading (right) */}
         <Group className="xg-wwd-top" style={{ alignItems: 'flex-start' }}>
           <motion.div variants={fadeUp} style={{ paddingTop: 8 }}>
@@ -22,7 +30,7 @@ export function WhoWeAre() {
               style={{
                 position: 'relative',
                 width: '100%', maxWidth: 900, aspectRatio: '16/9',
-                borderRadius: 2, overflow: 'hidden', background: '#d8d6cf',
+                borderRadius: 2, overflow: 'hidden', background: '#0e0e0e',
               }}
             >
               <motion.img
@@ -64,7 +72,7 @@ export function WhoWeAre() {
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 1.1, ease: [0.2, 0.7, 0.2, 1] }}
           style={{
-            height: 1, background: 'rgba(0,0,0,0.18)',
+            height: 1, background: 'rgba(255,255,255,0.18)',
             margin: 'clamp(48px, 7vw, 80px) 0 clamp(40px, 6vw, 56px)',
             transformOrigin: 'left',
           }}
@@ -81,7 +89,7 @@ export function WhoWeAre() {
               fontStyle: 'italic',
               fontSize: 'clamp(18px, 2vw, 24px)',
               lineHeight: 1.45,
-              color: theme.ink,
+              color: theme.base,
               maxWidth: 600,
             }}
           >
@@ -118,7 +126,7 @@ export function WhoWeAre() {
                   key={i}
                   style={{
                     fontSize: 'clamp(14px, 1.5vw, 16px)',
-                    lineHeight: 1.5, color: '#3a3c3e',
+                    lineHeight: 1.5, color: theme.subtitle,
                     position: 'relative',
                     paddingLeft: 24,
                   }}

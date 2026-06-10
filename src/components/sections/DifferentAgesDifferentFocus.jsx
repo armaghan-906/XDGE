@@ -82,7 +82,7 @@ function Bullets({ items, dark }) {
             display: 'flex', alignItems: 'flex-start', gap: 12,
             fontSize: 'clamp(13px, 1.4vw, 15px)',
             lineHeight: 1.55,
-            color: dark ? theme.subtitle : '#3a3c3e',
+            color: dark ? theme.subtitle : theme.subtitle,
           }}
         >
           <span aria-hidden style={{
@@ -140,8 +140,8 @@ function Modal({ slide, onClose }) {
         onClick={(e) => e.stopPropagation()}
         style={{
           position: 'relative',
-          background: theme.base,
-          color: theme.ink,
+          background: theme.dark,
+          color: theme.base,
           maxWidth: 1100, width: '100%',
           boxShadow: '0 60px 120px -30px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05)',
           maxHeight: '90vh', overflowY: 'auto',
@@ -158,7 +158,7 @@ function Modal({ slide, onClose }) {
             right: 'clamp(16px, 2vw, 24px)',
             width: 44, height: 44, borderRadius: '50%',
             border: '1px solid rgba(0,0,0,0.2)',
-            background: 'transparent', color: theme.ink,
+            background: 'transparent', color: theme.base,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             cursor: 'pointer',
           }}
@@ -167,7 +167,7 @@ function Modal({ slide, onClose }) {
         <div style={{
           fontSize: 11, letterSpacing: '0.18em',
           textTransform: 'uppercase',
-          color: '#7d7e7c', fontWeight: 700,
+          color: theme.subtitle, fontWeight: 700,
           marginBottom: 18,
         }}>
           {slide.age} · {slide.eyebrow}
@@ -178,7 +178,7 @@ function Modal({ slide, onClose }) {
           fontSize: 'clamp(32px, 6vw, 88px)',
           lineHeight: 0.95, letterSpacing: '-0.02em',
           margin: '0 0 clamp(24px, 4vw, 40px)',
-          color: theme.ink,
+          color: theme.base,
           textTransform: 'uppercase',
         }}>
           {slide.headlineLines.map((l) => (<span key={l} style={{ display: 'block' }}>{l}</span>))}
@@ -194,7 +194,7 @@ function Modal({ slide, onClose }) {
             <p style={{
               fontSize: 'clamp(15px, 1.6vw, 18px)',
               lineHeight: 1.55,
-              color: theme.ink,
+              color: theme.base,
               margin: '0 0 clamp(24px, 3vw, 36px)',
               fontWeight: 500,
               maxWidth: 560,
@@ -209,7 +209,7 @@ function Modal({ slide, onClose }) {
                 <div style={{
                   fontSize: 11, letterSpacing: '0.16em',
                   textTransform: 'uppercase',
-                  color: '#7d7e7c',
+                  color: theme.subtitle,
                   marginBottom: 14, fontWeight: 700,
                 }}>Experience</div>
                 <Bullets items={slide.experience} />
@@ -218,7 +218,7 @@ function Modal({ slide, onClose }) {
                 <div style={{
                   fontSize: 11, letterSpacing: '0.16em',
                   textTransform: 'uppercase',
-                  color: '#7d7e7c',
+                  color: theme.subtitle,
                   marginBottom: 14, fontWeight: 700,
                 }}>Project Application</div>
                 <Bullets items={slide.project} />
@@ -234,7 +234,7 @@ function Modal({ slide, onClose }) {
             <div style={{
               fontSize: 11, letterSpacing: '0.18em',
               textTransform: 'uppercase',
-              color: '#7d7e7c', fontWeight: 700,
+              color: theme.subtitle, fontWeight: 700,
               marginBottom: 16,
             }}>Focus</div>
             <div style={{
@@ -242,7 +242,7 @@ function Modal({ slide, onClose }) {
               fontSize: 'clamp(20px, 2.4vw, 28px)',
               lineHeight: 1.15, letterSpacing: '-0.005em',
               textTransform: 'uppercase',
-              color: theme.ink,
+              color: theme.base,
             }}>{slide.focus}</div>
           </aside>
         </div>
@@ -255,11 +255,11 @@ function Modal({ slide, onClose }) {
 function Card({ slide, onOpen, dark }) {
   const bg = dark ? theme.ink : theme.base;
   const titleColor = dark ? theme.base : theme.ink;
-  const tagColor = dark ? theme.subtitle : '#7d7e7c';
-  const subColor = dark ? theme.subtitle : '#3a3c3e';
+  const tagColor = dark ? theme.subtitle : theme.subtitle;
+  const subColor = dark ? theme.subtitle : theme.subtitle;
   const ctaColor = dark ? theme.base : theme.ink;
   const borderColor = dark ? theme.borderDark : 'rgba(0,0,0,0.2)';
-  const imgBg = dark ? theme.dark : '#d8d6cf';
+  const imgBg = dark ? theme.dark : '#0e0e0e';
 
   return (
     <motion.button
@@ -351,10 +351,10 @@ export function DifferentAgesDifferentFocus() {
   return (
     <section
       data-screen-label="Different Ages, Different Focus"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base,
-        color: theme.ink,
+        background: theme.dark,
+        color: theme.base,
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -377,7 +377,7 @@ export function DifferentAgesDifferentFocus() {
           style={{
             fontSize: 'clamp(18px, 2vw, 24px)',
             lineHeight: 1.45,
-            color: theme.ink,
+            color: theme.base,
             margin: '0 0 clamp(48px, 7vw, 80px)',
             fontWeight: 500,
             letterSpacing: '-0.005em',
@@ -396,7 +396,7 @@ export function DifferentAgesDifferentFocus() {
           }}
         >
           {slides.map((slide, i) => (
-            <Card key={slide.age} slide={slide} onOpen={() => setOpenIndex(i)} dark={false} />
+            <Card key={slide.age} slide={slide} onOpen={() => setOpenIndex(i)} dark={true} />
           ))}
         </Group>
       </div>

@@ -50,7 +50,7 @@ export function CohortsHero() {
         position: 'relative', overflow: 'hidden',
       }}
     >
-      <HeroAmbient />
+      <HeroAmbient src="/assets/videos/hud.mp4" />
       <div style={{
         flex: 1,
         padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(40px, 6vw, 64px)',

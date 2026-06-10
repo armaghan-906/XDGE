@@ -24,10 +24,10 @@ export function TheReality() {
   return (
     <section
       data-screen-label="The Reality"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base,
-        color: theme.ink,
+        background: theme.dark,
+        color: theme.base,
         padding: 'clamp(44px, 7vw, 84px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -60,7 +60,7 @@ export function TheReality() {
             }}>5%</div>
             <p style={{
               fontSize: 'clamp(15px, 1.6vw, 18px)',
-              lineHeight: 1.45, color: theme.ink,
+              lineHeight: 1.45, color: theme.base,
               fontWeight: 500,
               margin: 0,
             }}>
@@ -78,7 +78,7 @@ export function TheReality() {
             }}>3%</div>
             <p style={{
               fontSize: 'clamp(15px, 1.6vw, 18px)',
-              lineHeight: 1.45, color: theme.ink,
+              lineHeight: 1.45, color: theme.base,
               fontWeight: 500,
               margin: 0,
             }}>
@@ -125,7 +125,7 @@ export function TheReality() {
               style={{
                 fontFamily: theme.display, fontWeight: 900,
                 fontSize: 'clamp(28px, 4vw, 56px)',
-                lineHeight: 1, color: theme.ink,
+                lineHeight: 1, color: theme.base,
               }}
             >+</div>
             <div variants={fadeUp} style={pillStyle}>Your Stand Out Edge</div>
@@ -145,7 +145,7 @@ export function TheReality() {
               fontFamily: 'Georgia, serif',
               fontSize: 'clamp(60px, 9vw, 120px)',
               lineHeight: 0.7,
-              color: 'rgba(0,0,0,0.18)',
+              color: 'rgba(255,255,255,0.18)',
               fontWeight: 700,
               flexShrink: 0,
               marginTop: 8,
@@ -155,7 +155,7 @@ export function TheReality() {
               fontSize: 'clamp(18px, 2.2vw, 28px)',
               lineHeight: 1.35,
               fontStyle: 'italic',
-              color: theme.ink,
+              color: theme.base,
               margin: 0,
               fontWeight: 400,
               textAlign: 'left',

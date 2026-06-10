@@ -57,10 +57,10 @@ export function WhatYouLeaveWithList() {
   return (
     <section
       data-screen-label="What You Leave With"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base,
-        color: theme.ink,
+        background: theme.dark,
+        color: theme.base,
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -90,7 +90,7 @@ export function WhatYouLeaveWithList() {
                   width: '100%',
                   aspectRatio: '1 / 1',
                   overflow: 'hidden',
-                  background: '#d8d6cf',
+                  background: '#0e0e0e',
                 }}>
                   <img
                     src={it.img}
@@ -113,12 +113,12 @@ export function WhatYouLeaveWithList() {
                   fontSize: 'clamp(22px, 2.6vw, 32px)',
                   lineHeight: 1.15, letterSpacing: '-0.005em',
                   margin: '0 0 14px',
-                  color: theme.ink,
+                  color: theme.base,
                 }}>{it.title}</h3>
                 <p style={{
                   fontSize: 'clamp(14px, 1.5vw, 16px)',
                   lineHeight: 1.6, margin: 0,
-                  color: '#3a3c3e',
+                  color: theme.subtitle,
                   maxWidth: 640,
                 }}>{it.desc}</p>
               </div>

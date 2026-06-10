@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { theme } from '../../theme';
-import { HeroAmbient } from '../HeroAmbient';
+import { VideoBackground } from '../primitives/VideoBackground';
 
 function HeroHeading() {
   return (
@@ -33,7 +33,7 @@ export function Hero() {
         position: 'relative', overflow: 'hidden',
       }}
     >
-      <HeroAmbient />
+      <VideoBackground src="/assets/videos/hero.mp4" />
       <div style={{
         flex: 1,
         padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(32px, 4vw, 56px)',

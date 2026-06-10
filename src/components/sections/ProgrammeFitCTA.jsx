@@ -9,10 +9,10 @@ export function ProgrammeFitCTA() {
   return (
     <section
       data-screen-label="Right Programme Fit"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base,
-        color: theme.ink,
+        background: theme.dark,
+        color: theme.base,
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -75,7 +75,7 @@ export function ProgrammeFitCTA() {
             </div>
             <div style={{
               fontSize: 14, lineHeight: 1.5,
-              color: '#3a3c3e',
+              color: theme.subtitle,
               maxWidth: 360,
             }}>
               Available 9AM &ndash; 6PM (GMT) Mon&ndash;Fri
@@ -93,7 +93,7 @@ export function ProgrammeFitCTA() {
             <p style={{
               fontSize: 'clamp(18px, 2vw, 24px)',
               lineHeight: 1.45,
-              color: theme.ink, margin: 0,
+              color: theme.base, margin: 0,
               fontWeight: 500,
               letterSpacing: '-0.005em',
               maxWidth: 560,

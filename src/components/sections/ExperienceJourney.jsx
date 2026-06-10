@@ -185,10 +185,10 @@ export function ExperienceJourney() {
                 >
                   <div style={{
                     width: 56, height: 56, borderRadius: '50%',
-                    background: theme.base,
+                    background: theme.dark,
                     border: `1px solid ${theme.base}`,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: theme.ink,
+                    color: theme.base,
                     flexShrink: 0,
                     boxShadow: '0 4px 14px rgba(0,0,0,0.25)',
                   }}>
@@ -243,9 +243,9 @@ export function ExperienceJourney() {
               >
                 <div style={{
                   width: 52, height: 52, borderRadius: '50%',
-                  background: theme.base,
+                  background: theme.dark,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: theme.ink,
+                  color: theme.base,
                   flexShrink: 0,
                 }}>
                   {s.icon}

@@ -9,10 +9,10 @@ export function AboutWeBring() {
   return (
     <section
       data-screen-label="We Bring The Professional World"
-      data-section-theme="light"
+      data-section-theme="dark"
       style={{
-        background: theme.base,
-        color: theme.ink,
+        background: theme.dark,
+        color: theme.base,
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -42,14 +42,14 @@ export function AboutWeBring() {
               fontFamily: theme.italic, fontStyle: 'italic',
               fontSize: 'clamp(18px, 2vw, 24px)',
               lineHeight: 1.45,
-              color: theme.ink, margin: 0, fontWeight: 500,
+              color: theme.base, margin: 0, fontWeight: 500,
             }}>
               Young people are too often kept outside the professional world.
             </p>
             <p style={{
               fontSize: 'clamp(15px, 1.6vw, 17px)',
               lineHeight: 1.6, margin: 0,
-              color: '#3a3c3e',
+              color: theme.subtitle,
             }}>
               We bring that world to them through real industry leaders, exciting
               meaningful projects, and authentic expectations.
@@ -57,7 +57,7 @@ export function AboutWeBring() {
             <p style={{
               fontSize: 'clamp(15px, 1.6vw, 17px)',
               lineHeight: 1.6, margin: 0,
-              color: '#3a3c3e',
+              color: theme.subtitle,
             }}>
               This is leadership development that builds confidence, raises
               standards, and prepares young people to perform in the real world.

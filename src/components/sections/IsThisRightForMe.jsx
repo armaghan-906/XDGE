@@ -167,7 +167,7 @@ function Card({ group }) {
                   <span aria-hidden style={{
                     flexShrink: 0,
                     width: 5, height: 5, borderRadius: '50%',
-                    background: theme.base, marginTop: '0.55em',
+                    background: theme.dark, marginTop: '0.55em',
                   }} />
                   <span>{b}</span>
                 </li>
@@ -180,6 +180,8 @@ function Card({ group }) {
   );
 }
 
+import { FloatingVideo } from '../primitives/FloatingVideo';
+
 export function IsThisRightForMe() {
   return (
     <section
@@ -188,10 +190,16 @@ export function IsThisRightForMe() {
       style={{
         background: theme.dark,
         color: theme.base,
+        position: 'relative',
+        overflow: 'hidden',
         padding: 'clamp(64px, 10vw, 120px) clamp(20px, 4vw, 40px)',
       }}
     >
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+      <FloatingVideo 
+        src="/assets/videos/thunder_2.mp4" 
+        style={{ top: 120, right: 80, opacity: 0.8, transform: 'scale(1.2)' }} 
+      />
+      <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(40px, 6vw, 64px)' }}>
           <div>
             <SplitHeading
