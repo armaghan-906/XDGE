@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FullLogo } from './Logo';
+import { CinematicReveal } from './primitives/CinematicReveal';
 
 export function Preloader() {
   const [show, setShow] = useState(true);
@@ -32,33 +33,7 @@ export function Preloader() {
             justifyContent: 'center',
           }}
         >
-          <video
-            src="/assets/videos/logo_reveal.mp4"
-            autoPlay
-            muted
-            playsInline
-            onEnded={() => setShow(false)}
-            onError={() => setShow(false)} // Fail gracefully if the video is missing or broken
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-            }}
-          />
-          {/* Logo Overlay */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              position: 'absolute',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              width: '100%', padding: '0 20px',
-              zIndex: 5,
-            }}
-          >
-            <FullLogo />
-          </motion.div>
+          <CinematicReveal onComplete={() => setShow(false)} />
           {/* Fallback button so the user is never permanently stuck */}
           <button 
             onClick={() => setShow(false)}

@@ -189,17 +189,16 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
         style={{ top: 120, left: 0, opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(1.2)' }} 
       />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
-        <Group style={{
-          display: 'flex', flexDirection: 'column',
-          alignItems: 'flex-start',
-          gap: 'clamp(64px, 10vw, 120px)',
+        <Group className={`${diagramMaxWidth ? 'xg-perf-grid' : ''}`} style={{
+          display: 'grid',
+          gap: 'clamp(40px, 6vw, 80px)',
         }}>
           <div>
             <SplitHeading
               lines={['OUR PERFORMANCE', 'FORMULA']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(36px, 5.5vw, 72px)',
+                fontSize: '50px',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
                 marginBottom: 'clamp(20px, 3vw, 28px)',
               }}
@@ -207,7 +206,7 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
             <motion.div
               variants={fadeUp}
               style={{
-                fontSize: 'clamp(20px, 2.4vw, 30px)',
+                fontSize: 'clamp(16px, 1.8vw, 22px)',
                 lineHeight: 1.35,
                 color: fg, fontWeight: 500,
                 letterSpacing: '-0.005em',
@@ -220,10 +219,10 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
               variants={fadeUp}
               style={{
                 display: 'flex', flexDirection: 'column',
-                gap: 'clamp(14px, 1.8vw, 20px)',
-                fontSize: 'clamp(15px, 1.6vw, 17px)',
+                gap: 'clamp(12px, 1.5vw, 16px)',
+                fontSize: 'clamp(14px, 1.4vw, 15px)',
                 lineHeight: 1.55, color: fg,
-                maxWidth: 520,
+                maxWidth: 380,
               }}
             >
               <p style={{ margin: 0 }}>Most people focus on what they do.</p>
@@ -235,8 +234,14 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
             </motion.div>
           </div>
 
-          <div style={{ width: '100%' }}>
-            <PerformanceDiagram dark={dark} maxWidth={diagramMaxWidth ?? 620} />
+          <div style={{ width: '100%', position: 'relative' }}>
+            <div style={{
+              transform: 'scale(1.25)',
+              transformOrigin: 'left center',
+              width: '100%',
+            }}>
+              <PerformanceDiagram dark={dark} maxWidth={diagramMaxWidth ?? 620} />
+            </div>
           </div>
         </Group>
       </div>

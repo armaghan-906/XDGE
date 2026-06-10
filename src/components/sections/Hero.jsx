@@ -4,22 +4,35 @@ import { VideoBackground } from '../primitives/VideoBackground';
 
 function HeroHeading() {
   return (
-    <motion.h1
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5, ease: [0.2, 0.7, 0.2, 1], delay: 0.1 }}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1.2, ease: [0.2, 0.7, 0.2, 1], delay: 0.2 }}
       style={{
-        fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(36px, 5.5vw, 120px)',
-        lineHeight: 0.8, letterSpacing: '-0.03em', margin: 0,
-        color: theme.base, display: 'block',
-        paddingBottom: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        position: 'relative',
+        zIndex: 10,
+        margin: '10px 0',
       }}
     >
-      XDGE
-    </motion.h1>
+      <img 
+        src="/assets/unnamed.png" 
+        alt="Logo" 
+        style={{
+          width: '100%',
+          maxWidth: '500px',
+          height: 'auto',
+          objectFit: 'contain',
+        }}
+      />
+    </motion.div>
   );
 }
+
+import { FullLogo } from '../Logo';
+import { CinematicReveal } from '../primitives/CinematicReveal';
 
 export function Hero() {
   return (
@@ -28,56 +41,13 @@ export function Hero() {
       data-cursor="light"
       data-section-theme="dark"
       style={{
-        background: theme.dark, color: theme.base,
-        minHeight: '100vh', display: 'flex', flexDirection: 'column',
+        background: '#000000', color: theme.base,
+        height: '100vh', display: 'flex', flexDirection: 'column',
         position: 'relative', overflow: 'hidden',
+        alignItems: 'center', justifyContent: 'center',
       }}
     >
-      <VideoBackground src="/assets/videos/hero.mp4" />
-      <div style={{
-        flex: 1,
-        padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(32px, 4vw, 56px)',
-        display: 'flex', flexDirection: 'column',
-        gap: 'clamp(32px, 5vw, 56px)',
-      }}>
-        <div style={{ position: 'relative' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.05 }}
-            style={{
-              fontFamily: theme.display, fontWeight: 700,
-              fontSize: 'clamp(18px, 2vw, 30px)',
-              lineHeight: 1, letterSpacing: '-0.01em',
-              color: theme.base,
-              marginBottom: 0,
-              textTransform: 'capitalize',
-            }}
-          >
-            The
-          </motion.div>
-          <HeroHeading />
-          <motion.h4
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.3 }}
-            style={{
-              display: 'block',
-              margin: 'clamp(10px, 1.4vw, 18px) 0 0',
-              fontFamily: theme.displayTight,
-              fontWeight: 500,
-              fontSize: 'clamp(18.5px, 2.2vw, 30px)',
-              lineHeight: 1.3, letterSpacing: '-0.005em',
-              color: theme.base,
-              maxWidth: '36ch',
-            }}
-          >
-            Lead Your Own Opportunities
-          </motion.h4>
-        </div>
-
-
-      </div>
+      <CinematicReveal onComplete={() => {}} />
     </section>
   );
 }

@@ -1,6 +1,7 @@
-import { motion } from 'framer-motion';
-import { theme, fadeUp } from '../../theme';
-import { Group } from '../primitives/Reveal';
+import { useRef, useEffect } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { FloatingVideo } from '../primitives/FloatingVideo';
+import { theme } from '../../theme';
 import { SplitHeading } from '../primitives/SplitHeading';
 
 const iconProps = {
@@ -75,34 +76,108 @@ const items = [
   { icon: Icons.Chart, title: 'Next-Level Practice', desc: 'Preparation for high-stakes interviews and selection.' },
 ];
 
-const fadeEase = [0.2, 0.7, 0.2, 1];
+function LeaveCard({ item, index, progress, total }) {
+  const diff = useTransform(progress, (p) => index - p);
+  const radius = 1200; 
+  const anglePerItem = 14; 
+  
+  const angle = useTransform(diff, (d) => d * anglePerItem);
+  const x = useTransform(angle, (a) => radius * Math.sin((a * Math.PI) / 180));
+  const y = useTransform(angle, (a) => radius - radius * Math.cos((a * Math.PI) / 180));
+  const rotate = angle;
+  
+  const zIndex = useTransform(diff, (d) => total - Math.abs(Math.round(d)));
+  const opacity = useTransform(diff, [-4, -3, 0, 3, 4], [0, 0.4, 1, 0.4, 0]);
+  const scale = useTransform(diff, [-3, 0, 3], [0.8, 1, 0.8]);
 
-const itemVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08, delayChildren: 0 } },
-};
-
-const iconVariants = {
-  hidden: { scale: 0.4, opacity: 0, rotate: -8 },
-  visible: {
-    scale: 1, opacity: 1, rotate: 0,
-    transition: { duration: 0.7, ease: fadeEase },
-  },
-};
-
-const titleVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: fadeEase } },
-};
-
-const descVariants = {
-  hidden: { y: 16, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.85, ease: fadeEase } },
-};
-
-import { FloatingVideo } from '../primitives/FloatingVideo';
+  return (
+    <motion.div
+      style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        width: 'clamp(280px, 30vw, 380px)',
+        aspectRatio: '3/4',
+        originX: 0.5,
+        originY: 0.5,
+        x: useTransform(x, (val) => `calc(-50% + ${val}px)`),
+        y: useTransform(y, (val) => `calc(-50% + ${val}px)`),
+        rotate,
+        zIndex,
+        opacity,
+        scale,
+      }}
+    >
+      <div className="xg-glass-solid" style={{
+        width: '100%', height: '100%',
+        position: 'relative',
+        borderRadius: 16,
+        padding: 'clamp(24px, 3vw, 40px)',
+        display: 'flex', flexDirection: 'column',
+        justifyContent: 'center', alignItems: 'center', textAlign: 'center',
+        boxShadow: '0 24px 48px -12px rgba(0,0,0,0.4)',
+        border: `1px solid ${theme.borderDark}`,
+      }}>
+        <div style={{ color: theme.base, marginBottom: 32, transform: 'scale(1.5)' }}>
+          {item.icon}
+        </div>
+        <h3 style={{
+          fontFamily: theme.displayTight,
+          fontSize: 'clamp(20px, 2.5vw, 28px)',
+          margin: '0 0 16px',
+          lineHeight: 1.1,
+          color: theme.base,
+          fontWeight: 700,
+        }}>
+          {item.title}
+        </h3>
+        <p style={{
+          fontSize: 'clamp(14px, 1.5vw, 16px)',
+          color: theme.subtitle,
+          lineHeight: 1.5,
+          margin: 0
+        }}>
+          {item.desc}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
 
 export function WhatYouLeaveWith() {
+  const containerRef = useRef(null);
+  
+  const progressRaw = useMotionValue(0);
+  const progress = useSpring(progressRaw, { stiffness: 60, damping: 15, mass: 1 });
+
+  const handleDrag = (event, info) => {
+    const delta = -info.delta.x / 100;
+    let next = progressRaw.get() + delta;
+    next = Math.max(0, Math.min(items.length - 1, next));
+    progressRaw.set(next);
+  };
+
+  const handleWheel = (e) => {
+    const isVertical = Math.abs(e.deltaY) > Math.abs(e.deltaX);
+    const delta = isVertical ? e.deltaY / 100 : e.deltaX / 100;
+    const current = progressRaw.get();
+    
+    if (current <= 0 && delta < 0) return;
+    if (current >= items.length - 1 && delta > 0) return;
+
+    e.preventDefault();
+    let next = current + delta;
+    next = Math.max(0, Math.min(items.length - 1, next));
+    progressRaw.set(next);
+  };
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    el.addEventListener('wheel', handleWheel, { passive: false });
+    return () => el.removeEventListener('wheel', handleWheel);
+  }, []);
+
   return (
     <section
       data-screen-label="What You Leave With"
@@ -112,89 +187,56 @@ export function WhatYouLeaveWith() {
         color: theme.base,
         position: 'relative',
         overflow: 'hidden',
-        padding: 'clamp(120px, 15vw, 240px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(80px, 10vw, 120px) 0',
       }}
     >
       <FloatingVideo 
         src="/assets/videos/thunder_1.mp4" 
         style={{ top: '30%', right: 20, opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(1.3)' }} 
       />
-      <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
-        <SplitHeading
-          lines={['WHAT YOU', 'LEAVE WITH']}
-          style={{
-            fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(36px, 5.5vw, 86px)',
-            lineHeight: 0.95, letterSpacing: '-0.02em',
-            marginBottom: 'clamp(24px, 4vw, 40px)',
-          }}
-        />
-
-        <p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, ease: [0.2, 0.7, 0.2, 1], delay: 0.25 }}
-          style={{
-            fontSize: 'clamp(20px, 2.4vw, 30px)',
-            lineHeight: 1.4,
-            color: theme.base,
-            margin: '0 0 clamp(48px, 7vw, 88px)',
-            fontWeight: 500,
-            letterSpacing: '-0.005em',
-            maxWidth: 900,
-          }}
-        >
+      
+      <div style={{ textAlign: 'center', marginBottom: 40, position: 'relative', zIndex: 10 }}>
+        <h2 style={{
+          fontFamily: theme.display,
+          fontSize: 'clamp(36px, 5.5vw, 86px)',
+          fontWeight: 900,
+          color: theme.base,
+          margin: '0 auto',
+          letterSpacing: '-0.02em',
+          maxWidth: 800,
+          lineHeight: 0.95,
+        }}>
+          WHAT YOU<br/>LEAVE WITH
+        </h2>
+        <p style={{
+          color: theme.subtitle,
+          marginTop: 16,
+          fontSize: 'clamp(16px, 1.8vw, 24px)',
+          fontWeight: 500,
+        }}>
           Proof of your capability. Ready for selection.
         </p>
-
-        <Group className="xg-leave-grid">
-          {items.map((it, i) => (
-            <div
-              key={i}
-              variants={itemVariants}
-              style={{
-                display: 'flex', alignItems: 'flex-start',
-                gap: 'clamp(16px, 2vw, 24px)',
-              }}
-            >
-              <div
-                variants={iconVariants}
-                style={{
-                  width: 44, height: 44,
-                  color: theme.base,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  flexShrink: 0,
-                  transformOrigin: 'center',
-                }}
-              >
-                {it.icon}
-              </div>
-              <div style={{ overflow: 'hidden' }}>
-                <h3
-                  variants={titleVariants}
-                  style={{
-                    fontSize: 'clamp(16px, 1.8vw, 20px)',
-                    margin: '0 0 8px',
-                    fontWeight: 600,
-                    color: theme.base,
-                    letterSpacing: '-0.005em',
-                  }}
-                >{it.title}</h3>
-                <p
-                  variants={descVariants}
-                  style={{
-                    fontSize: 'clamp(13px, 1.4vw, 15px)',
-                    margin: 0,
-                    lineHeight: 1.5,
-                    color: theme.subtitle,
-                  }}
-                >{it.desc}</p>
-              </div>
-            </div>
-          ))}
-        </Group>
       </div>
+
+      <motion.div
+        ref={containerRef}
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={0}
+        onDrag={handleDrag}
+        style={{
+          position: 'relative',
+          height: 'clamp(450px, 65vh, 700px)',
+          width: '100%',
+          cursor: 'grab',
+          touchAction: 'none'
+        }}
+        whileTap={{ cursor: 'grabbing' }}
+      >
+        {items.map((item, i) => (
+          <LeaveCard key={i} item={item} index={i} progress={progress} total={items.length} />
+        ))}
+      </motion.div>
     </section>
   );
 }

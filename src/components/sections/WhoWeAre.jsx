@@ -30,7 +30,7 @@ export function WhoWeAre() {
               fontFamily: theme.display, fontWeight: 900,
               fontSize: 'clamp(36px, 5.5vw, 108px)',
               lineHeight: 0.92, letterSpacing: '-0.02em',
-              textAlign: 'center',
+              textAlign: 'left',
             }}
           />
         </motion.div>
@@ -71,27 +71,9 @@ export function WhoWeAre() {
               gap: 'clamp(24px, 3vw, 32px)',
             }}
           >
-            <div style={{
-              display: 'flex', flexDirection: 'column',
-              gap: 'clamp(12px, 1.5vw, 16px)',
-              fontFamily: theme.italic,
-              fontStyle: 'italic',
-              fontSize: 'clamp(20px, 2.5vw, 32px)',
-              lineHeight: 1.45,
-              color: theme.base,
-            }}>
-              <p style={{ margin: 0, fontWeight: 400 }}>
-                We are performance and leadership development specialists with
-                20+ years of senior industry experience.
-              </p>
-              <p style={{ margin: 0, fontWeight: 700 }}>
-                One mission: developing the next generation of standout talent.
-              </p>
-            </div>
-
             <ul style={{
               display: 'flex', flexDirection: 'column',
-              gap: 'clamp(14px, 1.8vw, 20px)',
+              gap: 'clamp(24px, 3vw, 36px)',
               margin: 0, padding: 0, listStyle: 'none',
               width: '100%',
             }}>
@@ -105,16 +87,18 @@ export function WhoWeAre() {
                 <li
                   key={i}
                   style={{
-                    fontSize: 'clamp(16px, 1.8vw, 20px)',
-                    lineHeight: 1.5, color: theme.subtitle,
+                    fontSize: 'clamp(20px, 2.5vw, 32px)',
+                    lineHeight: 1.4, color: theme.base,
                     position: 'relative',
-                    paddingLeft: 24,
+                    paddingLeft: 32,
+                    fontWeight: i === 4 ? 700 : 400,
                   }}
                 >
                   <span style={{
-                    position: 'absolute', left: 0, top: '0.45em',
-                    width: 5, height: 5, borderRadius: '50%',
-                    background: theme.ink
+                    position: 'absolute', left: 0, top: '0.4em',
+                    width: 8, height: 8, borderRadius: '50%',
+                    background: theme.base,
+                    opacity: 0.6
                   }} />
                   {text}
                 </li>

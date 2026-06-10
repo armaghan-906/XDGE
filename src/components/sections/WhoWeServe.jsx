@@ -12,12 +12,13 @@ const cards = [
   { year: 'The XDGE', t: 'Early Leadership Foundations', d: '', img: '/assets/serve-04.webp' },
 ];
 
-function ServeCard({ card, hovered, onEnter, onLeave, style }) {
-  const isHovered = hovered;
+function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
+  const isHovered = hovered === index;
 
   return (
     <motion.a
       href="#"
+      variants={fadeUp}
       data-cursor="grow"
       className="xg-glass-solid xg-tilt"
       onMouseEnter={onEnter}
@@ -91,8 +92,8 @@ function ServeCard({ card, hovered, onEnter, onLeave, style }) {
         </div>
         <h3 style={{
           fontFamily: theme.display,
-          fontSize: 'clamp(24px, 3vw, 36px)',
-          lineHeight: 1.05,
+          fontSize: 'clamp(28px, 3.6vw, 48px)',
+          lineHeight: 1.0,
           margin: 0,
           letterSpacing: '-0.01em',
           fontWeight: 900,
@@ -133,16 +134,7 @@ function ServeCard({ card, hovered, onEnter, onLeave, style }) {
 import { FloatingVideo } from '../primitives/FloatingVideo';
 
 export function WhoWeServe() {
-  const [hovered, setHovered] = useState(false);
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    // infinite loop with delay, doesn't pause on hover
-    const timer = setInterval(() => {
-      setIndex((i) => (i + 1) % cards.length);
-    }, 3500);
-    return () => clearInterval(timer);
-  }, [hovered]);
+  const [hovered, setHovered] = useState(null);
 
   return (
     <section data-screen-label="05 Who We Serve" data-section-theme="dark" style={{
@@ -195,45 +187,22 @@ export function WhoWeServe() {
           </motion.div>
         </Group>
 
-        <Group style={{ width: '100%', maxWidth: 640, margin: '0 auto', position: 'relative' }}>
-          <div style={{ position: 'relative', minHeight: 'clamp(550px, 65vw, 800px)' }}>
-            <AnimatePresence>
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -40 }}
-                transition={{ duration: 0.5, ease: [0.2, 0.7, 0.2, 1] }}
-                style={{ position: 'absolute', inset: 0 }}
-              >
-                <ServeCard
-                  card={cards[index]}
-                  hovered={hovered}
-                  onEnter={() => setHovered(true)}
-                  onLeave={() => setHovered(false)}
-                  style={{ width: '100%', height: '100%' }}
-                />
-              </motion.div>
-            </AnimatePresence>
-          </div>
-          
-          <div style={{
-            display: 'flex', gap: 8, justifyContent: 'center', marginTop: 32
-          }}>
-            {cards.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setIndex(i)}
-                style={{
-                  width: 10, height: 10, borderRadius: '50%',
-                  background: i === index ? theme.base : 'rgba(255,255,255,0.2)',
-                  border: 'none', cursor: 'pointer',
-                  padding: 0,
-                  transition: 'background 0.3s ease',
-                }}
+        <Group className="xg-2" style={{ gap: 'clamp(24px, 4vw, 40px)', alignItems: 'flex-start' }}>
+          {cards.map((c, i) => (
+            <div key={i} style={{ 
+              width: '80%', 
+              margin: '0 auto',
+              marginTop: i % 2 !== 0 ? 'clamp(40px, 8vw, 100px)' : 0 
+            }}>
+              <ServeCard
+                card={c}
+                index={i}
+                hovered={hovered}
+                onEnter={() => setHovered(i)}
+                onLeave={() => setHovered(null)}
               />
-            ))}
-          </div>
+            </div>
+          ))}
         </Group>
       </div>
     </section>
