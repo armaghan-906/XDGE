@@ -18,8 +18,8 @@ export function AboutHero() {
         padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(80px, 10vw, 120px)',
       }}
     >
-      <HeroAmbient src="/assets/videos/sparks.mp4" />
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+      <HeroAmbient src="/assets/videos/hero.mp4" />
+      <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <SplitHeading
           lines={['ABOUT US']}
           style={{
