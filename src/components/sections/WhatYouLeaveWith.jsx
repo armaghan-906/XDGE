@@ -66,16 +66,16 @@ const Icons = {
 };
 
 const items = [
-  { img: '/assets/1.png', title: 'Leadership Portfolio', desc: 'Evidence of capability and readiness for your next level.' },
-  { img: '/assets/2.png', title: 'Recorded Presentation', desc: 'Proof of how you think, decide, and deliver under pressure.' },
-  { img: '/assets/3.png', title: 'Skills Transcript', desc: 'Verified record of your competencies and development.' },
-  { img: '/assets/4.png', title: 'Certificate of Completion', desc: 'Formal recognition of performance and progression.' },
-  { img: '/assets/5.png', title: 'Letter of Recommendation', desc: 'Professional endorsement of your capability and potential.' },
-  { img: '/assets/6.png', title: '90-Day Action Plan', desc: 'Clear execution plan for your next stage.' },
-  { img: '/assets/7.png', title: 'Next-Level Practice', desc: 'Preparation for high-stakes interviews and selection.' },
-  { img: '/assets/8.png', title: 'Confidence & Clarity', desc: 'Stronger self-confidence and the focus to perform.' },
-  { img: '/assets/9.png', title: 'Winning Mindset', desc: 'Develop the mindset needed to step forward.' },
-  { img: '/assets/10.png', title: 'Impact & Influence', desc: 'Communicate with conviction and perform when it matters.' },
+  { img: '/assets/1.webp', title: 'Leadership Portfolio', desc: 'Evidence of capability and readiness for your next level.' },
+  { img: '/assets/2.webp', title: 'Recorded Presentation', desc: 'Proof of how you think, decide, and deliver under pressure.' },
+  { img: '/assets/3.webp', title: 'Skills Transcript', desc: 'Verified record of your competencies and development.' },
+  { img: '/assets/4.webp', title: 'Certificate of Completion', desc: 'Formal recognition of performance and progression.' },
+  { img: '/assets/5.webp', title: 'Letter of Recommendation', desc: 'Professional endorsement of your capability and potential.' },
+  { img: '/assets/6.webp', title: '90-Day Action Plan', desc: 'Clear execution plan for your next stage.' },
+  { img: '/assets/7.webp', title: 'Next-Level Practice', desc: 'Preparation for high-stakes interviews and selection.' },
+  { img: '/assets/8.webp', title: 'Confidence & Clarity', desc: 'Stronger self-confidence and the focus to perform.' },
+  { img: '/assets/9.webp', title: 'Winning Mindset', desc: 'Develop the mindset needed to step forward.' },
+  { img: '/assets/10.webp', title: 'Impact & Influence', desc: 'Communicate with conviction and perform when it matters.' },
 ];
 
 function LeaveCard({ item, index, isActive, isMobile, onClick }) {

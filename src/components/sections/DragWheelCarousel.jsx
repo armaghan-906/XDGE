@@ -3,16 +3,16 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
 
 const items = [
-  { id: '01', title: "Leadership Foundation", img: "/assets/1.png" },
-  { id: '02', title: "Advanced Communication", img: "/assets/2.png" },
-  { id: '03', title: "Strategic Thinking", img: "/assets/3.png" },
-  { id: '04', title: "Team Dynamics", img: "/assets/4.png" },
-  { id: '05', title: "Conflict Resolution", img: "/assets/5.png" },
-  { id: '06', title: "Resilience Training", img: "/assets/6.png" },
-  { id: '07', title: "Mentorship Masterclass", img: "/assets/7.png" },
-  { id: '08', title: "Performance Habits", img: "/assets/8.png" },
-  { id: '09', title: "Winning Mindset", img: "/assets/9.png" },
-  { id: '10', title: "Impact & Influence", img: "/assets/10.png" },
+  { id: '01', title: "Leadership Foundation", img: "/assets/1.webp" },
+  { id: '02', title: "Advanced Communication", img: "/assets/2.webp" },
+  { id: '03', title: "Strategic Thinking", img: "/assets/3.webp" },
+  { id: '04', title: "Team Dynamics", img: "/assets/4.webp" },
+  { id: '05', title: "Conflict Resolution", img: "/assets/5.webp" },
+  { id: '06', title: "Resilience Training", img: "/assets/6.webp" },
+  { id: '07', title: "Mentorship Masterclass", img: "/assets/7.webp" },
+  { id: '08', title: "Performance Habits", img: "/assets/8.webp" },
+  { id: '09', title: "Winning Mindset", img: "/assets/9.webp" },
+  { id: '10', title: "Impact & Influence", img: "/assets/10.webp" },
 ];
 
 function Card({ item, index, progress, total }) {
