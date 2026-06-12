@@ -137,15 +137,7 @@ export function TopBar() {
           gap: 16,
         }}>
           <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-            <Link
-              to="/"
-              style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                textDecoration: 'none',
-              }}
-            >
-              <Logo style={{ fontSize: 28 }} />
-            </Link>
+            {/* Logo removed per request */}
           </div>
 
           <button
