@@ -20,7 +20,7 @@ export default function Home() {
       <IsThisRightForMe />
       <WhoWeAre />
       <TheJourney />
-      <OurPerformanceFormula diagramMaxWidth={1400} />
+      <OurPerformanceFormula />
       <WhatYouLeaveWith />
       <ProvenOutcomes />
       <div className="xg-stick-wrap">

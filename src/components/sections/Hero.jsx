@@ -1,38 +1,6 @@
 import { motion } from 'framer-motion';
 import { theme } from '../../theme';
-import { VideoBackground } from '../primitives/VideoBackground';
-
-function HeroHeading() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1.2, ease: [0.2, 0.7, 0.2, 1], delay: 0.2 }}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        position: 'relative',
-        zIndex: 10,
-        margin: '10px 0',
-      }}
-    >
-      <img 
-        src="/assets/unnamed.png" 
-        alt="Logo" 
-        style={{
-          width: '100%',
-          maxWidth: '500px',
-          height: 'auto',
-          objectFit: 'contain',
-        }}
-      />
-    </motion.div>
-  );
-}
-
-import { FullLogo } from '../Logo';
-import { CinematicReveal } from '../primitives/CinematicReveal';
+import { Logo } from '../Logo';
 
 export function Hero() {
   return (
@@ -47,7 +15,37 @@ export function Hero() {
         alignItems: 'center', justifyContent: 'center',
       }}
     >
-      <CinematicReveal onComplete={() => {}} />
+      <video
+        src="/assets/videos/logo_reveal.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 1,
+          opacity: 0.8,
+        }}
+      />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 1 }}
+        style={{
+          position: 'relative',
+          zIndex: 5,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+        }}
+      >
+        <Logo style={{ fontSize: 'clamp(64px, 15vw, 200px)' }} />
+      </motion.div>
     </section>
   );
 }

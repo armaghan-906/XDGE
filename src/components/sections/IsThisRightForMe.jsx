@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { theme, fadeUp } from '../../theme';
+import { theme, fadeUp, stagger } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 import { Magnetic } from '../Magnetic';
@@ -203,14 +203,23 @@ export function IsThisRightForMe() {
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(40px, 6vw, 64px)' }}>
           <div>
-            <SplitHeading
-              lines={['IS THIS', 'RIGHT FOR ME']}
+            <motion.h2
+              variants={stagger}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
                 fontSize: 'clamp(36px, 5.5vw, 102px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
+                margin: 0, textTransform: 'uppercase'
               }}
-            />
+            >
+              <motion.span variants={fadeUp} style={{ display: 'block' }}>
+                <span className="hollow-text" style={{ paddingRight: '0.2em' }}>IS THIS</span>
+                <span className="cyan-text">RIGHT FOR ME</span>
+              </motion.span>
+            </motion.h2>
           </div>
           <motion.div variants={fadeUp} style={{ paddingBottom: 24, maxWidth: 480 }}>
             <p style={{

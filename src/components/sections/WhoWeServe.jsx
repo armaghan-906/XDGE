@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { theme, fadeUp } from '../../theme';
+import { theme, fadeUp, stagger } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 import { Magnetic } from '../Magnetic';
@@ -43,8 +43,6 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
             hidden: { scale: 1.15 },
             visible: { scale: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
           }}
-          initial="hidden"
-          animate="visible"
           style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}
         >
           <motion.img
@@ -92,8 +90,8 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
         </div>
         <h3 style={{
           fontFamily: theme.display,
-          fontSize: 'clamp(28px, 3.6vw, 48px)',
-          lineHeight: 1.0,
+          fontSize: 'clamp(24px, 3vw, 36px)',
+          lineHeight: 1.05,
           margin: 0,
           letterSpacing: '-0.01em',
           fontWeight: 900,
@@ -144,32 +142,62 @@ export function WhoWeServe() {
       padding: 'clamp(64px, 7.5vw, 96px) clamp(20px, 4vw, 40px) clamp(56px, 6vw, 80px)',
     }}>
       <FloatingVideo 
-        src="/assets/videos/smoke_shockwave.mp4" 
-        style={{ top: '25%', right: -40, opacity: 0.5, mixBlendMode: 'screen', transform: 'scale(1.5)' }} 
+        src="/assets/videos/thunder_1.mp4" 
+        style={{ top: '35%', right: '-10%', opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(1.5)', zIndex: 0 }} 
       />
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <Group style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 'clamp(32px, 6vw, 56px)', gap: 16 }}>
-          <div>
-            <SplitHeading
-              lines={['WHO IS', 'IT FOR']}
+      <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
+        <Group style={{ display: 'flex', flexDirection: 'column', marginBottom: 'clamp(32px, 6vw, 56px)' }}>
+          <div style={{ position: 'relative', alignSelf: 'center', textAlign: 'center', padding: '40px 0' }}>
+            <FloatingVideo 
+              src="/assets/videos/lightning_3.mp4" 
+              style={{ 
+                top: '50%', 
+                left: '50%', 
+                transform: 'translate(-50%, -50%) scale(1.5)', 
+                opacity: 0.6, 
+                mixBlendMode: 'screen', 
+                zIndex: -1 
+              }} 
+            />
+            <motion.h2
+              variants={stagger}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
                 fontSize: 'clamp(36px, 5.5vw, 72px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
+                margin: 0, textTransform: 'uppercase'
               }}
-            />
+            >
+              <motion.span variants={fadeUp} style={{ display: 'block' }}>
+                <span className="cyan-text" style={{ paddingRight: '0.2em' }}>WHO</span>
+                <span className="hollow-text">IS IT FOR</span>
+              </motion.span>
+            </motion.h2>
           </div>
-          <motion.div variants={fadeUp} style={{ paddingBottom: 24 }}>
-            <div style={{
-              fontSize: 12, letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              color: theme.base, marginBottom: 14,
-              fontWeight: 700, lineHeight: 1.35,
-              maxWidth: 460,
+
+          <motion.div variants={fadeUp} style={{ 
+            alignSelf: 'flex-end', 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'flex-end', 
+            textAlign: 'right',
+            marginTop: 'clamp(16px, 3vw, 32px)',
+            maxWidth: 500
+          }}>
+            <h3 style={{
+              fontSize: 'clamp(18px, 2.2vw, 24px)', 
+              lineHeight: 1.3,
+              marginBottom: 16,
+              fontFamily: theme.displayTight,
+              color: theme.base,
+              fontWeight: 700
             }}>
               For Young People 12&ndash;24 Building Their Next Step Advantage
-            </div>
-            <p style={{ fontSize: 14, lineHeight: 1.6, margin: '0 0 24px', color: theme.subtitle, maxWidth: 480 }}>
+            </h3>
+            <p style={{ fontSize: 16, lineHeight: 1.6, margin: '0 0 24px', color: theme.subtitle }}>
               XDGE helps ambitious young people build the confidence,
               leadership skills, and professional edge to stand out in school,
               university, career, business, and life.
@@ -189,19 +217,19 @@ export function WhoWeServe() {
 
         <Group className="xg-2" style={{ gap: 'clamp(24px, 4vw, 40px)', alignItems: 'flex-start' }}>
           {cards.map((c, i) => (
-            <div key={i} style={{ 
-              width: '80%', 
-              margin: '0 auto',
-              marginTop: i % 2 !== 0 ? 'clamp(40px, 8vw, 100px)' : 0 
-            }}>
-              <ServeCard
-                card={c}
-                index={i}
-                hovered={hovered}
-                onEnter={() => setHovered(i)}
-                onLeave={() => setHovered(null)}
-              />
-            </div>
+            <ServeCard
+              key={i}
+              card={c}
+              index={i}
+              hovered={hovered}
+              onEnter={() => setHovered(i)}
+              onLeave={() => setHovered(null)}
+              style={{ 
+                width: '80%', 
+                margin: '0 auto',
+                marginTop: i % 2 !== 0 ? 'clamp(40px, 8vw, 100px)' : 0 
+              }}
+            />
           ))}
         </Group>
       </div>

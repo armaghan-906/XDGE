@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { theme, fadeUp } from '../../theme';
+import { theme, fadeUp, stagger } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
@@ -96,13 +96,13 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
           <span style={{ color: muted, display: 'inline-flex' }}>{Icons.Clapper}</span>
           <span style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(18px, 2.4vw, 28px)',
+            fontSize: 'clamp(14px, 1.8vw, 20px)',
             letterSpacing: '-0.005em',
             lineHeight: 1,
           }}>Actions</span>
         </div>
         <div className="xg-perf-tagline" style={{
-          fontSize: 'clamp(11px, 1.2vw, 14px)',
+          fontSize: 'clamp(10px, 1vw, 12px)',
           color: muted,
           marginTop: 6, lineHeight: 1.4,
         }}>
@@ -122,13 +122,13 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
           <span style={{ color: muted, display: 'inline-flex' }}>{Icons.Gear}</span>
           <span style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(18px, 2.4vw, 28px)',
+            fontSize: 'clamp(14px, 1.8vw, 20px)',
             letterSpacing: '-0.005em',
             lineHeight: 1,
           }}>Behaviors</span>
         </div>
         <div className="xg-perf-tagline" style={{
-          fontSize: 'clamp(11px, 1.2vw, 14px)',
+          fontSize: 'clamp(10px, 1vw, 12px)',
           color: muted,
           marginTop: 6, lineHeight: 1.4,
         }}>
@@ -149,13 +149,13 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
           <span style={{ color: muted, display: 'inline-flex' }}>{Icons.Mind}</span>
           <span style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(18px, 2.4vw, 28px)',
+            fontSize: 'clamp(14px, 1.8vw, 20px)',
             letterSpacing: '-0.005em',
             lineHeight: 1,
           }}>Mindset</span>
         </div>
         <div className="xg-perf-tagline" style={{
-          fontSize: 'clamp(11px, 1.2vw, 14px)',
+          fontSize: 'clamp(10px, 1vw, 12px)',
           color: muted,
           marginTop: 6, lineHeight: 1.4,
         }}>
@@ -186,31 +186,51 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
     >
       <FloatingVideo 
         src="/assets/videos/lightning_1.mp4" 
-        style={{ top: 120, left: 0, opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(1.2)' }} 
+        style={{ top: -50, left: -50, opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(1.2)' }} 
       />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
-        <Group className={`${diagramMaxWidth ? 'xg-perf-grid' : ''}`} style={{
-          display: 'grid',
-          gap: 'clamp(40px, 6vw, 80px)',
+        
+        {/* Massive full-width heading */}
+        <motion.h2
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          style={{
+            fontFamily: theme.display, fontWeight: 900,
+            fontSize: 'clamp(36px, 5.5vw, 72px)',
+            lineHeight: 0.9, letterSpacing: '-0.02em',
+            marginBottom: 'clamp(40px, 6vw, 80px)',
+            marginTop: 0, textTransform: 'uppercase',
+            width: '100%',
+            display: 'flex', flexDirection: 'column'
+          }}
+        >
+          <motion.div variants={fadeUp} style={{ display: 'flex' }}>
+            <span className="hollow-text">OUR</span>
+          </motion.div>
+          <motion.div variants={fadeUp} style={{ display: 'flex' }}>
+            <span className="hollow-text">PERFORMANCE</span>
+          </motion.div>
+          <motion.div variants={fadeUp} style={{ display: 'flex', marginTop: '-0.05em' }}>
+            <span className="cyan-text">FORMULA</span>
+          </motion.div>
+        </motion.h2>
+
+        <Group className="xg-2" style={{
+          alignItems: 'center',
         }}>
           <div>
-            <SplitHeading
-              lines={['OUR PERFORMANCE', 'FORMULA']}
-              style={{
-                fontFamily: theme.display, fontWeight: 900,
-                fontSize: '37px',
-                lineHeight: 0.95, letterSpacing: '-0.02em',
-                marginBottom: 'clamp(20px, 3vw, 28px)',
-              }}
-            />
             <motion.div
               variants={fadeUp}
               style={{
-                fontSize: 'clamp(16px, 1.8vw, 22px)',
+                fontSize: 'clamp(20px, 2.5vw, 28px)',
                 lineHeight: 1.35,
-                color: fg, fontWeight: 500,
+                color: fg, fontWeight: 700,
                 letterSpacing: '-0.005em',
-                marginBottom: 'clamp(28px, 4vw, 40px)',
+                paddingBottom: 'clamp(16px, 2vw, 24px)',
+                marginBottom: 'clamp(24px, 3vw, 32px)',
+                borderBottom: `1px solid ${theme.base}`,
               }}
             >
               Transforming leaders inside and out.
@@ -222,7 +242,7 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
                 gap: 'clamp(12px, 1.5vw, 16px)',
                 fontSize: 'clamp(14px, 1.4vw, 15px)',
                 lineHeight: 1.55, color: fg,
-                maxWidth: 380,
+                maxWidth: 420,
               }}
             >
               <p style={{ margin: 0 }}>Most people focus on what they do.</p>
@@ -236,11 +256,9 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
 
           <div style={{ width: '100%', position: 'relative' }}>
             <div style={{
-              transform: 'scale(1.25)',
-              transformOrigin: 'left center',
               width: '100%',
             }}>
-              <PerformanceDiagram dark={dark} maxWidth={diagramMaxWidth ?? 620} />
+              <PerformanceDiagram dark={dark} maxWidth={diagramMaxWidth ?? 540} />
             </div>
           </div>
         </Group>

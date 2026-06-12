@@ -826,3 +826,21 @@ section[data-screen-label] { contain: none; }
   .xg-pop, .xg-chip, .xg-tilt { transition: none; }
   .xg-pop:hover, .xg-chip:hover, .xg-tilt:hover { transform: none; }
 }
+
+/* Canva Design Heading Utilities */
+.hollow-text {
+  color: transparent !important;
+  -webkit-text-stroke: 1.5px #FFFFFF;
+}
+
+.cyan-text {
+  background: linear-gradient(to right, #20E3E8, #2484FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent !important;
+  /* Using drop-shadow filter instead of text-shadow to prevent it from covering the transparent background-clipped text */
+  filter: drop-shadow(0 0 20px rgba(32, 227, 232, 0.25));
+  display: inline-block;
+  padding: 0 0.02em; /* Prevent clipping at edges */
+}

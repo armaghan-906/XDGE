@@ -200,9 +200,9 @@ export function ProvenOutcomes() {
   return (
     <section
       data-screen-label="Proven Outcomes"
-      data-section-theme="dark"
+      data-section-theme="accent"
       style={{
-        background: theme.dark,
+        background: `linear-gradient(rgba(3, 5, 8, 0.6), rgba(3, 5, 8, 0.6)), ${theme.gradientAccent}`,
         color: theme.base,
         position: 'relative',
         overflow: 'hidden',

@@ -171,23 +171,19 @@ export function DragWheelCarousel() {
       }}
     >
       {/* Title */}
-      <div style={{ textAlign: 'center', marginBottom: 40, position: 'relative', zIndex: 10 }}>
+      <div style={{ textAlign: 'center', marginBottom: 60, position: 'relative', zIndex: 10 }}>
         <h2 style={{
           fontFamily: theme.display,
-          fontSize: 'clamp(32px, 5vw, 64px)',
+          fontSize: 'clamp(28px, 4vw, 56px)',
           fontWeight: 900,
-          color: theme.base,
-          margin: 0
+          margin: 0,
+          lineHeight: 1.1,
+          letterSpacing: '0.02em',
+          textTransform: 'uppercase',
         }}>
-          EXPLORE OUR WORLD
+          <span className="cyan-text" style={{ display: 'block' }}>BUILD A PROJECT THAT SHOWCASES</span>
+          <span className="hollow-text" style={{ display: 'block', marginTop: 8 }}>YOUR FUTURE POTENTIAL.</span>
         </h2>
-        <p style={{
-          color: theme.subtitle,
-          marginTop: 12,
-          fontSize: 'clamp(16px, 1.5vw, 20px)'
-        }}>
-          Drag or swipe to spin the wheel
-        </p>
       </div>
 
       {/* Drag Surface & Cards */}

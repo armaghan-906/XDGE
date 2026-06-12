@@ -5,6 +5,7 @@ import { Group } from '../primitives/Reveal';
 import { Img } from '../primitives/Img';
 import { SplitHeading } from '../primitives/SplitHeading';
 import { useCanHover } from '../../hooks/useMediaQuery';
+import { FloatingVideo } from '../primitives/FloatingVideo';
 
 const items = [
   {
@@ -35,9 +36,22 @@ export function WhoItsFor() {
       style={{
         background: theme.dark, color: theme.base,
         padding: 'clamp(120px, 15vw, 240px) clamp(20px, 4vw, 40px) clamp(56px, 8vw, 100px)',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
+        <FloatingVideo 
+          src="/assets/videos/lightning_3.mp4" 
+          style={{ 
+            top: '-20%', 
+            left: '-10%', 
+            opacity: 0.6, 
+            mixBlendMode: 'screen', 
+            transform: 'scale(1.8)', 
+            zIndex: -1 
+          }} 
+        />
         <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(32px, 6vw, 56px)' }}>
           <div>
             <motion.div
@@ -53,10 +67,19 @@ export function WhoItsFor() {
               }}
             />
           </div>
-          <motion.div variants={fadeUp} style={{ paddingBottom: 24 }}>
-            <p style={{ fontSize: 17, lineHeight: 1.55, margin: '0 0 24px', maxWidth: 480 }}>
-              For those who need to build high-level capability and confidence to perform
-              at their next level.
+          <motion.div variants={fadeUp} style={{ paddingBottom: 24, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+            <h3 style={{ 
+              fontSize: 'clamp(20px, 2.5vw, 28px)', 
+              lineHeight: 1.2, 
+              marginBottom: 16, 
+              fontFamily: theme.displayTight, 
+              color: theme.base,
+              maxWidth: 520 
+            }}>
+              For Young People 12–24 Building Their Next Step Advantage
+            </h3>
+            <p style={{ fontSize: 17, lineHeight: 1.55, margin: '0 0 24px', maxWidth: 520, color: theme.subtitle }}>
+              XDGE helps ambitious young people build the confidence, leadership skills, and professional edge to stand out in school, university, career, business, and life.
             </p>
             <motion.a
               whileHover={{ x: 4 }}

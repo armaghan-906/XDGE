@@ -1,8 +1,7 @@
-import { useRef, useEffect } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FloatingVideo } from '../primitives/FloatingVideo';
 import { theme } from '../../theme';
-import { SplitHeading } from '../primitives/SplitHeading';
 
 const iconProps = {
   width: 32, height: 32,
@@ -76,107 +75,140 @@ const items = [
   { icon: Icons.Chart, title: 'Next-Level Practice', desc: 'Preparation for high-stakes interviews and selection.' },
 ];
 
-function LeaveCard({ item, index, progress, total }) {
-  const diff = useTransform(progress, (p) => index - p);
-  const radius = 1200; 
-  const anglePerItem = 14; 
-  
-  const angle = useTransform(diff, (d) => d * anglePerItem);
-  const x = useTransform(angle, (a) => radius * Math.sin((a * Math.PI) / 180));
-  const y = useTransform(angle, (a) => radius - radius * Math.cos((a * Math.PI) / 180));
-  const rotate = angle;
-  
-  const zIndex = useTransform(diff, (d) => total - Math.abs(Math.round(d)));
-  const opacity = useTransform(diff, [-4, -3, 0, 3, 4], [0, 0.4, 1, 0.4, 0]);
-  const scale = useTransform(diff, [-3, 0, 3], [0.8, 1, 0.8]);
+function LeaveCard({ item, index, isActive, isMobile, onClick }) {
+  const activeW = isMobile ? 85 : 50; // vw
+  const inactiveW = isMobile ? 15 : 18; // vw
 
   return (
     <motion.div
+      layout
+      onClick={onClick}
+      initial={false}
+      animate={{
+        width: `${isActive ? activeW : inactiveW}vw`,
+        opacity: isActive ? 1 : 0.5,
+      }}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      className="xg-glass-solid"
       style={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        width: 'clamp(280px, 30vw, 380px)',
-        aspectRatio: '3/4',
-        originX: 0.5,
-        originY: 0.5,
-        x: useTransform(x, (val) => `calc(-50% + ${val}px)`),
-        y: useTransform(y, (val) => `calc(-50% + ${val}px)`),
-        rotate,
-        zIndex,
-        opacity,
-        scale,
+        position: 'relative',
+        height: 'clamp(400px, 60vh, 600px)',
+        flexShrink: 0,
+        borderRadius: 24,
+        overflow: 'hidden',
+        cursor: 'pointer',
+        boxShadow: isActive ? '0 24px 48px -12px rgba(0,0,0,0.5)' : 'none',
+        border: `1px solid ${isActive ? theme.borderLight : theme.borderDark}`,
+        background: `linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 100%)`
       }}
     >
-      <div className="xg-glass-solid" style={{
-        width: '100%', height: '100%',
-        position: 'relative',
-        borderRadius: 16,
-        padding: 'clamp(24px, 3vw, 40px)',
-        display: 'flex', flexDirection: 'column',
-        justifyContent: 'center', alignItems: 'center', textAlign: 'center',
-        boxShadow: '0 24px 48px -12px rgba(0,0,0,0.4)',
-        border: `1px solid ${theme.borderDark}`,
+      <motion.div layout style={{
+        padding: 'clamp(20px, 3vw, 40px)',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
       }}>
-        <div style={{ color: theme.base, marginBottom: 32, transform: 'scale(1.5)' }}>
+        <motion.div layout style={{ color: theme.base, marginBottom: 24 }}>
           {item.icon}
-        </div>
-        <h3 style={{
+        </motion.div>
+
+        <motion.h3 layout style={{
           fontFamily: theme.displayTight,
-          fontSize: 'clamp(20px, 2.5vw, 28px)',
+          fontSize: 'clamp(18px, 2.2vw, 32px)',
           margin: '0 0 16px',
           lineHeight: 1.1,
           color: theme.base,
           fontWeight: 700,
+          whiteSpace: isActive ? 'normal' : 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
         }}>
           {item.title}
-        </h3>
-        <p style={{
-          fontSize: 'clamp(14px, 1.5vw, 16px)',
-          color: theme.subtitle,
-          lineHeight: 1.5,
-          margin: 0
-        }}>
-          {item.desc}
-        </p>
-      </div>
+        </motion.h3>
+
+        <AnimatePresence>
+          {isActive && (
+            <motion.p
+              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+              animate={{ opacity: 1, height: 'auto', marginTop: 16 }}
+              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                fontSize: 'clamp(14px, 1.2vw, 18px)',
+                color: theme.subtitle,
+                lineHeight: 1.5,
+                margin: 0,
+                maxWidth: '85%'
+              }}
+            >
+              {item.desc}
+            </motion.p>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </motion.div>
   );
 }
 
 export function WhatYouLeaveWith() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
-  
-  const progressRaw = useMotionValue(0);
-  const progress = useSpring(progressRaw, { stiffness: 60, damping: 15, mass: 1 });
-
-  const handleDrag = (event, info) => {
-    const delta = -info.delta.x / 100;
-    let next = progressRaw.get() + delta;
-    next = Math.max(0, Math.min(items.length - 1, next));
-    progressRaw.set(next);
-  };
-
-  const handleWheel = (e) => {
-    const isVertical = Math.abs(e.deltaY) > Math.abs(e.deltaX);
-    const delta = isVertical ? e.deltaY / 100 : e.deltaX / 100;
-    const current = progressRaw.get();
-    
-    if (current <= 0 && delta < 0) return;
-    if (current >= items.length - 1 && delta > 0) return;
-
-    e.preventDefault();
-    let next = current + delta;
-    next = Math.max(0, Math.min(items.length - 1, next));
-    progressRaw.set(next);
-  };
 
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    el.addEventListener('wheel', handleWheel, { passive: false });
-    return () => el.removeEventListener('wheel', handleWheel);
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight' && activeIndex < items.length - 1) {
+        setActiveIndex(prev => prev + 1);
+        setIsExpanded(true);
+      } else if (e.key === 'ArrowLeft' && activeIndex > 0) {
+        setActiveIndex(prev => prev - 1);
+        setIsExpanded(true);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeIndex]);
+
+  const handleDragEnd = (e, { offset, velocity }) => {
+    const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+    if (swipe) {
+      if (offset.x > 0 && activeIndex > 0) {
+        setActiveIndex(activeIndex - 1);
+        setIsExpanded(true);
+      } else if (offset.x < 0 && activeIndex < items.length - 1) {
+        setActiveIndex(activeIndex + 1);
+        setIsExpanded(true);
+      }
+    }
+  };
+
+  const activeW = isMobile ? 85 : 50;
+  const inactiveW = isMobile ? 15 : 18;
+  const gapW = isMobile ? 3 : 2;
+
+  const getTrackX = (index, expanded) => {
+    const currentActiveWidth = expanded ? activeW : inactiveW;
+    const centerOfActive = (index * (inactiveW + gapW)) + (currentActiveWidth / 2);
+    return `calc(50vw - ${centerOfActive}vw)`;
+  };
+
+  const handleCardClick = (i) => {
+    if (activeIndex === i) {
+      setIsExpanded(!isExpanded);
+    } else {
+      setActiveIndex(i);
+      setIsExpanded(true);
+    }
+  };
 
   return (
     <section
@@ -195,18 +227,19 @@ export function WhatYouLeaveWith() {
         style={{ top: '30%', right: 20, opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(1.3)' }} 
       />
       
-      <div style={{ textAlign: 'center', marginBottom: 40, position: 'relative', zIndex: 10 }}>
+      <div style={{ textAlign: 'center', marginBottom: 60, position: 'relative', zIndex: 10 }}>
         <h2 style={{
           fontFamily: theme.display,
           fontSize: 'clamp(36px, 5.5vw, 86px)',
           fontWeight: 900,
-          color: theme.base,
           margin: '0 auto',
           letterSpacing: '-0.02em',
           maxWidth: 800,
           lineHeight: 0.95,
+          textTransform: 'uppercase'
         }}>
-          WHAT YOU<br/>LEAVE WITH
+          <span className="hollow-text" style={{ display: 'block' }}>WHAT YOU</span>
+          <span className="cyan-text" style={{ display: 'block' }}>LEAVE WITH</span>
         </h2>
         <p style={{
           color: theme.subtitle,
@@ -218,25 +251,83 @@ export function WhatYouLeaveWith() {
         </p>
       </div>
 
-      <motion.div
-        ref={containerRef}
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={0}
-        onDrag={handleDrag}
-        style={{
-          position: 'relative',
-          height: 'clamp(450px, 65vh, 700px)',
-          width: '100%',
-          cursor: 'grab',
-          touchAction: 'none'
-        }}
-        whileTap={{ cursor: 'grabbing' }}
-      >
-        {items.map((item, i) => (
-          <LeaveCard key={i} item={item} index={i} progress={progress} total={items.length} />
-        ))}
-      </motion.div>
+      <div style={{ width: '100%', overflow: 'hidden', position: 'relative', padding: '20px 0' }}>
+        <motion.div
+          ref={containerRef}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.1}
+          onDragEnd={handleDragEnd}
+          animate={{ x: getTrackX(activeIndex, isExpanded) }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          style={{
+            display: 'flex',
+            gap: `${gapW}vw`,
+            width: 'max-content',
+            cursor: 'grab',
+            touchAction: 'none'
+          }}
+          whileTap={{ cursor: 'grabbing' }}
+        >
+          {items.map((item, i) => (
+            <LeaveCard 
+              key={i} 
+              item={item} 
+              index={i} 
+              isActive={i === activeIndex && isExpanded} 
+              isMobile={isMobile}
+              onClick={() => handleCardClick(i)} 
+            />
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Navigation Arrows */}
+      <div style={{
+        display: 'flex', justifyContent: 'center', gap: 24, marginTop: 40, position: 'relative', zIndex: 10
+      }}>
+        <button
+          onClick={() => {
+            setActiveIndex(Math.max(0, activeIndex - 1));
+            setIsExpanded(true);
+          }}
+          style={{
+            background: 'none', border: `1px solid ${theme.borderDark}`,
+            color: activeIndex > 0 ? theme.base : theme.subtitle,
+            opacity: activeIndex > 0 ? 1 : 0.3,
+            width: 48, height: 48, borderRadius: '50%',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            cursor: activeIndex > 0 ? 'pointer' : 'default',
+            transition: 'all 0.2s',
+          }}
+          disabled={activeIndex === 0}
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+        <button
+          onClick={() => {
+            setActiveIndex(Math.min(items.length - 1, activeIndex + 1));
+            setIsExpanded(true);
+          }}
+          style={{
+            background: 'none', border: `1px solid ${theme.borderDark}`,
+            color: activeIndex < items.length - 1 ? theme.base : theme.subtitle,
+            opacity: activeIndex < items.length - 1 ? 1 : 0.3,
+            width: 48, height: 48, borderRadius: '50%',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            cursor: activeIndex < items.length - 1 ? 'pointer' : 'default',
+            transition: 'all 0.2s',
+          }}
+          disabled={activeIndex === items.length - 1}
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      </div>
     </section>
   );
 }
+

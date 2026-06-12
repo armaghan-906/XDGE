@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { theme, fadeUp } from '../../theme';
+import { theme, fadeUp, stagger } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
@@ -18,21 +18,43 @@ export function WhoWeAre() {
         padding: 'clamp(120px, 15vw, 240px) clamp(20px, 4vw, 40px)',
       }}
     >
-      <FloatingVideo 
-        src="/assets/videos/lightning_3.mp4" 
-        style={{ bottom: 80, left: -40, opacity: 0.5, mixBlendMode: 'screen', transform: 'scale(1.5)' }} 
+      <video
+        autoPlay loop muted playsInline
+        src="/assets/videos/spiraling_force.mp4"
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          minWidth: '100%',
+          minHeight: '100%',
+          width: 'auto',
+          height: 'auto',
+          objectFit: 'cover',
+          transform: 'translate(-50%, -50%)',
+          opacity: 0.4,
+          mixBlendMode: 'screen',
+          pointerEvents: 'none',
+          zIndex: 0
+        }}
       />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <motion.div variants={fadeUp} style={{ marginBottom: 'clamp(40px, 6vw, 64px)' }}>
-          <SplitHeading
-            lines={['WHO', 'ARE WE']}
+          <motion.h2
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
             style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(36px, 5.5vw, 108px)',
+              fontSize: 'clamp(36px, 6vw, 108px)',
               lineHeight: 0.92, letterSpacing: '-0.02em',
-              textAlign: 'left',
+              textAlign: 'left', margin: 0, textTransform: 'uppercase'
             }}
-          />
+          >
+            <motion.span variants={fadeUp} className="hollow-text">
+              WHO ARE WE
+            </motion.span>
+          </motion.h2>
         </motion.div>
 
         <Group className="xg-wwd-top" style={{ alignItems: 'center' }}>
