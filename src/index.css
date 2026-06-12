@@ -1199,7 +1199,7 @@ section[data-screen-label] {
 .hollow-text {
   font-family: 'Archivo Black', sans-serif;
   color: transparent !important;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+  -webkit-text-stroke: 0.25px rgba(255, 255, 255, 0.3);
   letter-spacing: 0.04em;
 }
 

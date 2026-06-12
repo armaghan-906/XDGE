@@ -51,7 +51,7 @@ export function WhoWeAre() {
               textAlign: 'left', margin: 0, textTransform: 'uppercase'
             }}
           >
-            <motion.span variants={fadeUp} className="hollow-text">
+            <motion.span variants={fadeUp}>
               WHO ARE WE
             </motion.span>
           </motion.h2>

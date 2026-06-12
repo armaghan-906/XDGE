@@ -146,18 +146,6 @@ export function TopBar() {
             >
               <Logo style={{ fontSize: 28 }} />
             </Link>
-            <Link
-              to="/"
-              className="xg-hide-sm"
-              animate={{ color: fg }}
-              transition={{ duration: 0.3 }}
-              whileHover={{ x: 2 }}
-              style={{
-                fontSize: 12, letterSpacing: '0.04em',
-                paddingTop: 6, fontWeight: 500,
-                textDecoration: 'none', whiteSpace: 'nowrap',
-              }}
-            >Our Programs</Link>
           </div>
 
           <button
