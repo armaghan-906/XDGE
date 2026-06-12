@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { theme, fadeUp, stagger } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
@@ -14,9 +14,18 @@ const cards = [
 
 function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
   const isHovered = hovered === index;
+  const cardRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"]
+  });
+
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-25%", "25%"]);
 
   return (
     <motion.a
+      ref={cardRef}
       href="#"
       variants={fadeUp}
       data-cursor="grow"
@@ -53,9 +62,14 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
             animate={{ scale: isHovered ? 1.06 : 1 }}
             transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
             style={{
-              width: '100%', height: '100%',
+              position: 'absolute',
+              top: '-25%',
+              left: 0,
+              width: '100%', 
+              height: '150%',
               objectFit: 'cover',
               willChange: 'transform',
+              y: imgY,
             }}
           />
         </motion.div>

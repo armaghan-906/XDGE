@@ -39,12 +39,32 @@ export function Hero() {
           position: 'relative',
           zIndex: 5,
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           width: '100%',
         }}
       >
         <Logo style={{ fontSize: 'clamp(64px, 15vw, 200px)' }} />
+        <div style={{ textAlign: 'center', marginTop: 'clamp(16px, 2vw, 24px)' }}>
+          <div style={{ 
+            fontFamily: theme.body,
+            fontSize: 'clamp(10px, 1.8vw, 24px)', 
+            letterSpacing: '0.2em', 
+            color: '#ffffff', 
+            marginBottom: 'clamp(8px, 1.2vw, 16px)', 
+            fontWeight: 400 
+          }}>
+            LEAD YOUR OWN OPPORTUNITIES.
+          </div>
+          <div className="cyan-text" style={{ 
+            fontSize: 'clamp(10px, 1.8vw, 24px)', 
+            letterSpacing: '0.3em', 
+            fontWeight: 600 
+          }}>
+            TRAIN • BUILD • LEAD • IMPACT
+          </div>
+        </div>
       </motion.div>
     </section>
   );

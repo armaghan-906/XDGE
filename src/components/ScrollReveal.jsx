@@ -1,97 +1,96 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
+import { animate } from 'framer-motion';
 
 /**
- * ScrollReveal — Global Intersection Observer that adds `.revealed` class
- * to every section's text elements when they scroll into view.
- * This provides a smooth fade-up + slide animation for all text content.
+ * ScrollReveal — Global Intersection Observer.
+ * Premium "Boldz Studio" style animation: very smooth, staggered, 
+ * longer duration (1.2s), elegant slide-up (40px) and fade.
  */
 export function ScrollReveal() {
-  useEffect(() => {
-    const selectors = [
-      'section h1', 'section h2', 'section h3', 'section h4',
-      'section p', 'section li', 'section blockquote',
-      'section .scroll-reveal'
-    ].join(', ');
+  useLayoutEffect(() => {
+    let pendingEntries = [];
+    let rafId = null;
 
-    const elements = document.querySelectorAll(selectors);
+    const processBatch = () => {
+      // Sort elements by their vertical position to guarantee top-down stagger
+      pendingEntries.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+      
+      pendingEntries.forEach((entry, idx) => {
+        const tag = entry.target.tagName.toLowerCase();
+        let extraDelay = 0;
+        
+        // Paragraphs and lists get a slightly longer delay so they appear after headings
+        if (['p', 'li', 'blockquote', 'div', 'span'].includes(tag)) {
+          extraDelay = 0.15;
+        }
 
-    // Only target elements that don't already have framer-motion animation
-    const targets = Array.from(elements).filter(el => {
-      // Skip elements that framer-motion is already animating
-      return !el.style.opacity && !el.closest('[data-framer-appear-id]');
-    });
+        const baseDelay = idx * 0.08;
+        
+        // Boldz Studio style premium reveal
+        animate(entry.target, 
+          { opacity: [0, 1], y: [40, 0] },
+          { 
+            duration: 1.2, 
+            delay: baseDelay + extraDelay, 
+            ease: [0.16, 1, 0.3, 1] 
+          }
+        );
+      });
 
-    targets.forEach(el => {
-      if (!el.classList.contains('sr-init')) {
-        el.classList.add('sr-init');
-      }
-    });
+      pendingEntries = [];
+      rafId = null;
+    };
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            // Add stagger delay based on sibling index
-            const parent = entry.target.parentElement;
-            if (parent) {
-              const siblings = Array.from(parent.children).filter(c => c.classList.contains('sr-init'));
-              const idx = siblings.indexOf(entry.target);
-              entry.target.style.transitionDelay = `${idx * 0.08}s`;
-            }
-            entry.target.classList.add('sr-visible');
+            pendingEntries.push(entry);
             observer.unobserve(entry.target);
           }
         });
+
+        if (pendingEntries.length > 0 && !rafId) {
+          rafId = requestAnimationFrame(processBatch);
+        }
       },
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
     );
 
-    targets.forEach(el => observer.observe(el));
+    const initObserver = () => {
+      const selectors = [
+        'section h1', 'section h2', 'section h3', 'section h4',
+        'section p', 'section li', 'section blockquote'
+      ].join(', ');
 
-    return () => observer.disconnect();
-  }, []);
+      const elements = document.querySelectorAll(selectors);
 
-  // Re-run on route changes
-  useEffect(() => {
-    const handleRouteChange = () => {
-      setTimeout(() => {
-        const selectors = [
-          'section h1', 'section h2', 'section h3', 'section h4',
-          'section p', 'section li', 'section blockquote',
-          'section .scroll-reveal'
-        ].join(', ');
+      const targets = Array.from(elements).filter(el => {
+        // Skip elements that already have opacity or are managed by framer-motion
+        return !el.hasAttribute('data-sr-init') && !el.style.opacity && !el.closest('[data-framer-appear-id]');
+      });
 
-        const elements = document.querySelectorAll(selectors);
-        const targets = Array.from(elements).filter(el => {
-          return !el.classList.contains('sr-init') && !el.style.opacity && !el.closest('[data-framer-appear-id]');
-        });
-
-        targets.forEach(el => el.classList.add('sr-init'));
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                const parent = entry.target.parentElement;
-                if (parent) {
-                  const siblings = Array.from(parent.children).filter(c => c.classList.contains('sr-init'));
-                  const idx = siblings.indexOf(entry.target);
-                  entry.target.style.transitionDelay = `${idx * 0.08}s`;
-                }
-                entry.target.classList.add('sr-visible');
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-        );
-
-        targets.forEach(el => observer.observe(el));
-      }, 300);
+      targets.forEach(el => {
+        el.setAttribute('data-sr-init', 'true');
+        // Instantly hide the element before the browser paints it
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(40px)';
+        observer.observe(el);
+      });
     };
 
+    // Run immediately
+    initObserver();
+
+    // Re-run on route changes or dynamic content
+    const handleRouteChange = () => setTimeout(initObserver, 300);
     window.addEventListener('popstate', handleRouteChange);
-    return () => window.removeEventListener('popstate', handleRouteChange);
+
+    return () => {
+      observer.disconnect();
+      if (rafId) cancelAnimationFrame(rafId);
+      window.removeEventListener('popstate', handleRouteChange);
+    };
   }, []);
 
   return null;

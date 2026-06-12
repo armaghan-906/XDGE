@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   background: #000000;
@@ -10,6 +11,7 @@ html, body {
   position: relative;
   min-height: 100vh;
 }
+
 /* scroll-behavior: smooth REMOVED — it fights with active user scrolling,
    causing perceived "sticking" at section boundaries as the browser tries
    to animate to a position the user is already scrolling past. */
@@ -32,14 +34,35 @@ body {
   text-rendering: optimizeLegibility;
   font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
 }
-*, *::before, *::after { box-sizing: border-box; }
 
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-a { color: inherit; }
-img { display: block; max-width: 100%; }
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
 
 /* ── Premium polish layer ─────────────────────────────────── */
 :root {
@@ -65,14 +88,19 @@ section[data-section-theme="dark"][data-screen-label^="01"]::before {
   pointer-events: none;
   z-index: 0;
 }
-section[data-section-theme="dark"][data-screen-label^="01"] > *:not(.xg-hero-ambient) { position: relative; z-index: 1; }
+
+section[data-section-theme="dark"][data-screen-label^="01"]>*:not(.xg-hero-ambient) {
+  position: relative;
+  z-index: 1;
+}
 
 /* Any section containing HeroAmbient gets proper layering — covers non-"01" heroes like About */
 section:has(> .xg-hero-ambient) {
   position: relative;
   overflow: hidden;
 }
-section:has(> .xg-hero-ambient) > *:not(.xg-hero-ambient) {
+
+section:has(> .xg-hero-ambient)>*:not(.xg-hero-ambient) {
   position: relative;
   z-index: 1;
 }
@@ -83,12 +111,15 @@ article[data-cursor="grow"],
   transition: transform 0.5s var(--xg-ease), box-shadow 0.5s var(--xg-ease), border-color 0.5s var(--xg-ease);
   will-change: transform;
 }
+
 @media (hover: hover) {
+
   article[data-cursor="grow"]:hover,
   .xg-card-lift:hover {
     transform: translateY(-6px);
     box-shadow: var(--xg-shadow-soft);
   }
+
   section[data-section-theme="dark"] article[data-cursor="grow"]:hover {
     box-shadow: var(--xg-shadow-soft-dark);
   }
@@ -105,16 +136,20 @@ article[data-cursor="grow"],
   display: inline-block;
   padding-bottom: 2px;
 }
+
 .xg-link::after {
   content: "";
   position: absolute;
-  left: 0; right: 0; bottom: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: 1px;
   background: currentColor;
   transform: scaleX(0);
   transform-origin: right center;
   transition: transform 0.55s var(--xg-ease);
 }
+
 .xg-link:hover::after {
   transform: scaleX(1);
   transform-origin: left center;
@@ -127,6 +162,7 @@ article[data-cursor="grow"],
   isolation: isolate;
   transition: color 0.4s var(--xg-ease), border-color 0.4s var(--xg-ease);
 }
+
 .xg-btn::before {
   content: "";
   position: absolute;
@@ -137,13 +173,22 @@ article[data-cursor="grow"],
   transition: transform 0.55s var(--xg-ease);
   z-index: -1;
 }
+
 @media (hover: hover) {
-  .xg-btn:hover::before { transform: scaleX(1); }
-  .xg-btn:hover { color: var(--xg-btn-hover-color, #FFFFFF); mix-blend-mode: normal; }
+  .xg-btn:hover::before {
+    transform: scaleX(1);
+  }
+
+  .xg-btn:hover {
+    color: var(--xg-btn-hover-color, #FFFFFF);
+    mix-blend-mode: normal;
+  }
 }
 
 /* Refined typography — body line-height + paragraph spacing */
-p { letter-spacing: -0.003em; }
+p {
+  letter-spacing: -0.003em;
+}
 
 /* ── HERO AMBIENT — animated mesh gradient + floating orbs ─────────────────── */
 .xg-hero-ambient {
@@ -153,6 +198,7 @@ p { letter-spacing: -0.003em; }
   pointer-events: none;
   z-index: 0;
 }
+
 .xg-hero-orb {
   position: absolute;
   border-radius: 50%;
@@ -161,6 +207,7 @@ p { letter-spacing: -0.003em; }
      just keep extra layers alive for no benefit and were contributing
      to scroll compositing pressure. */
 }
+
 .xg-hero-orb-blue {
   top: -15%;
   left: -10%;
@@ -171,6 +218,7 @@ p { letter-spacing: -0.003em; }
   opacity: 0.40;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.10) 35%, rgba(255, 255, 255, 0.03) 65%, transparent 88%);
 }
+
 .xg-hero-orb-warm {
   bottom: -20%;
   right: -15%;
@@ -181,6 +229,7 @@ p { letter-spacing: -0.003em; }
   opacity: 0.28;
   background: radial-gradient(circle, rgba(200, 200, 200, 0.32) 0%, rgba(200, 200, 200, 0.10) 35%, rgba(200, 200, 200, 0.03) 65%, transparent 88%);
 }
+
 .xg-hero-orb-deep {
   top: 30%;
   right: 20%;
@@ -191,6 +240,7 @@ p { letter-spacing: -0.003em; }
   opacity: 0.6;
   background: radial-gradient(circle, rgba(26, 26, 26, 0.85) 0%, rgba(26, 26, 26, 0.45) 35%, rgba(26, 26, 26, 0.12) 65%, transparent 88%);
 }
+
 .xg-hero-grain {
   position: absolute;
   inset: 0;
@@ -207,10 +257,17 @@ p { letter-spacing: -0.003em; }
    compositing work that interfered with scroll smoothness. Orbs are
    now static gradient circles. The hero still reads as atmospheric
    thanks to the radial gradients on each orb. */
-.xg-orb-drift-a, .xg-orb-drift-b, .xg-orb-drift-c { animation: none; }
+.xg-orb-drift-a,
+.xg-orb-drift-b,
+.xg-orb-drift-c {
+  animation: none;
+}
 
 /* Ensure hero content sits above ambient — but never re-position the ambient layer itself */
-section[data-screen-label^="01"] > div:not(.xg-hero-ambient) { position: relative; z-index: 2; }
+section[data-screen-label^="01"]>div:not(.xg-hero-ambient) {
+  position: relative;
+  z-index: 2;
+}
 
 /* Glass cards — backdrop-filter and hover lifts removed. Plain translucent
    surfaces with borders. No paint-expensive blurs during scroll. */
@@ -221,6 +278,7 @@ section[data-screen-label^="01"] > div:not(.xg-hero-ambient) { position: relativ
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
+
 .xg-glass-light {
   background: rgba(255, 255, 255, 0.45);
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -233,6 +291,7 @@ section[data-screen-label^="01"] > div:not(.xg-hero-ambient) { position: relativ
   position: relative;
   overflow: hidden;
 }
+
 .xg-divider::after {
   content: "";
   position: absolute;
@@ -241,15 +300,24 @@ section[data-screen-label^="01"] > div:not(.xg-hero-ambient) { position: relativ
   transform: translateX(-100%);
   animation: xg-divider-sweep 6s ease-in-out infinite;
 }
+
 @keyframes xg-divider-sweep {
-  0%, 100% { transform: translateX(-100%); }
-  50% { transform: translateX(100%); }
+
+  0%,
+  100% {
+    transform: translateX(-100%);
+  }
+
+  50% {
+    transform: translateX(100%);
+  }
 }
 
 /* ── GLOW UTILITY — accent halo around key elements ────────────────────────── */
 .xg-glow-accent {
   position: relative;
 }
+
 .xg-glow-accent::before {
   content: "";
   position: absolute;
@@ -261,16 +329,24 @@ section[data-screen-label^="01"] > div:not(.xg-hero-ambient) { position: relativ
   z-index: -1;
   transition: opacity 0.5s var(--xg-ease);
 }
+
 @media (hover: hover) {
-  .xg-glow-accent:hover::before { opacity: 0.8; }
+  .xg-glow-accent:hover::before {
+    opacity: 0.8;
+  }
 }
 
 /* Sticky-pin bottom-fade overlay removed alongside the sticky behavior. */
 
 /* ── DISABLE HERO AMBIENT ON LOW-POWER / REDUCED MOTION ───────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .xg-hero-orb { animation: none !important; }
-  .xg-divider::after { animation: none; }
+  .xg-hero-orb {
+    animation: none !important;
+  }
+
+  .xg-divider::after {
+    animation: none;
+  }
 }
 
 /* Page transition removed — keyframe was replaying on every content-visibility re-render,
@@ -278,15 +354,39 @@ section[data-screen-label^="01"] > div:not(.xg-hero-ambient) { position: relativ
    `whileInView once: true` handles reveal correctly. */
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
 
-body { cursor: none; }
-input, textarea, select { cursor: text; }
-@media (hover: none), (prefers-reduced-motion: reduce) {
-  body, body * { cursor: auto !important; }
-  .xdge-cursor { display: none !important; }
+body {
+  cursor: none;
+}
+
+input,
+textarea,
+select {
+  cursor: text;
+}
+
+@media (hover: none),
+(prefers-reduced-motion: reduce) {
+
+  body,
+  body * {
+    cursor: auto !important;
+  }
+
+  .xdge-cursor {
+    display: none !important;
+  }
 }
 
 /* ── What You Leave With list: small image left, title + desc right ── */
@@ -294,6 +394,7 @@ input, textarea, select { cursor: text; }
   display: flex;
   flex-direction: column;
 }
+
 .xg-leave-row {
   display: grid;
   grid-template-columns: clamp(140px, 18vw, 220px) 1fr;
@@ -302,17 +403,25 @@ input, textarea, select { cursor: text; }
   padding: clamp(24px, 3.5vw, 40px) 0;
   border-top: 1px solid rgba(0, 0, 0, 0.18);
 }
+
 .xg-leave-row:last-child {
   border-bottom: 1px solid rgba(0, 0, 0, 0.18);
 }
+
 .xg-leave-img,
-.xg-leave-text { min-width: 0; }
+.xg-leave-text {
+  min-width: 0;
+}
+
 @media (max-width: 700px) {
   .xg-leave-row {
     grid-template-columns: 1fr;
     gap: clamp(16px, 3vw, 24px);
   }
-  .xg-leave-img { max-width: 220px; }
+
+  .xg-leave-img {
+    max-width: 220px;
+  }
 }
 
 /* ── Principles list: numbered rows with image on the right ── */
@@ -320,6 +429,7 @@ input, textarea, select { cursor: text; }
   display: flex;
   flex-direction: column;
 }
+
 .xg-principle-row {
   display: grid;
   grid-template-columns: 0.7fr 1.4fr 1fr;
@@ -328,19 +438,23 @@ input, textarea, select { cursor: text; }
   padding: clamp(36px, 5vw, 56px) 0;
   border-top: 1px solid rgba(248, 248, 248, 0.18);
 }
+
 .xg-principle-row:last-child {
   border-bottom: 1px solid rgba(248, 248, 248, 0.18);
 }
+
 .xg-principle-num,
 .xg-principle-text,
 .xg-principle-img {
   min-width: 0;
 }
+
 @media (max-width: 900px) {
   .xg-principle-row {
     grid-template-columns: 1fr;
     gap: clamp(16px, 3vw, 24px);
   }
+
   .xg-principle-img {
     max-width: 480px;
   }
@@ -352,26 +466,32 @@ input, textarea, select { cursor: text; }
   flex-direction: column;
   gap: clamp(40px, 6vw, 72px);
 }
+
 .xg-team-row {
   display: grid;
   grid-template-columns: 1fr 1fr 1.3fr;
   gap: clamp(28px, 4vw, 56px);
   align-items: flex-start;
 }
+
 .xg-team-intro {
   min-width: 0;
 }
+
 .xg-team-image {
   min-width: 0;
 }
+
 .xg-team-text {
   min-width: 0;
 }
+
 @media (max-width: 900px) {
   .xg-team-row {
     grid-template-columns: 1fr;
     gap: clamp(20px, 3vw, 32px);
   }
+
   .xg-team-image {
     max-width: 360px;
   }
@@ -392,21 +512,33 @@ input, textarea, select { cursor: text; }
   gap: clamp(32px, 6vw, 88px);
   align-items: flex-start;
 }
+
 .xg-about-image-sticky {
   position: sticky;
   top: clamp(96px, 12vh, 140px);
   width: 100%;
   max-width: 320px;
 }
+
 .xg-about-image-col {
   min-width: 0;
 }
+
 .xg-about-text-col {
   min-width: 0;
 }
+
 @media (max-width: 900px) {
-  .xg-about-grid { grid-template-columns: 1fr; gap: clamp(28px, 5vw, 48px); }
-  .xg-about-image-sticky { position: static; max-width: 480px; margin: 0 auto; }
+  .xg-about-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(28px, 5vw, 48px);
+  }
+
+  .xg-about-image-sticky {
+    position: static;
+    max-width: 480px;
+    margin: 0 auto;
+  }
 }
 
 /* contain: content REMOVED — it was creating new formatting contexts at each
@@ -414,31 +546,47 @@ input, textarea, select { cursor: text; }
    visible judder/sticking as each section entered containment during scroll.
    Modern browsers handle section repaints efficiently enough without explicit
    containment. The heroes still use their own stacking context naturally. */
-section[data-screen-label] { contain: none; }
+section[data-screen-label] {
+  contain: none;
+}
 
 /* ── Programme tier cards — lift + image zoom on hover (light theme) ────── */
 .xg-tier-card {
   transition: transform 0.5s var(--xg-ease), box-shadow 0.5s var(--xg-ease), border-color 0.5s var(--xg-ease);
   will-change: transform;
 }
+
 .xg-tier-card .xg-tier-card-media img {
   transition: transform 0.7s var(--xg-ease);
   will-change: transform;
 }
+
 @media (hover: hover) {
   .xg-tier-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 18px 50px -22px rgba(0, 0, 0, 0.22), 0 6px 18px -10px rgba(0, 0, 0, 0.12);
     border-color: rgba(0, 0, 0, 0.25);
   }
+
   .xg-tier-card:hover .xg-tier-card-media img {
     transform: scale(1.06);
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
-  .xg-tier-card, .xg-tier-card .xg-tier-card-media img { transition: none; }
-  .xg-tier-card:hover { transform: none; }
-  .xg-tier-card:hover .xg-tier-card-media img { transform: none; }
+
+  .xg-tier-card,
+  .xg-tier-card .xg-tier-card-media img {
+    transition: none;
+  }
+
+  .xg-tier-card:hover {
+    transform: none;
+  }
+
+  .xg-tier-card:hover .xg-tier-card-media img {
+    transform: none;
+  }
 }
 
 /* ── Curtain — CSS-transition crossfade (compositor-thread only) ────────────
@@ -460,10 +608,12 @@ section[data-screen-label] { contain: none; }
   will-change: opacity;
   transform: translateZ(0);
 }
+
 .xg-curtain.is-show {
   opacity: 1;
   transition-duration: 0.5s;
 }
+
 .xg-curtain-mark {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
@@ -473,18 +623,22 @@ section[data-screen-label] { contain: none; }
   letter-spacing: -0.02em;
   line-height: 1;
 }
+
 @media (prefers-reduced-motion: reduce) {
-  .xg-curtain { transition: none; }
+  .xg-curtain {
+    transition: none;
+  }
 }
 
 /* Sticky-pin restored — big banner pins at 100vh while the following
    section scrolls UP over it. The z-index ensures the second child
    (the content section) layers above the sticky banner. */
-.xg-stick-wrap { 
-  position: relative; 
+.xg-stick-wrap {
+  position: relative;
   z-index: 1;
 }
-.xg-stick-wrap > .xg-stick-pin {
+
+.xg-stick-wrap>.xg-stick-pin {
   position: relative;
   height: 100vh;
   display: flex;
@@ -492,27 +646,31 @@ section[data-screen-label] { contain: none; }
   justify-content: center;
   z-index: 1;
 }
-.xg-stick-wrap > .xg-stick-pin--natural {
+
+.xg-stick-wrap>.xg-stick-pin--natural {
   position: relative;
   height: auto;
   max-height: 100vh;
   display: block;
   z-index: 1;
 }
-.xg-stick-wrap > .xg-stick-pin img {
+
+.xg-stick-wrap>.xg-stick-pin img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-.xg-stick-wrap > .xg-stick-pin--natural img {
+
+.xg-stick-wrap>.xg-stick-pin--natural img {
   width: 100%;
   height: auto;
   object-fit: cover;
   display: block;
 }
+
 /* Ensure the section that follows the pinned banner scrolls over it */
-.xg-stick-wrap > :nth-child(2) {
+.xg-stick-wrap> :nth-child(2) {
   position: relative;
   z-index: 2;
 }
@@ -522,75 +680,162 @@ section[data-screen-label] { contain: none; }
    machines. Banner image stays static within its sticky-pin frame. */
 
 /* ── Responsive grid utilities ──────────────────────────── */
-.xg-2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 48px); }
+.xg-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 48px);
+}
+
 .xg-perf-grid {
   display: grid;
   grid-template-columns: 0.8fr 2.2fr;
   align-items: center;
 }
+
 @media (max-width: 900px) {
-  .xg-perf-grid { grid-template-columns: 1fr; }
+  .xg-perf-grid {
+    grid-template-columns: 1fr;
+  }
 }
+
 @media (max-width: 542px) {
-  .xg-cap-grid { grid-template-columns: 1fr !important; }
-  .xg-perf-tagline { margin-top: 0 !important; }
+  .xg-cap-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .xg-perf-tagline {
+    margin-top: 0 !important;
+  }
 }
-.xg-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+.xg-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
 
 /* Desktop card stagger effect */
 @media (min-width: 1024px) {
-  .xg-stagger-cards > *:nth-child(2) {
+  .xg-stagger-cards>*:nth-child(2) {
     transform: translateY(15%);
   }
-  .xg-stagger-cards > *:nth-child(3) {
+
+  .xg-stagger-cards>*:nth-child(3) {
     transform: translateY(30%);
   }
-  .xg-stagger-cards-25 > *:nth-child(2) {
+
+  .xg-stagger-cards-25>*:nth-child(2) {
     transform: translateY(25%);
   }
-  .xg-stagger-cards-25 > *:nth-child(3) {
+
+  .xg-stagger-cards-25>*:nth-child(3) {
     transform: translateY(50%);
   }
 }
 
-.xg-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.xg-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
 
-.xg-hero-body { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 48px); }
-.xg-wwd-top { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(24px, 4vw, 48px); align-items: flex-start; }
-.xg-serve-row { display: grid; grid-template-columns: 1fr 1.4fr; }
+.xg-hero-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 48px);
+}
+
+.xg-wwd-top {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: flex-start;
+}
+
+.xg-serve-row {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+}
 
 @media (max-width: 1024px) {
-  .xg-3 { grid-template-columns: repeat(2, 1fr); }
-  .xg-4 { grid-template-columns: repeat(2, 1fr); }
+  .xg-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .xg-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
+
 @media (max-width: 768px) {
-  .xg-2 { grid-template-columns: 1fr; }
-  .xg-hero-body { grid-template-columns: 1fr; }
-  .xg-wwd-top { grid-template-columns: 1fr; }
-  .xg-serve-row { grid-template-columns: 1fr; }
-  .xg-serve-row > .xg-serve-img { order: -1; min-height: 220px; aspect-ratio: 16/10; }
-  .xg-hide-md { display: none !important; }
-  .xg-marquee-card { flex-basis: 280px !important; }
+  .xg-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .xg-hero-body {
+    grid-template-columns: 1fr;
+  }
+
+  .xg-wwd-top {
+    grid-template-columns: 1fr;
+  }
+
+  .xg-serve-row {
+    grid-template-columns: 1fr;
+  }
+
+  .xg-serve-row>.xg-serve-img {
+    order: -1;
+    min-height: 220px;
+    aspect-ratio: 16/10;
+  }
+
+  .xg-hide-md {
+    display: none !important;
+  }
+
+  .xg-marquee-card {
+    flex-basis: 280px !important;
+  }
 }
+
 @media (max-width: 640px) {
-  .xg-3 { grid-template-columns: 1fr; }
-  .xg-4 { grid-template-columns: 1fr; }
-  .xg-hide-sm { display: none !important; }
+  .xg-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .xg-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .xg-hide-sm {
+    display: none !important;
+  }
 }
 
 /* Global small-screen safety: prevent any element overflowing horizontally */
 @media (max-width: 640px) {
-  html, body { overflow-x: clip; }
-  img, video { max-width: 100%; height: auto; }
+
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 /* Hero sections: on mobile, stop spreading content apart with space-between */
 @media (max-width: 768px) {
-  section[data-screen-label*="Hero" i] > div:first-child {
+  section[data-screen-label*="Hero" i]>div:first-child {
     justify-content: flex-start !important;
     gap: clamp(24px, 6vw, 48px) !important;
     min-height: auto !important;
   }
+
   section[data-screen-label*="Hero" i] {
     min-height: auto !important;
   }
@@ -598,30 +843,70 @@ section[data-screen-label] { contain: none; }
 
 /* TheReality pills + heading — allow wrapping on phones */
 @media (max-width: 640px) {
-  .xg-reality-pills { flex-wrap: wrap !important; white-space: normal !important; justify-content: center; }
-  .xg-reality-pills > div { white-space: normal; text-align: center; }
+  .xg-reality-pills {
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+    justify-content: center;
+  }
+
+  .xg-reality-pills>div {
+    white-space: normal;
+    text-align: center;
+  }
 }
 
 /* ProvenOutcomes nav row stacks nicely on small screens */
 @media (max-width: 900px) {
-  .xg-outcomes-nav { flex-wrap: wrap; gap: 16px !important; }
-  .xg-outcomes-nav > div:nth-child(2) { display: none; /* hide divider when wrapping */ }
-  .xg-outcomes-nav > div:last-child { width: 100%; justify-content: flex-start; flex-wrap: wrap; }
-  .xg-outcomes-nav button { padding: 12px 20px !important; font-size: 12px !important; letter-spacing: 0.04em !important; }
+  .xg-outcomes-nav {
+    flex-wrap: wrap;
+    gap: 16px !important;
+  }
+
+  .xg-outcomes-nav>div:nth-child(2) {
+    display: none;
+    /* hide divider when wrapping */
+  }
+
+  .xg-outcomes-nav>div:last-child {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .xg-outcomes-nav button {
+    padding: 12px 20px !important;
+    font-size: 12px !important;
+    letter-spacing: 0.04em !important;
+  }
 }
+
 @media (max-width: 720px) {
-  .xg-outcomes-card { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .xg-outcomes-card {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
 }
+
 @media (max-width: 420px) {
-  .xg-outcomes-nav button { padding: 10px 14px !important; font-size: 11px !important; gap: 8px !important; }
+  .xg-outcomes-nav button {
+    padding: 10px 14px !important;
+    font-size: 11px !important;
+    gap: 8px !important;
+  }
 }
 
 /* Mobile override no longer needed — sticky-pin disabled globally above. */
 
 /* Footer right column — push content to the right edge on desktop */
-.xg-footer-right { justify-self: end; text-align: left; }
+.xg-footer-right {
+  justify-self: end;
+  text-align: left;
+}
+
 @media (max-width: 768px) {
-  .xg-footer-right { justify-self: start; }
+  .xg-footer-right {
+    justify-self: start;
+  }
 }
 
 /* Different-ages slide: 2 cols on desktop, stacks on smaller screens */
@@ -639,6 +924,7 @@ section[data-screen-label] { contain: none; }
   grid-auto-flow: column;
   gap: clamp(28px, 4vw, 40px) clamp(32px, 5vw, 80px);
 }
+
 @media (max-width: 768px) {
   .xg-leave-grid {
     grid-template-columns: 1fr;
@@ -648,22 +934,30 @@ section[data-screen-label] { contain: none; }
 }
 
 /* Journey stepper — arched curve on desktop, vertical timeline on mobile */
-.xg-journey-track { position: relative; }
+.xg-journey-track {
+  position: relative;
+}
+
 .xg-journey-curve-area {
   position: relative;
   height: clamp(180px, 22vw, 260px);
 }
+
 .xg-journey-curve {
   position: absolute;
   inset: 0;
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
 }
+
 .xg-journey-circles {
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: stretch;
 }
+
 .xg-journey-circle-cell {
   flex: 1;
   display: flex;
@@ -671,11 +965,13 @@ section[data-screen-label] { contain: none; }
   align-items: flex-start;
   min-width: 0;
 }
+
 .xg-journey-labels {
   display: flex;
   margin-top: clamp(20px, 3vw, 36px);
   gap: clamp(8px, 1vw, 14px);
 }
+
 .xg-journey-label-cell {
   flex: 1;
   text-align: left;
@@ -684,15 +980,23 @@ section[data-screen-label] { contain: none; }
   border-top: 1px solid rgba(248, 248, 248, 0.18);
 }
 
-.xg-journey-mobile { display: none; }
+.xg-journey-mobile {
+  display: none;
+}
 
 @media (max-width: 768px) {
-  .xg-journey-curve-area, .xg-journey-labels { display: none; }
+
+  .xg-journey-curve-area,
+  .xg-journey-labels {
+    display: none;
+  }
+
   .xg-journey-mobile {
     display: flex;
     flex-direction: column;
     gap: 28px;
   }
+
   .xg-journey-mobile-step {
     display: flex;
     align-items: flex-start;
@@ -708,6 +1012,7 @@ section[data-screen-label] { contain: none; }
   flex: 1;
   min-height: 0;
 }
+
 @media (max-width: 900px) {
   .xg-menu-grid {
     grid-template-columns: 1fr;
@@ -715,21 +1020,35 @@ section[data-screen-label] { contain: none; }
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
+
   .xg-menu-image {
     max-width: 280px;
     aspect-ratio: 4 / 3 !important;
     margin: 0;
   }
 }
+
 @media (max-width: 540px) {
-  .xg-menu-grid { gap: 16px; }
-  .xg-menu-image { max-width: 220px; aspect-ratio: 16 / 10 !important; }
+  .xg-menu-grid {
+    gap: 16px;
+  }
+
+  .xg-menu-image {
+    max-width: 220px;
+    aspect-ratio: 16 / 10 !important;
+  }
 }
 
 @keyframes xdge-marquee {
-  from { transform: translateX(0%); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
+
 .xdge-marquee {
   display: flex;
   gap: 24px;
@@ -737,7 +1056,10 @@ section[data-screen-label] { contain: none; }
   will-change: transform;
   animation: xdge-marquee 20s linear infinite;
 }
-.xdge-marquee:hover { animation-play-state: paused; }
+
+.xdge-marquee:hover {
+  animation-play-state: paused;
+}
 
 /* Footer marquee — runs on the CSS compositor thread, no main-thread cost. */
 .xdge-footer-marquee {
@@ -767,9 +1089,15 @@ section[data-screen-label] { contain: none; }
     border-color 0.35s var(--xg-ease);
   will-change: transform;
 }
+
 @media (hover: hover) {
-  .xg-pop:hover { transform: translateY(-4px) rotate(-1.5deg); }
-  .xg-pop:active { transform: translateY(-1px) scale(0.97); }
+  .xg-pop:hover {
+    transform: translateY(-4px) rotate(-1.5deg);
+  }
+
+  .xg-pop:active {
+    transform: translateY(-1px) scale(0.97);
+  }
 }
 
 /* Ready-made playful chip (mono, inverts on hover) */
@@ -794,6 +1122,7 @@ section[data-screen-label] { contain: none; }
     color 0.35s var(--xg-ease),
     border-color 0.35s var(--xg-ease);
 }
+
 @media (hover: hover) {
   .xg-chip:hover {
     transform: translateY(-4px) rotate(-1.5deg);
@@ -802,8 +1131,11 @@ section[data-screen-label] { contain: none; }
     border-color: #FFFFFF;
   }
 }
+
 /* On cream/light sections, default border is darker for contrast */
-[data-section-theme="light"] .xg-chip { border-color: #E5E5E5; }
+[data-section-theme="light"] .xg-chip {
+  border-color: #E5E5E5;
+}
 
 /* Playful card tilt — enhances your existing .xg-card-lift / article cards.
    Add alongside:  <article class="xg-card-lift xg-tilt"> … </article>  */
@@ -814,7 +1146,10 @@ section[data-screen-label] { contain: none; }
       box-shadow 0.5s var(--xg-ease),
       border-color 0.5s var(--xg-ease);
   }
-  .xg-tilt:hover { transform: translateY(-8px) rotate(-1deg) scale(1.015); }
+
+  .xg-tilt:hover {
+    transform: translateY(-8px) rotate(-1deg) scale(1.015);
+  }
 }
 
 /* Animated underline that wipes in from the left with a bounce (links).
@@ -825,30 +1160,46 @@ section[data-screen-label] { contain: none; }
   display: inline-block;
   padding-bottom: 2px;
 }
+
 .xg-underline-pop::after {
   content: "";
   position: absolute;
-  left: 0; right: 0; bottom: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: 2px;
   background: currentColor;
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.45s var(--xg-spring);
 }
+
 @media (hover: hover) {
-  .xg-underline-pop:hover::after { transform: scaleX(1); }
+  .xg-underline-pop:hover::after {
+    transform: scaleX(1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .xg-pop, .xg-chip, .xg-tilt { transition: none; }
-  .xg-pop:hover, .xg-chip:hover, .xg-tilt:hover { transform: none; }
+
+  .xg-pop,
+  .xg-chip,
+  .xg-tilt {
+    transition: none;
+  }
+
+  .xg-pop:hover,
+  .xg-chip:hover,
+  .xg-tilt:hover {
+    transform: none;
+  }
 }
 
 /* Canva Design Heading Utilities */
 .hollow-text {
   font-family: 'Archivo Black', sans-serif;
   color: transparent !important;
-  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.7);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
   letter-spacing: 0.04em;
 }
 
@@ -862,7 +1213,8 @@ section[data-screen-label] { contain: none; }
   /* Using drop-shadow filter instead of text-shadow to prevent it from covering the transparent background-clipped text */
   filter: drop-shadow(0 0 20px rgba(32, 227, 232, 0.25));
   display: inline-block;
-  padding: 0 0.02em; /* Prevent clipping at edges */
+  padding: 0 0.02em;
+  /* Prevent clipping at edges */
 }
 
 /* Global Scroll Reveal */
@@ -877,4 +1229,3 @@ section[data-screen-label] { contain: none; }
   opacity: 1;
   transform: translateY(0) scale(1);
 }
-

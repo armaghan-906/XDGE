@@ -20,7 +20,7 @@ export function ApplyClosing() {
             style={{
               fontFamily: theme.displayTight,
               fontWeight: 600,
-              fontSize: 'clamp(45px, 6.75vw, 90px)',
+              fontSize: 'clamp(45px, 6.7vw, 90px)',
               lineHeight: 1.05,
               letterSpacing: '-0.02em',
               margin: 0,

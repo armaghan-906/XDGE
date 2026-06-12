@@ -96,7 +96,7 @@ export function IndividualProgramme() {
           <div variants={fadeUp}>
             <h3 style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(45px, 6.25vw, 80px)',
+              fontSize: 'clamp(45px, 6.2vw, 80px)',
               lineHeight: 1, letterSpacing: '-0.02em',
               margin: 0,
               textTransform: 'uppercase',

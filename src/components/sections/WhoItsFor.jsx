@@ -1,8 +1,7 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
-import { Img } from '../primitives/Img';
 import { SplitHeading } from '../primitives/SplitHeading';
 import { useCanHover } from '../../hooks/useMediaQuery';
 import { FloatingVideo } from '../primitives/FloatingVideo';
@@ -26,11 +25,22 @@ const items = [
 ];
 
 export function WhoItsFor() {
+  const sectionRef = useRef(null);
+  const cardsRef = useRef(null);
   const [hovered, setHovered] = useState(null);
   const canHover = useCanHover();
 
+  const { scrollYProgress } = useScroll({
+    target: cardsRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Increased range for a much more noticeable parallax effect
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-25%", "25%"]);
+
   return (
     <section
+      ref={sectionRef}
       data-screen-label="03 Who It's For"
       data-section-theme="dark"
       style={{
@@ -93,11 +103,7 @@ export function WhoItsFor() {
           </motion.div>
         </Group>
 
-        <Group
-          className="xg-3 xg-stagger-cards-25"
-          onMouseLeave={canHover ? () => setHovered(null) : undefined}
-          style={{ paddingBottom: '25%' }} /* Add padding so staggered cards don't get cut off */
-        >
+        <Group ref={cardsRef} className="xg-3 xg-stagger-cards-25" onMouseLeave={canHover ? () => setHovered(null) : undefined} style={{ position: 'relative', zIndex: 10, paddingBottom: '25%' }}>
           {items.map((it, i) => {
             const isFocused = canHover && hovered === i;
             return (
@@ -126,7 +132,24 @@ export function WhoItsFor() {
                     transformOrigin: 'center',
                   }}
                 >
-                  <Img src={`/assets/service-0${i + 1}.jpg`} alt={it.t} ratio="4/3" />
+                  <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', overflow: 'hidden' }}>
+                    <motion.img
+                      src={`/assets/service-0${i + 1}.jpg`}
+                      alt={it.t}
+                      loading="eager"
+                      // Stop any parent variants from breaking the scroll transform
+                      inherit={false}
+                      style={{
+                        position: 'absolute',
+                        top: '-25%', // Match the -25% start value
+                        left: 0,
+                        width: '100%',
+                        height: '150%', // Must be tall enough to travel without showing gaps
+                        objectFit: 'cover',
+                        y: imgY,
+                      }}
+                    />
+                  </div>
                   <div style={{ padding: '24px 24px 28px', display: 'flex', flexDirection: 'column', gap: 12 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <div style={{ fontSize: 12, color: theme.subtitle, letterSpacing: '0.06em' }}>{it.n}</div>

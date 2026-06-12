@@ -52,12 +52,31 @@ export function Preloader() {
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             style={{
               position: 'absolute',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
               width: '100%', padding: '0 20px',
               zIndex: 5,
             }}
           >
             <Logo style={{ fontSize: 'clamp(64px, 15vw, 200px)' }} />
+            <div style={{ textAlign: 'center', marginTop: 'clamp(16px, 2vw, 24px)' }}>
+              <div style={{ 
+                fontFamily: 'Inter, sans-serif',
+                fontSize: 'clamp(10px, 1.8vw, 24px)', 
+                letterSpacing: '0.2em', 
+                color: '#ffffff', 
+                marginBottom: 'clamp(8px, 1.2vw, 16px)', 
+                fontWeight: 400 
+              }}>
+                LEAD YOUR OWN OPPORTUNITIES.
+              </div>
+              <div className="cyan-text" style={{ 
+                fontSize: 'clamp(10px, 1.8vw, 24px)', 
+                letterSpacing: '0.3em', 
+                fontWeight: 600 
+              }}>
+                TRAIN • BUILD • LEAD • IMPACT
+              </div>
+            </div>
           </motion.div>
           {/* Fallback button so the user is never permanently stuck */}
           <button 
