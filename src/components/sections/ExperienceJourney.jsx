@@ -126,7 +126,7 @@ export function ExperienceJourney() {
               lines={['HOW IT', 'WORKS']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(45px, 7vw, 128px)',
+                fontSize: 'clamp(67.5px, 10.5vw, 192px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />

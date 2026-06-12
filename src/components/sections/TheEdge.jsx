@@ -120,7 +120,7 @@ export function TheEdge() {
           lines={['Grades get you considered.', 'Capability gets you selected.']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(28px, 5vw, 80px)',
+            fontSize: 'clamp(42px, 7.5vw, 120px)',
             lineHeight: 1.05, letterSpacing: '-0.01em',
             maxWidth: 1100,
           }}

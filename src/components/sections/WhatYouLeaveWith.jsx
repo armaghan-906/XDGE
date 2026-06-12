@@ -66,13 +66,16 @@ const Icons = {
 };
 
 const items = [
-  { icon: Icons.Portfolio, title: 'Leadership Portfolio', desc: 'Evidence of capability and readiness for your next level.' },
-  { icon: Icons.Video, title: 'Recorded Capstone Presentation', desc: 'Proof of how you think, decide, and deliver under pressure.' },
-  { icon: Icons.Document, title: 'Skills Transcript', desc: 'Verified record of your competencies and development.' },
-  { icon: Icons.Award, title: 'Certificate of Completion', desc: 'Formal recognition of performance and progression.' },
-  { icon: Icons.Letter, title: 'Letter of Recommendation', desc: 'Professional endorsement of your capability and potential.' },
-  { icon: Icons.Clipboard, title: '90-Day Action Plan', desc: 'Clear execution plan for your next stage.' },
-  { icon: Icons.Chart, title: 'Next-Level Practice', desc: 'Preparation for high-stakes interviews and selection.' },
+  { img: '/assets/1.png', title: 'Leadership Portfolio', desc: 'Evidence of capability and readiness for your next level.' },
+  { img: '/assets/2.png', title: 'Recorded Presentation', desc: 'Proof of how you think, decide, and deliver under pressure.' },
+  { img: '/assets/3.png', title: 'Skills Transcript', desc: 'Verified record of your competencies and development.' },
+  { img: '/assets/4.png', title: 'Certificate of Completion', desc: 'Formal recognition of performance and progression.' },
+  { img: '/assets/5.png', title: 'Letter of Recommendation', desc: 'Professional endorsement of your capability and potential.' },
+  { img: '/assets/6.png', title: '90-Day Action Plan', desc: 'Clear execution plan for your next stage.' },
+  { img: '/assets/7.png', title: 'Next-Level Practice', desc: 'Preparation for high-stakes interviews and selection.' },
+  { img: '/assets/8.png', title: 'Confidence & Clarity', desc: 'Stronger self-confidence and the focus to perform.' },
+  { img: '/assets/9.png', title: 'Winning Mindset', desc: 'Develop the mindset needed to step forward.' },
+  { img: '/assets/10.png', title: 'Impact & Influence', desc: 'Communicate with conviction and perform when it matters.' },
 ];
 
 function LeaveCard({ item, index, isActive, isMobile, onClick }) {
@@ -99,23 +102,36 @@ function LeaveCard({ item, index, isActive, isMobile, onClick }) {
         cursor: 'pointer',
         boxShadow: isActive ? '0 24px 48px -12px rgba(0,0,0,0.5)' : 'none',
         border: `1px solid ${isActive ? theme.borderLight : theme.borderDark}`,
-        background: `linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 100%)`
       }}
     >
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        background: `url(${item.img}) center/cover no-repeat`,
+        opacity: isActive ? 1 : 0.8,
+        transition: 'opacity 0.4s',
+        zIndex: 0,
+      }} />
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%)',
+        zIndex: 0,
+      }} />
+
       <motion.div layout style={{
         padding: 'clamp(20px, 3vw, 40px)',
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
+        position: 'relative',
+        zIndex: 1,
       }}>
-        <motion.div layout style={{ color: theme.base, marginBottom: 24 }}>
-          {item.icon}
-        </motion.div>
 
         <motion.h3 layout style={{
           fontFamily: theme.displayTight,
-          fontSize: 'clamp(18px, 2.2vw, 32px)',
+          fontSize: 'clamp(27px, 3.3vw, 48px)',
           margin: '0 0 16px',
           lineHeight: 1.1,
           color: theme.base,
@@ -230,7 +246,7 @@ export function WhatYouLeaveWith() {
       <div style={{ textAlign: 'center', marginBottom: 60, position: 'relative', zIndex: 10 }}>
         <h2 style={{
           fontFamily: theme.display,
-          fontSize: 'clamp(45px, 7vw, 108px)',
+          fontSize: 'clamp(67.5px, 10.5vw, 162px)',
           fontWeight: 900,
           margin: '0 auto',
           letterSpacing: '-0.02em',

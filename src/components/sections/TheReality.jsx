@@ -36,7 +36,7 @@ export function TheReality() {
           lines={['THE REALITY']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(45px, 7vw, 105px)',
+            fontSize: 'clamp(67.5px, 10.5vw, 157.5px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(32px, 5vw, 64px)',
           }}
@@ -53,7 +53,7 @@ export function TheReality() {
           <div variants={fadeUp} style={{ textAlign: 'center' }}>
             <div style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(40px, 5vw, 70px)',
+              fontSize: 'clamp(60px, 7.5vw, 105px)',
               lineHeight: 1, letterSpacing: '-0.01em',
               color: ACCENT,
               marginBottom: 10,
@@ -71,7 +71,7 @@ export function TheReality() {
           <div variants={fadeUp} style={{ textAlign: 'center' }}>
             <div style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(40px, 5vw, 70px)',
+              fontSize: 'clamp(60px, 7.5vw, 105px)',
               lineHeight: 1, letterSpacing: '-0.01em',
               color: ACCENT,
               marginBottom: 10,
@@ -104,7 +104,7 @@ export function TheReality() {
             lines={['What gets you chosen?']}
             style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(45px, 7vw, 113px)',
+              fontSize: 'clamp(67.5px, 10.5vw, 169.5px)',
               lineHeight: 0.98, letterSpacing: '-0.02em',
               textTransform: 'uppercase',
               marginBottom: 'clamp(32px, 4vw, 48px)',
@@ -124,7 +124,7 @@ export function TheReality() {
               variants={fadeUp}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(28px, 4vw, 56px)',
+                fontSize: 'clamp(42px, 6vw, 84px)',
                 lineHeight: 1, color: theme.base,
               }}
             >+</div>
@@ -143,7 +143,7 @@ export function TheReality() {
           >
             <div style={{
               fontFamily: 'Georgia, serif',
-              fontSize: 'clamp(45px, 7vw, 90px)',
+              fontSize: 'clamp(67.5px, 10.5vw, 135px)',
               lineHeight: 0.7,
               color: 'rgba(255,255,255,0.18)',
               fontWeight: 700,

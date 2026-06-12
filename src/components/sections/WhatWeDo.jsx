@@ -17,7 +17,7 @@ export function WhatWeDo() {
         >
           <h2 style={{
             fontFamily: theme.display,
-            fontSize: 'clamp(28px, 4vw, 56px)',
+            fontSize: 'clamp(42px, 6vw, 84px)',
             lineHeight: 1.2,
             letterSpacing: '-0.01em',
             color: theme.base,

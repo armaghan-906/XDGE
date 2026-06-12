@@ -45,7 +45,7 @@ export function Hero() {
           width: '100%',
         }}
       >
-        <Logo style={{ fontSize: 'clamp(64px, 15vw, 200px)' }} />
+        <Logo style={{ fontSize: 'clamp(96px, 22.5vw, 300px)' }} />
         <div style={{ textAlign: 'center', marginTop: 'clamp(16px, 2vw, 24px)' }}>
           <div style={{ 
             fontFamily: theme.body,

@@ -9,7 +9,7 @@ function CohortsHeading({ y, opacity }) {
       style={{
         y, opacity,
         fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(45px, 7vw, 133px)',
+        fontSize: 'clamp(67.5px, 10.5vw, 199.5px)',
         lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
         overflow: 'hidden',
@@ -65,7 +65,7 @@ export function CohortsHero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             style={{
               fontFamily: theme.display, fontWeight: 700,
-              fontSize: 'clamp(22px, 2.8vw, 40px)',
+              fontSize: 'clamp(33px, 4.2vw, 60px)',
               lineHeight: 1, letterSpacing: '-0.01em',
               color: theme.base,
               marginBottom: 'clamp(8px, 1.5vw, 16px)',

@@ -72,7 +72,7 @@ export function WhoItsFor() {
               lines={['WHO', "IT'S FOR"]}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(45px, 7vw, 108px)',
+                fontSize: 'clamp(67.5px, 10.5vw, 162px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />

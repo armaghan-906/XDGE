@@ -141,7 +141,7 @@ export function ContactForm() {
             transition={{ duration: 0.6, ease: [0.2, 0.7, 0.2, 1] }}
             style={{
               fontFamily: theme.displayTight, fontWeight: 600,
-              fontSize: 'clamp(28px, 4vw, 52px)',
+              fontSize: 'clamp(42px, 6vw, 78px)',
               lineHeight: 1.1, letterSpacing: '-0.01em',
               margin: 0,
             }}

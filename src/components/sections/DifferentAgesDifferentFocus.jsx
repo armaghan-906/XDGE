@@ -175,7 +175,7 @@ function Modal({ slide, onClose }) {
 
         <h2 style={{
           fontFamily: theme.display, fontWeight: 900,
-          fontSize: 'clamp(32px, 5.5vw, 64px)',
+          fontSize: 'clamp(48px, 8.3vw, 96px)',
           lineHeight: 0.95, letterSpacing: '-0.02em',
           margin: '0 0 clamp(24px, 4vw, 40px)',
           color: theme.base,
@@ -363,7 +363,7 @@ export function DifferentAgesDifferentFocus() {
           lines={['HOW DOES XDGE DIFFER', 'BY AGE AND OUTCOMES?']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(45px, 7vw, 83px)',
+            fontSize: 'clamp(67.5px, 10.5vw, 124.5px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(28px, 4vw, 40px)',
           }}

@@ -59,7 +59,7 @@ export function AboutPrinciples() {
           lines={['WHY XDGE', 'EXISTS']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(45px, 7vw, 133px)',
+            fontSize: 'clamp(67.5px, 10.5vw, 199.5px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(28px, 4vw, 40px)',
           }}
@@ -109,7 +109,7 @@ export function AboutPrinciples() {
             >
               <div className="xg-principle-num" style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(45px, 7vw, 133px)',
+                fontSize: 'clamp(67.5px, 10.5vw, 199.5px)',
                 lineHeight: 0.9, letterSpacing: '-0.03em',
                 color: theme.base,
               }}>{p.n}</div>

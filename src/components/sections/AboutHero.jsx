@@ -24,7 +24,7 @@ export function AboutHero() {
           lines={['ABOUT US']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(45px, 7vw, 150px)',
+            fontSize: 'clamp(67.5px, 10.5vw, 225px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(48px, 7vw, 80px)',
           }}
@@ -73,7 +73,7 @@ export function AboutHero() {
               variants={fadeUp}
               style={{
                 fontFamily: theme.italic, fontStyle: 'italic',
-                fontSize: 'clamp(22px, 2.6vw, 34px)',
+                fontSize: 'clamp(33px, 3.9vw, 51px)',
                 lineHeight: 1.35,
                 color: theme.base, margin: 0,
                 fontWeight: 500,

@@ -39,7 +39,7 @@ export function HowWeDeliver() {
           lines={['HOW WE', 'DELIVER']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(45px, 7vw, 120px)',
+            fontSize: 'clamp(67.5px, 10.5vw, 180px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(24px, 4vw, 36px)',
           }}
@@ -96,7 +96,7 @@ export function HowWeDeliver() {
               <div>
                 <h3 style={{
                   fontFamily: theme.display, fontWeight: 800,
-                  fontSize: 'clamp(28px, 3.4vw, 44px)',
+                  fontSize: 'clamp(42px, 5.1vw, 66px)',
                   lineHeight: 1.05, letterSpacing: '-0.01em',
                   margin: '0 0 18px',
                   textTransform: 'uppercase',

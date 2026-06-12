@@ -26,9 +26,9 @@ function processFile(filePath) {
     // Check if max is substantial enough to be a heading (e.g. > 30px)
     if (max > 30) {
       changed = true;
-      let newMin = (min * 0.8).toFixed(1).replace('.0', '') + (minStr.includes('px') ? 'px' : minStr.replace(/[\d.]/g, ''));
-      let newMid = (mid * 0.8).toFixed(1).replace('.0', '') + (midStr.includes('vw') ? 'vw' : midStr.replace(/[\d.]/g, ''));
-      let newMax = (max * 0.8).toFixed(1).replace('.0', '') + (maxStr.includes('px') ? 'px' : maxStr.replace(/[\d.]/g, ''));
+      let newMin = (min * 1.5).toFixed(1).replace('.0', '') + (minStr.includes('px') ? 'px' : minStr.replace(/[\d.]/g, ''));
+      let newMid = (mid * 1.5).toFixed(1).replace('.0', '') + (midStr.includes('vw') ? 'vw' : midStr.replace(/[\d.]/g, ''));
+      let newMax = (max * 1.5).toFixed(1).replace('.0', '') + (maxStr.includes('px') ? 'px' : maxStr.replace(/[\d.]/g, ''));
       return `fontSize: 'clamp(${newMin}, ${newMid}, ${newMax})'`;
     }
     return match;

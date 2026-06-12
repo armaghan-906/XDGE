@@ -26,7 +26,7 @@ export function AboutMain() {
             variants={fadeUp}
             style={{
               fontFamily: theme.italic, fontStyle: 'italic',
-              fontSize: 'clamp(24px, 3vw, 40px)',
+              fontSize: 'clamp(36px, 4.5vw, 60px)',
               lineHeight: 1.3,
               color: theme.base, margin: 0,
               fontWeight: 500,

@@ -8,7 +8,7 @@ function ProgrammesHeading() {
     <h1
       style={{
         fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(45px, 7vw, 133px)',
+        fontSize: 'clamp(67.5px, 10.5vw, 199.5px)',
         lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
         overflow: 'hidden',

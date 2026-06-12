@@ -147,7 +147,7 @@ export function AboutTeam() {
           lines={['THE TEAM']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(45px, 7vw, 144px)',
+            fontSize: 'clamp(67.5px, 10.5vw, 216px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(40px, 6vw, 72px)',
           }}

@@ -82,7 +82,7 @@ export function Footer() {
           className="xdge-footer-marquee"
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(45px, 7vw, 133px)',
+            fontSize: 'clamp(67.5px, 10.5vw, 199.5px)',
             lineHeight: 0.95, letterSpacing: '-0.01em',
             color: theme.base,
           }}

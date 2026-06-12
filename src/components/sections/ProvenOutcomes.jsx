@@ -216,7 +216,7 @@ export function ProvenOutcomes() {
               lines={['REVIEWS']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(45px, 7vw, 90px)',
+                fontSize: 'clamp(67.5px, 10.5vw, 135px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />
@@ -321,7 +321,7 @@ export function ProvenOutcomes() {
               <div>
                 <h3 style={{
                   fontFamily: theme.display, fontWeight: 900,
-                  fontSize: 'clamp(28px, 3vw, 44px)',
+                  fontSize: 'clamp(42px, 4.5vw, 66px)',
                   lineHeight: 1, letterSpacing: '-0.01em',
                   margin: '0 0 10px',
                   color: theme.base,
@@ -335,7 +335,7 @@ export function ProvenOutcomes() {
               <div>
                 <h2 style={{
                   fontFamily: theme.display, fontWeight: 700,
-                  fontSize: 'clamp(22px, 2.6vw, 36px)',
+                  fontSize: 'clamp(33px, 3.9vw, 54px)',
                   lineHeight: 1.18, letterSpacing: '-0.005em',
                   margin: '0 0 24px',
                   color: theme.base,

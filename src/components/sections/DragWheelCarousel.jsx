@@ -3,15 +3,16 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
 
 const items = [
-  { id: '01', title: "Leadership Foundation", img: "/assets/serve-01.webp" },
-  { id: '02', title: "Advanced Communication", img: "/assets/serve-02.webp" },
-  { id: '03', title: "Strategic Thinking", img: "/assets/serve-03.webp" },
-  { id: '04', title: "Team Dynamics", img: "/assets/serve-04.webp" },
-  { id: '05', title: "Conflict Resolution", img: "/assets/principle-1.webp" },
-  { id: '06', title: "Resilience Training", img: "/assets/principle-2.webp" },
-  { id: '07', title: "Mentorship Masterclass", img: "/assets/principle-3.webp" },
-  { id: '08', title: "Performance Habits", img: "/assets/principle-4.webp" },
-  { id: '09', title: "Winning Mindset", img: "/assets/principle-5.webp" },
+  { id: '01', title: "Leadership Foundation", img: "/assets/1.png" },
+  { id: '02', title: "Advanced Communication", img: "/assets/2.png" },
+  { id: '03', title: "Strategic Thinking", img: "/assets/3.png" },
+  { id: '04', title: "Team Dynamics", img: "/assets/4.png" },
+  { id: '05', title: "Conflict Resolution", img: "/assets/5.png" },
+  { id: '06', title: "Resilience Training", img: "/assets/6.png" },
+  { id: '07', title: "Mentorship Masterclass", img: "/assets/7.png" },
+  { id: '08', title: "Performance Habits", img: "/assets/8.png" },
+  { id: '09', title: "Winning Mindset", img: "/assets/9.png" },
+  { id: '10', title: "Impact & Influence", img: "/assets/10.png" },
 ];
 
 function Card({ item, index, progress, total }) {
@@ -93,7 +94,7 @@ function Card({ item, index, progress, total }) {
         }}>
           <div style={{
             fontFamily: theme.display,
-            fontSize: 'clamp(24px, 4vw, 48px)',
+            fontSize: 'clamp(36px, 6vw, 72px)',
             fontWeight: 900,
             lineHeight: 1,
             opacity: 0.5,
@@ -176,7 +177,7 @@ export function DragWheelCarousel() {
       <div style={{ textAlign: 'center', marginBottom: 60, position: 'relative', zIndex: 10 }}>
         <h2 style={{
           fontFamily: theme.display,
-          fontSize: 'clamp(28px, 4vw, 56px)',
+          fontSize: 'clamp(42px, 6vw, 84px)',
           fontWeight: 900,
           margin: 0,
           lineHeight: 1.1,

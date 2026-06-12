@@ -34,7 +34,7 @@ export function Culture() {
               lines={['OUR', 'CULTURE']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(45px, 7vw, 108px)',
+                fontSize: 'clamp(67.5px, 10.5vw, 162px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />
@@ -134,7 +134,7 @@ export function Culture() {
           lines={['Grades get you considered.', 'Capability gets you selected.']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(28px, 5vw, 80px)',
+            fontSize: 'clamp(42px, 7.5vw, 120px)',
             lineHeight: 1.05, letterSpacing: '-0.01em',
             maxWidth: 1100,
           }}

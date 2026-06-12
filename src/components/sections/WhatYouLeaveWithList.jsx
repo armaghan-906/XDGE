@@ -69,7 +69,7 @@ export function WhatYouLeaveWithList() {
           lines={['WHAT YOU', 'LEAVE WITH.']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(45px, 7vw, 120px)',
+            fontSize: 'clamp(67.5px, 10.5vw, 180px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(48px, 7vw, 88px)',
           }}
@@ -110,7 +110,7 @@ export function WhatYouLeaveWithList() {
               <div className="xg-leave-text">
                 <h3 style={{
                   fontFamily: theme.body, fontWeight: 700,
-                  fontSize: 'clamp(22px, 2.6vw, 32px)',
+                  fontSize: 'clamp(33px, 3.9vw, 48px)',
                   lineHeight: 1.15, letterSpacing: '-0.005em',
                   margin: '0 0 14px',
                   color: theme.base,

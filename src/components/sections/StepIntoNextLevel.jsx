@@ -21,7 +21,7 @@ export function StepIntoNextLevel() {
           lines={['STEP INTO', 'YOUR NEXT', 'LEVEL']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(45px, 7vw, 120px)',
+            fontSize: 'clamp(67.5px, 10.5vw, 180px)',
             lineHeight: 0.92, letterSpacing: '-0.02em',
             marginBottom: 'clamp(48px, 7vw, 88px)',
           }}

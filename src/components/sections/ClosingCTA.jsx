@@ -63,7 +63,7 @@ export function ClosingCTA() {
           lines={["LET'S BUILD THE", 'LEADER BEHIND', 'WHAT INSPIRES YOU']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(45px, 7vw, 90px)',
+            fontSize: 'clamp(67.5px, 10.5vw, 135px)',
             lineHeight: 1.0, letterSpacing: '-0.02em',
             marginBottom: 'clamp(32px, 5vw, 56px)',
             maxWidth: 1100,

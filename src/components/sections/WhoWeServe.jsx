@@ -104,7 +104,7 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
         </div>
         <h3 style={{
           fontFamily: theme.display,
-          fontSize: 'clamp(24px, 3vw, 36px)',
+          fontSize: 'clamp(36px, 4.5vw, 54px)',
           lineHeight: 1.05,
           margin: 0,
           letterSpacing: '-0.01em',
@@ -180,7 +180,7 @@ export function WhoWeServe() {
               viewport={{ once: true, amount: 0.2 }}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(45px, 7vw, 90px)',
+                fontSize: 'clamp(67.5px, 10.5vw, 135px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
                 margin: 0, textTransform: 'uppercase'
               }}
