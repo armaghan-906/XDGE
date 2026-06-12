@@ -120,13 +120,14 @@ export function DragWheelCarousel() {
   
   // Progress value (0 to items.length - 1)
   const progressRaw = useMotionValue(0);
-  const progress = useSpring(progressRaw, { stiffness: 60, damping: 15, mass: 1 });
+  // Extremely soft, slow spring to make the transition slow
+  const progress = useSpring(progressRaw, { stiffness: 15, damping: 25, mass: 1.5 });
 
   // Handle Dragging
   const handleDrag = (event, info) => {
     // Determine how much we dragged (in items).
-    // Let's say dragging 100px equals 1 item.
-    const delta = -info.delta.x / 100;
+    // Increased from 100 to 400 to slow down the drag speed significantly
+    const delta = -info.delta.x / 400;
     let next = progressRaw.get() + delta;
     
     // Clamp to [0, items.length - 1]
@@ -137,7 +138,8 @@ export function DragWheelCarousel() {
   // Handle Wheel scroll (trackpad / mousewheel)
   const handleWheel = (e) => {
     const isVertical = Math.abs(e.deltaY) > Math.abs(e.deltaX);
-    const delta = isVertical ? e.deltaY / 100 : e.deltaX / 100;
+    // Increased denominator to slow down scroll speed
+    const delta = isVertical ? e.deltaY / 400 : e.deltaX / 400;
     
     const current = progressRaw.get();
     

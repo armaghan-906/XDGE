@@ -31,10 +31,6 @@ export function Insights() {
       overflow: 'hidden',
       padding: 'clamp(120px, 15vw, 240px) clamp(20px, 4vw, 40px) clamp(56px, 8vw, 100px)',
     }}>
-      <FloatingVideo 
-        src="/assets/videos/elemental_5.mp4" 
-        style={{ top: 80, right: -40, opacity: 0.5, mixBlendMode: 'screen', transform: 'scale(1.5)' }} 
-      />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <Group style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 'clamp(32px, 6vw, 56px)', gap: 16 }}>
           <div>
@@ -42,7 +38,7 @@ export function Insights() {
               lines={['INSIGHTS']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(36px, 5.5vw, 72px)',
+                fontSize: 'clamp(45px, 7vw, 90px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />

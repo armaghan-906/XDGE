@@ -28,7 +28,7 @@ export function DiscoveryMeeting() {
             style={{
               fontFamily: theme.displayTight,
               fontWeight: 600,
-              fontSize: 'clamp(36px, 5.5vw, 64px)',
+              fontSize: 'clamp(45px, 7vw, 80px)',
               lineHeight: 1.05,
               letterSpacing: '-0.02em',
               margin: 0,

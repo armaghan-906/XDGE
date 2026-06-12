@@ -24,10 +24,11 @@ export const theme = {
   glowSoft: '0 20px 60px -20px rgba(5,5,5,0.8), 0 8px 24px -12px rgba(32, 227, 232, 0.15)',
 
   // Fonts
-  display: "'Syne', sans-serif",
-  displayTight: "'Syne', sans-serif",
-  body: "'Outfit', sans-serif",
-  italic: "'Outfit', sans-serif",
+  display: "'Archivo Black', sans-serif",
+  displayTight: "'Archivo Black', sans-serif",
+  subheading: "'Avenir', 'Avenir Next', 'Segoe UI', sans-serif",
+  body: "'Inter', sans-serif",
+  italic: "'Inter', sans-serif",
 };
 
 export const fadeUp = {

@@ -102,7 +102,7 @@ export function TheJourney() {
               viewport={{ once: true, amount: 0.2 }}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(36px, 5.5vw, 72px)',
+                fontSize: 'clamp(45px, 7vw, 90px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
                 margin: 0, textTransform: 'uppercase', textAlign: 'center'
               }}
@@ -138,64 +138,96 @@ export function TheJourney() {
         <div className="xg-journey-track">
           {/* Desktop: arched curve + circles + label row */}
           <div className="xg-journey-curve-area">
-            <svg
+            <motion.svg
               className="xg-journey-curve"
               viewBox="0 0 1200 220"
               preserveAspectRatio="none"
               aria-hidden="true"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
             >
-              <path
+              <motion.path
                 d="M 100 180 C 320 30 880 30 1100 180"
                 stroke="rgba(255,255,255,0.45)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"
                 initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 1.8, ease: fadeEase, delay: 0.2 }}
+                animate={{ pathLength: 1 }}
+                variants={{
+                  hidden: { pathLength: 0 },
+                  visible: { pathLength: 1, transition: { duration: 2, ease: fadeEase, delay: 0.3 } }
+                }}
               />
               {/* Arrow tip at the right end */}
-              <path
+              <motion.path
                 d="M 1090 172 L 1108 180 L 1090 188"
                 stroke="rgba(255,255,255,0.55)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.4, delay: 1.9 }}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { duration: 0.4, delay: 2.2 } }
+                }}
               />
-            </svg>
+            </motion.svg>
 
-            <Group className="xg-journey-circles">
+            <motion.div
+              className="xg-journey-circles"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.15, delayChildren: 0.5 } } }}
+              style={{ display: 'flex', justifyContent: 'space-between', width: '100%', position: 'relative' }}
+            >
               {steps.map((s, i) => (
-                <div
+                <motion.div
                   key={i}
-                  variants={fadeUp}
                   className="xg-journey-circle-cell"
                   style={{ paddingTop: s.offset }}
+                  variants={{
+                    hidden: { opacity: 0, scale: 0, y: 20 },
+                    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.6, ease: fadeEase } }
+                  }}
                 >
-                  <div style={{
-                    width: 56, height: 56, borderRadius: '50%',
-                    background: theme.dark,
-                    border: `1px solid ${theme.base}`,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: theme.base,
-                    flexShrink: 0,
-                    boxShadow: '0 4px 14px rgba(0,0,0,0.25)',
-                  }}>
+                  <motion.div 
+                    whileHover={{ scale: 1.15, borderColor: theme.accent, boxShadow: `0 0 20px rgba(32, 227, 232, 0.3)` }}
+                    transition={{ duration: 0.3 }}
+                    style={{
+                      width: 56, height: 56, borderRadius: '50%',
+                      background: theme.dark,
+                      border: `1px solid ${theme.base}`,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      color: theme.base,
+                      flexShrink: 0,
+                      boxShadow: '0 4px 14px rgba(0,0,0,0.25)',
+                      cursor: 'default',
+                    }}>
                     {s.icon}
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               ))}
-            </Group>
+            </motion.div>
           </div>
 
-          <div className="xg-journey-labels">
+          <motion.div 
+            className="xg-journey-labels"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 1.2 } } }}
+          >
             {steps.map((s, i) => (
-              <div key={i} className="xg-journey-label-cell">
+              <motion.div 
+                key={i} 
+                className="xg-journey-label-cell"
+                variants={{
+                  hidden: { opacity: 0, y: 16 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: fadeEase } }
+                }}
+              >
                 <h3 style={{
                   fontFamily: theme.display, fontWeight: 700,
                   fontSize: 'clamp(12px, 1.2vw, 15px)',
@@ -208,9 +240,9 @@ export function TheJourney() {
                   fontSize: 12, lineHeight: 1.5, margin: 0,
                   color: theme.subtitle,
                 }}>{s.desc}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Mobile: simple vertical timeline */}
           <Group className="xg-journey-mobile">

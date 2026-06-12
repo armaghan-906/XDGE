@@ -5,6 +5,7 @@ import { Cursor } from './components/Cursor';
 import { TopBar } from './components/TopBar';
 import { PageTransition } from './components/PageTransition';
 import { Preloader } from './components/Preloader';
+import { ScrollReveal } from './components/ScrollReveal';
 import { Footer } from './components/sections/Footer';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -23,6 +24,7 @@ function Layout() {
       <Cursor />
       <Preloader />
       <ScrollProgress />
+      <ScrollReveal />
       <TopBar />
       <PageTransition />
       <Footer />

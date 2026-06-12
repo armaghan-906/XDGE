@@ -230,7 +230,7 @@ export function WhatYouLeaveWith() {
       <div style={{ textAlign: 'center', marginBottom: 60, position: 'relative', zIndex: 10 }}>
         <h2 style={{
           fontFamily: theme.display,
-          fontSize: 'clamp(36px, 5.5vw, 86px)',
+          fontSize: 'clamp(45px, 7vw, 108px)',
           fontWeight: 900,
           margin: '0 auto',
           letterSpacing: '-0.02em',

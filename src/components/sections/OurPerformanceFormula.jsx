@@ -186,7 +186,7 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
     >
       <FloatingVideo 
         src="/assets/videos/lightning_1.mp4" 
-        style={{ top: -50, left: -50, opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(1.2)' }} 
+        style={{ top: '5%', left: '-5%', opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(3)', transformOrigin: 'left center' }} 
       />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         
@@ -198,7 +198,7 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
           viewport={{ once: true, amount: 0.2 }}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(36px, 5.5vw, 72px)',
+            fontSize: 'clamp(45px, 7vw, 90px)',
             lineHeight: 0.9, letterSpacing: '-0.02em',
             marginBottom: 'clamp(40px, 6vw, 80px)',
             marginTop: 0, textTransform: 'uppercase',

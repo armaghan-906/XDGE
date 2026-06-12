@@ -62,7 +62,7 @@ export function WhoItsFor() {
               lines={['WHO', "IT'S FOR"]}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(36px, 5.5vw, 86px)',
+                fontSize: 'clamp(45px, 7vw, 108px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />
@@ -94,8 +94,9 @@ export function WhoItsFor() {
         </Group>
 
         <Group
-          className="xg-3"
+          className="xg-3 xg-stagger-cards-25"
           onMouseLeave={canHover ? () => setHovered(null) : undefined}
+          style={{ paddingBottom: '25%' }} /* Add padding so staggered cards don't get cut off */
         >
           {items.map((it, i) => {
             const isFocused = canHover && hovered === i;

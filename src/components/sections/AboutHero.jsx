@@ -24,7 +24,7 @@ export function AboutHero() {
           lines={['ABOUT US']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(36px, 5.5vw, 120px)',
+            fontSize: 'clamp(45px, 7vw, 150px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(48px, 7vw, 80px)',
           }}

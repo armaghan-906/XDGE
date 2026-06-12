@@ -46,7 +46,7 @@ export function WhoWeAre() {
             viewport={{ once: true, amount: 0.2 }}
             style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(36px, 6vw, 108px)',
+              fontSize: 'clamp(45px, 7.5vw, 135px)',
               lineHeight: 0.92, letterSpacing: '-0.02em',
               textAlign: 'left', margin: 0, textTransform: 'uppercase'
             }}
@@ -57,12 +57,17 @@ export function WhoWeAre() {
           </motion.h2>
         </motion.div>
 
-        <Group className="xg-wwd-top" style={{ alignItems: 'center' }}>
-          <motion.div variants={fadeUp}>
+        <Group style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'clamp(200px, 25vw, 360px) 1fr', 
+          gap: 'clamp(32px, 5vw, 64px)', 
+          alignItems: 'start' 
+        }}>
+          <motion.div variants={fadeUp} style={{ marginTop: 'clamp(40px, 6vw, 80px)' }}>
             <div
               style={{
                 position: 'relative',
-                width: '100%', maxWidth: 900, aspectRatio: '1/1',
+                width: '100%', aspectRatio: '3/4',
                 borderRadius: 4, overflow: 'hidden', background: '#000000',
               }}
             >
@@ -90,12 +95,12 @@ export function WhoWeAre() {
             variants={fadeUp}
             style={{
               display: 'flex', flexDirection: 'column',
-              gap: 'clamp(24px, 3vw, 32px)',
+              gap: 'clamp(20px, 3vw, 28px)',
             }}
           >
             <ul style={{
               display: 'flex', flexDirection: 'column',
-              gap: 'clamp(24px, 3vw, 36px)',
+              gap: 'clamp(20px, 3vw, 28px)',
               margin: 0, padding: 0, listStyle: 'none',
               width: '100%',
             }}>
@@ -109,18 +114,18 @@ export function WhoWeAre() {
                 <li
                   key={i}
                   style={{
-                    fontSize: 'clamp(20px, 2.5vw, 32px)',
-                    lineHeight: 1.4, color: theme.base,
+                    fontSize: 'clamp(16px, 2vw, 24px)',
+                    lineHeight: 1.45, color: theme.base,
                     position: 'relative',
-                    paddingLeft: 32,
+                    paddingLeft: 28,
                     fontWeight: i === 4 ? 700 : 400,
                   }}
                 >
                   <span style={{
-                    position: 'absolute', left: 0, top: '0.4em',
-                    width: 8, height: 8, borderRadius: '50%',
-                    background: theme.base,
-                    opacity: 0.6
+                    position: 'absolute', left: 0, top: '0.45em',
+                    width: 7, height: 7, borderRadius: '50%',
+                    background: theme.accent,
+                    opacity: 0.8
                   }} />
                   {text}
                 </li>

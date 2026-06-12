@@ -36,7 +36,7 @@ export function TheReality() {
           lines={['THE REALITY']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(36px, 5.5vw, 84px)',
+            fontSize: 'clamp(45px, 7vw, 105px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(32px, 5vw, 64px)',
           }}
@@ -104,7 +104,7 @@ export function TheReality() {
             lines={['What gets you chosen?']}
             style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(36px, 5.5vw, 90px)',
+              fontSize: 'clamp(45px, 7vw, 113px)',
               lineHeight: 0.98, letterSpacing: '-0.02em',
               textTransform: 'uppercase',
               marginBottom: 'clamp(32px, 4vw, 48px)',
@@ -143,7 +143,7 @@ export function TheReality() {
           >
             <div style={{
               fontFamily: 'Georgia, serif',
-              fontSize: 'clamp(36px, 5.5vw, 72px)',
+              fontSize: 'clamp(45px, 7vw, 90px)',
               lineHeight: 0.7,
               color: 'rgba(255,255,255,0.18)',
               fontWeight: 700,

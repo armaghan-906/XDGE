@@ -202,17 +202,13 @@ export function ProvenOutcomes() {
       data-screen-label="Proven Outcomes"
       data-section-theme="accent"
       style={{
-        background: `linear-gradient(rgba(3, 5, 8, 0.6), rgba(3, 5, 8, 0.6)), ${theme.gradientAccent}`,
+        background: `url('/assets/reviews-bg.png') center/cover no-repeat`,
         color: theme.base,
         position: 'relative',
         overflow: 'hidden',
         padding: 'clamp(120px, 15vw, 240px) clamp(20px, 4vw, 40px)',
       }}
     >
-      <FloatingVideo 
-        src="/assets/videos/lightning_2.mp4" 
-        style={{ bottom: 80, left: 80, opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(1.5)' }} 
-      />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <Group style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 'clamp(40px, 6vw, 64px)', gap: 16 }}>
           <div>
@@ -220,16 +216,16 @@ export function ProvenOutcomes() {
               lines={['REVIEWS']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(36px, 5.5vw, 72px)',
+                fontSize: 'clamp(45px, 7vw, 90px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />
           </div>
-          <div variants={fadeUp} style={{ paddingBottom: 24, color: theme.subtitle }}>
+          <div variants={fadeUp} style={{ paddingBottom: 24, color: theme.base }}>
             <p style={{ fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55, margin: '0 0 12px', color: theme.base, fontWeight: 500 }}>
               What Young People And Parents Say About XDGE
             </p>
-            <p style={{ fontSize: 14, lineHeight: 1.55, color: theme.subtitle, margin: 0, maxWidth: 480 }}>
+            <p style={{ fontSize: 14, lineHeight: 1.55, color: theme.base, margin: 0, maxWidth: 480 }}>
               Real experiences from participants and families who have built
               their next step advantage through XDGE.
             </p>
@@ -332,7 +328,7 @@ export function ProvenOutcomes() {
                 }}>{t.name}</h3>
                 <div style={{
                   fontSize: 13, lineHeight: 1.5,
-                  color: theme.subtitle,
+                  color: theme.base,
                 }}>{t.role}</div>
               </div>
 
@@ -349,7 +345,7 @@ export function ProvenOutcomes() {
                 <p style={{
                   fontSize: 'clamp(14px, 1.4vw, 16px)',
                   lineHeight: 1.65,
-                  color: theme.subtitle,
+                  color: theme.base,
                   margin: 0,
                   maxWidth: 640,
                 }}>

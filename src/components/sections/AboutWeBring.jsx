@@ -23,7 +23,7 @@ export function AboutWeBring() {
               lines={['WE BRING THE', 'PROFESSIONAL', 'WORLD TO YOU']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(36px, 5.5vw, 66px)',
+                fontSize: 'clamp(45px, 7vw, 83px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />

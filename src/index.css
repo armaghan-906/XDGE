@@ -26,7 +26,7 @@ html, body {
    Both are now removed so FM handles reveal animations correctly.
    ────────────────────────────────────────────────────────────────────── */
 body {
-  font-family: 'Outfit', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -536,6 +536,23 @@ section[data-screen-label] { contain: none; }
   .xg-perf-tagline { margin-top: 0 !important; }
 }
 .xg-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+/* Desktop card stagger effect */
+@media (min-width: 1024px) {
+  .xg-stagger-cards > *:nth-child(2) {
+    transform: translateY(15%);
+  }
+  .xg-stagger-cards > *:nth-child(3) {
+    transform: translateY(30%);
+  }
+  .xg-stagger-cards-25 > *:nth-child(2) {
+    transform: translateY(25%);
+  }
+  .xg-stagger-cards-25 > *:nth-child(3) {
+    transform: translateY(50%);
+  }
+}
+
 .xg-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
 
 .xg-hero-body { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 48px); }
@@ -726,7 +743,7 @@ section[data-screen-label] { contain: none; }
 .xdge-footer-marquee {
   display: flex;
   white-space: nowrap;
-  animation: xdge-marquee 50s linear infinite;
+  animation: xdge-marquee 150s linear infinite;
   will-change: transform;
 }
 
@@ -829,11 +846,14 @@ section[data-screen-label] { contain: none; }
 
 /* Canva Design Heading Utilities */
 .hollow-text {
+  font-family: 'Archivo Black', sans-serif;
   color: transparent !important;
-  -webkit-text-stroke: 1.5px #FFFFFF;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.04em;
 }
 
 .cyan-text {
+  font-family: 'Archivo Black', sans-serif;
   background: linear-gradient(to right, #20E3E8, #2484FF);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -844,3 +864,17 @@ section[data-screen-label] { contain: none; }
   display: inline-block;
   padding: 0 0.02em; /* Prevent clipping at edges */
 }
+
+/* Global Scroll Reveal */
+.sr-init {
+  opacity: 0;
+  transform: translateY(30px) scale(0.97);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.sr-init.sr-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
