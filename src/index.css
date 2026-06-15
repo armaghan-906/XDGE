@@ -1237,3 +1237,10 @@ section[data-screen-label] {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
+
+/* Reviews section (data-screen-label "Proven Outcomes") — top/bottom padding
+   forced to 5% (overrides the section's inline padding). */
+section[data-screen-label="Proven Outcomes"] {
+  padding-top: 5% !important;
+  padding-bottom: 5% !important;
+}

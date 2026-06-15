@@ -300,7 +300,7 @@ export function ProvenOutcomes() {
         </div>
 
         {/* Testimonial card */}
-        <div style={{ position: 'relative', minHeight: 'clamp(320px, 40vw, 480px)' }}>
+        <div style={{ position: 'relative', minHeight: 'clamp(320px, 40vw, 380px)' }}>
           <AnimatePresence mode="wait">
             <motion.div
               key={index}

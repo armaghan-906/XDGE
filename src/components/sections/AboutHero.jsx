@@ -29,90 +29,41 @@ export function AboutHero() {
           ]}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(67.5px, 10.5vw, 225px)',
+            fontSize: 'clamp(60px, 15.5vw, 222px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
-            marginBottom: 'clamp(48px, 7vw, 80px)',
+            whiteSpace: 'nowrap',
+            margin: 0,
           }}
         />
 
-        <div className="xg-about-grid">
-          <div className="xg-about-image-col">
-            <div className="xg-about-image-sticky">
-              <div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 1.1, ease: fadeEase }}
-                style={{
-                  position: 'relative',
-                  width: '100%',
-                  aspectRatio: '4/5',
-                  overflow: 'hidden',
-                  background: '#000000',
-                }}
-              >
-                <img
-                  src="/assets/about-hero.webp"
-                  alt="The XDGE team"
-                  loading="eager"
-                  decoding="async"
-                  style={{
-                    width: '100%', height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: '50% 35%',
-                    display: 'block',
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-
-          <Group
-            className="xg-about-text-col"
-            style={{
-              display: 'flex', flexDirection: 'column',
-              gap: 'clamp(20px, 2.5vw, 28px)',
-            }}
-          >
-            <p
-              variants={fadeUp}
-              style={{
-                fontFamily: theme.italic, fontStyle: 'italic',
-                fontSize: 'clamp(33px, 3.9vw, 51px)',
-                lineHeight: 1.35,
-                color: theme.base, margin: 0,
-                fontWeight: 500,
-                letterSpacing: '-0.005em',
-              }}
-            >
-              We believe leadership starts long before someone receives a title.
-            </p>
-
-            <p
-              variants={fadeUp}
-              style={{
-                fontSize: 'clamp(16px, 1.7vw, 19px)',
-                lineHeight: 1.6, margin: 0,
-                color: theme.base,
-              }}
-            >
-              It starts when an individual takes ownership of an idea, stands
-              behind something they care about, and develops the confidence to
-              make a positive impact.
-            </p>
-
-            <p
-              variants={fadeUp}
-              style={{
-                fontSize: 'clamp(16px, 1.7vw, 19px)',
-                lineHeight: 1.6, margin: 0,
-                color: theme.base,
-              }}
-            >
-              XDGE was built to create those opportunities for young people
+        {/* Bottom-right intro block — bold heading, divider, body */}
+        <div style={{
+          display: 'flex', justifyContent: 'flex-end',
+          marginTop: 'clamp(120px, 22vw, 360px)',
+        }}>
+          <div style={{ maxWidth: 640 }}>
+            <h3 style={{
+              fontFamily: theme.displayTight,
+              fontSize: 'clamp(20px, 2.3vw, 32px)',
+              lineHeight: 1.3, fontWeight: 700,
+              color: theme.base, margin: 0,
+            }}>
+              Professional Leadership Development Re-engineered for Young People 12&ndash;24+
+            </h3>
+            <div style={{
+              borderTop: '1px solid rgba(255,255,255,0.35)',
+              margin: 'clamp(18px, 2.4vw, 28px) 0',
+            }} />
+            <p style={{
+              fontSize: 'clamp(16px, 1.7vw, 19px)',
+              lineHeight: 1.6, margin: 0, color: theme.base,
+            }}>
+              It starts when an individual takes ownership of an idea, stands behind
+              something they care about, and develops the confidence to make a positive
+              impact. XDGE was built to create those opportunities for young people
               ages 12&ndash;24+.
             </p>
-          </Group>
+          </div>
         </div>
       </div>
     </section>

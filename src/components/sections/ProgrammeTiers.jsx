@@ -4,7 +4,9 @@ import { Group } from '../primitives/Reveal';
 
 const tiers = [
   {
-    heading: 'For School Students Ready to Build Their Leadership Edge',
+    name: 'SCHOOL XDGE',
+    tagline: 'Lead From The Start',
+    desc: 'For school students aged 11–18 looking to build leadership, initiative, and real-world experience that supports future applications and opportunities.',
     cards: [
       {
         duration: 'Weeks 1-4',
@@ -27,7 +29,9 @@ const tiers = [
     ],
   },
   {
-    heading: 'For Students Preparing for University, College, Apprenticeships, and Competitive Future Opportunities',
+    name: 'UNIVERSITY XDGE',
+    tagline: 'Stand Out & Get In',
+    desc: 'For students preparing for university, college, apprenticeships, and competitive future opportunities.',
     cards: [
       {
         duration: 'Weeks 1-4',
@@ -50,7 +54,9 @@ const tiers = [
     ],
   },
   {
-    heading: 'For University Students, Graduates & Future Industry Leaders',
+    name: 'CAREER XDGE',
+    tagline: 'Accelerate Your Career',
+    desc: 'For university students, graduates, and future industry leaders ready to lead from day one.',
     cards: [
       {
         duration: 'Weeks 1-4',
@@ -73,7 +79,9 @@ const tiers = [
     ],
   },
   {
-    heading: 'Leader Foundations — For Individuals Seeking Personalised Guidance & Focused Development',
+    name: 'LEADER FOUNDATIONS',
+    tagline: 'Personalised 1:2:1 Mentorship',
+    desc: 'For individuals seeking personalised guidance and focused 1:2:1 development.',
     cards: [
       {
         duration: '12-14 weeks · 1:2:1 Mentor Programme',
@@ -203,25 +211,39 @@ export function ProgrammeTiers() {
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         {tiers.map((tier, i) => (
-          <div key={tier.heading}>
-            <h3
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              style={{
-                fontFamily: theme.displayTight,
-                fontSize: 'clamp(20px, 2.2vw, 28px)',
-                fontWeight: 700,
-                lineHeight: 1.25,
-                letterSpacing: '-0.005em',
-                margin: '0 0 clamp(28px, 4vw, 40px)',
+          <div key={tier.name}>
+            {/* tier heading — hollow name + tagline + description (About-page style) */}
+            <div style={{ marginBottom: 'clamp(28px, 4vw, 48px)' }}>
+              <h3
+                className="hollow-text"
+                style={{
+                  // no fontFamily/fontWeight here — let .hollow-text (thin Archivo)
+                  // apply, so these match the hero "OUR" outline thickness.
+                  fontSize: 'clamp(48px, 8vw, 120px)',
+                  lineHeight: 0.95, letterSpacing: '-0.02em',
+                  margin: 0, textTransform: 'uppercase',
+                }}
+              >
+                {tier.name}
+              </h3>
+              <div style={{
+                fontFamily: theme.displayTight, fontWeight: 700,
+                fontSize: 'clamp(26px, 3.2vw, 44px)',
+                lineHeight: 1.1, letterSpacing: '-0.01em',
                 color: theme.base,
-                maxWidth: '60ch',
-              }}
-            >
-              {tier.heading}
-            </h3>
+                margin: 'clamp(8px, 1vw, 14px) 0 clamp(10px, 1.4vw, 18px)',
+              }}>
+                {tier.tagline}
+              </div>
+              <p style={{
+                fontFamily: theme.body,
+                fontSize: 'clamp(15px, 1.6vw, 18px)',
+                lineHeight: 1.5, color: theme.subtitle,
+                margin: 0, maxWidth: '70ch',
+              }}>
+                {tier.desc}
+              </p>
+            </div>
 
             <Group
               className="xg-3"

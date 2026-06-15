@@ -15,18 +15,8 @@ function ProgrammesHeading() {
         paddingBottom: '0.06em',
       }}
     >
-      <span
-        initial={{ y: '110%' }}
-        animate={{ y: '0%' }}
-        transition={{ duration: 1.0, ease, delay: 0.1 }}
-        style={{ display: 'block' }}
-      >OUR</span>
-      <span
-        initial={{ y: '110%' }}
-        animate={{ y: '0%' }}
-        transition={{ duration: 1.0, ease, delay: 0.22 }}
-        style={{ display: 'block' }}
-      >PROGRAMMES</span>
+      <span className="hollow-text" style={{ display: 'block' }}>OUR</span>
+      <span className="cyan-text" style={{ display: 'block' }}>PROGRAMMES</span>
     </h1>
   );
 }
@@ -43,7 +33,7 @@ export function ProgrammesHero() {
         position: 'relative', overflow: 'hidden',
       }}
     >
-      <HeroAmbient src="/assets/videos/snow.mp4" />
+      <HeroAmbient src="/assets/videos/thunder_2.mp4" />
       <div style={{
         flex: 1,
         position: 'relative', zIndex: 10,
@@ -53,39 +43,33 @@ export function ProgrammesHero() {
       }}>
         <div style={{ marginTop: 24, position: 'relative' }}>
           <ProgrammesHeading />
-          <div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.45 }}
-            style={{
-              fontFamily: theme.displayTight, fontWeight: 500,
-              fontSize: 'clamp(18px, 2vw, 28px)',
-              lineHeight: 1.4, letterSpacing: '-0.005em',
-              color: theme.base,
-              marginTop: 'clamp(14px, 2vw, 32px)',
-              maxWidth: '40ch',
-            }}
-          >
-            Helping young people become the person opportunities are looking for.
-          </div>
         </div>
 
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
           <div className="xg-hide-md" />
           <div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.7 }}
             style={{
               display: 'flex', flexDirection: 'column',
-              gap: 'clamp(14px, 1.8vw, 20px)',
               maxWidth: 560,
             }}
           >
+            {/* bold heading + divider line + body — same as the About hero block */}
+            <h3 style={{
+              fontFamily: theme.displayTight,
+              fontSize: 'clamp(20px, 2.3vw, 32px)',
+              lineHeight: 1.3, fontWeight: 700,
+              color: theme.base, margin: 0,
+            }}>
+              Helping young people become the person opportunities are looking for.
+            </h3>
+            <div style={{
+              borderTop: '1px solid rgba(255,255,255,0.35)',
+              margin: 'clamp(18px, 2.4vw, 28px) 0',
+            }} />
             <p style={{
               fontFamily: theme.body,
-              fontSize: 'clamp(18px, 1.8vw, 22px)',
-              lineHeight: 1.4,
+              fontSize: 'clamp(16px, 1.7vw, 19px)',
+              lineHeight: 1.6,
               color: theme.base,
               margin: 0,
               fontWeight: 500,
