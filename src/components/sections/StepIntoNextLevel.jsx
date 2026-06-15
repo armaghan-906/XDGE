@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
+import { FloatingVideo } from '../primitives/FloatingVideo';
 
 const fadeEase = [0.2, 0.7, 0.2, 1];
 
@@ -13,19 +14,32 @@ export function StepIntoNextLevel() {
       style={{
         background: theme.dark,
         color: theme.base,
+        position: 'relative',
+        overflow: 'hidden',
         padding: 'clamp(120px, 15vw, 240px) clamp(20px, 4vw, 40px)',
       }}
     >
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <SplitHeading
-          lines={['STEP INTO', 'YOUR NEXT', 'LEVEL']}
-          style={{
-            fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(67.5px, 10.5vw, 180px)',
-            lineHeight: 0.92, letterSpacing: '-0.02em',
-            marginBottom: 'clamp(48px, 7vw, 88px)',
-          }}
-        />
+      <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
+        <div style={{ position: 'relative' }}>
+          <FloatingVideo
+            src="/assets/videos/thunder_1.mp4"
+            style={{
+              top: '45%', left: '32%',
+              transform: 'translate(-50%, -50%) scale(1.7)',
+              opacity: 0.55, mixBlendMode: 'screen', zIndex: -1,
+            }}
+          />
+          <SplitHeading
+            lines={['STEP INTO YOUR', 'NEXT LEVEL']}
+            lineClasses={['hollow-text', 'cyan-text']}
+            style={{
+              fontFamily: theme.display, fontWeight: 900,
+              fontSize: 'clamp(44px, 9vw, 145px)',
+              lineHeight: 0.92, letterSpacing: '-0.02em',
+              marginBottom: 'clamp(48px, 7vw, 88px)',
+            }}
+          />
+        </div>
 
         <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(40px, 8vw, 120px)' }}>
           <div

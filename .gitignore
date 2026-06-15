@@ -6,3 +6,7 @@ dist
 .vercel
 
 public/assets/videos/Footages/
+
+# Heavy source/scratch image dumps (optimized WebPs are committed instead)
+public/assets/Images for Carousel 2/
+public/assets/picss/

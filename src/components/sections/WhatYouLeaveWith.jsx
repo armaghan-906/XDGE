@@ -65,17 +65,19 @@ const Icons = {
   ),
 };
 
+// Carousel 2 imagery — 7 optimized WebPs (from "Images for Carousel 2", converted
+// from 2000px PNGs). 7 images across 10 cards, so images cycle (8→1, 9→2, 10→3).
 const items = [
-  { img: '/assets/1.webp', title: 'Leadership Portfolio', desc: 'Evidence of capability and readiness for your next level.' },
-  { img: '/assets/2.webp', title: 'Recorded Presentation', desc: 'Proof of how you think, decide, and deliver under pressure.' },
-  { img: '/assets/3.webp', title: 'Skills Transcript', desc: 'Verified record of your competencies and development.' },
-  { img: '/assets/4.webp', title: 'Certificate of Completion', desc: 'Formal recognition of performance and progression.' },
-  { img: '/assets/5.webp', title: 'Letter of Recommendation', desc: 'Professional endorsement of your capability and potential.' },
-  { img: '/assets/6.webp', title: '90-Day Action Plan', desc: 'Clear execution plan for your next stage.' },
-  { img: '/assets/7.webp', title: 'Next-Level Practice', desc: 'Preparation for high-stakes interviews and selection.' },
-  { img: '/assets/8.webp', title: 'Confidence & Clarity', desc: 'Stronger self-confidence and the focus to perform.' },
-  { img: '/assets/9.webp', title: 'Winning Mindset', desc: 'Develop the mindset needed to step forward.' },
-  { img: '/assets/10.webp', title: 'Impact & Influence', desc: 'Communicate with conviction and perform when it matters.' },
+  { img: '/assets/leave-1.webp', title: 'Leadership Portfolio', desc: 'Evidence of capability and readiness for your next level.' },
+  { img: '/assets/leave-2.webp', title: 'Recorded Presentation', desc: 'Proof of how you think, decide, and deliver under pressure.' },
+  { img: '/assets/leave-3.webp', title: 'Skills Transcript', desc: 'Verified record of your competencies and development.' },
+  { img: '/assets/leave-4.webp', title: 'Certificate of Completion', desc: 'Formal recognition of performance and progression.' },
+  { img: '/assets/leave-5.webp', title: 'Letter of Recommendation', desc: 'Professional endorsement of your capability and potential.' },
+  { img: '/assets/leave-6.webp', title: '90-Day Action Plan', desc: 'Clear execution plan for your next stage.' },
+  { img: '/assets/leave-7.webp', title: 'Next-Level Practice', desc: 'Preparation for high-stakes interviews and selection.' },
+  { img: '/assets/leave-1.webp', title: 'Confidence & Clarity', desc: 'Stronger self-confidence and the focus to perform.' },
+  { img: '/assets/leave-2.webp', title: 'Winning Mindset', desc: 'Develop the mindset needed to step forward.' },
+  { img: '/assets/leave-3.webp', title: 'Impact & Influence', desc: 'Communicate with conviction and perform when it matters.' },
 ];
 
 function LeaveCard({ item, index, isActive, isMobile, onClick }) {
@@ -95,7 +97,7 @@ function LeaveCard({ item, index, isActive, isMobile, onClick }) {
       className="xg-glass-solid"
       style={{
         position: 'relative',
-        height: 'clamp(400px, 60vh, 600px)',
+        height: 'clamp(240px, 34vh, 360px)',
         flexShrink: 0,
         borderRadius: 24,
         overflow: 'hidden',
@@ -107,7 +109,9 @@ function LeaveCard({ item, index, isActive, isMobile, onClick }) {
       <div style={{
         position: 'absolute',
         inset: 0,
-        background: `url(${item.img}) center/cover no-repeat`,
+        // contain (not cover) so the full square image is shown, never cropped/zoomed;
+        // dark fill behind for the letterboxed area.
+        background: `#0a0a0a url(${item.img}) center/contain no-repeat`,
         opacity: isActive ? 1 : 0.8,
         transition: 'opacity 0.4s',
         zIndex: 0,

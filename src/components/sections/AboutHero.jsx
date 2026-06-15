@@ -18,10 +18,15 @@ export function AboutHero() {
         padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(80px, 10vw, 120px)',
       }}
     >
-      <HeroAmbient src="/assets/videos/hero.mp4" />
+      <HeroAmbient src="/assets/videos/thunder_2.mp4" />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <SplitHeading
-          lines={['ABOUT US']}
+          lines={[
+            <>
+              <span className="hollow-text">ABOUT</span>{' '}
+              <span className="cyan-text">US</span>
+            </>
+          ]}
           style={{
             fontFamily: theme.display, fontWeight: 900,
             fontSize: 'clamp(67.5px, 10.5vw, 225px)',

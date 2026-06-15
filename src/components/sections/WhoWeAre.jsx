@@ -3,8 +3,6 @@ import { theme, fadeUp, stagger } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
-import { FloatingVideo } from '../primitives/FloatingVideo';
-
 export function WhoWeAre() {
   return (
     <section
@@ -18,25 +16,6 @@ export function WhoWeAre() {
         padding: 'clamp(120px, 15vw, 240px) clamp(20px, 4vw, 40px)',
       }}
     >
-      <video
-        autoPlay loop muted playsInline
-        src="/assets/videos/spiraling_force.mp4"
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          minWidth: '100%',
-          minHeight: '100%',
-          width: 'auto',
-          height: 'auto',
-          objectFit: 'cover',
-          transform: 'translate(-50%, -50%)',
-          opacity: 0.4,
-          mixBlendMode: 'screen',
-          pointerEvents: 'none',
-          zIndex: 0
-        }}
-      />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <motion.div variants={fadeUp} style={{ marginBottom: 'clamp(40px, 6vw, 64px)' }}>
           <motion.h2

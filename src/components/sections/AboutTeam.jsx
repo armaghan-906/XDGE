@@ -144,12 +144,18 @@ export function AboutTeam() {
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <SplitHeading
-          lines={['THE TEAM']}
+          lines={[
+            <>
+              <span className="hollow-text">THE</span>{' '}
+              <span style={{ color: theme.base }}>TEAM</span>
+            </>
+          ]}
           style={{
             fontFamily: theme.display, fontWeight: 900,
             fontSize: 'clamp(67.5px, 10.5vw, 216px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(40px, 6vw, 72px)',
+            textAlign: 'center',
           }}
         />
 

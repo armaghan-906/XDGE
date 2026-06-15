@@ -1197,22 +1197,29 @@ section[data-screen-label] {
 
 /* Canva Design Heading Utilities */
 .hollow-text {
-  font-family: 'Archivo Black', sans-serif;
+  /* Use the lighter 'Archivo' (not the 900-only 'Archivo Black') so the outline
+     traces thin stems and reads as clean SINGLE lines — not the fat hollow-tube /
+     "double-edged" look you get when you outline an ultra-black weight. */
+  font-family: 'Archivo', sans-serif;
+  font-weight: 500;
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
-  -webkit-text-stroke: 1px #ffffff;
-  letter-spacing: 0.04em;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.92);
+  text-stroke: 1px rgba(255, 255, 255, 0.92);
+  paint-order: stroke fill;
+  letter-spacing: 0.02em;
 }
 
 .cyan-text {
   font-family: 'Archivo Black', sans-serif;
-  background: linear-gradient(to right, #20E3E8, #2484FF);
+  /* Muted/dulled blue gradient — less neon than the original #20E3E8 → #2484FF. */
+  background: linear-gradient(to right, #2FB7C6, #2C6FD6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent !important;
   /* Using drop-shadow filter instead of text-shadow to prevent it from covering the transparent background-clipped text */
-  filter: drop-shadow(0 0 20px rgba(32, 227, 232, 0.25));
+  filter: drop-shadow(0 0 16px rgba(44, 111, 214, 0.16));
   display: inline-block;
   padding: 0 0.02em;
   /* Prevent clipping at edges */

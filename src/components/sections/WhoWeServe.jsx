@@ -111,6 +111,9 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
           fontWeight: 900,
           textTransform: 'uppercase',
           flex: 1,
+          // Reserve 4 lines so every card is the same height regardless of title
+          // length (the longest title wraps to 4 lines) — heights match, positions stagger.
+          minHeight: 'calc(1.05em * 4)',
         }}>
           {card.t}
         </h3>
@@ -229,6 +232,8 @@ export function WhoWeServe() {
           </motion.div>
         </Group>
 
+        {/* Cards are equal height (the title reserves 3 lines in ServeCard) but kept
+            STAGGERED — odd cards offset down — for the original masonry feel. */}
         <Group className="xg-2" style={{ gap: 'clamp(24px, 4vw, 40px)', alignItems: 'flex-start' }}>
           {cards.map((c, i) => (
             <ServeCard
@@ -238,10 +243,10 @@ export function WhoWeServe() {
               hovered={hovered}
               onEnter={() => setHovered(i)}
               onLeave={() => setHovered(null)}
-              style={{ 
-                width: '80%', 
+              style={{
+                width: '80%',
                 margin: '0 auto',
-                marginTop: i % 2 !== 0 ? 'clamp(40px, 8vw, 100px)' : 0 
+                marginTop: i % 2 !== 0 ? 'clamp(40px, 8vw, 100px)' : 0,
               }}
             />
           ))}

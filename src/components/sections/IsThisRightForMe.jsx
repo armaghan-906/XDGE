@@ -201,47 +201,52 @@ export function IsThisRightForMe() {
         style={{ top: 120, right: 80, opacity: 0.8, transform: 'scale(1.2)' }} 
       />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
-        <Group className="xg-2" style={{ alignItems: 'flex-end', marginBottom: 'clamp(40px, 6vw, 64px)' }}>
-          <div>
-            <motion.h2
-              variants={stagger}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              style={{
-                fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(67.5px, 10.5vw, 192px)',
-                lineHeight: 0.95, letterSpacing: '-0.02em',
-                margin: 0, textTransform: 'uppercase'
-              }}
-            >
-              <motion.span variants={fadeUp} style={{ display: 'block' }}>
-                <span className="hollow-text" style={{ paddingRight: '0.2em' }}>IS THIS</span>
-                <span className="cyan-text">RIGHT FOR ME</span>
-              </motion.span>
-            </motion.h2>
-          </div>
-          <motion.div variants={fadeUp} style={{ paddingBottom: 24, maxWidth: 480 }}>
-            <p style={{
-              fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55,
-              color: theme.base, margin: '0 0 18px',
-            }}>
-              Not sure if this is right for you?
-            </p>
-            <Magnetic strength={0.3}>
-              <a
-                href="#"
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 10,
-                  padding: '12px 20px',
-                  border: `1px solid ${theme.base}`, borderRadius: 999,
-                  color: theme.base, textDecoration: 'none',
-                  fontSize: 13, fontWeight: 500,
-                }}
-              >
-                Schedule A Call With Us <span style={{ fontSize: 16 }}>→</span>
-              </a>
-            </Magnetic>
+        {/* Full-width heading so it lays out as a clean 2-liner (IS THIS / RIGHT FOR ME)
+            instead of being squeezed by the 2-column grid; CTA drops below, right-aligned. */}
+        <Group style={{ marginBottom: 'clamp(40px, 6vw, 64px)' }}>
+          <motion.h2
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            style={{
+              fontFamily: theme.display, fontWeight: 900,
+              fontSize: 'clamp(40px, 10.5vw, 150px)',
+              lineHeight: 0.95, letterSpacing: '-0.02em',
+              margin: 0, textTransform: 'uppercase'
+            }}
+          >
+            <motion.span variants={fadeUp} style={{ display: 'block' }}>
+              <span className="hollow-text" style={{ display: 'block' }}>IS THIS</span>
+              <span className="cyan-text" style={{ display: 'block', whiteSpace: 'nowrap' }}>RIGHT FOR ME</span>
+            </motion.span>
+          </motion.h2>
+          <motion.div variants={fadeUp} style={{
+            display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end',
+            flexWrap: 'wrap', gap: 24, marginTop: 'clamp(24px, 3vw, 40px)',
+          }}>
+            <div style={{ maxWidth: 480, textAlign: 'right' }}>
+              <p style={{
+                fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55,
+                color: theme.base, margin: '0 0 18px',
+              }}>
+                Not sure if this is right for you?
+              </p>
+              <Magnetic strength={0.3}>
+                <a
+                  href="#"
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: 10,
+                    padding: '12px 20px',
+                    border: `1px solid ${theme.base}`, borderRadius: 999,
+                    color: theme.base, textDecoration: 'none',
+                    fontSize: 13, fontWeight: 500,
+                  }}
+                >
+                  Schedule A Call With Us <span style={{ fontSize: 16 }}>→</span>
+                </a>
+              </Magnetic>
+            </div>
           </motion.div>
         </Group>
 

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
+import { FloatingVideo } from '../primitives/FloatingVideo';
 
 const principles = [
   {
@@ -51,19 +52,32 @@ export function AboutPrinciples() {
       style={{
         background: theme.dark,
         color: theme.base,
+        position: 'relative',
+        overflow: 'hidden',
         padding: 'clamp(120px, 15vw, 240px) clamp(20px, 4vw, 40px)',
       }}
     >
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <SplitHeading
-          lines={['WHY XDGE', 'EXISTS']}
-          style={{
-            fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(67.5px, 10.5vw, 199.5px)',
-            lineHeight: 0.95, letterSpacing: '-0.02em',
-            marginBottom: 'clamp(28px, 4vw, 40px)',
-          }}
-        />
+      <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
+        <div style={{ position: 'relative' }}>
+          <FloatingVideo
+            src="/assets/videos/lightning_3.mp4"
+            style={{
+              top: '45%', left: '32%',
+              transform: 'translate(-50%, -50%) scale(1.7)',
+              opacity: 0.55, mixBlendMode: 'screen', zIndex: -1,
+            }}
+          />
+          <SplitHeading
+            lines={['WHY XDGE', 'EXISTS']}
+            lineClasses={['hollow-text', 'cyan-text']}
+            style={{
+              fontFamily: theme.display, fontWeight: 900,
+              fontSize: 'clamp(67.5px, 10.5vw, 199.5px)',
+              lineHeight: 0.95, letterSpacing: '-0.02em',
+              marginBottom: 'clamp(28px, 4vw, 40px)',
+            }}
+          />
+        </div>
 
         <div
           variants={fadeUp}
