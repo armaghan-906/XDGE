@@ -63,8 +63,9 @@ export function AboutPrinciples() {
             src="/assets/videos/lightning_3.mp4"
             style={{
               top: '45%', left: '32%',
-              transform: 'translate(-50%, -50%) scale(1.7)',
-              opacity: 0.55, mixBlendMode: 'screen', zIndex: -1,
+              transform: 'translate(-50%, -50%)',
+              width: 'clamp(600px, 100vw, 1800px)',
+              opacity: 0.35, zIndex: -1,
             }}
           />
           <SplitHeading
@@ -79,7 +80,7 @@ export function AboutPrinciples() {
           />
         </div>
 
-        <div
+        <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
@@ -109,11 +110,11 @@ export function AboutPrinciples() {
             develop leaders. These principles shape every programme, every
             experience, and every outcome we deliver.
           </p>
-        </div>
+        </motion.div>
 
         <div className="xg-principles-list">
           {principles.map((p) => (
-            <div
+            <motion.div
               key={p.n}
               variants={rowVariants}
               initial="hidden"
@@ -166,7 +167,7 @@ export function AboutPrinciples() {
                   />
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

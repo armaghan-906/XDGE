@@ -161,7 +161,7 @@ export function AboutTeam() {
 
         <div className="xg-team-grid">
           {team.map((m, i) => (
-            <div
+            <motion.div
               key={m.name}
               variants={rowVariants}
               initial="hidden"
@@ -217,7 +217,7 @@ export function AboutTeam() {
                 }}>{m.role} · {m.credential}</div>
                 <Bio intro={m.intro} more={m.more} />
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

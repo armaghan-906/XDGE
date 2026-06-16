@@ -23,8 +23,8 @@ export function FloatingVideo({ src, style }) {
         borderRadius: 24,
         overflow: 'hidden',
         pointerEvents: 'none',
-        ...style,
         mixBlendMode: 'normal',
+        ...style,
       }}
     >
       <video

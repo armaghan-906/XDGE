@@ -160,7 +160,12 @@ export function WhoWeServe() {
     }}>
       <FloatingVideo 
         src="/assets/videos/thunder_1.mp4" 
-        style={{ top: '35%', right: '-10%', opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(1.5)', zIndex: 0 }} 
+        style={{ 
+          top: '35%', right: '-10%', 
+          opacity: 0.4, 
+          width: 'clamp(600px, 80vw, 1200px)',
+          zIndex: 0 
+        }} 
       />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <Group style={{ display: 'flex', flexDirection: 'column', marginBottom: 'clamp(32px, 6vw, 56px)' }}>
@@ -170,9 +175,9 @@ export function WhoWeServe() {
               style={{ 
                 top: '50%', 
                 left: '50%', 
-                transform: 'translate(-50%, -50%) scale(1.5)', 
-                opacity: 0.6, 
-                mixBlendMode: 'screen', 
+                transform: 'translate(-50%, -50%)',
+                width: 'clamp(600px, 80vw, 1200px)',
+                opacity: 0.4, 
                 zIndex: -1 
               }} 
             />

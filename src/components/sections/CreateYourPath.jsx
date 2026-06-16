@@ -24,16 +24,12 @@ export function CreateYourPath() {
         src="/assets/videos/lightning_1.mp4"
         style={{
           top: '50%', left: '50%',
-          transform: 'translate(-50%, -50%) scale(2.2)',
-          width: 'clamp(420px, 65vw, 1100px)',
-          opacity: 0.6, mixBlendMode: 'screen', zIndex: 0,
+          transform: 'translate(-50%, -50%)',
+          width: 'clamp(800px, 120vw, 2400px)',
+          opacity: 0.4, zIndex: 0,
         }}
       />
-      <motion.h2
-        variants={stagger}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+      <h2
         style={{
           maxWidth: 1280, margin: '0 auto',
           position: 'relative', zIndex: 10,
@@ -43,21 +39,19 @@ export function CreateYourPath() {
           textTransform: 'uppercase',
         }}
       >
-        <motion.span
-          variants={fadeUp}
+        <span
           className="hollow-text"
           style={{ display: 'block', fontSize: 'clamp(36px, 8vw, 132px)' }}
         >
           CREATE YOUR OWN
-        </motion.span>
-        <motion.span
-          variants={fadeUp}
+        </span>
+        <span
           style={{ display: 'block', fontSize: 'clamp(26px, 6vw, 100px)', marginTop: '0.08em' }}
         >
           <span style={{ color: theme.base }}>PATH &amp; LEAVE </span>
           <span className="cyan-text">A TRAIL</span>
-        </motion.span>
-      </motion.h2>
+        </span>
+      </h2>
     </section>
   );
 }

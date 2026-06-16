@@ -25,8 +25,9 @@ export function StepIntoNextLevel() {
             src="/assets/videos/thunder_1.mp4"
             style={{
               top: '45%', left: '32%',
-              transform: 'translate(-50%, -50%) scale(1.7)',
-              opacity: 0.55, mixBlendMode: 'screen', zIndex: -1,
+              transform: 'translate(-50%, -50%)',
+              width: 'clamp(600px, 100vw, 1800px)',
+              opacity: 0.35, zIndex: -1,
             }}
           />
           <SplitHeading
@@ -42,7 +43,7 @@ export function StepIntoNextLevel() {
         </div>
 
         <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(40px, 8vw, 120px)' }}>
-          <div
+          <motion.div
             variants={fadeUp}
             style={{
               display: 'flex', flexDirection: 'column',
@@ -94,9 +95,9 @@ export function StepIntoNextLevel() {
             }}>
               Mostly available 9AM &ndash; 6PM (GMT) Mon&ndash;Fri
             </div>
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
             variants={fadeUp}
             style={{
               display: 'flex', flexDirection: 'column',
@@ -116,7 +117,7 @@ export function StepIntoNextLevel() {
               happens next.
             </p>
 
-            <a
+            <motion.a
               whileHover={{ x: 4 }}
               transition={{ duration: 0.3, ease: fadeEase }}
               href="#"
@@ -133,8 +134,8 @@ export function StepIntoNextLevel() {
               }}
             >
               Let’s Talk <span style={{ fontSize: 18 }}>→</span>
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
         </Group>
       </div>
     </section>
