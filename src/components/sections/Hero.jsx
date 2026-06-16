@@ -28,7 +28,7 @@ export function Hero() {
           width: '100%',
           height: '100%',
           objectFit: 'cover',
-          transform: 'scale(0.85) translateY(-12vh)',
+          transform: 'scale(0.85)',
           zIndex: 1,
         }}
       />
@@ -49,7 +49,6 @@ export function Hero() {
           alignItems: 'center',
           justifyContent: 'center',
           width: '100%',
-          transform: 'translateY(-12vh)',
         }}
       >
         <Logo style={{ fontSize: 'clamp(64px, 14vw, 200px)' }} />
