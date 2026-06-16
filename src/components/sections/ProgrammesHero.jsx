@@ -55,9 +55,9 @@ export function ProgrammesHero() {
           >
             {/* bold heading + divider line + body — same as the About hero block */}
             <h3 style={{
-              fontFamily: theme.displayTight,
-              fontSize: 'clamp(20px, 2.3vw, 32px)',
-              lineHeight: 1.3, fontWeight: 700,
+              fontFamily: theme.body,
+              fontSize: 'clamp(20px, 2.2vw, 28px)',
+              lineHeight: 1.25, fontWeight: 600,
               color: theme.base, margin: 0,
             }}>
               Helping young people become the person opportunities are looking for.

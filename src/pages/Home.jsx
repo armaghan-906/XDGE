@@ -14,12 +14,12 @@ export default function Home() {
     <>
       <Hero />
       <DragWheelCarousel />
+      <TheJourney />
       <div className="xg-stick-wrap">
         <WhoWeServe />
       </div>
       <IsThisRightForMe />
       <WhoWeAre />
-      <TheJourney />
       <OurPerformanceFormula />
       <WhatYouLeaveWith />
       <ProvenOutcomes />

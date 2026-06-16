@@ -186,7 +186,7 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
     >
       <FloatingVideo 
         src="/assets/videos/lightning_1.mp4" 
-        style={{ top: '5%', left: '-5%', opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(3)', transformOrigin: 'left center' }} 
+        style={{ top: '20%', left: '-5%', opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(3)', transformOrigin: 'left center', zIndex: 0 }} 
       />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         
@@ -198,7 +198,7 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
           viewport={{ once: true, amount: 0.2 }}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(67.5px, 10.5vw, 135px)',
+            fontSize: 'clamp(60px, 11.3vw, 200px)',
             lineHeight: 0.9, letterSpacing: '-0.02em',
             marginBottom: 'clamp(40px, 6vw, 80px)',
             marginTop: 0, textTransform: 'uppercase',
@@ -207,13 +207,10 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
           }}
         >
           <motion.div variants={fadeUp} style={{ display: 'flex' }}>
-            <span className="hollow-text">OUR</span>
-          </motion.div>
-          <motion.div variants={fadeUp} style={{ display: 'flex' }}>
-            <span className="hollow-text">PERFORMANCE</span>
+            <span className="cyan-text" style={{ fontSize: '0.45em', paddingBottom: '0.1em', letterSpacing: '0.02em' }}>OUR PERFORMANCE</span>
           </motion.div>
           <motion.div variants={fadeUp} style={{ display: 'flex', marginTop: '-0.05em' }}>
-            <span className="cyan-text">FORMULA</span>
+            <span className="hollow-text">FORMULA</span>
           </motion.div>
         </motion.h2>
 

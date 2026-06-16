@@ -38,7 +38,7 @@ export function Insights() {
               lines={['INSIGHTS']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(67.5px, 10.5vw, 135px)',
+                fontSize: 'clamp(60px, 11.3vw, 200px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />

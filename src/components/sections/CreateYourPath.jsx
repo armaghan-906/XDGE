@@ -29,29 +29,30 @@ export function CreateYourPath() {
           opacity: 0.4, zIndex: 0,
         }}
       />
-      <h2
-        style={{
-          maxWidth: 1280, margin: '0 auto',
-          position: 'relative', zIndex: 10,
-          textAlign: 'center',
-          fontFamily: theme.display, fontWeight: 900,
-          lineHeight: 0.95, letterSpacing: '-0.02em',
-          textTransform: 'uppercase',
-        }}
-      >
-        <span
-          className="hollow-text"
-          style={{ display: 'block', fontSize: 'clamp(36px, 8vw, 132px)' }}
+      <div style={{ display: 'flex', justifyContent: 'center', width: '100%', position: 'relative', zIndex: 10 }}>
+        <h2
+          style={{
+            textAlign: 'left',
+            fontFamily: theme.display, fontWeight: 900,
+            lineHeight: 0.95, letterSpacing: '-0.02em',
+            textTransform: 'uppercase',
+            margin: 0,
+          }}
         >
-          CREATE YOUR OWN
-        </span>
-        <span
-          style={{ display: 'block', fontSize: 'clamp(26px, 6vw, 100px)', marginTop: '0.08em' }}
-        >
-          <span style={{ color: theme.base }}>PATH &amp; LEAVE </span>
-          <span className="cyan-text">A TRAIL</span>
-        </span>
-      </h2>
+          <span
+            className="cyan-text"
+            style={{ display: 'block', fontSize: 'clamp(24px, 4.5vw, 84px)', paddingLeft: '0.05em', marginBottom: '0.1em' }}
+          >
+            CREATE YOUR OWN PATH &amp;
+          </span>
+          <span
+            className="hollow-text"
+            style={{ display: 'block', fontSize: 'clamp(60px, 11.3vw, 200px)' }}
+          >
+            LEAVE A TRAIL
+          </span>
+        </h2>
+      </div>
     </section>
   );
 }
