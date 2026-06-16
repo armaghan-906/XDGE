@@ -6,13 +6,18 @@ export function Preloader() {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
+    // Failsafe: if the video doesn't finish (e.g. autoPlay blocked), force hide after 5.5s
+    const timer = setTimeout(() => setShow(false), 5500);
     // Prevent scrolling while the preloader is active
     if (show) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
-    return () => { document.body.style.overflow = ''; };
+    return () => { 
+      clearTimeout(timer);
+      document.body.style.overflow = ''; 
+    };
   }, [show]);
 
   return (

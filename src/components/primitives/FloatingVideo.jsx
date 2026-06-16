@@ -16,19 +16,32 @@ export function FloatingVideo({ src, style }) {
   }, [isInView]);
 
   return (
-    <motion.video
-      ref={videoRef}
-      loop muted playsInline
-      src={src}
+    <motion.div
       style={{
         position: 'absolute',
         width: 'clamp(200px, 25vw, 400px)',
         borderRadius: 24,
-        opacity: 0.8,
+        overflow: 'hidden',
         pointerEvents: 'none',
-        mixBlendMode: 'screen',
-        ...style
+        ...style,
+        mixBlendMode: 'normal',
       }}
-    />
+    >
+      <video
+        ref={videoRef}
+        loop muted playsInline
+        src={src}
+        style={{
+          width: '100%',
+          display: 'block',
+        }}
+      />
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        backgroundColor: '#000000',
+        opacity: 0.2,
+      }} />
+    </motion.div>
   );
 }

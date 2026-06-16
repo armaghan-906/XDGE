@@ -3,25 +3,44 @@ import { useEffect, useRef, useState } from 'react';
 const SIZE = 24;
 const INTERACTIVE = 'a, button, [role="button"], [data-cursor="grow"], input, textarea, select';
 
-// Plain-JS custom cursor — no framer-motion. Outer wrapper tracks mouse
-// position via direct transform updates (every mousemove). Inner element
-// handles the scale-on-hover/press state via React.
+// Plain-JS custom cursor — no framer-motion. Uses CSS transition for the
+// scale state change instead of React re-renders, eliminating snap on
+// hover/press transitions.
 export function Cursor() {
   const wrapRef = useRef(null);
-  const [hovering, setHovering] = useState(false);
-  const [pressed, setPressed] = useState(false);
+  const innerRef = useRef(null);
 
   useEffect(() => {
     const wrap = wrapRef.current;
-    if (!wrap) return;
+    const inner = innerRef.current;
+    if (!wrap || !inner) return;
+
+    let currentScale = 1;
+
+    const setScale = (s) => {
+      if (s !== currentScale) {
+        currentScale = s;
+        inner.style.transform = `scale(${s})`;
+      }
+    };
+
     const move = (e) => {
       wrap.style.transform = `translate3d(${e.clientX - SIZE / 2}px, ${e.clientY - SIZE / 2}px, 0)`;
     };
+
     const isInteractive = (target) => !!(target && target.closest && target.closest(INTERACTIVE));
-    const over = (e) => { if (isInteractive(e.target)) setHovering(true); };
-    const out = (e) => { if (isInteractive(e.target)) setHovering(false); };
-    const down = () => setPressed(true);
-    const up = () => setPressed(false);
+
+    let hovering = false;
+    let pressed = false;
+
+    const updateScale = () => {
+      setScale(pressed ? 0.8 : hovering ? 1.8 : 1);
+    };
+
+    const over = (e) => { if (isInteractive(e.target)) { hovering = true; updateScale(); } };
+    const out = (e) => { if (isInteractive(e.target)) { hovering = false; updateScale(); } };
+    const down = () => { pressed = true; updateScale(); };
+    const up = () => { pressed = false; updateScale(); };
 
     window.addEventListener('mousemove', move, { passive: true });
     document.addEventListener('mouseover', over);
@@ -37,7 +56,6 @@ export function Cursor() {
     };
   }, []);
 
-  const scale = pressed ? 0.8 : hovering ? 1.8 : 1;
   return (
     <div
       ref={wrapRef}
@@ -53,13 +71,15 @@ export function Cursor() {
       }}
     >
       <div
+        ref={innerRef}
         className="xdge-cursor"
         style={{
           width: SIZE, height: SIZE,
           borderRadius: '50%',
           background: 'rgba(0,0,0,0.85)',
           border: '1px solid rgba(255,255,255,0.6)',
-          transform: `scale(${scale})`,
+          transform: 'scale(1)',
+          transition: 'transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1)',
         }}
       />
     </div>

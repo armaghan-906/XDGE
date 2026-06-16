@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
 
@@ -16,15 +16,8 @@ const items = [
 ];
 
 function Card({ item, index, progress, total }) {
-  // progress goes from 0 to total - 1
-  
   // Calculate difference from active center
-  const diff = useTransform(progress, (p) => {
-    let d = index - p;
-    // Optional: make it infinitely wrap around. 
-    // For now, we'll just do clamped linear drag, but we can allow overflow wrapping.
-    return d; 
-  });
+  const diff = useTransform(progress, (p) => index - p);
 
   // Calculate layout on a circle
   const radius = 1200; // Radius of the wheel
@@ -121,47 +114,18 @@ export function DragWheelCarousel() {
   
   // Progress value (0 to items.length - 1)
   const progressRaw = useMotionValue(0);
-  // Extremely soft, slow spring to make the transition slow
-  const progress = useSpring(progressRaw, { stiffness: 15, damping: 25, mass: 1.5 });
+  // Soft spring to make the transition smooth
+  const progress = useSpring(progressRaw, { stiffness: 60, damping: 20, mass: 1 });
 
-  // Handle Dragging
+  // Handle Dragging / Swiping
   const handleDrag = (event, info) => {
-    // Determine how much we dragged (in items).
-    // Increased from 100 to 400 to slow down the drag speed significantly
-    const delta = -info.delta.x / 400;
+    const delta = -info.delta.x / 200; // Adjust sensitivity
     let next = progressRaw.get() + delta;
     
     // Clamp to [0, items.length - 1]
     next = Math.max(0, Math.min(items.length - 1, next));
     progressRaw.set(next);
   };
-
-  // Handle Wheel scroll (trackpad / mousewheel)
-  const handleWheel = (e) => {
-    const isVertical = Math.abs(e.deltaY) > Math.abs(e.deltaX);
-    // Increased denominator to slow down scroll speed
-    const delta = isVertical ? e.deltaY / 400 : e.deltaX / 400;
-    
-    const current = progressRaw.get();
-    
-    // Release scroll at bounds
-    if (current <= 0 && delta < 0) return;
-    if (current >= items.length - 1 && delta > 0) return;
-
-    e.preventDefault();
-    let next = current + delta;
-    next = Math.max(0, Math.min(items.length - 1, next));
-    progressRaw.set(next);
-  };
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    
-    // Non-passive wheel listener to allow e.preventDefault() to stop page scroll when over the carousel
-    el.addEventListener('wheel', handleWheel, { passive: false });
-    return () => el.removeEventListener('wheel', handleWheel);
-  }, []);
 
   return (
     <section 
@@ -201,7 +165,9 @@ export function DragWheelCarousel() {
           height: 'clamp(400px, 60vh, 600px)',
           width: '100%',
           cursor: 'grab',
-          touchAction: 'none' // Prevent vertical scroll while dragging horizontally
+          // CRITICAL FIX: touchAction: 'pan-y' allows native vertical page scrolling 
+          // while still allowing Framer Motion to intercept horizontal drags/swipes.
+          touchAction: 'pan-y' 
         }}
         whileTap={{ cursor: 'grabbing' }}
       >

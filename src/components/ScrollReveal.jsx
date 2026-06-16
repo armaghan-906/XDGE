@@ -1,60 +1,34 @@
 import { useLayoutEffect } from 'react';
-import { animate } from 'framer-motion';
 
 /**
- * ScrollReveal — Global Intersection Observer.
- * Premium "Boldz Studio" style animation: very smooth, staggered, 
- * longer duration (1.2s), elegant slide-up (40px) and fade.
+ * ScrollReveal — Global Intersection Observer using CSS classes.
+ *
+ * Instead of imperatively setting opacity:0 / transform via JS (which causes
+ * flash-of-invisible-content and main-thread animate() calls during scroll),
+ * we add a CSS class `.sr-init` that hides elements, then flip to `.sr-visible`
+ * when they enter the viewport. The transition runs entirely on the compositor
+ * thread via CSS transitions defined in index.css.
+ *
+ * This eliminates:
+ *  - The FOIC (elements briefly visible then snapping to invisible)
+ *  - Framer Motion animate() calls competing with scroll on the main thread
+ *  - Stagger delay accumulation causing long reveal waits
  */
 export function ScrollReveal() {
   useLayoutEffect(() => {
-    let pendingEntries = [];
-    let rafId = null;
-
-    const processBatch = () => {
-      // Sort elements by their vertical position to guarantee top-down stagger
-      pendingEntries.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-      
-      pendingEntries.forEach((entry, idx) => {
-        const tag = entry.target.tagName.toLowerCase();
-        let extraDelay = 0;
-        
-        // Paragraphs and lists get a slightly longer delay so they appear after headings
-        if (['p', 'li', 'blockquote', 'div', 'span'].includes(tag)) {
-          extraDelay = 0.15;
-        }
-
-        const baseDelay = idx * 0.08;
-        
-        // Boldz Studio style premium reveal
-        animate(entry.target, 
-          { opacity: [0, 1], y: [40, 0] },
-          { 
-            duration: 1.2, 
-            delay: baseDelay + extraDelay, 
-            ease: [0.16, 1, 0.3, 1] 
-          }
-        );
-      });
-
-      pendingEntries = [];
-      rafId = null;
-    };
-
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
-            pendingEntries.push(entry);
+            // Use requestAnimationFrame to batch class additions to a single frame
+            requestAnimationFrame(() => {
+              entry.target.classList.add('sr-visible');
+            });
             observer.unobserve(entry.target);
           }
-        });
-
-        if (pendingEntries.length > 0 && !rafId) {
-          rafId = requestAnimationFrame(processBatch);
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
     );
 
     const initObserver = () => {
@@ -65,30 +39,31 @@ export function ScrollReveal() {
 
       const elements = document.querySelectorAll(selectors);
 
-      const targets = Array.from(elements).filter(el => {
-        // Skip elements that already have opacity or are managed by framer-motion
-        return !el.hasAttribute('data-sr-init') && !el.style.opacity && !el.closest('[data-framer-appear-id]');
-      });
+      for (const el of elements) {
+        // Skip if already initialized, or managed by Framer Motion
+        if (el.classList.contains('sr-init') || el.classList.contains('sr-visible')) continue;
+        if (el.closest('[data-framer-appear-id]')) continue;
+        // Skip elements inside the preloader
+        if (el.closest('[style*="z-index: 99999"]')) continue;
 
-      targets.forEach(el => {
-        el.setAttribute('data-sr-init', 'true');
-        // Instantly hide the element before the browser paints it
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(40px)';
+        el.classList.add('sr-init');
         observer.observe(el);
-      });
+      }
     };
 
-    // Run immediately
-    initObserver();
+    // Run on next frame so the DOM is fully painted first
+    const rafId = requestAnimationFrame(initObserver);
 
-    // Re-run on route changes or dynamic content
-    const handleRouteChange = () => setTimeout(initObserver, 300);
+    // Re-run on route changes
+    const handleRouteChange = () => {
+      // Small delay so the new page's DOM is ready
+      setTimeout(initObserver, 200);
+    };
     window.addEventListener('popstate', handleRouteChange);
 
     return () => {
+      cancelAnimationFrame(rafId);
       observer.disconnect();
-      if (rafId) cancelAnimationFrame(rafId);
       window.removeEventListener('popstate', handleRouteChange);
     };
   }, []);

@@ -59,6 +59,14 @@ a {
   color: inherit;
 }
 
+.xg-hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.xg-hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -109,7 +117,6 @@ section:has(> .xg-hero-ambient)>*:not(.xg-hero-ambient) {
 article[data-cursor="grow"],
 .xg-card-lift {
   transition: transform 0.5s var(--xg-ease), box-shadow 0.5s var(--xg-ease), border-color 0.5s var(--xg-ease);
-  will-change: transform;
 }
 
 @media (hover: hover) {
@@ -242,14 +249,7 @@ p {
 }
 
 .xg-hero-grain {
-  position: absolute;
-  inset: 0;
-  /* mix-blend-mode: overlay removed — blend modes force the whole layer to
-     re-rasterize on every composite, which compounded with hero canvas paints
-     during scroll. Plain low opacity reads almost identically over black. */
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  pointer-events: none;
+  display: none;
 }
 
 /* Orb drift animations DISABLED — the constantly-animating composited
@@ -273,10 +273,8 @@ section[data-screen-label^="01"]>div:not(.xg-hero-ambient) {
    surfaces with borders. No paint-expensive blurs during scroll. */
 .xg-glass,
 .xg-glass-solid {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.10);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
 }
 
 .xg-glass-light {
@@ -553,12 +551,10 @@ section[data-screen-label] {
 /* ── Programme tier cards — lift + image zoom on hover (light theme) ────── */
 .xg-tier-card {
   transition: transform 0.5s var(--xg-ease), box-shadow 0.5s var(--xg-ease), border-color 0.5s var(--xg-ease);
-  will-change: transform;
 }
 
 .xg-tier-card .xg-tier-card-media img {
   transition: transform 0.7s var(--xg-ease);
-  will-change: transform;
 }
 
 @media (hover: hover) {
@@ -1087,7 +1083,6 @@ section[data-screen-label] {
     background 0.35s var(--xg-ease),
     color 0.35s var(--xg-ease),
     border-color 0.35s var(--xg-ease);
-  will-change: transform;
 }
 
 @media (hover: hover) {
@@ -1225,17 +1220,29 @@ section[data-screen-label] {
   /* Prevent clipping at edges */
 }
 
-/* Global Scroll Reveal */
+/* Global Scroll Reveal — CSS-only compositor-thread transitions.
+   .sr-init hides elements; .sr-visible fades them in.
+   The transition runs entirely on the GPU compositor. */
 .sr-init {
   opacity: 0;
-  transform: translateY(30px) scale(0.97);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .sr-init.sr-visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
+}
+
+/* Page transition fade-in keyframe — runs on compositor thread */
+@keyframes xg-page-fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Reviews section (data-screen-label "Proven Outcomes") — top/bottom padding

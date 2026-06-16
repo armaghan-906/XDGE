@@ -21,6 +21,8 @@ export function Logo({ style, className }) {
   return (
     <span className={className} style={{
       display: 'inline-flex',
+      flexDirection: 'row',
+      whiteSpace: 'nowrap',
       fontFamily: theme.display, fontWeight: 900,
       letterSpacing: '-0.02em', lineHeight: 1,
       ...style

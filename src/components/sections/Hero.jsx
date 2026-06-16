@@ -28,13 +28,17 @@ export function Hero() {
           height: '100%',
           objectFit: 'cover',
           zIndex: 1,
-          opacity: 0.8,
         }}
       />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 1 }}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        backgroundColor: '#000000',
+        opacity: 0.2,
+        zIndex: 2,
+      }} />
+      <div
+
         style={{
           position: 'relative',
           zIndex: 5,
@@ -65,7 +69,7 @@ export function Hero() {
             TRAIN • BUILD • LEAD • IMPACT
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

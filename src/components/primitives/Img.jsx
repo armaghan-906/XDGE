@@ -8,7 +8,7 @@ export function Img({ src, alt = '', ratio = '4/3', style }) {
       <img
         src={src}
         alt={alt}
-        loading="eager"
+        loading="lazy"
         decoding="async"
         style={{
           position: 'absolute', inset: 0,

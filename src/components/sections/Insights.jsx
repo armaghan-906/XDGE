@@ -79,9 +79,9 @@ export function Insights() {
                 overflow: 'hidden',
               }}>
                 <motion.img
-                  src={`/assets/new/pic-new-${i + 1}.webp`}
+                  src={`/assets/blog-0${i + 1}.webp`}
                   alt={p.title}
-                  loading="eager"
+                  loading="lazy"
                   decoding="async"
                   variants={{
                     hidden: { scale: 1.15 },

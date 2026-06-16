@@ -50,9 +50,14 @@ export function VideoBackground({ src, poster }) {
           height: '100%',
           objectFit: 'cover',
           display: 'block',
-          opacity: 0.8 // slight dimming to ensure text readability
         }}
       />
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        backgroundColor: '#000000',
+        opacity: 0.2,
+      }} />
       {/* Optional film grain overlay to blend the video into the black aesthetic */}
       <div className="xg-hero-grain" />
     </motion.div>
