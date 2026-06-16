@@ -7,7 +7,7 @@ import { theme } from '../../theme';
 // used once. Fixed-size square cards, image only (no text), no expand-on-active.
 const items = [
   { img: '/assets/leave-1.webp' },
-  { img: '/assets/leave-2.webp' },
+  { img: '/assets/playbook.webp' },
   { img: '/assets/leave-3.webp' },
   { img: '/assets/leave-4.webp' },
   { img: '/assets/leave-5.webp' },
