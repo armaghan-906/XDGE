@@ -11,11 +11,11 @@ const items = [
   { img: '/assets/leave-3.webp' },
   { img: '/assets/leave-4.webp' },
   { img: '/assets/leave-5.webp' },
-  { img: '/assets/leave-6.webp' },
   { img: '/assets/leave-7.webp' },
+  { img: '/assets/WhatsApp Image 2026-06-16 at 1.04.14 PM.jpeg', cover: true },
 ];
 
-function LeaveCard({ img, widthVw }) {
+function LeaveCard({ img, cover, widthVw }) {
   return (
     <div
       className="xg-glass-solid"
@@ -28,7 +28,7 @@ function LeaveCard({ img, widthVw }) {
         overflow: 'hidden',
         border: `1px solid ${theme.borderDark}`,
         // full square image, contained (never cropped/stretched); dark letterbox fill
-        background: `#0a0a0a url(${img}) center/contain no-repeat`,
+        background: `#0a0a0a url("${img}") center/${cover ? 'cover' : 'contain'} no-repeat`,
       }}
     />
   );
@@ -74,9 +74,9 @@ export function WhatYouLeaveWith() {
     >
       <FloatingVideo
         src="/assets/videos/thunder_1.mp4"
-        style={{ 
-          top: '30%', right: 20, 
-          opacity: 0.35, 
+        style={{
+          top: '30%', right: 20,
+          opacity: 0.35,
           width: 'clamp(400px, 80vw, 1000px)'
         }}
       />
@@ -123,7 +123,7 @@ export function WhatYouLeaveWith() {
           whileTap={{ cursor: 'grabbing' }}
         >
           {items.map((it, i) => (
-            <LeaveCard key={i} img={it.img} widthVw={cardW} />
+            <LeaveCard key={i} img={it.img} cover={it.cover} widthVw={cardW} />
           ))}
         </motion.div>
       </div>
