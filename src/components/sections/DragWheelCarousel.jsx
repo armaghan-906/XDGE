@@ -3,16 +3,66 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
 
 const items = [
-  { id: '01', title: "Leadership Foundation", img: "/assets/1.webp" },
-  { id: '02', title: "Advanced Communication", img: "/assets/2.webp" },
-  { id: '03', title: "Strategic Thinking", img: "/assets/3.webp" },
-  { id: '04', title: "Team Dynamics", img: "/assets/4.webp" },
-  { id: '05', title: "Conflict Resolution", img: "/assets/5.webp" },
-  { id: '06', title: "Resilience Training", img: "/assets/6.webp" },
-  { id: '07', title: "Mentorship Masterclass", img: "/assets/7.webp" },
-  { id: '08', title: "Performance Habits", img: "/assets/8.webp" },
-  { id: '09', title: "Winning Mindset", img: "/assets/9.webp" },
-  { id: '10', title: "Impact & Influence", img: "/assets/10.webp" },
+  { 
+    id: '01', 
+    title: "Business & Entrepreneurship", 
+    desc: "Start a business, launch a product, develop a service, or solve a commercial challenge.",
+    img: "/assets/1.webp" 
+  },
+  { 
+    id: '02', 
+    title: "Engineering, Design & Future Technologies", 
+    desc: "Develop products, systems, prototypes, infrastructure, robotics, AI, and emerging technologies.",
+    img: "/assets/4.webp" 
+  },
+  { 
+    id: '03', 
+    title: "Community Impact & Social Change", 
+    desc: "Lead initiatives that improve communities, wellbeing, inclusion, or social outcomes.",
+    img: "/assets/3.webp" 
+  },
+  { 
+    id: '04', 
+    title: "Media, Marketing & Creative Industries", 
+    desc: "Lead projects in content creation, branding, journalism, film, design, communications, and digital media.",
+    img: "/assets/7.webp" 
+  },
+  { 
+    id: '05', 
+    title: "Leadership, Sport & Human Performance", 
+    desc: "Develop projects around coaching, team leadership, sport, performance psychology, and personal excellence.",
+    img: "/assets/2.webp" 
+  },
+  { 
+    id: '06', 
+    title: "Law, Government & Public Affairs", 
+    desc: "Explore policy, law, governance, diplomacy, public service, and societal challenges.",
+    img: "/assets/5.webp" 
+  },
+  { 
+    id: '07', 
+    title: "Health, Medicine & Life Sciences", 
+    desc: "Explore healthcare, medicine, psychology, sport science, biotechnology, and human performance.",
+    img: "/assets/9.webp" 
+  },
+  { 
+    id: '08', 
+    title: "Culture, Fashion & Creative Enterprise", 
+    desc: "Create ventures, campaigns, products, events, or initiatives within fashion, music, arts, culture, and entertainment.",
+    img: "/assets/6.webp" 
+  },
+  { 
+    id: '09', 
+    title: "Research, Education & Knowledge Creation", 
+    desc: "Conduct original research, investigations, publications, educational resources, or academic studies.",
+    img: "/assets/8.webp" 
+  },
+  { 
+    id: '10', 
+    title: "Finance, Economics & Investment", 
+    desc: "Explore markets, investment, economics, fintech, business finance, and financial decision-making.",
+    img: "/assets/10.webp" 
+  },
 ];
 
 function Card({ item, index, progress, total }) {
@@ -99,10 +149,21 @@ function Card({ item, index, progress, total }) {
             fontFamily: theme.displayTight,
             fontSize: 'clamp(18px, 2vw, 24px)',
             margin: 0,
-            lineHeight: 1.1
+            lineHeight: 1.1,
+            marginBottom: item.desc ? 8 : 0
           }}>
             {item.title}
           </h3>
+          {item.desc && (
+            <p style={{
+              margin: 0,
+              fontSize: 'clamp(12px, 1.3vw, 14px)',
+              lineHeight: 1.4,
+              color: 'rgba(255,255,255,0.85)'
+            }}>
+              {item.desc}
+            </p>
+          )}
         </div>
       </div>
     </motion.div>
@@ -137,19 +198,45 @@ export function DragWheelCarousel() {
         padding: 'clamp(80px, 10vw, 120px) 0',
       }}
     >
-      {/* Title */}
-      <div style={{ textAlign: 'center', marginBottom: 60, position: 'relative', zIndex: 10 }}>
+      <div style={{ marginBottom: 60, position: 'relative', zIndex: 10, padding: '0 clamp(20px, 4vw, 40px)' }}>
         <h2 style={{
           fontFamily: theme.display,
-          fontSize: 'clamp(42px, 6vw, 84px)',
-          fontWeight: 900,
           margin: 0,
-          lineHeight: 1.1,
-          letterSpacing: '0.02em',
           textTransform: 'uppercase',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
         }}>
-          <span className="cyan-text" style={{ display: 'block' }}>BUILD A PROJECT THAT SHOWCASES</span>
-          <span className="hollow-text" style={{ display: 'block', marginTop: 8 }}>YOUR FUTURE POTENTIAL.</span>
+          <span style={{ 
+            fontSize: 'clamp(14px, 2vw, 24px)', 
+            fontWeight: 800,
+            color: theme.base,
+            marginBottom: 'clamp(4px, 1vw, 12px)',
+            letterSpacing: '0.02em',
+          }}>
+            BUILD A PROJECT THAT
+          </span>
+          <span style={{ 
+            fontSize: 'clamp(80px, 16vw, 220px)', 
+            fontWeight: 900,
+            lineHeight: 0.85,
+            background: 'linear-gradient(90deg, #3B4CCA 0%, #20E3E8 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            letterSpacing: '-0.02em',
+            marginBottom: 'clamp(8px, 1.5vw, 16px)'
+          }}>
+            PROVES
+          </span>
+          <span className="hollow-text" style={{ 
+            display: 'block', 
+            fontSize: 'clamp(28px, 6vw, 84px)',
+            fontWeight: 900,
+            lineHeight: 1,
+            letterSpacing: '-0.01em',
+          }}>
+            YOUR FUTURE POTENTIAL
+          </span>
         </h2>
       </div>
 

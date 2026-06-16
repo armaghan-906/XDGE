@@ -56,12 +56,54 @@ const Icons = {
 };
 
 const steps = [
-  { n: '01', title: 'Select Your Path', desc: 'Together, we identify a project and pathway that will help you grow and stand out', icon: Icons.Search, offset: 152 },
-  { n: '02', title: 'Build Your Inner Leadership', desc: 'Build self-awareness, confidence, resilience, and the inner leadership foundations', icon: Icons.Bulb, offset: 78 },
-  { n: '03', title: 'Develop Your Professional Skillset', desc: 'Develop the communication, professional, and leadership skills that create real-world results', icon: Icons.Briefcase, offset: 30 },
-  { n: '04', title: 'Lead A Real-World Project', desc: 'Take your project from idea to implementation, applying your skills to create meaningful impact', icon: Icons.Flag, offset: 30 },
-  { n: '05', title: 'Build Your Leadership Portfolio', desc: 'Create a professional portfolio that showcases your achievements and leadership journey', icon: Icons.Clipboard, offset: 78 },
-  { n: '06', title: 'Present Your Impact', desc: 'Showcase your project to a panel of leaders and demonstrate readiness for your next opportunity', icon: Icons.Trophy, offset: 152 },
+  {
+    n: '01',
+    title: 'Select Your Path',
+    line1: 'Together, we explore your interests, ambitions, strengths, and future goals.',
+    line2: 'We identify a project and pathway that will help you grow, stand out, and prepare for your next step.',
+    icon: Icons.Search,
+    offset: 152,
+  },
+  {
+    n: '02',
+    title: 'Build Your Inner Leadership',
+    line1: 'During the first 4–5 weeks, you build self-awareness, confidence, and resilience.',
+    line2: 'The leadership foundations needed to create a strong internal operating system.',
+    icon: Icons.Bulb,
+    offset: 78,
+  },
+  {
+    n: '03',
+    title: 'Develop Your Professional Skillset',
+    line1: 'You develop the communication, professional, and leadership skills.',
+    line2: 'The skills that help people create results in the real world.',
+    icon: Icons.Briefcase,
+    offset: 30,
+  },
+  {
+    n: '04',
+    title: 'Lead A Real-World Project',
+    line1: 'Put leadership into practice by taking your project from idea to implementation.',
+    line2: 'Apply your skills to create meaningful impact.',
+    icon: Icons.Flag,
+    offset: 30,
+  },
+  {
+    n: '05',
+    title: 'Build Your Leadership Portfolio',
+    line1: 'Create a professional portfolio that showcases your project, achievements, and journey.',
+    line2: 'Evidence of your capability for your next-level goal.',
+    icon: Icons.Clipboard,
+    offset: 78,
+  },
+  {
+    n: '06',
+    title: 'Present Your Impact',
+    line1: 'Showcase your project to a panel of leaders and prepare for interviews.',
+    line2: 'Demonstrate readiness for your next opportunity.',
+    icon: Icons.Trophy,
+    offset: 152,
+  },
 ];
 
 const fadeEase = [0.2, 0.7, 0.2, 1];
@@ -102,7 +144,7 @@ export function TheJourney() {
               viewport={{ once: true, amount: 0.2 }}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(67.5px, 10.5vw, 135px)',
+                fontSize: 'clamp(60px, 11.3vw, 200px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
                 margin: 0, textTransform: 'uppercase', textAlign: 'center'
               }}
@@ -136,61 +178,44 @@ export function TheJourney() {
         </Group>
 
         <div className="xg-journey-track">
-          {/* Desktop: arched curve + circles + label row */}
           <div className="xg-journey-curve-area">
-            <motion.svg
+            <svg
               className="xg-journey-curve"
               viewBox="0 0 1200 220"
               preserveAspectRatio="none"
               aria-hidden="true"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
             >
-              <motion.path
+              <path
                 d="M 100 180 C 320 30 880 30 1100 180"
                 stroke="rgba(255,255,255,0.45)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"
                 initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                variants={{
-                  hidden: { pathLength: 0 },
-                  visible: { pathLength: 1, transition: { duration: 2, ease: fadeEase, delay: 0.3 } }
-                }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 1.8, ease: fadeEase, delay: 0.2 }}
               />
-              {/* Arrow tip at the right end */}
-              <motion.path
+              <path
                 d="M 1090 172 L 1108 180 L 1090 188"
                 stroke="rgba(255,255,255,0.55)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: { opacity: 1, transition: { duration: 0.4, delay: 2.2 } }
-                }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.4, delay: 1.9 }}
               />
-            </motion.svg>
+            </svg>
 
-            <motion.div
-              className="xg-journey-circles"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.15, delayChildren: 0.5 } } }}
-              style={{ display: 'flex', justifyContent: 'space-between', width: '100%', position: 'relative' }}
-            >
+            <Group className="xg-journey-circles">
               {steps.map((s, i) => (
-                <motion.div
+                <div
                   key={i}
+                  variants={fadeUp}
                   className="xg-journey-circle-cell"
                   style={{ paddingTop: s.offset }}
-                  variants={{
-                    hidden: { opacity: 0, scale: 0, y: 20 },
-                    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.6, ease: fadeEase } }
-                  }}
                 >
                   <motion.div 
                     whileHover={{ scale: 1.15, borderColor: theme.accent, boxShadow: `0 0 20px rgba(32, 227, 232, 0.3)` }}
@@ -203,52 +228,53 @@ export function TheJourney() {
                       color: theme.base,
                       flexShrink: 0,
                       boxShadow: '0 4px 14px rgba(0,0,0,0.25)',
-                      cursor: 'default',
                     }}>
                     {s.icon}
                   </motion.div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </Group>
           </div>
 
-          <motion.div 
-            className="xg-journey-labels"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 1.2 } } }}
-          >
-            {steps.map((s, i) => (
-              <motion.div 
-                key={i} 
-                className="xg-journey-label-cell"
-                variants={{
-                  hidden: { opacity: 0, y: 16 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: fadeEase } }
-                }}
-              >
+          <div className="xg-journey-labels">
+            {steps.map((s) => (
+              <div key={s.n} className="xg-journey-label-cell">
+                <div style={{
+                  fontFamily: theme.display, fontWeight: 900,
+                  fontSize: 'clamp(22px, 2.2vw, 30px)',
+                  lineHeight: 1, letterSpacing: '-0.01em',
+                  color: theme.base,
+                  marginBottom: 10,
+                }}>{s.n}</div>
                 <h3 style={{
                   fontFamily: theme.display, fontWeight: 700,
-                  fontSize: 'clamp(12px, 1.2vw, 15px)',
-                  lineHeight: 1.2, letterSpacing: '-0.005em',
+                  fontSize: 'clamp(13px, 1.25vw, 16px)',
+                  lineHeight: 1.18, letterSpacing: '-0.005em',
                   margin: '0 0 10px',
                   textTransform: 'uppercase',
                   color: theme.base,
                 }}>{s.title}</h3>
                 <p style={{
-                  fontSize: 12, lineHeight: 1.5, margin: 0,
+                  fontSize: 'clamp(11px, 1vw, 12px)',
+                  lineHeight: 1.5,
+                  margin: '0 0 6px',
+                  color: theme.base,
+                  fontWeight: 500,
+                }}>{s.line1}</p>
+                <p style={{
+                  fontSize: 'clamp(11px, 1vw, 12px)',
+                  lineHeight: 1.5,
+                  margin: 0,
                   color: theme.subtitle,
-                }}>{s.desc}</p>
-              </motion.div>
+                }}>{s.line2}</p>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
-          {/* Mobile: simple vertical timeline */}
           <Group className="xg-journey-mobile">
-            {steps.map((s, i) => (
+            {steps.map((s) => (
               <div
-                key={i}
+                key={s.n}
                 variants={fadeUp}
                 className="xg-journey-mobile-step"
               >
@@ -262,17 +288,30 @@ export function TheJourney() {
                   {s.icon}
                 </div>
                 <div>
+                  <div style={{
+                    fontFamily: theme.display, fontWeight: 900,
+                    fontSize: 22, lineHeight: 1, letterSpacing: '-0.01em',
+                    color: theme.base,
+                    marginBottom: 6,
+                  }}>{s.n}</div>
                   <h3 style={{
                     fontFamily: theme.display, fontWeight: 700,
-                    fontSize: 15, lineHeight: 1.2, letterSpacing: '-0.005em',
-                    margin: '0 0 6px',
+                    fontSize: 17, lineHeight: 1.2, letterSpacing: '-0.005em',
+                    margin: '0 0 8px',
                     textTransform: 'uppercase',
                     color: theme.base,
                   }}>{s.title}</h3>
                   <p style={{
-                    fontSize: 13, lineHeight: 1.5, margin: 0,
+                    fontSize: 13, lineHeight: 1.5,
+                    margin: '0 0 6px',
+                    color: theme.base,
+                    fontWeight: 500,
+                  }}>{s.line1}</p>
+                  <p style={{
+                    fontSize: 13, lineHeight: 1.5,
+                    margin: 0,
                     color: theme.subtitle,
-                  }}>{s.desc}</p>
+                  }}>{s.line2}</p>
                 </div>
               </div>
             ))}

@@ -29,8 +29,8 @@ export function AboutHero() {
           ]}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(60px, 15.5vw, 222px)',
-            lineHeight: 0.95, letterSpacing: '-0.02em',
+            fontSize: 'clamp(60px, 11.3vw, 200px)',
+            lineHeight: 0.95, letterSpacing: '-0.06em',
             whiteSpace: 'nowrap',
             margin: 0,
           }}
@@ -43,9 +43,9 @@ export function AboutHero() {
         }}>
           <div style={{ maxWidth: 640 }}>
             <h3 style={{
-              fontFamily: theme.displayTight,
-              fontSize: 'clamp(20px, 2.3vw, 32px)',
-              lineHeight: 1.3, fontWeight: 700,
+              fontFamily: theme.body,
+              fontSize: 'clamp(20px, 2.2vw, 28px)',
+              lineHeight: 1.3, fontWeight: 600,
               color: theme.base, margin: 0,
             }}>
               Professional Leadership Development Re-engineered for Young People 12&ndash;24+
@@ -55,7 +55,7 @@ export function AboutHero() {
               margin: 'clamp(18px, 2.4vw, 28px) 0',
             }} />
             <p style={{
-              fontSize: 'clamp(16px, 1.7vw, 19px)',
+              fontSize: 'clamp(12px, 1.3vw, 14px)',
               lineHeight: 1.6, margin: 0, color: theme.base,
             }}>
               It starts when an individual takes ownership of an idea, stands behind

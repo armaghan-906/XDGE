@@ -6,10 +6,10 @@ import { SplitHeading } from '../primitives/SplitHeading';
 import { Magnetic } from '../Magnetic';
 
 const cards = [
-  { year: 'The XDGE', t: 'Early Career & Professional Advantage', d: '', img: '/assets/graduates-card.webp' },
-  { year: 'The XDGE', t: 'University Entry Edge', d: '', img: '/assets/serve-02.webp' },
-  { year: 'The XDGE', t: 'School Entry Edge', d: '', img: '/assets/school-entry-edge.jpg' },
-  { year: 'The XDGE', t: 'Early Leadership Foundations', d: '', img: '/assets/serve-04.webp' },
+  { year: 'The XDGE', t: 'Graduates & Early Career', d: '', img: '/assets/graduates-card.webp' },
+  { year: 'The XDGE', t: 'University Applicants', d: '', img: '/assets/serve-02.webp' },
+  { year: 'The XDGE', t: 'School Students', d: '', img: '/assets/school-entry-edge.jpg' },
+  { year: 'The XDGE', t: 'Specialist Pathways', d: '', img: '/assets/serve-04.webp' },
 ];
 
 function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
@@ -127,19 +127,29 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
           }}>
             {card.d}
           </p>
-          <motion.div
-            animate={{
-              scale: isHovered ? 1.1 : 1,
-              borderColor: isHovered ? theme.base : theme.borderDark,
-            }}
-            transition={{ duration: 0.4, ease: [0.2, 0.7, 0.2, 1] }}
-            style={{
-              width: 40, height: 40, borderRadius: '50%',
-              borderWidth: 1, borderStyle: 'solid', borderColor: theme.borderDark,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 15, color: theme.base, flexShrink: 0,
-            }}
-          >↗</motion.div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <span style={{
+              fontSize: 12, fontWeight: 600, letterSpacing: '0.04em',
+              textTransform: 'uppercase', color: theme.base,
+              opacity: isHovered ? 1 : 0.7,
+              transition: 'opacity 0.4s ease'
+            }}>
+              See Programme
+            </span>
+            <motion.div
+              animate={{
+                scale: isHovered ? 1.1 : 1,
+                borderColor: isHovered ? theme.base : theme.borderDark,
+              }}
+              transition={{ duration: 0.4, ease: [0.2, 0.7, 0.2, 1] }}
+              style={{
+                width: 40, height: 40, borderRadius: '50%',
+                borderWidth: 1, borderStyle: 'solid', borderColor: theme.borderDark,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 15, color: theme.base, flexShrink: 0,
+              }}
+            >↗</motion.div>
+          </div>
         </div>
       </div>
     </motion.a>
@@ -188,7 +198,7 @@ export function WhoWeServe() {
               viewport={{ once: true, amount: 0.2 }}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(67.5px, 10.5vw, 135px)',
+                fontSize: 'clamp(60px, 11.3vw, 200px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
                 margin: 0, textTransform: 'uppercase'
               }}
@@ -200,41 +210,7 @@ export function WhoWeServe() {
             </motion.h2>
           </div>
 
-          <motion.div variants={fadeUp} style={{ 
-            alignSelf: 'flex-end', 
-            display: 'flex', 
-            flexDirection: 'column', 
-            alignItems: 'flex-end', 
-            textAlign: 'right',
-            marginTop: 'clamp(16px, 3vw, 32px)',
-            maxWidth: 500
-          }}>
-            <h3 style={{
-              fontSize: 'clamp(18px, 2.2vw, 24px)', 
-              lineHeight: 1.3,
-              marginBottom: 16,
-              fontFamily: theme.displayTight,
-              color: theme.base,
-              fontWeight: 700
-            }}>
-              For Young People 12&ndash;24 Building Their Next Step Advantage
-            </h3>
-            <p style={{ fontSize: 16, lineHeight: 1.6, margin: '0 0 24px', color: theme.subtitle }}>
-              XDGE helps ambitious young people build the confidence,
-              leadership skills, and professional edge to stand out in school,
-              university, career, business, and life.
-            </p>
-            <Magnetic strength={0.3}>
-              <a
-                href="#"
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 10, padding: '12px 20px',
-                  border: `1px solid ${theme.base}`, borderRadius: 999, color: theme.base,
-                  textDecoration: 'none', fontSize: 13, fontWeight: 500,
-                }}
-              >View All Programmes <span style={{ fontSize: 16 }}>→</span></a>
-            </Magnetic>
-          </motion.div>
+
         </Group>
 
         {/* Cards are equal height (the title reserves 3 lines in ServeCard) but kept

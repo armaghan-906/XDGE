@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
+import { FloatingVideo } from '../primitives/FloatingVideo';
 
 const svg = {
   width: 22, height: 22, viewBox: '0 0 24 24', fill: 'none',
@@ -49,10 +50,25 @@ export function WhoWeAre() {
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
-        <div style={{ marginBottom: 'clamp(40px, 6vw, 64px)' }}>
+        <div style={{ marginBottom: 'clamp(40px, 6vw, 64px)', position: 'relative' }}>
+          <FloatingVideo
+            src="/assets/videos/thunder_1.mp4"
+            style={{
+              top: '50%', left: '20%',
+              transform: 'translate(-50%, -50%)',
+              width: 'clamp(600px, 80vw, 1500px)',
+              opacity: 0.35, zIndex: -1,
+            }}
+          />
           <SplitHeading
-            lines={['WHO ARE', 'WE']}
-            lineClasses={['hollow-text', 'cyan-text']}
+            lines={[
+              <>
+                <span className="cyan-text" style={{ paddingRight: '0.2em' }}>WHO</span>
+                <span className="hollow-text">ARE</span>
+              </>,
+              'WE'
+            ]}
+            lineClasses={['', 'hollow-text']}
             style={{
               fontFamily: theme.display, fontWeight: 900,
               fontSize: 'clamp(60px, 11.3vw, 200px)',
@@ -64,14 +80,14 @@ export function WhoWeAre() {
 
         <Group style={{
           display: 'grid',
-          gridTemplateColumns: 'clamp(200px, 25vw, 360px) 1fr',
+          gridTemplateColumns: 'clamp(280px, 35vw, 480px) 1fr',
           gap: 'clamp(32px, 5vw, 64px)',
           alignItems: 'start',
         }}>
           <motion.div variants={fadeUp} style={{ marginTop: 'clamp(40px, 6vw, 80px)' }}>
             <div style={{
               position: 'relative',
-              width: '100%', aspectRatio: '3/4',
+              width: '100%', aspectRatio: '4/5',
               borderRadius: 4, overflow: 'hidden', background: '#000000',
             }}>
               <motion.img
@@ -86,8 +102,8 @@ export function WhoWeAre() {
                 style={{
                   position: 'absolute', inset: 0,
                   width: '100%', height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: '50% 35%',
+                  objectFit: 'contain',
+                  objectPosition: 'center center',
                   display: 'block',
                 }}
               />

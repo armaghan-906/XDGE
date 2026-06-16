@@ -74,13 +74,17 @@ export function WhatYouLeaveWith() {
     >
       <FloatingVideo
         src="/assets/videos/thunder_1.mp4"
-        style={{ top: '30%', right: 20, opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(1.3)' }}
+        style={{ 
+          top: '30%', right: 20, 
+          opacity: 0.35, 
+          width: 'clamp(400px, 80vw, 1000px)'
+        }}
       />
 
       <div style={{ textAlign: 'center', marginBottom: 60, position: 'relative', zIndex: 10, padding: '0 clamp(20px, 4vw, 40px)' }}>
         <h2 style={{
           fontFamily: theme.display,
-          fontSize: 'clamp(48px, 11vw, 144px)',
+          fontSize: 'clamp(60px, 11.3vw, 200px)',
           fontWeight: 900,
           margin: 0,
           letterSpacing: '-0.02em',

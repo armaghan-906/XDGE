@@ -211,14 +211,14 @@ export function IsThisRightForMe() {
             viewport={{ once: true, amount: 0.2 }}
             style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(40px, 10.5vw, 150px)',
+              fontSize: 'clamp(60px, 11.3vw, 200px)',
               lineHeight: 0.95, letterSpacing: '-0.02em',
               margin: 0, textTransform: 'uppercase'
             }}
           >
-            <motion.span variants={fadeUp} style={{ display: 'block' }}>
-              <span className="hollow-text" style={{ display: 'block' }}>IS THIS</span>
-              <span className="cyan-text" style={{ display: 'block', whiteSpace: 'nowrap' }}>RIGHT FOR ME</span>
+            <motion.span variants={fadeUp} style={{ display: 'flex', flexDirection: 'column' }}>
+              <span className="cyan-text" style={{ fontSize: '0.45em', paddingBottom: '0.1em', letterSpacing: '0.02em' }}>IS THIS RIGHT</span>
+              <span className="hollow-text" style={{ marginTop: '-0.05em' }}>FOR ME</span>
             </motion.span>
           </motion.h2>
           <motion.div variants={fadeUp} style={{
