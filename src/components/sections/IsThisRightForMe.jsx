@@ -198,7 +198,7 @@ export function IsThisRightForMe() {
     >
       <FloatingVideo 
         src="/assets/videos/thunder_2.mp4" 
-        style={{ top: 120, right: 80, opacity: 0.8, transform: 'scale(1.2)' }} 
+        style={{ top: 120, right: 80, opacity: 0.8, transform: 'scale(1.2)', zIndex: 0 }} 
       />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         {/* Full-width heading so it lays out as a clean 2-liner (IS THIS / RIGHT FOR ME)

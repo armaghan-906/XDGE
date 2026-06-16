@@ -103,6 +103,40 @@ export function WhatYouLeaveWith() {
         }}>
           Proof of your capability. Ready for selection.
         </p>
+
+        {/* Navigation arrows — moved above carousel */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 32 }}>
+          <button
+            onClick={() => go(-1)}
+            disabled={index === 0}
+            aria-label="Previous"
+            style={{
+              background: index > 0 ? '#ffffff' : 'rgba(255,255,255,0.1)', 
+              border: 'none',
+              color: index > 0 ? '#000000' : '#ffffff', 
+              width: 56, height: 56, borderRadius: '50%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              cursor: index > 0 ? 'pointer' : 'default', transition: 'all 0.2s',
+            }}
+          >
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
+          </button>
+          <button
+            onClick={() => go(1)}
+            disabled={index === items.length - 1}
+            aria-label="Next"
+            style={{
+              background: index < items.length - 1 ? '#ffffff' : 'rgba(255,255,255,0.1)', 
+              border: 'none',
+              color: index < items.length - 1 ? '#000000' : '#ffffff', 
+              width: 56, height: 56, borderRadius: '50%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              cursor: index < items.length - 1 ? 'pointer' : 'default', transition: 'all 0.2s',
+            }}
+          >
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+          </button>
+        </div>
       </div>
 
       <div style={{ width: '100%', overflow: 'hidden', position: 'relative', padding: '20px 0' }}>
@@ -128,37 +162,6 @@ export function WhatYouLeaveWith() {
         </motion.div>
       </div>
 
-      {/* Navigation arrows — move one card at a time (cards stay fixed) */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginTop: 40, position: 'relative', zIndex: 10 }}>
-        <button
-          onClick={() => go(-1)}
-          disabled={index === 0}
-          aria-label="Previous"
-          style={{
-            background: 'none', border: `1px solid ${theme.borderDark}`,
-            color: theme.base, opacity: index > 0 ? 1 : 0.3,
-            width: 48, height: 48, borderRadius: '50%',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            cursor: index > 0 ? 'pointer' : 'default', transition: 'all 0.2s',
-          }}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
-        </button>
-        <button
-          onClick={() => go(1)}
-          disabled={index === items.length - 1}
-          aria-label="Next"
-          style={{
-            background: 'none', border: `1px solid ${theme.borderDark}`,
-            color: theme.base, opacity: index < items.length - 1 ? 1 : 0.3,
-            width: 48, height: 48, borderRadius: '50%',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            cursor: index < items.length - 1 ? 'pointer' : 'default', transition: 'all 0.2s',
-          }}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
-        </button>
-      </div>
     </section>
   );
 }
