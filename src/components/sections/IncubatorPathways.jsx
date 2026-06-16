@@ -42,7 +42,7 @@ export function IncubatorPathways() {
         color: '#FFFFFF',
         position: 'relative',
         overflow: 'hidden',
-        padding: 'clamp(72px, 11vw, 140px) clamp(20px, 4vw, 56px)',
+        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 56px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>

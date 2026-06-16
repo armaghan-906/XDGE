@@ -69,7 +69,7 @@ export function WhatYouLeaveWith() {
         color: theme.base,
         position: 'relative',
         overflow: 'hidden',
-        padding: 'clamp(80px, 10vw, 120px) 0',
+        padding: 'clamp(160px, 18vw, 240px) 0',
       }}
     >
       <FloatingVideo

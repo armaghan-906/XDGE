@@ -195,7 +195,7 @@ export function DragWheelCarousel() {
         background: theme.dark,
         position: 'relative',
         overflow: 'hidden',
-        padding: 'clamp(80px, 10vw, 120px) 0',
+        padding: 'clamp(160px, 18vw, 240px) 0',
       }}
     >
       <div style={{ marginBottom: 60, position: 'relative', zIndex: 10, padding: '0 clamp(20px, 4vw, 40px)' }}>

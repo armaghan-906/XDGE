@@ -166,7 +166,7 @@ export function WhoWeServe() {
       background: theme.dark, color: theme.base,
       position: 'relative',
       overflow: 'hidden',
-      padding: 'clamp(64px, 7.5vw, 96px) clamp(20px, 4vw, 40px) clamp(56px, 6vw, 80px)',
+      padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px) clamp(180px, 22vw, 320px)',
     }}>
       <FloatingVideo 
         src="/assets/videos/thunder_1.mp4" 

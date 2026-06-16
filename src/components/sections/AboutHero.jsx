@@ -15,7 +15,7 @@ export function AboutHero() {
       style={{
         background: theme.dark, color: theme.base,
         position: 'relative', overflow: 'hidden',
-        padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(80px, 10vw, 120px)',
+        padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(160px, 18vw, 240px)',
       }}
     >
       <HeroAmbient src="/assets/videos/thunder_2.mp4" />

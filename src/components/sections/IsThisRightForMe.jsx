@@ -193,7 +193,7 @@ export function IsThisRightForMe() {
         color: theme.base,
         position: 'relative',
         overflow: 'hidden',
-        padding: 'clamp(120px, 15vw, 240px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
       }}
     >
       <FloatingVideo 

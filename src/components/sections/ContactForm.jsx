@@ -171,7 +171,7 @@ export function ContactForm() {
       data-section-theme="dark"
       style={{
         background: theme.dark, color: theme.base,
-        padding: 'clamp(72px, 11vw, 140px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
       }}
     >
       <form onSubmit={onSubmit} style={{ maxWidth: 880, margin: '0 auto' }}>
