@@ -93,7 +93,7 @@ const tiers = [
         duration: '12-14 weeks · 1:2:1 Mentor Programme',
         title: 'Junior MBA',
         desc: 'Build a strong foundation in business and leadership through an accelerated programme designed for future entrepreneurs and leaders.',
-        img: '/assets/about-hero.webp',
+        img: '/assets/leader-found-2.webp',
       },
       {
         duration: '12-14 weeks · 1:2:1 Mentor Programme',
