@@ -13,6 +13,7 @@ const posts = [
     tag1: 'UNIVERSITY', tag2: null,
     title: 'What Top Universities Seek In Emerging Leaders',
     body: 'Competitive universities look for evidence of initiative, contribution, and real-world impact from students who can clearly communicate the difference they have made.',
+    img: '/assets/ALL NEW IMAGES/5.png',
   },
   {
     tag1: 'SCHOOL', tag2: 'UNIVERSITY',
@@ -79,7 +80,7 @@ export function Insights() {
                 overflow: 'hidden',
               }}>
                 <motion.img
-                  src={`/assets/blog-0${i + 1}.webp`}
+                  src={p.img || `/assets/blog-0${i + 1}.webp`}
                   alt={p.title}
                   loading="lazy"
                   decoding="async"
