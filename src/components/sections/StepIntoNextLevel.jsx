@@ -57,7 +57,7 @@ export function StepIntoNextLevel() {
                 overflow: 'hidden', background: '#000000',
               }}>
                 <img
-                  src="/assets/blog-02.webp"
+                  src="/assets/ALL NEW IMAGES/ALL NEW IMAGES (5).png"
                   alt=""
                   loading="eager"
                   decoding="async"
@@ -75,7 +75,7 @@ export function StepIntoNextLevel() {
                 overflow: 'hidden', background: '#000000',
               }}>
                 <img
-                  src="/assets/blog-01.webp"
+                  src="/assets/ALL NEW IMAGES/ALL NEW IMAGES (4).png"
                   alt=""
                   loading="eager"
                   decoding="async"

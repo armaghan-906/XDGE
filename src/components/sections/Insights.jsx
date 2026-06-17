@@ -8,6 +8,7 @@ const posts = [
     tag1: 'CAREER', tag2: 'UNIVERSITY',
     title: 'How Leadership Advances Early Careers',
     body: 'The greater advantage is interviewing as a future leader, then transitioning into the workplace as someone employers already see as professionally credible, work-ready, able to lead from any seat, take ownership, and create impact from day one.',
+    img: '/assets/ALL NEW IMAGES/9.png',
   },
   {
     tag1: 'UNIVERSITY', tag2: null,
@@ -19,6 +20,7 @@ const posts = [
     tag1: 'SCHOOL', tag2: 'UNIVERSITY',
     title: 'How Young Leadership Creates Lasting Advantage',
     body: 'Leadership is about developing conviction, building on your unique strengths, standing behind your beliefs and ambitions, and knowing how to translate them into action that creates your long-term advantage. How different might our lives have been if these foundations had been built in our formative years?',
+    img: '/assets/ALL NEW IMAGES/ALL NEW IMAGES (4).png',
   },
 ];
 
