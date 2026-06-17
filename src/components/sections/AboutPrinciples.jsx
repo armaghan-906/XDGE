@@ -9,13 +9,13 @@ const principles = [
     n: '01',
     title: 'Our Approach',
     body: 'XDGE is led by senior leaders, leadership development specialists, and industry professionals with over 20 years of experience developing high performance in individuals, teams, and organisations. We bring the calibre of leadership development typically reserved for professionals and executives, translating it into engaging, practical experiences that prepare young people for the real world.',
-    img: '/assets/principle-1.webp',
+    img: '/assets/ALL NEW IMAGES/12.png',
   },
   {
     n: '02',
     title: 'From Learning To Performance',
     body: 'Too many programmes focus on knowledge and assume results will follow. We know there is a gap between learning and performance, and we are built to close it. Through meaningful projects, real challenges, and practical application, young people develop leadership, confidence, and professional capability through passion-driven projects they genuinely care about — giving them a reason to step forward, take ownership, and lead.',
-    img: '/assets/principle-2.webp',
+    img: '/assets/ALL NEW IMAGES/3.png',
   },
   {
     n: '03',
@@ -27,13 +27,13 @@ const principles = [
     n: '04',
     title: 'Our Standard',
     body: 'We thrive in the moments where individuals and teams rise to a new level of performance. We work alongside individuals to remove limitations, create clarity, and move forward with purpose. We exist to help people reach their next level. Our focus is not just improvement — it is transformation.',
-    img: '/assets/principle-4.webp',
+    img: '/assets/ALL NEW IMAGES/10.png',
   },
   {
     n: '05',
     title: 'The Moment That Matters',
     body: 'Many people never experience the moment where everything shifts — the moment they realise they are capable of far more than they ever believed. That moment changes confidence. It changes ambition. It changes performance. XDGE was built to create those moments early, in the foundational years where belief, identity, and leadership capability can shape everything that comes next.',
-    img: '/assets/principle-5.webp',
+    img: '/assets/ALL NEW IMAGES/13.png',
   },
 ];
 
