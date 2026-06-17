@@ -9,7 +9,7 @@ const groups = [
   {
     title: 'Career Entry & Professional Development',
     age: 'Ages 19+',
-    img: '/assets/new/pic-lead-1.webp',
+    img: '/assets/right-for-me-2.webp',
     highlight:
       'Many of our graduates, professionals, and emerging leaders started here — wanting to stand out, make an impact, and step confidently into the next stage of their career.',
     bullets: [
@@ -25,7 +25,7 @@ const groups = [
   {
     title: 'University Entrance & Academic Progression',
     age: 'Ages 16+',
-    img: '/assets/new/pic-body-text.webp',
+    img: '/assets/ALL NEW IMAGES/2.png',
     highlight:
       'If you recognise yourself in these, you’re likely exactly where many of our students are.',
     bullets: [
@@ -41,7 +41,7 @@ const groups = [
   {
     title: 'School Entrance & Early Leader Foundations',
     age: 'Ages 11+',
-    img: '/assets/new/pic-lead-3.webp',
+    img: '/assets/new/pic-body-text.webp',
     highlight:
       'This stage is often where confidence, leadership habits, and self-belief begin to grow.',
     bullets: [
