@@ -66,7 +66,7 @@ export function WhatYouWillExperience() {
               }}
             >
               <motion.img
-                src="/assets/ALL NEW IMAGES/ALL NEW IMAGES (6).png"
+                src="/assets/ALL NEW IMAGES/ALL NEW IMAGES (6).webp"
                 alt="XDGE active session"
                 loading="eager"
                 decoding="async"

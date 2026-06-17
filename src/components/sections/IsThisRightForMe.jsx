@@ -25,7 +25,7 @@ const groups = [
   {
     title: 'University Entrance & Academic Progression',
     age: 'Ages 16+',
-    img: '/assets/ALL NEW IMAGES/2.png',
+    img: '/assets/ALL NEW IMAGES/2.webp',
     highlight:
       'If you recognise yourself in these, you’re likely exactly where many of our students are.',
     bullets: [

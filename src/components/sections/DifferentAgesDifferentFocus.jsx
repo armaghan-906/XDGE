@@ -25,7 +25,7 @@ const slides = [
       'Build a portfolio of work that demonstrates capability',
       'Develop evidence of impact to use in interviews and early career roles',
     ],
-    img: '/assets/ALL NEW IMAGES/14.png',
+    img: '/assets/ALL NEW IMAGES/14.webp',
   },
   {
     age: 'Ages 16+',
@@ -45,7 +45,7 @@ const slides = [
       'Build strong material for personal statements and interviews',
       'Practise presenting ideas with confidence and credibility',
     ],
-    img: '/assets/ALL NEW IMAGES/Untitled design (57).png',
+    img: '/assets/ALL NEW IMAGES/Untitled design (57).webp',
   },
   {
     age: 'Ages 11–16',

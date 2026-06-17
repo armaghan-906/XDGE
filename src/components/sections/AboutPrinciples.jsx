@@ -9,13 +9,13 @@ const principles = [
     n: '01',
     title: 'Our Approach',
     body: 'XDGE is led by senior leaders, leadership development specialists, and industry professionals with over 20 years of experience developing high performance in individuals, teams, and organisations. We bring the calibre of leadership development typically reserved for professionals and executives, translating it into engaging, practical experiences that prepare young people for the real world.',
-    img: '/assets/ALL NEW IMAGES/12.png',
+    img: '/assets/ALL NEW IMAGES/12.webp',
   },
   {
     n: '02',
     title: 'From Learning To Performance',
     body: 'Too many programmes focus on knowledge and assume results will follow. We know there is a gap between learning and performance, and we are built to close it. Through meaningful projects, real challenges, and practical application, young people develop leadership, confidence, and professional capability through passion-driven projects they genuinely care about — giving them a reason to step forward, take ownership, and lead.',
-    img: '/assets/ALL NEW IMAGES/3.png',
+    img: '/assets/ALL NEW IMAGES/3.webp',
   },
   {
     n: '03',
