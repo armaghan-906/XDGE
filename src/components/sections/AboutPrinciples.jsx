@@ -160,8 +160,8 @@ export function AboutPrinciples() {
                     decoding="async"
                     style={{
                       width: '100%', height: '100%',
-                      objectFit: 'cover',
-                      objectPosition: '50% 40%',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
                       display: 'block',
                     }}
                   />

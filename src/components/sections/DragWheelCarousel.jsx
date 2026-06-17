@@ -238,6 +238,44 @@ export function DragWheelCarousel() {
             YOUR FUTURE POTENTIAL
           </span>
         </h2>
+
+        {/* Navigation Controls */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 32 }}>
+          <button
+            onClick={() => {
+              const next = Math.max(0, Math.round(progressRaw.get()) - 1);
+              progressRaw.set(next);
+            }}
+            aria-label="Previous"
+            style={{
+              background: '#ffffff',
+              border: 'none',
+              color: '#000000',
+              width: 56, height: 56, borderRadius: '50%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              cursor: 'pointer', transition: 'all 0.2s',
+            }}
+          >
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
+          </button>
+          <button
+            onClick={() => {
+              const next = Math.min(items.length - 1, Math.round(progressRaw.get()) + 1);
+              progressRaw.set(next);
+            }}
+            aria-label="Next"
+            style={{
+              background: '#ffffff',
+              border: 'none',
+              color: '#000000',
+              width: 56, height: 56, borderRadius: '50%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              cursor: 'pointer', transition: 'all 0.2s',
+            }}
+          >
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+          </button>
+        </div>
       </div>
 
       {/* Drag Surface & Cards */}
