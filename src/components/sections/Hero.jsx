@@ -10,7 +10,7 @@ export function Hero() {
       data-section-theme="dark"
       style={{
         background: '#000000', color: theme.base,
-        minHeight: '115vh', display: 'flex', flexDirection: 'column',
+        minHeight: '135vh', display: 'flex', flexDirection: 'column',
         position: 'relative', overflow: 'hidden',
         alignItems: 'center', justifyContent: 'center',
       }}

@@ -30,8 +30,8 @@ const tiers = [
   },
   {
     name: 'UNIVERSITY XDGE',
-    tagline: 'Stand Out & Get In',
-    desc: 'For students preparing for university, college, apprenticeships, and competitive future opportunities.',
+    tagline: 'Stand Out Before You Apply',
+    desc: 'For Ages 16+ build the leadership, initiative, and real-world experience that universities and competitive programmes actively seek.',
     cards: [
       {
         duration: 'Weeks 1-4',
@@ -54,9 +54,9 @@ const tiers = [
     ],
   },
   {
-    name: 'CAREER XDGE',
-    tagline: 'Accelerate Your Career',
-    desc: 'For university students, graduates, and future industry leaders ready to lead from day one.',
+    name: 'PROFESSIONAL XDGE',
+    tagline: 'Presence From Day One',
+    desc: 'For final-year students, graduates, and early career professionals looking to develop the professional skills, leadership capability, and workplace confidence needed to earn trust, build influence, and make an impact from day one.',
     cards: [
       {
         duration: 'Weeks 1-4',
@@ -79,9 +79,9 @@ const tiers = [
     ],
   },
   {
-    name: 'LEADER FOUNDATIONS',
-    tagline: 'Personalised 1:2:1 Mentorship',
-    desc: 'For individuals seeking personalised guidance and focused 1:2:1 development.',
+    name: 'SPECIALISED XDGE',
+    tagline: 'Turn Ambition Into Action',
+    desc: '1:1 Expert project mentorship for ambitious individuals aged 11+ looking to pursue a specific interest, idea, venture, or future pathway while building the skills, experience, and readiness needed for their next-level opportunity.',
     cards: [
       {
         duration: '12-14 weeks · 1:2:1 Mentor Programme',
@@ -227,7 +227,7 @@ export function ProgrammeTiers() {
                 {tier.name}
               </h3>
               <div style={{
-                fontFamily: theme.displayTight, fontWeight: 700,
+                fontWeight: 400,
                 fontSize: 'clamp(26px, 3.2vw, 44px)',
                 lineHeight: 1.1, letterSpacing: '-0.01em',
                 color: theme.base,
