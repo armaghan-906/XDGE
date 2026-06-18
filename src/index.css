@@ -835,6 +835,13 @@ section[data-screen-label] {
   section[data-screen-label*="Hero" i] {
     min-height: auto !important;
   }
+
+  /* …but the HOME hero must stay full-screen on mobile (the rule above was
+     collapsing it to ~content height, so the page didn't "start" on the hero). */
+  section[data-screen-label="01 Hero"] {
+    min-height: 100vh !important;
+    min-height: 100svh !important;
+  }
 }
 
 /* TheReality pills + heading — allow wrapping on phones */
@@ -1225,9 +1232,9 @@ section[data-screen-label] {
    The transition runs entirely on the GPU compositor. */
 .sr-init {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(34px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .sr-init.sr-visible {

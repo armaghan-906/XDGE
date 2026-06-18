@@ -6,8 +6,9 @@ export function Preloader() {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
-    // Failsafe: if the video doesn't finish (e.g. autoPlay blocked), force hide after 5.5s
-    const timer = setTimeout(() => setShow(false), 5500);
+    // Failsafe: if the video doesn't finish (e.g. autoPlay blocked on mobile),
+    // force-hide quickly so it never blocks taps/links for long.
+    const timer = setTimeout(() => setShow(false), 3000);
     // Prevent scrolling while the preloader is active
     if (show) {
       document.body.style.overflow = 'hidden';

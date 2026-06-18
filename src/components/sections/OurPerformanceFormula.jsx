@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { theme, fadeUp, stagger } from '../../theme';
-import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
 // Performance Formula diagram keeps the original blue accent on purpose —
@@ -214,10 +213,15 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
           </motion.div>
         </motion.h2>
 
-        <Group className="xg-2" style={{
-          alignItems: 'center',
-        }}>
-          <div>
+        <div className="xg-2" style={{ alignItems: 'center' }}>
+          {/* Left text — heading + each line cascade in one-by-one */}
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            data-no-reveal
+          >
             <motion.div
               variants={fadeUp}
               style={{
@@ -233,7 +237,7 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
               Transforming leaders inside and out.
             </motion.div>
             <motion.div
-              variants={fadeUp}
+              variants={stagger}
               style={{
                 display: 'flex', flexDirection: 'column',
                 gap: 'clamp(12px, 1.5vw, 16px)',
@@ -242,23 +246,21 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
                 maxWidth: 420,
               }}
             >
-              <p style={{ margin: 0 }}>Most people focus on what they do.</p>
-              <p style={{ margin: 0 }}>We focus on how you think, behave, and take action.</p>
-              <p style={{ margin: 0 }}>Align these, and you perform at your next level.</p>
-              <p style={{ margin: 0, color: muted }}>
+              <motion.p variants={fadeUp} style={{ margin: 0 }}>Most people focus on what they do.</motion.p>
+              <motion.p variants={fadeUp} style={{ margin: 0 }}>We focus on how you think, behave, and take action.</motion.p>
+              <motion.p variants={fadeUp} style={{ margin: 0 }}>Align these, and you perform at your next level.</motion.p>
+              <motion.p variants={fadeUp} style={{ margin: 0, color: muted }}>
                 This is the XDGE framework embedded in every programme and session.
-              </p>
+              </motion.p>
             </motion.div>
-          </div>
+          </motion.div>
 
           <div style={{ width: '100%', position: 'relative' }}>
-            <div style={{
-              width: '100%',
-            }}>
+            <div style={{ width: '100%' }}>
               <PerformanceDiagram dark={dark} maxWidth={diagramMaxWidth ?? 540} />
             </div>
           </div>
-        </Group>
+        </div>
       </div>
     </section>
   );

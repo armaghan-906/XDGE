@@ -139,7 +139,7 @@ export function WhatYouLeaveWith() {
         </div>
       </div>
 
-      <div style={{ width: '100%', overflow: 'hidden', position: 'relative', padding: '20px 0' }}>
+      <div data-reveal style={{ width: '100%', overflow: 'hidden', position: 'relative', padding: '20px 0' }}>
         <motion.div
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}

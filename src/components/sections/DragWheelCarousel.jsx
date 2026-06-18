@@ -278,7 +278,8 @@ export function DragWheelCarousel() {
         </div>
       </div>
 
-      {/* Drag Surface & Cards */}
+      {/* Drag Surface & Cards — wrapper reveals the whole wheel as one block on scroll */}
+      <div data-reveal>
       <motion.div
         ref={containerRef}
         drag="x"
@@ -300,6 +301,7 @@ export function DragWheelCarousel() {
           <Card key={item.id} item={item} index={i} progress={progress} total={items.length} />
         ))}
       </motion.div>
+      </div>
     </section>
   );
 }

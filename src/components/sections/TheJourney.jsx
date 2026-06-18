@@ -178,46 +178,62 @@ export function TheJourney() {
         </Group>
 
         <div className="xg-journey-track">
-          <div className="xg-journey-curve-area">
+          {/* Curve area: the line DRAWS first, then the icons pop in one-by-one */}
+          <motion.div
+            className="xg-journey-curve-area"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <svg
               className="xg-journey-curve"
               viewBox="0 0 1200 220"
               preserveAspectRatio="none"
               aria-hidden="true"
             >
-              <path
+              <motion.path
                 d="M 100 180 C 320 30 880 30 1100 180"
                 stroke="rgba(255,255,255,0.45)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 1.8, ease: fadeEase, delay: 0.2 }}
+                variants={{
+                  hidden: { pathLength: 0, opacity: 0 },
+                  visible: { pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: fadeEase, delay: 0.1 } },
+                }}
               />
-              <path
+              <motion.path
                 d="M 1090 172 L 1108 180 L 1090 188"
                 stroke="rgba(255,255,255,0.55)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.4, delay: 1.9 }}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { duration: 0.4, delay: 1.5 } },
+                }}
               />
             </svg>
 
-            <Group className="xg-journey-circles">
+            {/* icons start after the line finishes drawing, then stagger in */}
+            <motion.div
+              className="xg-journey-circles"
+              variants={{
+                hidden: {},
+                visible: { transition: { delayChildren: 1.6, staggerChildren: 0.13 } },
+              }}
+            >
               {steps.map((s, i) => (
-                <div
+                <motion.div
                   key={i}
-                  variants={fadeUp}
                   className="xg-journey-circle-cell"
                   style={{ paddingTop: s.offset }}
+                  variants={{
+                    hidden: { opacity: 0, y: 16 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: fadeEase } },
+                  }}
                 >
-                  <motion.div 
+                  <motion.div
                     whileHover={{ scale: 1.15, borderColor: theme.accent, boxShadow: `0 0 20px rgba(32, 227, 232, 0.3)` }}
                     transition={{ duration: 0.3 }}
                     style={{
@@ -231,10 +247,10 @@ export function TheJourney() {
                     }}>
                     {s.icon}
                   </motion.div>
-                </div>
+                </motion.div>
               ))}
-            </Group>
-          </div>
+            </motion.div>
+          </motion.div>
 
           <div className="xg-journey-labels">
             {steps.map((s) => (
