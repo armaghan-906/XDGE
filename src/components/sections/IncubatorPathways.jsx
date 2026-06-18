@@ -57,7 +57,7 @@ export function IncubatorPathways() {
 
             <h2 style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(44px, 6vw, 92px)',
+              fontSize: 'clamp(34px, 6vw, 92px)',
               lineHeight: 1.0, letterSpacing: '-0.02em',
               margin: 0, color: '#FFFFFF',
             }}>
@@ -66,7 +66,7 @@ export function IncubatorPathways() {
 
             <div style={{ width: 96, height: 2, background: 'rgba(255,255,255,0.55)', margin: 'clamp(28px,3.4vw,44px) 0' }} />
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(16px, 2vw, 28px)', fontFamily: theme.body, fontSize: 'clamp(16px,1.7vw,22px)', fontWeight: 600 }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 'clamp(12px, 2vw, 28px)', fontFamily: theme.body, fontSize: 'clamp(16px,1.7vw,22px)', fontWeight: 600 }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>{Clock} 4–6 hrs/week</span>
               <span style={{ width: 1, height: 26, background: 'rgba(255,255,255,0.35)' }} />
               <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>{Cal} 13–18 weeks</span>

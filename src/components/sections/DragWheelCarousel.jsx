@@ -216,8 +216,8 @@ export function DragWheelCarousel() {
           }}>
             BUILD A PROJECT THAT
           </span>
-          <span style={{ 
-            fontSize: 'clamp(80px, 16vw, 220px)', 
+          <span style={{
+            fontSize: 'clamp(48px, 16vw, 220px)',
             fontWeight: 900,
             lineHeight: 0.85,
             background: 'linear-gradient(90deg, #3B4CCA 0%, #20E3E8 100%)',

@@ -47,7 +47,7 @@ export function CreateYourPath() {
           </span>
           <span
             className="hollow-text"
-            style={{ display: 'block', fontSize: 'clamp(60px, 11.3vw, 200px)' }}
+            style={{ display: 'block', fontSize: 'clamp(40px, 11.3vw, 200px)' }}
           >
             LEAVE A TRAIL
           </span>

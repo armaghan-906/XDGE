@@ -8,7 +8,7 @@ function ApplyHeading() {
     <h1
       style={{
         fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(67.5px, 10.5vw, 180px)',
+        fontSize: 'clamp(36px, 10.5vw, 180px)',
         lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
         overflow: 'hidden',

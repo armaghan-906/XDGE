@@ -9,7 +9,7 @@ function OutcomesHeading({ y, opacity }) {
       style={{
         y, opacity,
         fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(67.5px, 10.5vw, 225px)',
+        fontSize: 'clamp(36px, 10.5vw, 225px)',
         lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
         overflow: 'hidden',

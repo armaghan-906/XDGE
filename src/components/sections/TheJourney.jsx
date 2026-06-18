@@ -144,13 +144,13 @@ export function TheJourney() {
               viewport={{ once: true, amount: 0.2 }}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(60px, 11.3vw, 200px)',
+                fontSize: 'clamp(40px, 11.3vw, 200px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
                 margin: 0, textTransform: 'uppercase', textAlign: 'center'
               }}
             >
               <motion.span variants={fadeUp} style={{ display: 'block' }}>
-                <span className="hollow-text" style={{ paddingRight: '0.2em' }}>THE</span>
+                <span className="hollow-text" style={{ paddingRight: '0.2em' }}>THE</span>{' '}
                 <span className="cyan-text">JOURNEY</span>
               </motion.span>
             </motion.h2>

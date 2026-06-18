@@ -55,7 +55,7 @@ export function StandardsExpectations() {
               lines={['STANDARDS &', 'EXPECTATIONS']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(67.5px, 10.5vw, 192px)',
+                fontSize: 'clamp(36px, 10.5vw, 192px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
                 textAlign: 'left',
               }}

@@ -21,7 +21,7 @@ export function ProgrammeFitCTA() {
           lines={['DISCOVER HOW', 'WE ENSURE THE', 'RIGHT PROGRAMME', 'FIT.']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(67.5px, 10.5vw, 180px)',
+            fontSize: 'clamp(36px, 10.5vw, 180px)',
             lineHeight: 0.92, letterSpacing: '-0.02em',
             marginBottom: 'clamp(48px, 7vw, 88px)',
           }}

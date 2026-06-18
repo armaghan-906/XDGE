@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { theme } from '../../theme';
 import { Logo } from '../Logo';
 
@@ -113,15 +114,15 @@ export function Hero() {
           make an impact in school, university, careers, business, and life.
         </p>
 
-        <a
-          href="#"
+        <Link
+          to="/programmes"
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 10, padding: '10px 20px',
             border: `1px solid rgba(255,255,255,0.4)`, borderRadius: 999, color: theme.base,
             textDecoration: 'none', fontSize: 13, fontWeight: 500,
             background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(4px)',
           }}
-        >View All Programmes <span style={{ fontSize: 16 }}>→</span></a>
+        >View All Programmes <span style={{ fontSize: 16 }}>→</span></Link>
       </div>
     </section>
   );

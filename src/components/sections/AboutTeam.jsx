@@ -152,7 +152,7 @@ export function AboutTeam() {
           ]}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(60px, 11.3vw, 200px)',
+            fontSize: 'clamp(40px, 11.3vw, 200px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(40px, 6vw, 72px)',
             textAlign: 'center',

@@ -71,20 +71,15 @@ export function WhoWeAre() {
             lineClasses={['', 'hollow-text']}
             style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(60px, 11.3vw, 200px)',
+              fontSize: 'clamp(40px, 11.3vw, 200px)',
               lineHeight: 0.92, letterSpacing: '-0.02em',
               textAlign: 'left', margin: 0, textTransform: 'uppercase',
             }}
           />
         </div>
 
-        <Group style={{
-          display: 'grid',
-          gridTemplateColumns: 'clamp(280px, 35vw, 480px) 1fr',
-          gap: 'clamp(32px, 5vw, 64px)',
-          alignItems: 'start',
-        }}>
-          <motion.div variants={fadeUp} style={{ marginTop: 'clamp(40px, 6vw, 80px)' }}>
+        <Group className="xg-wwa-grid">
+          <motion.div variants={fadeUp} className="xg-wwa-img">
             <div style={{
               position: 'relative',
               width: '100%', aspectRatio: '4/5',

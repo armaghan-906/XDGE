@@ -58,7 +58,7 @@ export function IndividualProgramme() {
           lines={['INDIVIDUAL', 'PROGRAM', 'EXPERIENCE']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(67.5px, 10.5vw, 162px)',
+            fontSize: 'clamp(36px, 10.5vw, 162px)',
             lineHeight: 0.92, letterSpacing: '-0.02em',
             marginBottom: 'clamp(28px, 4vw, 40px)',
           }}
@@ -96,7 +96,7 @@ export function IndividualProgramme() {
           <div variants={fadeUp}>
             <h3 style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(67.5px, 9.3vw, 120px)',
+              fontSize: 'clamp(36px, 9.3vw, 120px)',
               lineHeight: 1, letterSpacing: '-0.02em',
               margin: 0,
               textTransform: 'uppercase',

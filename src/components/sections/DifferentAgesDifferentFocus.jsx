@@ -363,7 +363,7 @@ export function DifferentAgesDifferentFocus() {
           lines={['HOW DOES XDGE DIFFER', 'BY AGE AND OUTCOMES?']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(67.5px, 10.5vw, 124.5px)',
+            fontSize: 'clamp(36px, 10.5vw, 124.5px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(28px, 4vw, 40px)',
           }}

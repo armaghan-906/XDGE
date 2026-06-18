@@ -682,6 +682,10 @@ section[data-screen-label] {
   gap: clamp(24px, 4vw, 48px);
 }
 
+/* checkbox option grids: let long labels wrap instead of blowing out the track */
+.xg-check-grid > label { min-width: 0; }
+.xg-check-grid > label > span { overflow-wrap: anywhere; }
+
 .xg-perf-grid {
   display: grid;
   grid-template-columns: 0.8fr 2.2fr;
@@ -766,6 +770,10 @@ section[data-screen-label] {
 @media (max-width: 768px) {
   .xg-2 {
     grid-template-columns: 1fr;
+  }
+
+  .xg-check-grid {
+    grid-template-columns: 1fr !important;
   }
 
   .xg-hero-body {
@@ -1068,7 +1076,7 @@ section[data-screen-label] {
 .xdge-footer-marquee {
   display: flex;
   white-space: nowrap;
-  animation: xdge-marquee 150s linear infinite;
+  animation: xdge-marquee 35s linear infinite;
   will-change: transform;
 }
 
@@ -1257,4 +1265,25 @@ section[data-screen-label] {
 section[data-screen-label="Proven Outcomes"] {
   padding-top: 5% !important;
   padding-bottom: 5% !important;
+}
+
+/* WHO ARE WE — image + icon-rows grid; stacks to one column on mobile. */
+.xg-wwa-grid {
+  display: grid;
+  grid-template-columns: clamp(280px, 35vw, 480px) 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+.xg-wwa-img {
+  margin-top: clamp(40px, 6vw, 80px);
+}
+@media (max-width: 768px) {
+  .xg-wwa-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 6vw, 36px);
+  }
+  .xg-wwa-img {
+    margin-top: 0;
+    max-width: 460px;
+  }
 }

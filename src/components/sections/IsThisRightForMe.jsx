@@ -211,7 +211,7 @@ export function IsThisRightForMe() {
             viewport={{ once: true, amount: 0.2 }}
             style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(60px, 11.3vw, 200px)',
+              fontSize: 'clamp(40px, 11.3vw, 200px)',
               lineHeight: 0.95, letterSpacing: '-0.02em',
               margin: 0, textTransform: 'uppercase'
             }}

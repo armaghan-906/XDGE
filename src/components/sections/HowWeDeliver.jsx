@@ -39,7 +39,7 @@ export function HowWeDeliver() {
           lines={['HOW WE', 'DELIVER']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(67.5px, 10.5vw, 180px)',
+            fontSize: 'clamp(36px, 10.5vw, 180px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(24px, 4vw, 36px)',
           }}

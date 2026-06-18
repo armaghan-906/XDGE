@@ -84,7 +84,7 @@ export function WhatYouLeaveWith() {
       <div style={{ textAlign: 'center', marginBottom: 60, position: 'relative', zIndex: 10, padding: '0 clamp(20px, 4vw, 40px)' }}>
         <h2 style={{
           fontFamily: theme.display,
-          fontSize: 'clamp(60px, 11.3vw, 200px)',
+          fontSize: 'clamp(40px, 11.3vw, 200px)',
           fontWeight: 900,
           margin: 0,
           letterSpacing: '-0.02em',

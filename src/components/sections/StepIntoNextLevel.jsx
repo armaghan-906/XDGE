@@ -35,7 +35,7 @@ export function StepIntoNextLevel() {
             lineClasses={['hollow-text', 'cyan-text']}
             style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(60px, 11.3vw, 200px)',
+              fontSize: 'clamp(40px, 11.3vw, 200px)',
               lineHeight: 0.92, letterSpacing: '-0.02em',
               marginBottom: 'clamp(48px, 7vw, 88px)',
             }}

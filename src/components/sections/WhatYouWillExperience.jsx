@@ -50,7 +50,7 @@ export function WhatYouWillExperience() {
               lines={['WHAT YOU WILL', 'EXPERIENCE']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(67.5px, 10.5vw, 192px)',
+                fontSize: 'clamp(36px, 10.5vw, 192px)',
                 lineHeight: 0.92, letterSpacing: '-0.02em',
                 textAlign: 'left',
               }}
