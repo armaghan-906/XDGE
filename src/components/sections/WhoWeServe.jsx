@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { theme, fadeUp, stagger } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 import { Magnetic } from '../Magnetic';
+
+const MotionLink = motion(Link);
 
 const cards = [
   { year: 'The XDGE', t: 'Graduates & Early Career', d: '', img: '/assets/graduates-card.webp' },
@@ -24,9 +27,9 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
   const imgY = useTransform(scrollYProgress, [0, 1], ["-25%", "25%"]);
 
   return (
-    <motion.a
+    <MotionLink
       ref={cardRef}
-      href="#"
+      to="/programmes"
       variants={fadeUp}
       data-cursor="grow"
       className="xg-glass-solid xg-tilt"
@@ -152,7 +155,7 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
           </div>
         </div>
       </div>
-    </motion.a>
+    </MotionLink>
   );
 }
 

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
@@ -117,10 +118,8 @@ export function StepIntoNextLevel() {
               happens next.
             </p>
 
-            <motion.a
-              whileHover={{ x: 4 }}
-              transition={{ duration: 0.3, ease: fadeEase }}
-              href="#"
+            <Link
+              to="/contact"
               data-cursor="grow"
               style={{
                 alignSelf: 'flex-start',
@@ -134,7 +133,7 @@ export function StepIntoNextLevel() {
               }}
             >
               Let’s Talk <span style={{ fontSize: 18 }}>→</span>
-            </motion.a>
+            </Link>
           </motion.div>
         </Group>
       </div>

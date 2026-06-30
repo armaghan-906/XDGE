@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { theme, fadeUp, stagger } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
@@ -234,8 +235,8 @@ export function IsThisRightForMe() {
                 Not sure if this is right for you?
               </p>
               <Magnetic strength={0.3}>
-                <a
-                  href="#"
+                <Link
+                  to="/contact"
                   style={{
                     display: 'inline-flex', alignItems: 'center', gap: 10,
                     padding: '12px 20px',
@@ -245,7 +246,7 @@ export function IsThisRightForMe() {
                   }}
                 >
                   Schedule A Call With Us <span style={{ fontSize: 16 }}>→</span>
-                </a>
+                </Link>
               </Magnetic>
             </div>
           </motion.div>
