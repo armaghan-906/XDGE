@@ -32,14 +32,16 @@ export const theme = {
 };
 
 export const fadeUp = {
-  hidden: { opacity: 0, y: 30, scale: 0.97 },
-  visible: { 
-    opacity: 1, y: 0, scale: 1, 
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+  // No scale — animating scale on cards re-rasterizes text/shadows and fights
+  // hover transforms (the main jerk source). Opacity + one translateY only.
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1, y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
   },
 };
 
 export const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.2, delayChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.13, delayChildren: 0.12 } },
 };

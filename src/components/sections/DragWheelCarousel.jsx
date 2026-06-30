@@ -2,6 +2,15 @@ import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
 
+// Boldz-style line mask: each line rises up from behind its clip, one-by-one.
+const lineMask = {
+  hidden: { y: '120%' },
+  visible: (i = 0) => ({
+    y: '0%',
+    transition: { duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: 0.05 + i * 0.13 },
+  }),
+};
+
 const items = [
   { 
     id: '01', 
@@ -199,45 +208,57 @@ export function DragWheelCarousel() {
       }}
     >
       <div style={{ marginBottom: 60, position: 'relative', zIndex: 10, padding: '0 clamp(20px, 4vw, 40px)' }}>
-        <h2 style={{
-          fontFamily: theme.display,
-          margin: 0,
-          textTransform: 'uppercase',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-        }}>
-          <span style={{ 
-            fontSize: 'clamp(14px, 2vw, 24px)', 
-            fontWeight: 800,
-            color: theme.base,
-            marginBottom: 'clamp(4px, 1vw, 12px)',
-            letterSpacing: '0.02em',
-          }}>
-            BUILD A PROJECT THAT
+        <motion.h2
+          data-no-reveal
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          style={{
+            fontFamily: theme.display,
+            margin: 0,
+            textTransform: 'uppercase',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+          }}
+        >
+          <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.1em', marginBottom: 'clamp(4px, 1vw, 12px)' }}>
+            <motion.span custom={0} variants={lineMask} style={{
+              display: 'block',
+              fontSize: 'clamp(14px, 2vw, 24px)',
+              fontWeight: 800,
+              color: theme.base,
+              letterSpacing: '0.02em',
+            }}>
+              BUILD A PROJECT THAT
+            </motion.span>
           </span>
-          <span style={{
-            fontSize: 'clamp(48px, 16vw, 220px)',
-            fontWeight: 900,
-            lineHeight: 0.85,
-            background: 'linear-gradient(90deg, #3B4CCA 0%, #20E3E8 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            letterSpacing: '-0.02em',
-            marginBottom: 'clamp(8px, 1.5vw, 16px)'
-          }}>
-            PROVES
+          <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.1em', marginBottom: 'clamp(8px, 1.5vw, 16px)' }}>
+            <motion.span custom={1} variants={lineMask} style={{
+              display: 'block',
+              fontSize: 'clamp(48px, 16vw, 220px)',
+              fontWeight: 900,
+              lineHeight: 0.85,
+              background: 'linear-gradient(90deg, #3B4CCA 0%, #20E3E8 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              letterSpacing: '-0.02em',
+            }}>
+              PROVES
+            </motion.span>
           </span>
-          <span className="hollow-text" style={{ 
-            display: 'block', 
-            fontSize: 'clamp(28px, 6vw, 84px)',
-            fontWeight: 900,
-            lineHeight: 1,
-            letterSpacing: '-0.01em',
-          }}>
-            YOUR FUTURE POTENTIAL
+          <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.1em' }}>
+            <motion.span className="hollow-text" custom={2} variants={lineMask} style={{
+              display: 'block',
+              fontSize: 'clamp(28px, 6vw, 84px)',
+              fontWeight: 900,
+              lineHeight: 1,
+              letterSpacing: '-0.01em',
+            }}>
+              YOUR FUTURE POTENTIAL
+            </motion.span>
           </span>
-        </h2>
+        </motion.h2>
 
         {/* Navigation Controls */}
         <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 32 }}>

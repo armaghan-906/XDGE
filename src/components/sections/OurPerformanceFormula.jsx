@@ -191,6 +191,7 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
         
         {/* Massive full-width heading */}
         <motion.h2
+          data-no-reveal
           variants={stagger}
           initial="hidden"
           whileInView="visible"

@@ -205,6 +205,7 @@ export function IsThisRightForMe() {
             instead of being squeezed by the 2-column grid; CTA drops below, right-aligned. */}
         <Group style={{ marginBottom: 'clamp(40px, 6vw, 64px)' }}>
           <motion.h2
+            data-no-reveal
             variants={stagger}
             initial="hidden"
             whileInView="visible"

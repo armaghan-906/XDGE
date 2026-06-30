@@ -16,7 +16,7 @@ export function ApplyClosing() {
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(40px, 6vw, 88px)' }}>
           <h2
-            variants={fadeUp}
+            data-reveal
             style={{
               fontFamily: theme.displayTight,
               fontWeight: 600,
@@ -32,7 +32,7 @@ export function ApplyClosing() {
           </h2>
 
           <div
-            variants={fadeUp}
+            data-reveal
             style={{
               display: 'flex',
               flexDirection: 'column',

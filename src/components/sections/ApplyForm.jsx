@@ -263,7 +263,7 @@ export function ApplyForm() {
         <Group style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(48px, 6vw, 80px)' }}>
 
           {/* ── Section: Parent / Guardian Information ── */}
-          <fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
+          <fieldset data-reveal style={{ border: 0, padding: 0, margin: 0 }}>
             <legend style={{ ...sectionTitle, width: '100%' }}>Parent / Guardian Information</legend>
             <div style={sectionHint}>(Required if the participant is under 18 years of age)</div>
 
@@ -286,7 +286,7 @@ export function ApplyForm() {
           </fieldset>
 
           {/* ── Section: Participant Information ── */}
-          <fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
+          <fieldset data-reveal style={{ border: 0, padding: 0, margin: 0 }}>
             <legend style={{ ...sectionTitle, width: '100%' }}>Participant Information</legend>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(28px, 3.4vw, 40px)', marginTop: 'clamp(28px, 3.4vw, 40px)' }}>
@@ -308,7 +308,7 @@ export function ApplyForm() {
           </fieldset>
 
           {/* ── Section: Programme Interest ── */}
-          <fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
+          <fieldset data-reveal style={{ border: 0, padding: 0, margin: 0 }}>
             <legend style={{ ...sectionTitle, width: '100%' }}>Which Programme Interests You?</legend>
             <div style={sectionHint}>(Select all that apply)</div>
 
@@ -323,7 +323,7 @@ export function ApplyForm() {
           </fieldset>
 
           {/* ── Section: Achievements ── */}
-          <fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
+          <fieldset data-reveal style={{ border: 0, padding: 0, margin: 0 }}>
             <legend style={{ ...sectionTitle, width: '100%' }}>What Are You Hoping To Achieve?</legend>
             <div style={sectionHint}>(Select all that apply)</div>
 
@@ -349,7 +349,7 @@ export function ApplyForm() {
           </fieldset>
 
           {/* ── Section: Your Goals ── */}
-          <fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
+          <fieldset data-reveal style={{ border: 0, padding: 0, margin: 0 }}>
             <legend style={{ ...sectionTitle, width: '100%' }}>Your Goals</legend>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(28px, 3.4vw, 40px)', marginTop: 'clamp(28px, 3.4vw, 40px)' }}>
@@ -375,7 +375,7 @@ export function ApplyForm() {
           </fieldset>
 
           {/* ── Section: Preferred Learning Format ── */}
-          <fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
+          <fieldset data-reveal style={{ border: 0, padding: 0, margin: 0 }}>
             <legend style={{ ...sectionTitle, width: '100%' }}>Preferred Learning Format</legend>
 
             <div style={{ marginTop: 'clamp(20px, 2.4vw, 28px)', display: 'flex', flexWrap: 'wrap', gap: 'clamp(20px, 3vw, 36px)' }}>
@@ -400,7 +400,7 @@ export function ApplyForm() {
           </fieldset>
 
           {/* ── Section: How Did You Hear ── */}
-          <fieldset variants={fadeUp} style={{ border: 0, padding: 0, margin: 0 }}>
+          <fieldset data-reveal style={{ border: 0, padding: 0, margin: 0 }}>
             <legend style={{ ...sectionTitle, width: '100%' }}>How Did You Hear About XDGE?</legend>
 
             <div style={{ marginTop: 'clamp(20px, 2.4vw, 28px)' }}>
@@ -414,7 +414,7 @@ export function ApplyForm() {
           </fieldset>
 
           {/* Submit */}
-          <div variants={fadeUp} style={{ paddingTop: 8 }}>
+          <div data-reveal style={{ paddingTop: 8 }}>
             <button
               type="submit"
               style={{

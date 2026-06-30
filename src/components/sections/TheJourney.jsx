@@ -106,7 +106,7 @@ const steps = [
   },
 ];
 
-const fadeEase = [0.2, 0.7, 0.2, 1];
+const fadeEase = [0.22, 1, 0.36, 1];
 
 import { FloatingVideo } from '../primitives/FloatingVideo';
 
@@ -138,6 +138,7 @@ export function TheJourney() {
               }} 
             />
             <motion.h2
+              data-no-reveal
               variants={stagger}
               initial="hidden"
               whileInView="visible"
@@ -199,7 +200,7 @@ export function TheJourney() {
                 fill="none"
                 variants={{
                   hidden: { pathLength: 0, opacity: 0 },
-                  visible: { pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: fadeEase, delay: 0.1 } },
+                  visible: { pathLength: 1, opacity: 1, transition: { duration: 2.4, ease: fadeEase, delay: 0.1 } },
                 }}
               />
               <motion.path
@@ -210,7 +211,7 @@ export function TheJourney() {
                 fill="none"
                 variants={{
                   hidden: { opacity: 0 },
-                  visible: { opacity: 1, transition: { duration: 0.4, delay: 1.5 } },
+                  visible: { opacity: 1, transition: { duration: 0.6, delay: 2.3 } },
                 }}
               />
             </svg>
@@ -220,7 +221,7 @@ export function TheJourney() {
               className="xg-journey-circles"
               variants={{
                 hidden: {},
-                visible: { transition: { delayChildren: 1.6, staggerChildren: 0.13 } },
+                visible: { transition: { delayChildren: 2.5, staggerChildren: 0.13 } },
               }}
             >
               {steps.map((s, i) => (
@@ -230,7 +231,7 @@ export function TheJourney() {
                   style={{ paddingTop: s.offset }}
                   variants={{
                     hidden: { opacity: 0, y: 16 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: fadeEase } },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: fadeEase } },
                   }}
                 >
                   <motion.div
@@ -291,7 +292,7 @@ export function TheJourney() {
             {steps.map((s) => (
               <div
                 key={s.n}
-                variants={fadeUp}
+                data-reveal
                 className="xg-journey-mobile-step"
               >
                 <div style={{

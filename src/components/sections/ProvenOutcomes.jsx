@@ -145,7 +145,7 @@ const testimonials = [
   },
 ];
 
-const fadeEase = [0.2, 0.7, 0.2, 1];
+const fadeEase = [0.22, 1, 0.36, 1];
 
 const arrowProps = {
   width: 18, height: 18,
@@ -222,7 +222,7 @@ export function ProvenOutcomes() {
               }}
             />
           </div>
-          <div variants={fadeUp} style={{ paddingBottom: 24, color: theme.base }}>
+          <div data-reveal style={{ paddingBottom: 24, color: theme.base }}>
             <p style={{ fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55, margin: '0 0 12px', color: theme.base, fontWeight: 500 }}>
               What Young People And Parents Say About XDGE
             </p>
@@ -310,7 +310,8 @@ export function ProvenOutcomes() {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.5, ease: fadeEase }}
+              transition={{ duration: 0.7, ease: fadeEase }}
+              data-no-reveal
               className="xg-outcomes-card"
               style={{
                 display: 'grid',

@@ -4,7 +4,7 @@ import { theme } from '../../theme';
 import { HeroAmbient } from '../HeroAmbient';
 
 function FormulaHeading({ y, opacity }) {
-  const ease = [0.2, 0.7, 0.2, 1];
+  const ease = [0.22, 1, 0.36, 1];
   return (
     <h1
       style={{
@@ -20,13 +20,13 @@ function FormulaHeading({ y, opacity }) {
       <span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
-        transition={{ duration: 1.6, ease, delay: 0.25 }}
+        transition={{ duration: 1.4, ease, delay: 0.25 }}
         style={{ display: 'block' }}
       >PERFORMANCE</span>
       <span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
-        transition={{ duration: 1.6, ease, delay: 0.4 }}
+        transition={{ duration: 1.4, ease, delay: 0.4 }}
         style={{ display: 'block' }}
       >FORMULA.</span>
     </h1>
@@ -34,6 +34,7 @@ function FormulaHeading({ y, opacity }) {
 }
 
 export function PerformanceFormulaHero() {
+  const ease = [0.22, 1, 0.36, 1];
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
   const y = useTransform(scrollYProgress, [0, 1], [0, -120]);
@@ -62,7 +63,7 @@ export function PerformanceFormulaHero() {
           <div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+            transition={{ duration: 1.0, ease, delay: 0.1 }}
             style={{
               fontFamily: theme.display, fontWeight: 700,
               fontSize: 'clamp(33px, 4.2vw, 60px)',
@@ -78,7 +79,7 @@ export function PerformanceFormulaHero() {
           <div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.65 }}
+            transition={{ duration: 1.0, ease, delay: 0.65 }}
             style={{
               fontFamily: theme.displayTight, fontWeight: 500,
               fontSize: 'clamp(18px, 2vw, 28px)',
@@ -97,7 +98,7 @@ export function PerformanceFormulaHero() {
           <div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
+            transition={{ duration: 1.2, ease, delay: 0.9 }}
             style={{
               display: 'flex', flexDirection: 'column',
               gap: 'clamp(16px, 2.5vw, 28px)',

@@ -30,11 +30,11 @@ const items = [
   },
 ];
 
-const fadeEase = [0.2, 0.7, 0.2, 1];
+const fadeEase = [0.22, 1, 0.36, 1];
 
 const cardVariants = {
   hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: fadeEase } },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: fadeEase } },
 };
 
 export function StandardsExpectations() {
@@ -62,7 +62,7 @@ export function StandardsExpectations() {
             />
           </div>
           <p
-            variants={fadeUp}
+            data-reveal
             style={{
               fontSize: 'clamp(15px, 1.6vw, 18px)', lineHeight: 1.55,
               color: theme.base, margin: 0, maxWidth: 800,

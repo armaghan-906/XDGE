@@ -50,7 +50,7 @@ export function TheReality() {
             marginBottom: 'clamp(28px, 4vw, 44px)',
           }}
         >
-          <div variants={fadeUp} style={{ textAlign: 'center' }}>
+          <div data-reveal style={{ textAlign: 'center' }}>
             <div style={{
               fontFamily: theme.display, fontWeight: 900,
               fontSize: 'clamp(60px, 7.5vw, 105px)',
@@ -68,7 +68,7 @@ export function TheReality() {
             </p>
           </div>
 
-          <div variants={fadeUp} style={{ textAlign: 'center' }}>
+          <div data-reveal style={{ textAlign: 'center' }}>
             <div style={{
               fontFamily: theme.display, fontWeight: 900,
               fontSize: 'clamp(60px, 7.5vw, 105px)',
@@ -91,7 +91,7 @@ export function TheReality() {
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 1.0, ease: [0.2, 0.7, 0.2, 1] }}
+          transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1] }}
           style={{
             height: 1, background: 'rgba(0,0,0,0.16)',
             margin: '0 0 clamp(32px, 5vw, 56px)',
@@ -119,20 +119,20 @@ export function TheReality() {
             whiteSpace: 'nowrap',
             marginBottom: 'clamp(40px, 6vw, 64px)',
           }}>
-            <div variants={fadeUp} style={pillStyle}>Grades</div>
+            <div data-reveal style={pillStyle}>Grades</div>
             <div
-              variants={fadeUp}
+              data-reveal
               style={{
                 fontFamily: theme.display, fontWeight: 900,
                 fontSize: 'clamp(42px, 6vw, 84px)',
                 lineHeight: 1, color: theme.base,
               }}
             >+</div>
-            <div variants={fadeUp} style={pillStyle}>Your Stand Out Edge</div>
+            <div data-reveal style={pillStyle}>Your Stand Out Edge</div>
           </div>
 
           <div
-            variants={fadeUp}
+            data-reveal
             style={{
               display: 'flex',
               alignItems: 'flex-start',

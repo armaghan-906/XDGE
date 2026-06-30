@@ -17,8 +17,9 @@ export function Hero() {
       }}
     >
       <video
-        ref={(el) => { if (el) el.playbackRate = 0.5; }}
         src="/assets/videos/logo_reveal.mp4"
+        poster="/assets/videos/logo_reveal_poster.jpg"
+        preload="auto"
         autoPlay
         muted
         loop

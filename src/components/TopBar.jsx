@@ -52,28 +52,20 @@ const socialLinks = [
 ];
 
 const overlayEase = [0.76, 0, 0.24, 1];
-const fadeEase = [0.2, 0.7, 0.2, 1];
+const fadeEase = [0.22, 1, 0.36, 1];
 
-const linkContainerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.45 } },
-  exit: { transition: { staggerChildren: 0.04, staggerDirection: -1 } },
-};
-
+// Each link rises up from behind its clip; `custom` is the index so the whole
+// menu cascades as one sequence after the panel has dropped in.
 const linkVariants = {
-  hidden: { y: '110%' },
-  visible: { y: '0%', transition: { duration: 0.85, ease: fadeEase } },
-  exit: { y: '110%', transition: { duration: 0.4, ease: [0.6, 0, 0.4, 1] } },
+  hidden: { y: '115%' },
+  visible: (i = 0) => ({
+    y: '0%',
+    transition: { duration: 1.0, ease: fadeEase, delay: 0.4 + i * 0.09 },
+  }),
 };
 
-const secondaryContainerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.06, delayChildren: 0.55 } },
-  exit: { transition: { staggerChildren: 0.03, staggerDirection: -1 } },
-};
-
-const GREY = theme.subtitle;
-const GREY_SUBTLE = '#9a9b97';
+// generic clip wrapper for a rising link
+const clip = { display: 'block', overflow: 'hidden', paddingBottom: '0.06em' };
 
 export function TopBar() {
   const [open, setOpen] = useState(false);
@@ -95,7 +87,7 @@ export function TopBar() {
   const currentThemeRef = useRef(sectionTheme);
   useEffect(() => {
     const sections = document.querySelectorAll('[data-section-theme]');
-    
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -108,9 +100,9 @@ export function TopBar() {
           }
         });
       },
-      { 
+      {
         // Triggers when a section crosses the top 32px
-        rootMargin: '-32px 0px -99% 0px' 
+        rootMargin: '-32px 0px -99% 0px'
       }
     );
 
@@ -119,11 +111,16 @@ export function TopBar() {
   }, []);
 
   const fg = theme.base;
-  const fgSubtle = theme.subtitle;
+
+  const barBase = {
+    height: 2, display: 'block', background: fg,
+    transformOrigin: 'center',
+    transition: 'transform 0.4s cubic-bezier(0.76, 0, 0.24, 1)',
+  };
 
   return (
     <>
-      <header
+      <motion.header
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
@@ -155,9 +152,8 @@ export function TopBar() {
           >
             <span
               style={{
-                width: 34, height: 2, display: 'block',
-                background: fg,
-                transformOrigin: 'center',
+                ...barBase,
+                width: 34,
                 transform: open
                   ? 'translate(0px, 5px) rotate(45deg)'
                   : 'translate(-4px, 0) rotate(0)',
@@ -165,9 +161,8 @@ export function TopBar() {
             />
             <span
               style={{
-                width: 28, height: 2, display: 'block',
-                background: fg,
-                transformOrigin: 'center',
+                ...barBase,
+                width: 28,
                 transform: open
                   ? 'translate(0px, -5px) rotate(-45deg)'
                   : 'translate(5px, 0) rotate(0)',
@@ -175,15 +170,16 @@ export function TopBar() {
             />
           </button>
         </div>
-      </header>
+      </motion.header>
 
       <AnimatePresence>
         {open && (
           <motion.div key="menu-overlay"
+            data-lenis-prevent
             initial={{ y: '-100%' }}
             animate={{ y: '0%' }}
             exit={{ y: '-100%' }}
-            transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 1.0, ease: overlayEase }}
             style={{
               position: 'fixed', inset: 0,
               background: theme.dark,
@@ -199,13 +195,16 @@ export function TopBar() {
                 display: 'flex', flexDirection: 'column',
                 justifyContent: 'space-between', gap: 32,
               }}>
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.4, ease: fadeEase } }}
+                >
                   <div style={{ paddingBottom: 16 }}>
                     <Logo style={{ fontSize: 'clamp(36px, 5.3vw, 64px)' }} />
-                    <span style={{ 
+                    <span style={{
                       fontFamily: theme.display, fontWeight: 900,
                       fontSize: 'clamp(36px, 5.3vw, 64px)', color: theme.base,
-                      marginLeft: '0.05em' 
+                      marginLeft: '0.05em'
                     }}>.</span>
                   </div>
                   <div style={{
@@ -217,10 +216,12 @@ export function TopBar() {
                   }}>
                     Career &middot; University &middot; School
                   </div>
-                </div>
+                </motion.div>
 
-                <div
+                <motion.div
                   className="xg-menu-image"
+                  initial={{ opacity: 0, scale: 1.06 }}
+                  animate={{ opacity: 1, scale: 1, transition: { duration: 1.0, delay: 0.55, ease: [0.22, 1, 0.36, 1] } }}
                   style={{
                     width: '100%', maxWidth: 420,
                     aspectRatio: '16/9', overflow: 'hidden',
@@ -232,87 +233,40 @@ export function TopBar() {
                     alt="XDGE workspace"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   />
-                </div>
+                </motion.div>
               </div>
 
               <nav
-                
-                
                 style={{
                   display: 'flex', flexDirection: 'column',
                   justifyContent: 'flex-end',
                   gap: 'clamp(2px, 0.5vw, 6px)',
                 }}
               >
-                {primaryLinks.map((item) => {
-                  const parentStyle = {
-                    display: 'block',
-                    fontFamily: theme.display,
-                    fontSize: 'clamp(36px, 5.5vw, 64px)',
-                    lineHeight: 0.95, letterSpacing: '-0.02em',
-                    color: theme.base, textDecoration: 'none',
-                    textTransform: 'uppercase',
-                    fontWeight: 900,
-                    whiteSpace: 'nowrap',
-                  };
-                  const childStyle = {
-                    display: 'block',
-                    fontFamily: theme.display,
-                    fontSize: 'clamp(18px, 2.4vw, 30px)',
-                    lineHeight: 1.1, letterSpacing: '-0.005em',
-                    color: theme.base, textDecoration: 'none',
-                    textTransform: 'uppercase',
-                    fontWeight: 700,
-                  };
-
-                  const sharedProps = {
-                    variants: linkVariants,
-                    onClick: () => setOpen(false),
-                    'data-cursor': 'grow',
-                    whileHover: { x: 14 },
-                    transition: { duration: 0.3 },
-                  };
-
-                  // Linked top-level item (Home, About)
-                  if (item.to) {
-                    return (
-                      <span key={item.label} style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
-                        <Link to={item.to} {...sharedProps} style={parentStyle}>{item.label}</Link>
-                      </span>
-                    );
-                  }
-
-                  // Parent header with children (How It Works) or placeholder (Programmes)
-                  return (
-                    <div key={item.label} style={{ display: 'block' }}>
-                      <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
-                        <span
-                          variants={linkVariants}
-                          style={parentStyle}
-                        >{item.label}</span>
-                      </span>
-                      {item.children && (
-                        <div style={{
-                          marginTop: 'clamp(4px, 0.6vw, 8px)',
-                          marginBottom: 'clamp(8px, 1vw, 12px)',
-                          paddingLeft: 'clamp(20px, 3vw, 40px)',
-                          display: 'flex', flexDirection: 'column',
-                          gap: 'clamp(2px, 0.3vw, 4px)',
-                        }}>
-                          {item.children.map((child) => (
-                            <span key={child.label} style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
-                              <Link
-                                to={child.to}
-                                {...sharedProps}
-                                style={childStyle}
-                              >{child.label}</Link>
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+                {primaryLinks.map((item, i) => (
+                  <span key={item.label} style={clip}>
+                    <MotionLink
+                      to={item.to}
+                      custom={i}
+                      variants={linkVariants}
+                      initial="hidden"
+                      animate="visible"
+                      onClick={() => setOpen(false)}
+                      data-cursor="grow"
+                      whileHover={{ x: 16 }}
+                      style={{
+                        display: 'block',
+                        fontFamily: theme.display,
+                        fontSize: 'clamp(36px, 5.5vw, 64px)',
+                        lineHeight: 1, letterSpacing: '-0.02em',
+                        color: theme.base, textDecoration: 'none',
+                        textTransform: 'uppercase', fontWeight: 900,
+                        whiteSpace: 'nowrap',
+                        transition: 'color 0.3s var(--xg-ease)',
+                      }}
+                    >{item.label}</MotionLink>
+                  </span>
+                ))}
               </nav>
 
               <div style={{
@@ -321,44 +275,47 @@ export function TopBar() {
                 textAlign: 'right',
               }}>
                 <nav
-                  
-                  
                   style={{
                     display: 'flex', flexDirection: 'column',
                     gap: 'clamp(2px, 0.4vw, 4px)',
                   }}
                 >
-                  {secondaryLinks.map(({ label, href, to }) => {
+                  {secondaryLinks.map(({ label, href, to }, i) => {
+                    const idx = i + primaryLinks.length;
                     const linkStyle = {
                       display: 'block',
                       fontFamily: theme.display,
                       fontSize: 'clamp(20px, 2.6vw, 38px)',
                       lineHeight: 1.05, letterSpacing: '-0.005em',
                       color: theme.base, textDecoration: 'none',
-                      textTransform: 'uppercase',
-                      fontWeight: 900,
+                      textTransform: 'uppercase', fontWeight: 900,
                     };
-                    const motionProps = {
+                    const shared = {
+                      custom: idx,
                       variants: linkVariants,
+                      initial: 'hidden',
+                      animate: 'visible',
                       onClick: () => setOpen(false),
                       'data-cursor': 'grow',
                       whileHover: { x: -10 },
-                      transition: { duration: 0.3 },
                       style: linkStyle,
                     };
                     return (
-                      <span key={label} style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
+                      <span key={label} style={clip}>
                         {to ? (
-                          <Link to={to} {...motionProps}>{label}</Link>
+                          <MotionLink to={to} {...shared}>{label}</MotionLink>
                         ) : (
-                          <a href={href} {...motionProps}>{label}</a>
+                          <motion.a href={href} {...shared}>{label}</motion.a>
                         )}
                       </span>
                     );
                   })}
                 </nav>
 
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.9, ease: fadeEase } }}
+                >
                   <div style={{
                     fontSize: 11, letterSpacing: '0.16em',
                     textTransform: 'uppercase', color: theme.subtitle,
@@ -369,7 +326,7 @@ export function TopBar() {
                     justifyContent: 'flex-end', flexWrap: 'wrap',
                   }}>
                     {socialLinks.map((s) => (
-                      <a
+                      <motion.a
                         key={s.name}
                         href={s.href}
                         aria-label={s.name}
@@ -382,10 +339,10 @@ export function TopBar() {
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
                           color: theme.base, textDecoration: 'none',
                         }}
-                      >{s.icon}</a>
+                      >{s.icon}</motion.a>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>

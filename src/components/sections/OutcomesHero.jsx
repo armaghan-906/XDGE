@@ -19,7 +19,7 @@ function OutcomesHeading({ y, opacity }) {
       <span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
-        transition={{ duration: 1.8, ease: [0.2, 0.7, 0.2, 1], delay: 0.35 }}
+        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
         style={{ display: 'inline-block' }}
       >OUTCOMES.</span>
     </h1>
@@ -56,7 +56,7 @@ export function OutcomesHero() {
           <div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
+            transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
             style={{
               fontFamily: theme.display, fontWeight: 700,
               fontSize: 'clamp(33px, 4.2vw, 60px)',
@@ -72,7 +72,7 @@ export function OutcomesHero() {
           <div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.65 }}
+            transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: 0.65 }}
             style={{
               fontFamily: theme.displayTight, fontWeight: 500,
               fontSize: 'clamp(18px, 2vw, 28px)',
@@ -91,7 +91,7 @@ export function OutcomesHero() {
           <div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.9 }}
             style={{
               display: 'flex', flexDirection: 'column',
               gap: 'clamp(16px, 2.5vw, 28px)',

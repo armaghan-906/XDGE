@@ -50,7 +50,7 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
         <motion.div
           variants={{
             hidden: { scale: 1.15 },
-            visible: { scale: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
+            visible: { scale: 1, transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1] } }
           }}
           style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}
         >
@@ -192,6 +192,7 @@ export function WhoWeServe() {
               }} 
             />
             <motion.h2
+              data-no-reveal
               variants={stagger}
               initial="hidden"
               whileInView="visible"

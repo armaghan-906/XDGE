@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ScrollProgress } from './components/ScrollProgress';
+import { SmoothScroll } from './components/SmoothScroll';
 import { Cursor } from './components/Cursor';
 import { TopBar } from './components/TopBar';
 import { PageTransition } from './components/PageTransition';
@@ -21,6 +22,7 @@ const Apply = lazy(() => import('./pages/Apply'));
 function Layout() {
   return (
     <div>
+      <SmoothScroll />
       <Cursor />
       <Preloader />
       <ScrollProgress />

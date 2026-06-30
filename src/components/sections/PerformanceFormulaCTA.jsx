@@ -29,7 +29,7 @@ export function PerformanceFormulaCTA() {
 
         <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(40px, 8vw, 120px)' }}>
           <div
-            variants={fadeUp}
+            data-reveal
             style={{
               display: 'flex', flexDirection: 'column',
               gap: 18,
@@ -83,7 +83,7 @@ export function PerformanceFormulaCTA() {
           </div>
 
           <div
-            variants={fadeUp}
+            data-reveal
             style={{
               display: 'flex', flexDirection: 'column',
               gap: 'clamp(20px, 3vw, 32px)',

@@ -177,7 +177,7 @@ export function ContactForm() {
       <form onSubmit={onSubmit} style={{ maxWidth: 880, margin: '0 auto' }}>
         <Group style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(28px, 3.6vw, 44px)' }}>
           {/* Row 1: Your Name */}
-          <label variants={fadeUp} style={{ display: 'block' }}>
+          <label data-reveal style={{ display: 'block' }}>
             <span style={fieldLabel}>Your Name</span>
             <input
               required
@@ -191,7 +191,7 @@ export function ContactForm() {
           </label>
 
           {/* Row 2: Guardian */}
-          <label variants={fadeUp} style={{ display: 'block' }}>
+          <label data-reveal style={{ display: 'block' }}>
             <span style={fieldLabel}>Parent / Guardian Name</span>
             <input
               type="text"
@@ -204,7 +204,7 @@ export function ContactForm() {
           </label>
 
           {/* Row 3: Email + Phone */}
-          <div variants={fadeUp} className="xg-2" style={{ gap: 'clamp(24px, 3vw, 40px)' }}>
+          <div data-reveal className="xg-2" style={{ gap: 'clamp(24px, 3vw, 40px)' }}>
             <label style={{ display: 'block' }}>
               <span style={fieldLabel}>Email Address</span>
               <input
@@ -231,7 +231,7 @@ export function ContactForm() {
           </div>
 
           {/* Row 4: Location + Age */}
-          <div variants={fadeUp} className="xg-2" style={{ gap: 'clamp(24px, 3vw, 40px)' }}>
+          <div data-reveal className="xg-2" style={{ gap: 'clamp(24px, 3vw, 40px)' }}>
             <label style={{ display: 'block' }}>
               <span style={fieldLabel}>Location &mdash; City / Country</span>
               <input
@@ -256,7 +256,7 @@ export function ContactForm() {
           </div>
 
           {/* Row 5: Programmes (checkboxes) */}
-          <div variants={fadeUp}>
+          <div data-reveal>
             <div style={{ ...fieldLabel, marginBottom: 14 }}>Which Programme Are You Interested In?</div>
             <div className="xg-2" style={{ gap: '0 clamp(24px, 3vw, 40px)' }}>
               {programmeOptions.map((opt) => {
@@ -280,7 +280,7 @@ export function ContactForm() {
           </div>
 
           {/* Row 6: Message */}
-          <label variants={fadeUp} style={{ display: 'block' }}>
+          <label data-reveal style={{ display: 'block' }}>
             <span style={fieldLabel}>How Can We Help?</span>
             <textarea
               name="message"
@@ -298,7 +298,7 @@ export function ContactForm() {
           </label>
 
           {/* Row 7: Preferred contact method */}
-          <div variants={fadeUp}>
+          <div data-reveal>
             <div style={{ ...fieldLabel, marginBottom: 14 }}>Preferred Contact Method</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(20px, 3vw, 36px)' }}>
               {contactMethods.map((m) => {
@@ -322,7 +322,7 @@ export function ContactForm() {
           </div>
 
           {/* Submit */}
-          <div variants={fadeUp} style={{ paddingTop: 8 }}>
+          <div data-reveal style={{ paddingTop: 8 }}>
             <button
               type="submit"
               style={{

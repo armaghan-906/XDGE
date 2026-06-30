@@ -1,6 +1,7 @@
 import { Suspense, useEffect } from 'react';
 import { useLocation, useOutlet } from 'react-router-dom';
 import { theme } from '../theme';
+import { getLenis } from './SmoothScroll';
 
 /**
  * PageTransition — plain page wrapper (no curtain overlay).
@@ -12,13 +13,17 @@ export function PageTransition() {
   const outlet = useOutlet();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Reset through Lenis so its internal target doesn't lerp back to a stale
+    // position; fall back to native when smooth-scroll is disabled.
+    const lenis = getLenis();
+    if (lenis) lenis.scrollTo(0, { immediate: true });
+    else window.scrollTo(0, 0);
   }, [pathname]);
 
   return (
     <div
       key={pathname}
-      style={{ animation: 'xg-page-fadein 0.5s cubic-bezier(0.16, 1, 0.3, 1) both' }}
+      style={{ animation: 'xg-page-fadein 1s cubic-bezier(0.22, 1, 0.36, 1) backwards' }}
     >
       <Suspense fallback={<div style={{ minHeight: '100vh', background: theme.dark }} />}>
         {outlet}

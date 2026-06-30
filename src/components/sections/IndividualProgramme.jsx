@@ -93,7 +93,7 @@ export function IndividualProgramme() {
         }} />
 
         <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(32px, 6vw, 88px)' }}>
-          <div variants={fadeUp}>
+          <div data-reveal>
             <h3 style={{
               fontFamily: theme.display, fontWeight: 900,
               fontSize: 'clamp(36px, 9.3vw, 120px)',

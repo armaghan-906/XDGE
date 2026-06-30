@@ -23,7 +23,7 @@ export function Culture() {
         <Group className="xg-2" style={{ alignItems: 'flex-start', marginBottom: 'clamp(40px, 6vw, 64px)' }}>
           <div>
             <div
-              variants={fadeUp}
+              data-reveal
               style={{
                 fontSize: 12, letterSpacing: '0.16em',
                 textTransform: 'uppercase', color: theme.subtitle,
@@ -40,7 +40,7 @@ export function Culture() {
             />
           </div>
           <p
-            variants={fadeUp}
+            data-reveal
             style={{
               fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55,
               margin: 0, paddingTop: 'clamp(0px, 4vw, 48px)',
@@ -54,7 +54,7 @@ export function Culture() {
 
         <Group className="xg-2" style={{ gap: 24, marginBottom: 'clamp(48px, 7vw, 80px)' }}>
           <div
-            variants={fadeUp}
+            data-reveal
             style={{
               border: `1px solid ${theme.borderLight}`,
               padding: 'clamp(28px, 4vw, 40px)',
@@ -92,7 +92,7 @@ export function Culture() {
           </div>
 
           <div
-            variants={fadeUp}
+            data-reveal
             style={{
               border: `1px solid ${theme.borderLight}`,
               padding: 'clamp(28px, 4vw, 40px)',

@@ -24,7 +24,7 @@ export function DiscoveryMeeting() {
           alignItems: 'flex-start',
         }}>
           <h2
-            variants={fadeUp}
+            data-reveal
             style={{
               fontFamily: theme.displayTight,
               fontWeight: 600,
@@ -40,7 +40,7 @@ export function DiscoveryMeeting() {
           </h2>
 
           <div
-            variants={fadeUp}
+            data-reveal
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -73,7 +73,7 @@ export function DiscoveryMeeting() {
 
           {/* Calendly inline embed */}
           <div
-            variants={fadeUp}
+            data-reveal
             style={{
               width: '100%',
               borderRadius: 6,
@@ -96,7 +96,7 @@ export function DiscoveryMeeting() {
           </div>
 
           <a
-            variants={fadeUp}
+            data-reveal
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
@@ -124,7 +124,7 @@ export function DiscoveryMeeting() {
           </a>
 
           <div
-            variants={fadeUp}
+            data-reveal
             style={{
               marginTop: 'clamp(16px, 2.4vw, 32px)',
               paddingTop: 'clamp(24px, 3.2vw, 40px)',

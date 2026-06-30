@@ -17,12 +17,12 @@ const bullets = [
 
 const listContainer = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.13, delayChildren: 0.12 } },
 };
 
 const listItem = {
   hidden: { opacity: 0, y: 14 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.2, 0.7, 0.2, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] } },
 };
 
 export function WhatYouWillExperience() {
@@ -45,7 +45,7 @@ export function WhatYouWillExperience() {
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <Group style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 'clamp(40px, 6vw, 64px)', gap: 32 }}>
-          <div variants={fadeUp} style={{ width: '100%' }}>
+          <div data-reveal style={{ width: '100%' }}>
             <SplitHeading
               lines={['WHAT YOU WILL', 'EXPERIENCE']}
               style={{
@@ -56,7 +56,7 @@ export function WhatYouWillExperience() {
               }}
             />
           </div>
-          <div variants={fadeUp} style={{ width: '100%', paddingTop: 16 }}>
+          <div data-reveal style={{ width: '100%', paddingTop: 16 }}>
             <div
               ref={imgRef}
               style={{
@@ -89,7 +89,7 @@ export function WhatYouWillExperience() {
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 1.1, ease: [0.2, 0.7, 0.2, 1] }}
+          transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1] }}
           style={{
             height: 1, background: 'rgba(255,255,255,0.18)',
             margin: 'clamp(48px, 7vw, 80px) 0 clamp(40px, 6vw, 56px)',
@@ -133,7 +133,7 @@ export function WhatYouWillExperience() {
           </ul>
 
           <div
-            variants={fadeUp}
+            data-reveal
             style={{
               display: 'flex', flexDirection: 'column',
               gap: 'clamp(16px, 2vw, 22px)',

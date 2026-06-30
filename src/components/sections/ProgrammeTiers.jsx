@@ -108,7 +108,7 @@ const tiers = [
 function ProgrammeCard({ card }) {
   return (
     <article
-      variants={fadeUp}
+      data-reveal
       className="xg-tier-card"
       data-cursor="grow"
       style={{

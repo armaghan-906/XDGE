@@ -46,11 +46,11 @@ const items = [
   },
 ];
 
-const fadeEase = [0.2, 0.7, 0.2, 1];
+const fadeEase = [0.22, 1, 0.36, 1];
 
 const rowVariants = {
   hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: fadeEase } },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: fadeEase } },
 };
 
 export function WhatYouLeaveWithList() {

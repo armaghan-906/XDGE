@@ -68,7 +68,7 @@ export function CapabilityBuiltInsideOut() {
             gap: 'clamp(32px, 6vw, 80px)',
           }}
         >
-          <div variants={fadeUp}>
+          <div data-reveal>
             <div style={{
               display: 'flex', flexDirection: 'column',
               gap: 8,
@@ -86,7 +86,7 @@ export function CapabilityBuiltInsideOut() {
           </div>
 
           <div
-            variants={fadeUp}
+            data-reveal
             style={{
               display: 'flex', flexDirection: 'column',
               gap: 'clamp(18px, 2vw, 24px)',

@@ -23,8 +23,11 @@ export function FloatingVideo({ src, style }) {
         borderRadius: 24,
         overflow: 'hidden',
         pointerEvents: 'none',
-        mixBlendMode: 'normal',
         ...style,
+        // Forced AFTER the spread: mixBlendMode:'screen' over a (scaled) video is
+        // the known scroll-jank source — its repaint tail stretches across every
+        // inertial glide. On these black sections 'normal' looks ~identical.
+        mixBlendMode: 'normal',
       }}
     >
       <video

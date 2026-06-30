@@ -72,9 +72,19 @@ img {
   max-width: 100%;
 }
 
+/* Lenis smooth-scroll baseline (only active when SmoothScroll mounts Lenis,
+   i.e. desktop + motion-OK; classes are added to <html> by Lenis itself). */
+html.lenis,
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
 /* ── Premium polish layer ─────────────────────────────────── */
 :root {
-  --xg-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --xg-ease: cubic-bezier(0.22, 1, 0.36, 1);        /* canonical SLOW soft expo-out — reveals/headings/page/menu */
+  --xg-ease-hover: cubic-bezier(0.2, 0.7, 0.2, 1);  /* FAST interaction ease — hovers/cursor/cards — do NOT slow */
   --xg-ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --xg-shadow-soft: 0 12px 40px -16px rgba(0, 0, 0, 0.25), 0 4px 16px -8px rgba(0, 0, 0, 0.18);
   --xg-shadow-soft-dark: 0 14px 44px -16px rgba(0, 0, 0, 0.55), 0 6px 18px -8px rgba(0, 0, 0, 0.4);
@@ -116,7 +126,7 @@ section:has(> .xg-hero-ambient)>*:not(.xg-hero-ambient) {
 /* Card lift — applied to <article> elements and any element flagged as a card */
 article[data-cursor="grow"],
 .xg-card-lift {
-  transition: transform 0.5s var(--xg-ease), box-shadow 0.5s var(--xg-ease), border-color 0.5s var(--xg-ease);
+  transition: transform 0.5s var(--xg-ease-hover), box-shadow 0.5s var(--xg-ease-hover), border-color 0.5s var(--xg-ease-hover);
 }
 
 @media (hover: hover) {
@@ -154,7 +164,7 @@ article[data-cursor="grow"],
   background: currentColor;
   transform: scaleX(0);
   transform-origin: right center;
-  transition: transform 0.55s var(--xg-ease);
+  transition: transform 0.55s var(--xg-ease-hover);
 }
 
 .xg-link:hover::after {
@@ -167,7 +177,7 @@ article[data-cursor="grow"],
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  transition: color 0.4s var(--xg-ease), border-color 0.4s var(--xg-ease);
+  transition: color 0.4s var(--xg-ease-hover), border-color 0.4s var(--xg-ease-hover);
 }
 
 .xg-btn::before {
@@ -177,7 +187,7 @@ article[data-cursor="grow"],
   background: currentColor;
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 0.55s var(--xg-ease);
+  transition: transform 0.55s var(--xg-ease-hover);
   z-index: -1;
 }
 
@@ -325,7 +335,7 @@ section[data-screen-label^="01"]>div:not(.xg-hero-ambient) {
   filter: blur(20px);
   opacity: 0;
   z-index: -1;
-  transition: opacity 0.5s var(--xg-ease);
+  transition: opacity 0.5s var(--xg-ease-hover);
 }
 
 @media (hover: hover) {
@@ -344,6 +354,13 @@ section[data-screen-label^="01"]>div:not(.xg-hero-ambient) {
 
   .xg-divider::after {
     animation: none;
+  }
+
+  /* Never leave a reveal unit invisible if the observer is slow under
+     reduced-motion — show content immediately, no transform. */
+  .sr-init {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
@@ -550,11 +567,11 @@ section[data-screen-label] {
 
 /* ── Programme tier cards — lift + image zoom on hover (light theme) ────── */
 .xg-tier-card {
-  transition: transform 0.5s var(--xg-ease), box-shadow 0.5s var(--xg-ease), border-color 0.5s var(--xg-ease);
+  transition: transform 0.5s var(--xg-ease-hover), box-shadow 0.5s var(--xg-ease-hover), border-color 0.5s var(--xg-ease-hover);
 }
 
 .xg-tier-card .xg-tier-card-media img {
-  transition: transform 0.7s var(--xg-ease);
+  transition: transform 0.7s var(--xg-ease-hover);
 }
 
 @media (hover: hover) {
@@ -1095,9 +1112,9 @@ section[data-screen-label] {
 .xg-pop {
   transition:
     transform 0.35s var(--xg-spring),
-    background 0.35s var(--xg-ease),
-    color 0.35s var(--xg-ease),
-    border-color 0.35s var(--xg-ease);
+    background 0.35s var(--xg-ease-hover),
+    color 0.35s var(--xg-ease-hover),
+    border-color 0.35s var(--xg-ease-hover);
 }
 
 @media (hover: hover) {
@@ -1128,9 +1145,9 @@ section[data-screen-label] {
   background: transparent;
   transition:
     transform 0.35s var(--xg-spring),
-    background 0.35s var(--xg-ease),
-    color 0.35s var(--xg-ease),
-    border-color 0.35s var(--xg-ease);
+    background 0.35s var(--xg-ease-hover),
+    color 0.35s var(--xg-ease-hover),
+    border-color 0.35s var(--xg-ease-hover);
 }
 
 @media (hover: hover) {
@@ -1153,8 +1170,8 @@ section[data-screen-label] {
   .xg-tilt {
     transition:
       transform 0.5s var(--xg-spring),
-      box-shadow 0.5s var(--xg-ease),
-      border-color 0.5s var(--xg-ease);
+      box-shadow 0.5s var(--xg-ease-hover),
+      border-color 0.5s var(--xg-ease-hover);
   }
 
   .xg-tilt:hover {
@@ -1240,9 +1257,9 @@ section[data-screen-label] {
    The transition runs entirely on the GPU compositor. */
 .sr-init {
   opacity: 0;
-  transform: translateY(34px);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--xg-ease),
+              transform 0.7s var(--xg-ease);
 }
 
 .sr-init.sr-visible {
@@ -1250,13 +1267,18 @@ section[data-screen-label] {
   transform: translateY(0);
 }
 
-/* Page transition fade-in keyframe — runs on compositor thread */
+/* Page transition: incoming page fades + rises into place.
+   Uses `backwards` fill (see PageTransition.jsx) so the transform never
+   persists — otherwise translateY(0) would establish a containing block
+   and break any position:fixed descendants. Compositor-only. */
 @keyframes xg-page-fadein {
   from {
     opacity: 0;
+    transform: translateY(28px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 

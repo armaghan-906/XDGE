@@ -132,7 +132,7 @@ export function ExperienceJourney() {
             />
           </div>
           <p
-            variants={fadeUp}
+            data-reveal
             style={{
               fontSize: 'clamp(15px, 1.6vw, 17px)', lineHeight: 1.55,
               color: theme.base, margin: 0, paddingBottom: 24, maxWidth: 480,
@@ -179,7 +179,7 @@ export function ExperienceJourney() {
               {steps.map((s, i) => (
                 <div
                   key={i}
-                  variants={fadeUp}
+                  data-reveal
                   className="xg-journey-circle-cell"
                   style={{ paddingTop: s.offset }}
                 >
@@ -238,7 +238,7 @@ export function ExperienceJourney() {
             {steps.map((s) => (
               <div
                 key={s.n}
-                variants={fadeUp}
+                data-reveal
                 className="xg-journey-mobile-step"
               >
                 <div style={{
