@@ -41,7 +41,7 @@ export function CreateYourPath() {
         >
           <span
             className="cyan-text"
-            style={{ display: 'block', fontSize: 'clamp(24px, 4.5vw, 84px)', paddingLeft: '0.05em', marginBottom: '0.1em' }}
+            style={{ display: 'block', fontSize: 'clamp(22px, 6.4vw, 118px)', whiteSpace: 'nowrap', paddingLeft: '0.05em', marginBottom: '0.1em' }}
           >
             CREATE YOUR OWN PATH &amp;
           </span>

@@ -6,10 +6,10 @@ export function ApplyClosing() {
   return (
     <section
       data-screen-label="Apply Closing"
-      data-section-theme="dark"
+      data-section-theme="light"
       style={{
-        background: theme.dark,
-        color: theme.base,
+        background: theme.base,
+        color: theme.ink,
         padding: 'clamp(80px, 12vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -24,7 +24,7 @@ export function ApplyClosing() {
               lineHeight: 1.05,
               letterSpacing: '-0.02em',
               margin: 0,
-              color: theme.base,
+              color: theme.ink,
               maxWidth: '14ch',
             }}
           >
@@ -45,7 +45,7 @@ export function ApplyClosing() {
               fontSize: 'clamp(17px, 1.7vw, 20px)',
               lineHeight: 1.5,
               margin: 0,
-              color: theme.base,
+              color: theme.ink,
               fontWeight: 500,
             }}>
               Every young person has their own strengths, ambitions, and dreams.
@@ -59,7 +59,7 @@ export function ApplyClosing() {
               fontSize: 'clamp(15px, 1.55vw, 17px)',
               lineHeight: 1.6,
               margin: 0,
-              color: theme.subtitle,
+              color: '#555555',
             }}>
               We will then be in touch to discuss whether XDGE is the right fit
               and how we can help you build the confidence, leadership
@@ -71,7 +71,7 @@ export function ApplyClosing() {
               style={{
                 marginTop: 'clamp(20px, 2.4vw, 32px)',
                 paddingTop: 'clamp(22px, 2.6vw, 32px)',
-                borderTop: `1px solid ${theme.borderDark}`,
+                borderTop: `1px solid ${theme.borderLight}`,
               }}
             >
               <div style={{
@@ -79,7 +79,7 @@ export function ApplyClosing() {
                 fontSize: 'clamp(20px, 2.2vw, 28px)',
                 fontWeight: 600,
                 letterSpacing: '-0.005em',
-                color: theme.base,
+                color: theme.ink,
               }}>
                 Nicola Mann
               </div>
@@ -88,7 +88,7 @@ export function ApplyClosing() {
                 fontSize: 14,
                 letterSpacing: '0.04em',
                 textTransform: 'uppercase',
-                color: theme.subtitle,
+                color: '#555555',
                 marginTop: 6,
               }}>
                 Founder, The XDGE

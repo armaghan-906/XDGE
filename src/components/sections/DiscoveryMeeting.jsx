@@ -9,10 +9,10 @@ export function DiscoveryMeeting() {
   return (
     <section
       data-screen-label="Discovery Meeting"
-      data-section-theme="dark"
+      data-section-theme="light"
       style={{
-        background: theme.dark,
-        color: theme.base,
+        background: theme.base,
+        color: theme.ink,
         padding: 'clamp(80px, 12vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
@@ -32,7 +32,7 @@ export function DiscoveryMeeting() {
               lineHeight: 1.05,
               letterSpacing: '-0.02em',
               margin: 0,
-              color: theme.base,
+              color: theme.ink,
               maxWidth: '20ch',
             }}
           >
@@ -54,7 +54,7 @@ export function DiscoveryMeeting() {
               fontWeight: 500,
               lineHeight: 1.45,
               margin: 0,
-              color: theme.base,
+              color: theme.ink,
             }}>
               Prefer to speak with us directly?
             </p>
@@ -63,7 +63,7 @@ export function DiscoveryMeeting() {
               fontSize: 'clamp(15px, 1.55vw, 17px)',
               lineHeight: 1.6,
               margin: 0,
-              color: theme.subtitle,
+              color: '#555555',
             }}>
               Book a complimentary discovery conversation with Nicola Mann to
               discuss your goals, explore suitable pathways, and determine
@@ -78,8 +78,8 @@ export function DiscoveryMeeting() {
               width: '100%',
               borderRadius: 6,
               overflow: 'hidden',
-              background: '#000000',
-              border: `1px solid ${theme.borderDark}`,
+              background: '#f2f2f2',
+              border: `1px solid ${theme.borderLight}`,
             }}
           >
             <iframe
@@ -104,19 +104,19 @@ export function DiscoveryMeeting() {
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 12,
               padding: '14px 24px',
-              border: `1px solid ${theme.base}`, borderRadius: 999,
-              color: theme.base, textDecoration: 'none',
+              border: `1px solid ${theme.ink}`, borderRadius: 999,
+              color: theme.ink, textDecoration: 'none',
               fontFamily: theme.body, fontSize: 13, fontWeight: 600,
               letterSpacing: '0.04em', textTransform: 'uppercase',
               transition: 'background 0.3s var(--xg-ease), color 0.3s var(--xg-ease)',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = theme.base;
-              e.currentTarget.style.color = theme.ink;
+              e.currentTarget.style.background = theme.ink;
+              e.currentTarget.style.color = theme.base;
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.color = theme.base;
+              e.currentTarget.style.color = theme.ink;
             }}
           >
             Open Scheduler in New Tab
@@ -128,7 +128,7 @@ export function DiscoveryMeeting() {
             style={{
               marginTop: 'clamp(16px, 2.4vw, 32px)',
               paddingTop: 'clamp(24px, 3.2vw, 40px)',
-              borderTop: `1px solid ${theme.borderDark}`,
+              borderTop: `1px solid ${theme.borderLight}`,
               width: '100%',
             }}
           >
@@ -137,7 +137,7 @@ export function DiscoveryMeeting() {
               fontSize: 'clamp(20px, 2.2vw, 28px)',
               fontWeight: 600,
               letterSpacing: '-0.005em',
-              color: theme.base,
+              color: theme.ink,
             }}>
               Nicola Mann
             </div>
@@ -146,7 +146,7 @@ export function DiscoveryMeeting() {
               fontSize: 14,
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
-              color: theme.subtitle,
+              color: '#555555',
               marginTop: 6,
             }}>
               Founder, The XDGE

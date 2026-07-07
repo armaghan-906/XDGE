@@ -110,7 +110,8 @@ export function TopBar() {
     return () => observer.disconnect();
   }, []);
 
-  const fg = theme.base;
+  // Hamburger adapts: dark on light sections, white on dark sections.
+  const fg = sectionTheme === 'light' ? theme.ink : theme.base;
 
   const barBase = {
     height: 2, display: 'block', background: fg,
@@ -199,7 +200,12 @@ export function TopBar() {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.4, ease: fadeEase } }}
                 >
-                  <div style={{ paddingBottom: 16 }}>
+                  <div style={{ paddingBottom: 16, display: 'flex', alignItems: 'baseline' }}>
+                    <span style={{
+                      fontFamily: theme.display, fontWeight: 900,
+                      fontSize: 'clamp(18px, 2.6vw, 30px)', color: theme.base,
+                      letterSpacing: '-0.02em', marginRight: '0.24em',
+                    }}>The</span>
                     <Logo style={{ fontSize: 'clamp(36px, 5.3vw, 64px)' }} />
                     <span style={{
                       fontFamily: theme.display, fontWeight: 900,

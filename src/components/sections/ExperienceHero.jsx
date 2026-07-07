@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
-import { HeroAmbient } from '../HeroAmbient';
 import { SplitHeading } from '../primitives/SplitHeading';
 
 const pStyle = {
@@ -26,11 +25,10 @@ export function ExperienceHero() {
       data-section-theme="dark"
       style={{
         background: theme.dark, color: theme.base,
-        minHeight: '100vh', display: 'flex', flexDirection: 'column',
+        minHeight: '120vh', display: 'flex', flexDirection: 'column',
         position: 'relative', overflow: 'hidden',
       }}
     >
-      <HeroAmbient src="/assets/videos/gold_swirls.mp4" />
       <div style={{
         flex: 1,
         position: 'relative', zIndex: 10,
@@ -43,17 +41,17 @@ export function ExperienceHero() {
           <SplitHeading
             tag="h1"
             lines={[
-              <>
+              <span style={{ whiteSpace: 'nowrap' }}>
                 <span className="hollow-text" style={{ paddingRight: '0.28em' }}>HOW</span>
                 <span className="cyan-text">X</span>
-                <span className="hollow-text">DGE</span>
-              </>,
-              <span className="hollow-text">WORKS</span>,
+                <span className="hollow-text" style={{ paddingRight: '0.28em' }}>DGE</span>
+                <span className="hollow-text">WORKS</span>
+              </span>,
             ]}
             style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(44px, 11vw, 172px)',
-              lineHeight: 0.9, letterSpacing: '-0.03em',
+              fontSize: 'clamp(30px, 9vw, 150px)',
+              lineHeight: 0.95, letterSpacing: '-0.03em',
               textTransform: 'uppercase',
             }}
           />
@@ -66,10 +64,6 @@ export function ExperienceHero() {
             data-reveal
             style={{
               maxWidth: 640,
-              border: '1px solid rgba(255,255,255,0.14)',
-              padding: 'clamp(26px, 3vw, 44px)',
-              background: 'rgba(255,255,255,0.02)',
-              backdropFilter: 'blur(2px)',
             }}
           >
             <div style={{

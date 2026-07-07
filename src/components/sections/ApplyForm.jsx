@@ -57,7 +57,7 @@ const sectionTitle = {
   fontSize: 'clamp(22px, 2.4vw, 30px)',
   fontWeight: 700,
   letterSpacing: '-0.005em',
-  color: theme.base,
+  color: theme.ink,
   margin: 0,
   paddingBottom: 'clamp(12px, 1.4vw, 18px)',
   borderBottom: '1px solid rgba(0,0,0,0.14)',
@@ -66,7 +66,7 @@ const sectionTitle = {
 const sectionHint = {
   fontFamily: theme.body,
   fontSize: 13,
-  color: theme.subtitle,
+  color: '#555555',
   marginTop: 8,
   fontStyle: 'italic',
 };
@@ -77,7 +77,7 @@ const fieldLabel = {
   fontWeight: 700,
   letterSpacing: '0.16em',
   textTransform: 'uppercase',
-  color: theme.subtitle,
+  color: '#555555',
   marginBottom: 10,
   display: 'block',
 };
@@ -88,7 +88,7 @@ const inputBase = {
   background: 'transparent',
   border: 'none',
   borderBottom: '1px solid rgba(0,0,0,0.18)',
-  color: theme.base,
+  color: theme.ink,
   fontFamily: theme.body,
   fontSize: 16,
   outline: 'none',
@@ -105,7 +105,7 @@ const checkboxLabel = {
   fontFamily: theme.body,
   fontSize: 'clamp(14px, 1.4vw, 16px)',
   lineHeight: 1.45,
-  color: theme.base,
+  color: theme.ink,
 };
 
 const checkboxBox = {
@@ -212,9 +212,9 @@ export function ApplyForm() {
     return (
       <section
         data-screen-label="Apply Form"
-        data-section-theme="dark"
+        data-section-theme="light"
         style={{
-          background: theme.dark, color: theme.base,
+          background: theme.base, color: theme.ink,
           padding: 'clamp(96px, 14vw, 160px) clamp(20px, 4vw, 40px)',
         }}
       >
@@ -238,7 +238,7 @@ export function ApplyForm() {
             transition={{ duration: 0.6, delay: 0.15, ease: [0.2, 0.7, 0.2, 1] }}
             style={{
               fontFamily: theme.body, fontSize: 17, lineHeight: 1.55,
-              color: theme.subtitle, marginTop: 24,
+              color: '#555555', marginTop: 24,
             }}
           >
             Nicola and the team will personally review what you&rsquo;ve shared
@@ -253,9 +253,9 @@ export function ApplyForm() {
   return (
     <section
       data-screen-label="Apply Form"
-      data-section-theme="dark"
+      data-section-theme="light"
       style={{
-        background: theme.dark, color: theme.base,
+        background: theme.base, color: theme.ink,
         padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
       }}
     >

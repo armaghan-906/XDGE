@@ -67,9 +67,9 @@ export function ApplyHero() {
               fontFamily: theme.body,
               fontSize: 'clamp(16px, 1.6vw, 19px)',
               lineHeight: 1.5,
-              color: theme.base,
+              color: '#e0e0e0',
               margin: 0,
-              fontWeight: 500,
+              fontWeight: 400,
             }}>
               Tell us a little about yourself and we&rsquo;ll help identify the
               right pathway for your goals, interests, and ambitions.

@@ -53,6 +53,7 @@ export function StandardsExpectations() {
           <div style={{ width: '100%' }}>
             <SplitHeading
               lines={['STANDARDS &', 'EXPECTATIONS']}
+              lineClasses={['hollow-text', 'cyan-text']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
                 fontSize: 'clamp(36px, 10.5vw, 192px)',
@@ -87,8 +88,8 @@ export function StandardsExpectations() {
               whileHover={{ y: -4, borderColor: theme.base }}
               transition={{ duration: 0.3, ease: fadeEase }}
               style={{
-                background: 'rgba(255,255,255,0.08)',
-                border: '1px solid rgba(0,0,0,0.18)',
+                background: 'rgba(255,255,255,0.05)',
+                border: '1px solid rgba(255,255,255,0.06)',
                 padding: 'clamp(24px, 3vw, 36px)',
                 display: 'flex', flexDirection: 'column',
                 gap: 'clamp(14px, 1.6vw, 20px)',

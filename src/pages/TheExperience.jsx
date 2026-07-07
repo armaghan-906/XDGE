@@ -1,9 +1,13 @@
 import { ExperienceHero } from '../components/sections/ExperienceHero';
 import { WhatYouWillExperience } from '../components/sections/WhatYouWillExperience';
-import { ExperienceJourney } from '../components/sections/ExperienceJourney';
-import { StandardsExpectations } from '../components/sections/StandardsExpectations';
+import { TheJourney } from '../components/sections/TheJourney';
+import { OurPerformanceFormula } from '../components/sections/OurPerformanceFormula';
+import { WhatYouLeaveWith } from '../components/sections/WhatYouLeaveWith';
 import { DifferentAgesDifferentFocus } from '../components/sections/DifferentAgesDifferentFocus';
+import { StandardsExpectations } from '../components/sections/StandardsExpectations';
 import { IsThisRightForMe } from '../components/sections/IsThisRightForMe';
+import { ProvenOutcomes } from '../components/sections/ProvenOutcomes';
+import { StepIntoNextLevel } from '../components/sections/StepIntoNextLevel';
 
 export default function TheExperience() {
   return (
@@ -12,12 +16,16 @@ export default function TheExperience() {
       <div className="xg-stick-wrap">
         <WhatYouWillExperience />
       </div>
-      <ExperienceJourney />
+      <TheJourney />
+      <OurPerformanceFormula />
+      <WhatYouLeaveWith />
+      <DifferentAgesDifferentFocus />
+      <StandardsExpectations />
       <div className="xg-stick-wrap">
         <IsThisRightForMe />
       </div>
-      <StandardsExpectations />
-      <DifferentAgesDifferentFocus />
+      <ProvenOutcomes />
+      <StepIntoNextLevel />
     </>
   );
 }
