@@ -9,7 +9,7 @@ const MotionLink = motion(Link);
 const primaryLinks = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
-  { label: 'How It Works', to: '/the-experience' },
+  { label: 'How It Works', to: '/how-it-works' },
   { label: 'Programmes', to: '/programmes' },
 ];
 

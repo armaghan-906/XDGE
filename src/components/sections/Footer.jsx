@@ -7,7 +7,7 @@ const companyLinks = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Programmes', to: '/programmes' },
-  { label: 'How It Works', to: '/the-experience' },
+  { label: 'How It Works', to: '/how-it-works' },
 ];
 const resourceLinks = [
   { label: 'FAQ', href: '#' },
