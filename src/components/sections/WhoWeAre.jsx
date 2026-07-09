@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { theme, fadeUp } from '../../theme';
+import { theme, fadeUp, stagger } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 import { FloatingVideo } from '../primitives/FloatingVideo';
@@ -103,11 +103,12 @@ export function WhoWeAre() {
             </div>
           </motion.div>
 
-          {/* icon + divider + bold-lead rows, separated by horizontal lines */}
-          <motion.div variants={fadeUp} style={{ display: 'flex', flexDirection: 'column' }}>
+          {/* icon + divider + bold-lead rows — each row cascades in one-by-one */}
+          <motion.div variants={stagger} style={{ display: 'flex', flexDirection: 'column' }}>
             {points.map((p, i) => (
-              <div
+              <motion.div
                 key={i}
+                variants={fadeUp}
                 style={{
                   display: 'flex', alignItems: 'center',
                   gap: 'clamp(16px, 1.8vw, 26px)',
@@ -133,7 +134,7 @@ export function WhoWeAre() {
                 }}>
                   <strong style={{ fontWeight: 700 }}>{p.bold}</strong>{p.rest}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </Group>

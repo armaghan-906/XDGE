@@ -37,11 +37,37 @@ const Icons = {
   ),
 };
 
+// Diagram reveal — rings breathe in first, then the three label blocks
+// cascade top-to-bottom (Boldz-style, plays once on scroll into view).
+const diagRing = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 1.0, ease: [0.22, 1, 0.36, 1] } },
+};
+const diagLabel = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
+};
+
 export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
   const fg = dark ? theme.base : theme.ink;
   const muted = dark ? theme.subtitle : theme.subtitle;
   return (
-    <div style={{
+    <motion.div
+      data-no-reveal
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={{
+        hidden: { opacity: 0, scale: 0.94 },
+        visible: {
+          opacity: 1, scale: 1,
+          transition: {
+            duration: 1.0, ease: [0.22, 1, 0.36, 1],
+            when: 'beforeChildren', staggerChildren: 0.18, delayChildren: 0.15,
+          },
+        },
+      }}
+      style={{
       position: 'relative',
       width: '100%',
       maxWidth,
@@ -52,7 +78,8 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
       background: 'radial-gradient(circle at center, rgba(110,150,200,0.16), rgba(255,255,255,0) 72%)',
     }}>
       {/* Outer ring */}
-      <div
+      <motion.div
+        variants={diagRing}
         style={{
           position: 'absolute', inset: 0,
           borderRadius: '50%',
@@ -62,8 +89,9 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
         }}
       />
       {/* Middle ring */}
-      <div
+      <motion.div
         className="xg-perf-ring-middle"
+        variants={diagRing}
         style={{
           position: 'absolute', inset: '14%',
           borderRadius: '50%',
@@ -72,8 +100,9 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
         }}
       />
       {/* Inner ring */}
-      <div
+      <motion.div
         className="xg-perf-ring-inner"
+        variants={diagRing}
         style={{
           position: 'absolute', inset: '32%',
           borderRadius: '50%',
@@ -83,7 +112,8 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
       />
 
       {/* Labels (fade in after rings) */}
-      <div
+      <motion.div
+        variants={diagLabel}
         style={{
           position: 'absolute',
           top: '4%', left: '28%', right: '28%',
@@ -107,9 +137,10 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
         }}>
           Execution Power &amp; Impact
         </div>
-      </div>
+      </motion.div>
 
-      <div
+      <motion.div
+        variants={diagLabel}
         style={{
           position: 'absolute',
           top: '20%', left: '22%', right: '22%',
@@ -133,15 +164,16 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
         }}>
           Performance Habits &amp; Skill Set
         </div>
-      </div>
+      </motion.div>
 
-      <div
+      <motion.div
+        variants={diagLabel}
         style={{
           position: 'absolute',
           top: '50%', left: '32%', right: '32%',
           textAlign: 'center',
           color: fg,
-          transform: 'translateY(-50%)'
+          y: '-50%',
         }}
       >
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, justifyContent: 'center' }}>
@@ -160,8 +192,8 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
         }}>
           Leadership Thinking<br />&amp; Winning Mindset
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
