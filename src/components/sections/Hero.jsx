@@ -16,6 +16,9 @@ export function Hero() {
         alignItems: 'center', justifyContent: 'center',
       }}
     >
+      {/* Video + lockup mirror the Preloader geometry exactly (full-bleed
+          100vh cover video, logo dead-centre of the first viewport) so the
+          intro reveal fades into the hero with zero jump. */}
       <video
         src="/assets/videos/logo_reveal.mp4"
         poster="/assets/videos/logo_reveal_poster.jpg"
@@ -26,36 +29,37 @@ export function Hero() {
         playsInline
         style={{
           position: 'absolute',
-          inset: 0,
+          top: 0, left: 0,
           width: '100%',
-          height: '100%',
+          height: '100vh',
           objectFit: 'cover',
-          transform: 'scale(0.85) translateY(-6vh)',
           zIndex: 1,
         }}
       />
       <div style={{
         position: 'absolute',
-        inset: 0,
+        top: 0, left: 0,
+        width: '100%',
+        height: '100vh',
         backgroundColor: '#000000',
         opacity: 0.2,
         zIndex: 2,
       }} />
       <div
-
         style={{
-          position: 'relative',
+          position: 'absolute',
+          top: 0, left: 0, right: 0,
+          height: '100vh',
           zIndex: 5,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          width: '100%',
-          transform: 'translateY(-6vh)',
+          padding: '0 20px',
         }}
       >
-        <Logo style={{ fontSize: 'clamp(64px, 14vw, 200px)' }} />
-        <div style={{ textAlign: 'center', marginTop: 'clamp(12px, 1.5vw, 20px)' }}>
+        <Logo style={{ fontSize: 'clamp(64px, 15vw, 200px)' }} />
+        <div style={{ textAlign: 'center', marginTop: 'clamp(16px, 2vw, 24px)' }}>
           <div style={{
             fontFamily: theme.body,
             fontSize: 'clamp(10px, 1.8vw, 24px)',
