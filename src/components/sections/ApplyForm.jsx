@@ -221,7 +221,7 @@ export function ApplyForm() {
         <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
           <motion.h2
             data-no-reveal
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.2, 0.7, 0.2, 1] }}
             style={{
@@ -235,7 +235,7 @@ export function ApplyForm() {
           </motion.h2>
           <motion.p
             data-no-reveal
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.2, 0.7, 0.2, 1] }}
             style={{

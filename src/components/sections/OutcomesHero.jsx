@@ -55,7 +55,7 @@ export function OutcomesHero() {
       }}>
         <div style={{ marginTop: 24, position: 'relative' }}>
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
             style={{
@@ -71,7 +71,7 @@ export function OutcomesHero() {
           </motion.div>
           <OutcomesHeading y={y} opacity={opacity} />
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: 0.65 }}
             style={{
@@ -90,7 +90,7 @@ export function OutcomesHero() {
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
           <div className="xg-hide-md" />
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.9 }}
             style={{

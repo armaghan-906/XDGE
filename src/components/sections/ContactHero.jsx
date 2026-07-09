@@ -55,7 +55,7 @@ export function ContactHero() {
         <div style={{ marginTop: 24, position: 'relative' }}>
           <ContactHeading />
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.45 }}
             style={{
@@ -74,7 +74,7 @@ export function ContactHero() {
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
           <div className="xg-hide-md" />
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.7 }}
             style={{ maxWidth: 560 }}

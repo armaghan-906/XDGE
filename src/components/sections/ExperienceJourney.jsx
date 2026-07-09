@@ -283,7 +283,7 @@ export function ExperienceJourney() {
 
         <motion.p
           data-no-reveal
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.9, ease: fadeEase, delay: 0.2 }}

@@ -1190,9 +1190,9 @@ section[data-screen-label] {
    The transition runs entirely on the GPU compositor. */
 .sr-init {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s var(--xg-ease),
-              transform 0.7s var(--xg-ease);
+  transform: translateY(48px);
+  transition: opacity 0.85s var(--xg-ease),
+              transform 0.85s var(--xg-ease);
 }
 
 .sr-init.sr-visible {

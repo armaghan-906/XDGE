@@ -34,10 +34,11 @@ export const theme = {
 export const fadeUp = {
   // No scale — animating scale on cards re-rasterizes text/shadows and fights
   // hover transforms (the main jerk source). Opacity + one translateY only.
-  hidden: { opacity: 0, y: 24 },
+  // 48px travel so every text block visibly rises from the bottom on scroll.
+  hidden: { opacity: 0, y: 48 },
   visible: {
     opacity: 1, y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] }
   },
 };
 

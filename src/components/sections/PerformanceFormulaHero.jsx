@@ -62,7 +62,7 @@ export function PerformanceFormulaHero() {
       }}>
         <div style={{ marginTop: 24, position: 'relative' }}>
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease, delay: 0.1 }}
             style={{
@@ -78,7 +78,7 @@ export function PerformanceFormulaHero() {
           </motion.div>
           <FormulaHeading y={y} opacity={opacity} />
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease, delay: 0.65 }}
             style={{
@@ -97,7 +97,7 @@ export function PerformanceFormulaHero() {
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
           <div className="xg-hide-md" />
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease, delay: 0.9 }}
             style={{
