@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { theme, fadeUp } from '../../theme';
+import { theme, fadeUp, cardStagger, cardRise } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
@@ -61,12 +61,12 @@ export function Insights() {
             >All Insights <span style={{ fontSize: 16 }}>→</span></motion.a>
           </motion.div>
         </Group>
-        <Group className="xg-3">
+        <Group className="xg-3" variants={cardStagger}>
           {posts.map((p, i) => (
             <motion.a
               key={i}
               href="#"
-              variants={fadeUp}
+              variants={cardRise}
               whileHover={{ y: -8, scale: 1.02 }}
               transition={{ duration: 0.3, ease: 'easeOut' }}
               className="xg-glass-solid"

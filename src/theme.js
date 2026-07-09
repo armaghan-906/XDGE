@@ -45,3 +45,18 @@ export const stagger = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.13, delayChildren: 0.12 } },
 };
+
+// Card grids: slower, more deliberate one-by-one cascade than the default
+// text stagger — each card rises for ~1.1s and the next starts 0.28s later.
+export const cardStagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.28, delayChildren: 0.15 } },
+};
+
+export const cardRise = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1, y: 0,
+    transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+  },
+};
