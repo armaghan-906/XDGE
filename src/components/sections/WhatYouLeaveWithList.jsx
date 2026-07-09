@@ -61,7 +61,7 @@ export function WhatYouLeaveWithList() {
       style={{
         background: theme.dark,
         color: theme.base,
-        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
@@ -69,7 +69,7 @@ export function WhatYouLeaveWithList() {
           lines={['WHAT YOU', 'LEAVE WITH.']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(36px, 10.5vw, 180px)',
+            fontSize: 'clamp(40px, 11.3vw, 200px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(48px, 7vw, 88px)',
           }}
@@ -77,7 +77,7 @@ export function WhatYouLeaveWithList() {
 
         <div className="xg-leave-list">
           {items.map((it) => (
-            <div
+            <motion.div
               key={it.title}
               variants={rowVariants}
               initial="hidden"
@@ -122,7 +122,7 @@ export function WhatYouLeaveWithList() {
                   maxWidth: 640,
                 }}>{it.desc}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

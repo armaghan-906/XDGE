@@ -8,25 +8,25 @@ function ApplyHeading() {
     <h1
       style={{
         fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(36px, 10.5vw, 180px)',
+        fontSize: 'clamp(40px, 11.3vw, 200px)',
         lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
         overflow: 'hidden',
         paddingBottom: '0.06em',
       }}
     >
-      <span
+      <motion.span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.0, ease, delay: 0.1 }}
         style={{ display: 'block' }}
-      >READY TO BUILD</span>
-      <span
+      >READY TO BUILD</motion.span>
+      <motion.span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.0, ease, delay: 0.22 }}
         style={{ display: 'block' }}
-      >YOUR EDGE?</span>
+      >YOUR EDGE?</motion.span>
     </h1>
   );
 }
@@ -47,7 +47,7 @@ export function ApplyHero() {
       <div style={{
         flex: 1,
         position: 'relative', zIndex: 10,
-        padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(160px, 18vw, 240px)',
+        padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(80px, 9vw, 120px)',
         display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
         gap: 32,
       }}>
@@ -57,7 +57,7 @@ export function ApplyHero() {
 
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
           <div className="xg-hide-md" />
-          <div
+          <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.55 }}
@@ -74,7 +74,7 @@ export function ApplyHero() {
               Tell us a little about yourself and we&rsquo;ll help identify the
               right pathway for your goals, interests, and ambitions.
             </p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

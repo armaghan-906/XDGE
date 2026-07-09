@@ -16,7 +16,7 @@ export function Culture() {
       style={{
         background: theme.dark,
         color: theme.base,
-        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px) clamp(56px, 8vw, 100px)',
+        padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px) clamp(32px, 4vw, 56px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
@@ -34,7 +34,7 @@ export function Culture() {
               lines={['OUR', 'CULTURE']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(36px, 10.5vw, 162px)',
+                fontSize: 'clamp(40px, 11.3vw, 200px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
               }}
             />

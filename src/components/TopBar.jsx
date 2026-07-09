@@ -110,8 +110,8 @@ export function TopBar() {
     return () => observer.disconnect();
   }, []);
 
-  // Hamburger adapts: dark on light sections, white on dark sections.
-  const fg = sectionTheme === 'light' ? theme.ink : theme.base;
+  // Hamburger adapts: black when open, otherwise dark on light / white on dark
+  const fg = open ? '#000000' : (sectionTheme === 'light' ? theme.ink : theme.base);
 
   const barBase = {
     height: 2, display: 'block', background: fg,
@@ -183,15 +183,15 @@ export function TopBar() {
             transition={{ duration: 1.0, ease: overlayEase }}
             style={{
               position: 'fixed', inset: 0,
-              background: theme.dark,
-              color: theme.base,
+              background: '#F3EFE6', // Light cream color matching the design
+              color: '#000000',
               zIndex: 1000,
               display: 'flex', flexDirection: 'column',
               padding: 'clamp(96px, 9vw, 112px) clamp(20px, 4vw, 48px) clamp(40px, 5vw, 56px)',
               overflowY: 'auto',
             }}
           >
-            <div className="xg-menu-grid">
+            <div className="xg-menu-grid" style={{ position: 'relative', zIndex: 2 }}>
               <div style={{
                 display: 'flex', flexDirection: 'column',
                 justifyContent: 'space-between', gap: 32,
@@ -200,27 +200,33 @@ export function TopBar() {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.4, ease: fadeEase } }}
                 >
-                  <div style={{ paddingBottom: 16, display: 'flex', alignItems: 'baseline' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                     <span style={{
                       fontFamily: theme.display, fontWeight: 900,
-                      fontSize: 'clamp(18px, 2.6vw, 30px)', color: theme.base,
-                      letterSpacing: '-0.02em', marginRight: '0.24em',
-                    }}>The</span>
-                    <Logo style={{ fontSize: 'clamp(36px, 5.3vw, 64px)' }} />
-                    <span style={{
-                      fontFamily: theme.display, fontWeight: 900,
-                      fontSize: 'clamp(36px, 5.3vw, 64px)', color: theme.base,
-                      marginLeft: '0.05em'
-                    }}>.</span>
-                  </div>
-                  <div style={{
-                    marginTop: 8,
-                    fontFamily: theme.body,
-                    fontSize: 13, letterSpacing: '0.14em',
-                    textTransform: 'uppercase',
-                    fontWeight: 600, color: theme.base,
-                  }}>
-                    Career &middot; University &middot; School
+                      fontSize: 'clamp(16px, 2.2vw, 24px)', color: '#000000',
+                      lineHeight: 1
+                    }}>THE</span>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <span style={{
+                        fontFamily: theme.display, fontWeight: 900,
+                        fontSize: 'clamp(48px, 6.5vw, 88px)', color: '#000000',
+                        letterSpacing: '-0.02em', lineHeight: 0.85
+                      }}>XDG</span>
+                      <svg viewBox="0 0 100 100" style={{ height: 'clamp(32px, 4.5vw, 64px)', marginLeft: '6px', fill: '#000000' }}>
+                        <rect y="15" width="100" height="15" />
+                        <rect y="45" width="100" height="15" />
+                        <rect y="75" width="100" height="15" />
+                      </svg>
+                    </div>
+                    <div style={{
+                      marginTop: 8,
+                      fontFamily: theme.body,
+                      fontSize: 'clamp(10px, 1.2vw, 14px)', letterSpacing: '0.02em',
+                      textTransform: 'uppercase',
+                      fontWeight: 600, color: '#000000',
+                    }}>
+                      LEAD YOUR OWN OPPORTUNITIES
+                    </div>
                   </div>
                 </motion.div>
 
@@ -229,14 +235,14 @@ export function TopBar() {
                   initial={{ opacity: 0, scale: 1.06 }}
                   animate={{ opacity: 1, scale: 1, transition: { duration: 1.0, delay: 0.55, ease: [0.22, 1, 0.36, 1] } }}
                   style={{
-                    width: '100%', maxWidth: 420,
-                    aspectRatio: '16/9', overflow: 'hidden',
+                    width: '100%', maxWidth: 480,
+                    aspectRatio: '4/3', overflow: 'hidden',
                     background: '#000000',
                   }}
                 >
                   <img
-                    src="/assets/who-we-are.webp"
-                    alt="XDGE workspace"
+                    src="/assets/hero-presenter.jpg"
+                    alt="XDGE in action"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   />
                 </motion.div>
@@ -265,7 +271,7 @@ export function TopBar() {
                         fontFamily: theme.display,
                         fontSize: 'clamp(36px, 5.5vw, 64px)',
                         lineHeight: 1, letterSpacing: '-0.02em',
-                        color: theme.base, textDecoration: 'none',
+                        color: '#000000', textDecoration: 'none',
                         textTransform: 'uppercase', fontWeight: 900,
                         whiteSpace: 'nowrap',
                         transition: 'color 0.3s var(--xg-ease)',
@@ -293,7 +299,7 @@ export function TopBar() {
                       fontFamily: theme.display,
                       fontSize: 'clamp(20px, 2.6vw, 38px)',
                       lineHeight: 1.05, letterSpacing: '-0.005em',
-                      color: theme.base, textDecoration: 'none',
+                      color: '#000000', textDecoration: 'none',
                       textTransform: 'uppercase', fontWeight: 900,
                     };
                     const shared = {
@@ -324,7 +330,7 @@ export function TopBar() {
                 >
                   <div style={{
                     fontSize: 11, letterSpacing: '0.16em',
-                    textTransform: 'uppercase', color: theme.subtitle,
+                    textTransform: 'uppercase', color: '#000000',
                     marginBottom: 12, fontWeight: 600,
                   }}>Follow Us</div>
                   <div style={{
@@ -341,9 +347,9 @@ export function TopBar() {
                         transition={{ duration: 0.25 }}
                         style={{
                           width: 36, height: 36, borderRadius: '50%',
-                          border: `1px solid ${theme.borderLight}`,
+                          border: `1px solid rgba(0,0,0,0.2)`,
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          color: theme.base, textDecoration: 'none',
+                          color: '#000000', textDecoration: 'none',
                         }}
                       >{s.icon}</motion.a>
                     ))}

@@ -17,7 +17,7 @@ export function StepIntoNextLevel() {
         color: theme.base,
         position: 'relative',
         overflow: 'hidden',
-        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>

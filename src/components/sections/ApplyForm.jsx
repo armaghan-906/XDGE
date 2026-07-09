@@ -215,11 +215,11 @@ export function ApplyForm() {
         data-section-theme="light"
         style={{
           background: theme.base, color: theme.ink,
-          padding: 'clamp(96px, 14vw, 160px) clamp(20px, 4vw, 40px)',
+          padding: 'clamp(56px, 7vw, 80px) clamp(20px, 4vw, 40px)',
         }}
       >
         <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
-          <h2
+          <motion.h2
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.2, 0.7, 0.2, 1] }}
@@ -231,8 +231,8 @@ export function ApplyForm() {
             }}
           >
             Thank you &mdash; your enquiry is in.
-          </h2>
-          <p
+          </motion.h2>
+          <motion.p
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.2, 0.7, 0.2, 1] }}
@@ -244,7 +244,7 @@ export function ApplyForm() {
             Nicola and the team will personally review what you&rsquo;ve shared
             and be in touch shortly to discuss the right pathway for your
             goals.
-          </p>
+          </motion.p>
         </div>
       </section>
     );
@@ -256,7 +256,7 @@ export function ApplyForm() {
       data-section-theme="light"
       style={{
         background: theme.base, color: theme.ink,
-        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
       <form onSubmit={onSubmit} style={{ maxWidth: 920, margin: '0 auto' }}>

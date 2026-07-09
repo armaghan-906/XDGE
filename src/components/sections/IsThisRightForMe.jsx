@@ -182,7 +182,6 @@ function Card({ group }) {
   );
 }
 
-import { FloatingVideo } from '../primitives/FloatingVideo';
 
 export function IsThisRightForMe() {
   return (
@@ -194,13 +193,9 @@ export function IsThisRightForMe() {
         color: theme.base,
         position: 'relative',
         overflow: 'hidden',
-        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
-      <FloatingVideo 
-        src="/assets/videos/thunder_2.mp4" 
-        style={{ top: 120, right: 80, opacity: 0.8, transform: 'scale(1.2)', zIndex: 0 }} 
-      />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         {/* Full-width heading so it lays out as a clean 2-liner (IS THIS / RIGHT FOR ME)
             instead of being squeezed by the 2-column grid; CTA drops below, right-aligned. */}

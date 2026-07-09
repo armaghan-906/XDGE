@@ -66,7 +66,7 @@ export function WhatYouWillExperience() {
           ]}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(36px, 10.5vw, 180px)',
+            fontSize: 'clamp(40px, 11.3vw, 200px)',
             lineHeight: 0.92, letterSpacing: '-0.02em',
             textAlign: 'left',
           }}
@@ -110,7 +110,7 @@ export function WhatYouWillExperience() {
         {/* The People Behind Your Progress — bottom right */}
         <div data-reveal style={{
           marginLeft: 'auto', maxWidth: 560,
-          marginTop: 'clamp(80px, 12vw, 160px)',
+          marginTop: 'clamp(40px, 6vw, 80px)',
         }}>
           <h3 style={{
             margin: 0, fontFamily: theme.subheading, fontWeight: 400,

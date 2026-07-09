@@ -50,7 +50,7 @@ export function IndividualProgramme() {
       style={{
         background: theme.dark,
         color: theme.base,
-        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
@@ -58,13 +58,13 @@ export function IndividualProgramme() {
           lines={['INDIVIDUAL', 'PROGRAM', 'EXPERIENCE']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(36px, 10.5vw, 162px)',
+            fontSize: 'clamp(40px, 11.3vw, 200px)',
             lineHeight: 0.92, letterSpacing: '-0.02em',
             marginBottom: 'clamp(28px, 4vw, 40px)',
           }}
         />
 
-        <p
+        <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -85,7 +85,7 @@ export function IndividualProgramme() {
           clear focus on preparing you for your next level. It suits those who
           perform best in a personalised setting and want direct coaching,
           focused development, and a structured path to accelerate results.
-        </p>
+        </motion.p>
 
         <div style={{
           height: 1, background: 'rgba(255,255,255,0.2)',
@@ -106,7 +106,7 @@ export function IndividualProgramme() {
             </h3>
           </div>
 
-          <ul
+          <motion.ul
             variants={listContainer}
             initial="hidden"
             whileInView="visible"
@@ -118,7 +118,7 @@ export function IndividualProgramme() {
             }}
           >
             {items.map((it) => (
-              <li
+              <motion.li
                 key={it.title}
                 variants={listItem}
                 style={{
@@ -149,9 +149,9 @@ export function IndividualProgramme() {
                     color: theme.subtitle,
                   }}>{it.desc}</p>
                 </div>
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         </Group>
       </div>
     </section>

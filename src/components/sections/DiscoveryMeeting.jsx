@@ -13,7 +13,7 @@ export function DiscoveryMeeting() {
       style={{
         background: theme.base,
         color: theme.ink,
-        padding: 'clamp(80px, 12vw, 160px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(48px, 6vw, 80px) clamp(20px, 4vw, 40px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
@@ -28,7 +28,7 @@ export function DiscoveryMeeting() {
             style={{
               fontFamily: theme.displayTight,
               fontWeight: 600,
-              fontSize: 'clamp(36px, 10.5vw, 120px)',
+              fontSize: 'clamp(40px, 11.3vw, 200px)',
               lineHeight: 1.05,
               letterSpacing: '-0.02em',
               margin: 0,

@@ -32,27 +32,28 @@ export function ExperienceHero() {
       <div style={{
         flex: 1,
         position: 'relative', zIndex: 10,
-        padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(56px, 7vw, 88px)',
+        padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(32px, 4vw, 48px)',
         display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
         gap: 'clamp(40px, 6vw, 72px)',
       }}>
-        {/* Big hollow heading with a cyan X — "HOW XDGE WORKS" */}
+        {/* Two-line hero — "HOW XDGE" (size B) over "WORKS" (size A), cyan X */}
         <motion.div style={{ y, opacity, marginTop: 8 }}>
           <SplitHeading
             tag="h1"
             lines={[
-              <span style={{ whiteSpace: 'nowrap' }}>
+              <span style={{ display: 'block', whiteSpace: 'nowrap', fontSize: '0.45em', paddingBottom: '0.1em' }}>
                 <span className="hollow-text" style={{ paddingRight: '0.28em' }}>HOW</span>
                 <span className="cyan-text">X</span>
-                <span className="hollow-text" style={{ paddingRight: '0.28em' }}>DGE</span>
-                <span className="hollow-text">WORKS</span>
+                <span className="hollow-text">DGE</span>
               </span>,
+              <span className="hollow-text" style={{ display: 'block' }}>WORKS</span>,
             ]}
             style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(30px, 9vw, 150px)',
+              fontSize: 'clamp(40px, 11.3vw, 200px)',
               lineHeight: 0.95, letterSpacing: '-0.03em',
               textTransform: 'uppercase',
+              textAlign: 'center',
             }}
           />
         </motion.div>

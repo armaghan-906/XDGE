@@ -31,7 +31,7 @@ export function HowWeDeliver() {
       style={{
         background: theme.dark,
         color: theme.base,
-        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
@@ -39,13 +39,13 @@ export function HowWeDeliver() {
           lines={['HOW WE', 'DELIVER']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(36px, 10.5vw, 180px)',
+            fontSize: 'clamp(40px, 11.3vw, 200px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(24px, 4vw, 36px)',
           }}
         />
 
-        <p
+        <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -61,11 +61,11 @@ export function HowWeDeliver() {
           }}
         >
           Most of our programmes are delivered in both formats.
-        </p>
+        </motion.p>
 
         <Group className="xg-2" style={{ gap: 'clamp(28px, 4vw, 56px)', alignItems: 'stretch' }}>
           {formats.map((f) => (
-            <article
+            <motion.article
               key={f.title}
               variants={cardVariants}
               style={{
@@ -109,7 +109,7 @@ export function HowWeDeliver() {
                   maxWidth: 540,
                 }}>{f.desc}</p>
               </div>
-            </article>
+            </motion.article>
           ))}
         </Group>
       </div>

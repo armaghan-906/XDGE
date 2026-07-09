@@ -28,7 +28,7 @@ export function TheReality() {
       style={{
         background: theme.dark,
         color: theme.base,
-        padding: 'clamp(44px, 7vw, 84px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(28px, 4vw, 48px) clamp(20px, 4vw, 40px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
@@ -36,7 +36,7 @@ export function TheReality() {
           lines={['THE REALITY']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(36px, 10.5vw, 157.5px)',
+            fontSize: 'clamp(40px, 11.3vw, 200px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(32px, 5vw, 64px)',
           }}
@@ -87,7 +87,7 @@ export function TheReality() {
           </div>
         </Group>
 
-        <div
+        <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true, amount: 0.6 }}
@@ -104,7 +104,7 @@ export function TheReality() {
             lines={['What gets you chosen?']}
             style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(36px, 10.5vw, 169.5px)',
+              fontSize: 'clamp(40px, 11.3vw, 200px)',
               lineHeight: 0.98, letterSpacing: '-0.02em',
               textTransform: 'uppercase',
               marginBottom: 'clamp(32px, 4vw, 48px)',

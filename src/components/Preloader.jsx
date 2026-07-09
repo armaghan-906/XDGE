@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Logo } from './Logo';
 
 export function Preloader() {
-  const [show, setShow] = useState(true);
+  // ?skipintro query param bypasses the intro (used for automated screenshots/tests)
+  const [show, setShow] = useState(() => !window.location.search.includes('skipintro'));
 
   useEffect(() => {
     // Failsafe: if the video doesn't finish (e.g. autoPlay blocked on mobile),

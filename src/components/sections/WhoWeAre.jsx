@@ -46,7 +46,7 @@ export function WhoWeAre() {
         color: theme.base,
         position: 'relative',
         overflow: 'hidden',
-        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
@@ -62,13 +62,11 @@ export function WhoWeAre() {
           />
           <SplitHeading
             lines={[
-              <>
+              <span style={{ whiteSpace: 'nowrap' }}>
                 <span className="cyan-text" style={{ paddingRight: '0.2em' }}>WHO</span>
-                <span className="hollow-text">ARE</span>
-              </>,
-              'WE'
+                <span className="hollow-text">ARE WE</span>
+              </span>,
             ]}
-            lineClasses={['', 'hollow-text']}
             style={{
               fontFamily: theme.display, fontWeight: 900,
               fontSize: 'clamp(40px, 11.3vw, 200px)',

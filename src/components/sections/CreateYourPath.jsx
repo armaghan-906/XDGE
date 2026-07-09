@@ -17,7 +17,7 @@ export function CreateYourPath() {
         position: 'relative',
         overflow: 'hidden',
         // generous vertical space above and below the heading
-        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
       <FloatingVideo
@@ -41,7 +41,7 @@ export function CreateYourPath() {
         >
           <span
             className="cyan-text"
-            style={{ display: 'block', fontSize: 'clamp(22px, 6.4vw, 118px)', whiteSpace: 'nowrap', paddingLeft: '0.05em', marginBottom: '0.1em' }}
+            style={{ display: 'block', fontSize: 'clamp(18px, 5.09vw, 90px)', whiteSpace: 'nowrap', paddingLeft: '0.05em', marginBottom: '0.1em' }}
           >
             CREATE YOUR OWN PATH &amp;
           </span>

@@ -45,7 +45,7 @@ export function StandardsExpectations() {
       style={{
         background: theme.dark,
         color: theme.base,
-        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
@@ -56,7 +56,7 @@ export function StandardsExpectations() {
               lineClasses={['hollow-text', 'cyan-text']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(36px, 10.5vw, 192px)',
+                fontSize: 'clamp(40px, 11.3vw, 200px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
                 textAlign: 'left',
               }}
@@ -82,7 +82,7 @@ export function StandardsExpectations() {
           }}
         >
           {items.map((it, i) => (
-            <article
+            <motion.article
               key={it.title}
               variants={cardVariants}
               whileHover={{ y: -4, borderColor: theme.base }}
@@ -117,7 +117,7 @@ export function StandardsExpectations() {
                 margin: 0,
                 color: theme.subtitle,
               }}>{it.desc}</p>
-            </article>
+            </motion.article>
           ))}
         </Group>
       </div>

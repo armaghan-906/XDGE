@@ -76,16 +76,16 @@ function Bio({ intro, more }) {
             }}
           >
             {open ? 'Read Less' : 'Read More'}
-            <span
+            <motion.span
               animate={{ rotate: open ? 45 : 0 }}
               transition={{ duration: 0.3, ease: [0.2, 0.7, 0.2, 1] }}
               style={{ display: 'inline-flex', fontSize: 16, lineHeight: 1 }}
-            >+</span>
+            >+</motion.span>
           </button>
 
-          <>
+          <AnimatePresence initial={false}>
             {open && (
-              <div
+              <motion.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
@@ -97,9 +97,9 @@ function Bio({ intro, more }) {
                   lineHeight: 1.65, margin: '12px 0 0',
                   color: theme.subtitle,
                 }}>{more}</p>
-              </div>
+              </motion.div>
             )}
-          </>
+          </AnimatePresence>
         </>
       )}
     </div>
@@ -139,7 +139,7 @@ export function AboutTeam() {
       style={{
         background: theme.dark,
         color: theme.base,
-        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>

@@ -14,7 +14,7 @@ export function CapabilityBuiltInsideOut() {
       style={{
         background: theme.dark,
         color: theme.base,
-        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
@@ -28,16 +28,16 @@ export function CapabilityBuiltInsideOut() {
           }}
           className="xg-cap-grid"
         >
-          <div
+          <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 1.2, ease: fadeEase }}
           >
             <PerformanceDiagram maxWidth={760} />
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -48,12 +48,12 @@ export function CapabilityBuiltInsideOut() {
               lines={['CAPABILITY', 'BUILT', 'INSIDE', 'OUT']}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
-                fontSize: 'clamp(36px, 10.5vw, 192px)',
+                fontSize: 'clamp(40px, 11.3vw, 200px)',
                 lineHeight: 0.92, letterSpacing: '-0.02em',
                 textAlign: 'right',
               }}
             />
-          </div>
+          </motion.div>
         </div>
 
         <div style={{
@@ -120,7 +120,7 @@ export function CapabilityBuiltInsideOut() {
               develop how you think, act, and perform.
             </p>
 
-            <a
+            <motion.a
               whileHover={{ x: 4 }}
               transition={{ duration: 0.3, ease: fadeEase }}
               href="/about"
@@ -137,7 +137,7 @@ export function CapabilityBuiltInsideOut() {
               }}
             >
               More About Us <span style={{ fontSize: 16 }}>→</span>
-            </a>
+            </motion.a>
           </div>
         </Group>
       </div>

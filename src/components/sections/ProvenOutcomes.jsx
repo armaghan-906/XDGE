@@ -206,7 +206,7 @@ export function ProvenOutcomes() {
         color: theme.base,
         position: 'relative',
         overflow: 'hidden',
-        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
@@ -251,7 +251,7 @@ export function ProvenOutcomes() {
           </div>
           <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,0.18)' }} />
           <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-            <button
+            <motion.button
               onClick={goPrev}
               whileHover={{ scale: 1.02, x: -2 }}
               whileTap={{ scale: 0.98 }}
@@ -273,8 +273,8 @@ export function ProvenOutcomes() {
             >
               <span style={{ display: 'inline-flex', fontSize: 18 }}>{ArrowLeft}</span>
               Previous Review
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               onClick={goNext}
               whileHover={{ scale: 1.02, x: 2 }}
               whileTap={{ scale: 0.98 }}
@@ -296,7 +296,7 @@ export function ProvenOutcomes() {
             >
               See More Reviews
               <span style={{ display: 'inline-flex', fontSize: 18 }}>{ArrowRight}</span>
-            </button>
+            </motion.button>
           </div>
         </div>
 

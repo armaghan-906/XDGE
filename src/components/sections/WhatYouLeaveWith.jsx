@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FloatingVideo } from '../primitives/FloatingVideo';
 import { theme } from '../../theme';
 
 // Carousel 2 imagery — every image from "Images for Carousel 2" (optimized WebP),
@@ -69,18 +68,9 @@ export function WhatYouLeaveWith() {
         color: theme.base,
         position: 'relative',
         overflow: 'hidden',
-        padding: 'clamp(160px, 18vw, 240px) 0',
+        padding: 'clamp(80px, 9vw, 120px) 0',
       }}
     >
-      <FloatingVideo
-        src="/assets/videos/thunder_1.mp4"
-        style={{
-          top: '30%', right: 20,
-          opacity: 0.35,
-          width: 'clamp(400px, 80vw, 1000px)'
-        }}
-      />
-
       <div style={{ textAlign: 'center', marginBottom: 60, position: 'relative', zIndex: 10, padding: '0 clamp(20px, 4vw, 40px)' }}>
         <h2 style={{
           fontFamily: theme.display,

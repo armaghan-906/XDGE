@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
-import { FloatingVideo } from '../primitives/FloatingVideo';
 
 const principles = [
   {
@@ -54,20 +53,11 @@ export function AboutPrinciples() {
         color: theme.base,
         position: 'relative',
         overflow: 'hidden',
-        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <div style={{ position: 'relative' }}>
-          <FloatingVideo
-            src="/assets/videos/lightning_3.mp4"
-            style={{
-              top: '45%', left: '32%',
-              transform: 'translate(-50%, -50%)',
-              width: 'clamp(600px, 100vw, 1800px)',
-              opacity: 0.35, zIndex: -1,
-            }}
-          />
           <SplitHeading
             lines={['WHY XDGE', 'EXISTS']}
             lineClasses={['hollow-text', 'cyan-text']}

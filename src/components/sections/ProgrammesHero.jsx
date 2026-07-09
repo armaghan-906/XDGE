@@ -8,7 +8,7 @@ function ProgrammesHeading() {
     <h1
       style={{
         fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(36px, 10.5vw, 199.5px)',
+        fontSize: 'clamp(40px, 11.3vw, 200px)',
         lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
         overflow: 'hidden',
@@ -37,7 +37,7 @@ export function ProgrammesHero() {
       <div style={{
         flex: 1,
         position: 'relative', zIndex: 10,
-        padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(160px, 18vw, 240px)',
+        padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(80px, 9vw, 120px)',
         display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
         gap: 32,
       }}>

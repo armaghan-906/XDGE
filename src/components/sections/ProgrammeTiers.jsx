@@ -190,7 +190,7 @@ function TierSeparator() {
     <div
       aria-hidden="true"
       style={{
-        margin: 'clamp(96px, 14vw, 180px) 0',
+        margin: 'clamp(56px, 7vw, 96px) 0',
         height: 1,
         background: 'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.18) 50%, transparent 100%)',
       }}
@@ -206,7 +206,7 @@ export function ProgrammeTiers() {
       style={{
         background: theme.dark,
         color: theme.base,
-        padding: 'clamp(96px, 14vw, 180px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(56px, 7vw, 96px) clamp(20px, 4vw, 40px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>

@@ -126,7 +126,7 @@ function Modal({ slide, onClose }) {
       transition={{ duration: 0.3 }}
       onClick={onClose}
       style={{
-        position: 'fixed', inset: 0, zIndex: 100,
+        position: 'fixed', inset: 0, zIndex: 2000,
         background: 'radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.12) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 60%), rgba(0,0,0,0.88)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         padding: 'clamp(16px, 4vw, 40px)',
@@ -355,7 +355,7 @@ export function DifferentAgesDifferentFocus() {
       style={{
         background: theme.dark,
         color: theme.base,
-        padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px)',
+        padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
@@ -363,7 +363,7 @@ export function DifferentAgesDifferentFocus() {
           lines={['HOW DOES XDGE DIFFER', 'BY AGE AND OUTCOMES?']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(36px, 10.5vw, 124.5px)',
+            fontSize: 'clamp(40px, 11.3vw, 200px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(28px, 4vw, 40px)',
           }}
@@ -401,11 +401,11 @@ export function DifferentAgesDifferentFocus() {
         </Group>
       </div>
 
-      <>
+      <AnimatePresence>
         {openIndex !== null && (
           <Modal slide={slides[openIndex]} onClose={() => setOpenIndex(null)} />
         )}
-      </>
+      </AnimatePresence>
     </section>
   );
 }

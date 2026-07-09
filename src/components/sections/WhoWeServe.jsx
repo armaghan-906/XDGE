@@ -159,7 +159,6 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
   );
 }
 
-import { FloatingVideo } from '../primitives/FloatingVideo';
 
 export function WhoWeServe() {
   const [hovered, setHovered] = useState(null);
@@ -169,31 +168,11 @@ export function WhoWeServe() {
       background: theme.dark, color: theme.base,
       position: 'relative',
       overflow: 'hidden',
-      padding: 'clamp(180px, 22vw, 320px) clamp(20px, 4vw, 40px) clamp(180px, 22vw, 320px)',
+      padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px) clamp(90px, 11vw, 160px)',
     }}>
-      <FloatingVideo 
-        src="/assets/videos/thunder_1.mp4" 
-        style={{ 
-          top: '35%', right: '-10%', 
-          opacity: 0.4, 
-          width: 'clamp(600px, 80vw, 1200px)',
-          zIndex: 0 
-        }} 
-      />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <Group style={{ display: 'flex', flexDirection: 'column', marginBottom: 'clamp(32px, 6vw, 56px)' }}>
           <div style={{ position: 'relative', alignSelf: 'center', textAlign: 'center', padding: '40px 0' }}>
-            <FloatingVideo 
-              src="/assets/videos/lightning_3.mp4" 
-              style={{ 
-                top: '50%', 
-                left: '50%', 
-                transform: 'translate(-50%, -50%)',
-                width: 'clamp(600px, 80vw, 1200px)',
-                opacity: 0.4, 
-                zIndex: -1 
-              }} 
-            />
             <motion.h2
               data-no-reveal
               variants={stagger}

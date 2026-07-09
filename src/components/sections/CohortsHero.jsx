@@ -5,30 +5,30 @@ import { HeroAmbient } from '../HeroAmbient';
 
 function CohortsHeading({ y, opacity }) {
   return (
-    <h1
+    <motion.h1
       style={{
         y, opacity,
         fontFamily: theme.display, fontWeight: 900,
-        fontSize: 'clamp(36px, 10.5vw, 199.5px)',
+        fontSize: 'clamp(40px, 11.3vw, 200px)',
         lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
         color: theme.base, display: 'block',
         overflow: 'hidden',
         paddingBottom: '0.06em',
       }}
     >
-      <span
+      <motion.span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.6, ease: [0.2, 0.7, 0.2, 1], delay: 0.25 }}
         style={{ display: 'block' }}
-      >COHORTS &amp;</span>
-      <span
+      >COHORTS &amp;</motion.span>
+      <motion.span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.6, ease: [0.2, 0.7, 0.2, 1], delay: 0.4 }}
         style={{ display: 'block' }}
-      >INDIVIDUALS.</span>
-    </h1>
+      >INDIVIDUALS.</motion.span>
+    </motion.h1>
   );
 }
 
@@ -54,18 +54,18 @@ export function CohortsHero() {
       <div style={{
         flex: 1,
         position: 'relative', zIndex: 10,
-        padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(160px, 18vw, 240px)',
+        padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(80px, 9vw, 120px)',
         display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
         gap: 32,
       }}>
         <div style={{ marginTop: 24, position: 'relative' }}>
-          <div
+          <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             style={{
               fontFamily: theme.display, fontWeight: 700,
-              fontSize: 'clamp(33px, 4.2vw, 60px)',
+              fontSize: 'clamp(18px, 5.09vw, 90px)',
               lineHeight: 1, letterSpacing: '-0.01em',
               color: theme.base,
               marginBottom: 'clamp(8px, 1.5vw, 16px)',
@@ -73,9 +73,9 @@ export function CohortsHero() {
             }}
           >
             The
-          </div>
+          </motion.div>
           <CohortsHeading y={y} opacity={opacity} />
-          <div
+          <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.65 }}
@@ -89,12 +89,12 @@ export function CohortsHero() {
             }}
           >
             Tailored for your next step.
-          </div>
+          </motion.div>
         </div>
 
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
           <div className="xg-hide-md" />
-          <div
+          <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
@@ -121,7 +121,7 @@ export function CohortsHero() {
             }}>
               Two pathways. One standard of excellence.
             </p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

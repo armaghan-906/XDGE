@@ -82,7 +82,7 @@ export function Footer() {
           className="xdge-footer-marquee"
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(36px, 10.5vw, 199.5px)',
+            fontSize: 'clamp(40px, 11.3vw, 200px)',
             lineHeight: 0.95, letterSpacing: '-0.01em',
             color: theme.base,
           }}
@@ -132,7 +132,7 @@ export function Footer() {
             }}>Follow Us</div>
             <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
               {socials.map((s) => (
-                <a
+                <motion.a
                   key={s.name}
                   href={s.href}
                   aria-label={s.name}
@@ -145,7 +145,7 @@ export function Footer() {
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     color: theme.base, textDecoration: 'none',
                   }}
-                >{s.icon}</a>
+                >{s.icon}</motion.a>
               ))}
             </div>
           </div>
@@ -211,7 +211,7 @@ export function Footer() {
                 }}
               />
             </div>
-            <button
+            <motion.button
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
               style={{
@@ -221,7 +221,7 @@ export function Footer() {
                 color: theme.base, fontSize: 14, cursor: 'pointer', fontWeight: 500,
                 borderRadius: 4,
               }}
-            >Subscribe</button>
+            >Subscribe</motion.button>
           </div>
         </div>
 
