@@ -6,6 +6,7 @@ function ApplyHeading() {
   const ease = [0.2, 0.7, 0.2, 1];
   return (
     <h1
+      data-no-reveal
       style={{
         fontFamily: theme.display, fontWeight: 900,
         fontSize: 'clamp(40px, 11.3vw, 200px)',

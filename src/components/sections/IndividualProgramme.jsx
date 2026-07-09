@@ -65,6 +65,7 @@ export function IndividualProgramme() {
         />
 
         <motion.p
+          data-no-reveal
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -107,6 +108,7 @@ export function IndividualProgramme() {
           </div>
 
           <motion.ul
+            data-no-reveal
             variants={listContainer}
             initial="hidden"
             whileInView="visible"

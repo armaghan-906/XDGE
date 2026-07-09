@@ -46,6 +46,7 @@ export function HowWeDeliver() {
         />
 
         <motion.p
+          data-no-reveal
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -67,6 +68,7 @@ export function HowWeDeliver() {
           {formats.map((f) => (
             <motion.article
               key={f.title}
+              data-no-reveal
               variants={cardVariants}
               style={{
                 display: 'flex', flexDirection: 'column',

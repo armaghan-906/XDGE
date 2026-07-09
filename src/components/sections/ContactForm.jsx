@@ -136,6 +136,7 @@ export function ContactForm() {
       >
         <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
           <motion.h2
+            data-no-reveal
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.2, 0.7, 0.2, 1] }}
@@ -149,6 +150,7 @@ export function ContactForm() {
             Thank you &mdash; your message is on its way.
           </motion.h2>
           <motion.p
+            data-no-reveal
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.2, 0.7, 0.2, 1] }}

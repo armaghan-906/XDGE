@@ -84,6 +84,7 @@ export function StandardsExpectations() {
           {items.map((it, i) => (
             <motion.article
               key={it.title}
+              data-no-reveal
               variants={cardVariants}
               whileHover={{ y: -4, borderColor: theme.base }}
               transition={{ duration: 0.3, ease: fadeEase }}

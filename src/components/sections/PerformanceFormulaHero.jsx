@@ -7,6 +7,7 @@ function FormulaHeading({ y, opacity }) {
   const ease = [0.22, 1, 0.36, 1];
   return (
     <motion.h1
+      data-no-reveal
       style={{
         y, opacity,
         fontFamily: theme.display, fontWeight: 900,

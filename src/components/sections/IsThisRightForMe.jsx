@@ -61,6 +61,7 @@ function Card({ group }) {
   return (
     <motion.article
       variants={fadeUp}
+      data-no-reveal
       className="xg-glass-solid"
       whileHover={{ y: -8, scale: 1.02 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}

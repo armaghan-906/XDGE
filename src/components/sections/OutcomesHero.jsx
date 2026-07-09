@@ -6,6 +6,7 @@ import { HeroAmbient } from '../HeroAmbient';
 function OutcomesHeading({ y, opacity }) {
   return (
     <motion.h1
+      data-no-reveal
       style={{
         y, opacity,
         fontFamily: theme.display, fontWeight: 900,
