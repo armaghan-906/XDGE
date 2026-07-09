@@ -1200,6 +1200,46 @@ section[data-screen-label] {
   transform: translateY(0);
 }
 
+/* ── Reveal variety ──────────────────────────────────────────────────────────
+   Blocks opt into a different entrance via data-reveal="left|right|scale|blur"
+   (default is the 48px bottom rise). sr-visible's translateY(0) resets every
+   axis, so these only need to override the initial state. */
+[data-reveal="left"].sr-init { transform: translateX(-64px); }
+[data-reveal="right"].sr-init { transform: translateX(64px); }
+[data-reveal="scale"].sr-init { transform: translateY(28px) scale(0.95); }
+[data-reveal="blur"].sr-init {
+  filter: blur(14px);
+  transition: opacity 0.85s var(--xg-ease),
+              transform 0.85s var(--xg-ease),
+              filter 0.85s var(--xg-ease);
+}
+[data-reveal="blur"].sr-init.sr-visible { filter: blur(0); }
+
+/* ── Micro-interactions ──────────────────────────────────────────────────────
+   Standalone scale/translate properties compose with framer's inline
+   transform, so these never fight the reveal or hover animations. */
+button:active,
+a:active,
+[data-cursor="grow"]:active { scale: 0.96; }
+
+/* Card image zoom on hover (Insights + Is This Right For Me glass cards) */
+.xg-glass-solid img { transition: scale 0.9s var(--xg-ease); }
+.xg-glass-solid:hover img { scale: 1.06; }
+
+/* Team portraits ease in closer on hover */
+.xg-team-grid img { transition: scale 1s var(--xg-ease); }
+.xg-team-grid > div:hover img { scale: 1.05; }
+
+/* Form focus — accent underline + soft glow */
+input, textarea, select {
+  transition: border-color 0.35s var(--xg-ease), box-shadow 0.35s var(--xg-ease);
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #2C6FD6 !important;
+  box-shadow: 0 10px 24px -12px rgba(44, 111, 214, 0.45);
+  outline: none;
+}
+
 /* Page transition: incoming page fades + rises into place.
    Uses `backwards` fill (see PageTransition.jsx) so the transform never
    persists — otherwise translateY(0) would establish a containing block

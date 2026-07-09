@@ -41,7 +41,7 @@ export function AboutHero() {
           marginTop: 'clamp(120px, 22vw, 360px)',
         }}>
           <div style={{ maxWidth: 640 }}>
-            <h3 style={{
+            <h3 data-reveal="blur" style={{
               fontFamily: theme.body,
               fontSize: 'clamp(20px, 2.2vw, 28px)',
               lineHeight: 1.3, fontWeight: 600,

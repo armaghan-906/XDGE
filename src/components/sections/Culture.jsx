@@ -23,7 +23,7 @@ export function Culture() {
         <Group className="xg-2" style={{ alignItems: 'flex-start', marginBottom: 'clamp(40px, 6vw, 64px)' }}>
           <div>
             <div
-              data-reveal
+              data-reveal="blur"
               style={{
                 fontSize: 12, letterSpacing: '0.16em',
                 textTransform: 'uppercase', color: theme.subtitle,

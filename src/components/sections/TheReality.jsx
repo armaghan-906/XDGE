@@ -1,9 +1,31 @@
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
 const ACCENT = theme.ink;
+
+// Stat counter — counts up once when scrolled into view (ease-out cubic).
+function CountUp({ to, suffix = '%', duration = 1.6 }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, amount: 0.6 });
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    let raf;
+    const t0 = performance.now();
+    const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+    const tick = (now) => {
+      const p = Math.min(1, (now - t0) / (duration * 1000));
+      setVal(Math.round(easeOut(p) * to));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, to, duration]);
+  return <span ref={ref}>{val}{suffix}</span>;
+}
 
 export function TheReality() {
   const pillStyle = {
@@ -57,7 +79,7 @@ export function TheReality() {
               lineHeight: 1, letterSpacing: '-0.01em',
               color: ACCENT,
               marginBottom: 10,
-            }}>5%</div>
+            }}><CountUp to={5} /></div>
             <p style={{
               fontSize: 'clamp(15px, 1.6vw, 18px)',
               lineHeight: 1.45, color: theme.base,
@@ -75,7 +97,7 @@ export function TheReality() {
               lineHeight: 1, letterSpacing: '-0.01em',
               color: ACCENT,
               marginBottom: 10,
-            }}>3%</div>
+            }}><CountUp to={3} /></div>
             <p style={{
               fontSize: 'clamp(15px, 1.6vw, 18px)',
               lineHeight: 1.45, color: theme.base,

@@ -24,7 +24,7 @@ export function DiscoveryMeeting() {
           alignItems: 'flex-start',
         }}>
           <h2
-            data-reveal
+            data-reveal="left"
             style={{
               fontFamily: theme.displayTight,
               fontWeight: 600,

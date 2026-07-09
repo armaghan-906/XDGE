@@ -30,7 +30,7 @@ export function ProgrammeFitCTA() {
 
         <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(40px, 8vw, 120px)' }}>
           <div
-            data-reveal
+            data-reveal="scale"
             style={{
               display: 'flex', flexDirection: 'column',
               gap: 18,

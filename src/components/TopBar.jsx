@@ -70,11 +70,28 @@ const clip = { display: 'block', overflow: 'hidden', paddingBottom: '0.06em' };
 export function TopBar() {
   const [open, setOpen] = useState(false);
   const [sectionTheme, setSectionTheme] = useState('dark');
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  // Once the page scrolls, the burger gains a frosted-glass disc so it stays
+  // legible over any content (rAF-throttled; state only flips at threshold).
+  useEffect(() => {
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        setScrolled(window.scrollY > 48);
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => { window.removeEventListener('scroll', onScroll); if (raf) cancelAnimationFrame(raf); };
   }, []);
 
   useEffect(() => {
@@ -144,11 +161,21 @@ export function TopBar() {
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             style={{
-              background: 'transparent', border: 'none', padding: 0,
+              background: scrolled && !open
+                ? (sectionTheme === 'light' ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.4)')
+                : 'transparent',
+              backdropFilter: scrolled && !open ? 'blur(10px)' : 'none',
+              WebkitBackdropFilter: scrolled && !open ? 'blur(10px)' : 'none',
+              border: scrolled && !open
+                ? (sectionTheme === 'light' ? '1px solid rgba(0,0,0,0.12)' : '1px solid rgba(255,255,255,0.14)')
+                : '1px solid transparent',
+              borderRadius: 999,
+              padding: 0,
               width: 60, height: 60,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               flexDirection: 'column', gap: 8,
               cursor: 'pointer',
+              transition: 'background 0.45s var(--xg-ease), border-color 0.45s var(--xg-ease)',
             }}
           >
             <span
