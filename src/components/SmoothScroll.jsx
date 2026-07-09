@@ -19,9 +19,8 @@ export const getLenis = () => lenisInstance;
 export function SmoothScroll() {
   useLayoutEffect(() => {
     if (typeof window === 'undefined') return;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const coarse = window.matchMedia('(hover: none), (pointer: coarse)').matches;
-    if (reduce || coarse) return; // mobile/touch + reduced-motion stay 100% native
+    if (coarse) return; // mobile/touch stays 100% native; desktop always glides (brand)
 
     const lenis = new Lenis({
       lerp: 0.075,          // lower = slower, more floaty glide

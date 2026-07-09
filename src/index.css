@@ -346,40 +346,11 @@ section[data-screen-label^="01"]>div:not(.xg-hero-ambient) {
 
 /* Sticky-pin bottom-fade overlay removed alongside the sticky behavior. */
 
-/* ── DISABLE HERO AMBIENT ON LOW-POWER / REDUCED MOTION ───────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  .xg-hero-orb {
-    animation: none !important;
-  }
-
-  .xg-divider::after {
-    animation: none;
-  }
-
-  /* Never leave a reveal unit invisible if the observer is slow under
-     reduced-motion — show content immediately, no transform. */
-  .sr-init {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-
-/* Page transition removed — keyframe was replaying on every content-visibility re-render,
-   producing a "section keeps loading again" effect on scroll. Per-component framer-motion
-   `whileInView once: true` handles reveal correctly. */
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-  }
-}
+/* Motion is part of the XDGE brand: scroll reveals and transitions play for
+   every visitor regardless of the OS "reduce motion" setting (client
+   requirement — previously this media query silently disabled all reveals
+   and smooth scroll on machines with Windows animation effects turned off,
+   making the site look static/broken to those users). */
 
 body {
   cursor: none;
@@ -391,8 +362,7 @@ select {
   cursor: text;
 }
 
-@media (hover: none),
-(prefers-reduced-motion: reduce) {
+@media (hover: none) {
 
   body,
   body * {
@@ -586,22 +556,6 @@ section[data-screen-label] {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-
-  .xg-tier-card,
-  .xg-tier-card .xg-tier-card-media img {
-    transition: none;
-  }
-
-  .xg-tier-card:hover {
-    transform: none;
-  }
-
-  .xg-tier-card:hover .xg-tier-card-media img {
-    transform: none;
-  }
-}
-
 /* ── Curtain — CSS-transition crossfade (compositor-thread only) ────────────
    The class toggles opacity. The transition runs on the GPU compositor,
    independent of main thread. Stays smooth even while React mounts the
@@ -635,12 +589,6 @@ section[data-screen-label] {
   font-size: clamp(48px, 9vw, 120px);
   letter-spacing: -0.02em;
   line-height: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .xg-curtain {
-    transition: none;
-  }
 }
 
 /* Sticky-pin restored — big banner pins at 100vh while the following
@@ -1204,21 +1152,6 @@ section[data-screen-label] {
 @media (hover: hover) {
   .xg-underline-pop:hover::after {
     transform: scaleX(1);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-  .xg-pop,
-  .xg-chip,
-  .xg-tilt {
-    transition: none;
-  }
-
-  .xg-pop:hover,
-  .xg-chip:hover,
-  .xg-tilt:hover {
-    transform: none;
   }
 }
 

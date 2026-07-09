@@ -31,8 +31,6 @@ const UNIT = [
 
 export function ScrollReveal() {
   useLayoutEffect(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     const observer = new IntersectionObserver(
       (entries) => {
         const entered = entries.filter((e) => e.isIntersecting);
@@ -40,7 +38,7 @@ export function ScrollReveal() {
         entered.forEach((entry, i) => {
           const el = entry.target;
           // clear one-by-one cascade for elements that appear together
-          if (!reduce) el.style.transitionDelay = `${Math.min(i * 70, 280)}ms`;
+          el.style.transitionDelay = `${Math.min(i * 70, 280)}ms`;
           requestAnimationFrame(() => el.classList.add('sr-visible'));
           observer.unobserve(el);
         });
