@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { theme, fadeUp, cardStagger, cardRise } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
+import { ParallaxImage } from '../primitives/ParallaxImage';
 
 const posts = [
   {
@@ -75,29 +76,12 @@ export function Insights() {
                 overflow: 'hidden', borderRadius: 8,
               }}
             >
-              <div style={{
-                position: 'relative',
-                width: '100%',
-                aspectRatio: '1/1',
-                overflow: 'hidden',
-              }}>
-                <motion.img
-                  src={p.img || `/assets/blog-0${i + 1}.webp`}
-                  alt={p.title}
-                  loading="lazy"
-                  decoding="async"
-                  variants={{
-                    hidden: { scale: 1.15 },
-                    visible: { scale: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
-                  }}
-                  style={{
-                    width: '100%', height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: '50% 50%',
-                    display: 'block',
-                  }}
-                />
-              </div>
+              <ParallaxImage
+                src={p.img || `/assets/blog-0${i + 1}.webp`}
+                alt={p.title}
+                loading="lazy"
+                style={{ width: '100%', aspectRatio: '1/1' }}
+              />
               <div style={{ padding: '22px 24px 28px', display: 'flex', flexDirection: 'column', gap: 14 }}>
                 <div style={{
                   display: 'flex', gap: 8,

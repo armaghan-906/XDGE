@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
+import { ParallaxImage } from '../primitives/ParallaxImage';
 
 const formats = [
   {
@@ -75,25 +76,12 @@ export function HowWeDeliver() {
                 gap: 'clamp(20px, 2.5vw, 28px)',
               }}
             >
-              <div style={{
-                width: '100%',
-                aspectRatio: '1 / 1',
-                overflow: 'hidden',
-                background: '#000000',
-              }}>
-                <img
-                  src={f.img}
-                  alt={f.title}
-                  loading="eager"
-                  decoding="async"
-                  style={{
-                    width: '100%', height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: '50% 40%',
-                    display: 'block',
-                  }}
-                />
-              </div>
+              <ParallaxImage
+                src={f.img}
+                alt={f.title}
+                objectPosition="50% 40%"
+                style={{ width: '100%', aspectRatio: '1 / 1', background: '#000000' }}
+              />
 
               <div>
                 <h3 style={{

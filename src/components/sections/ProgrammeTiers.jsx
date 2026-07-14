@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
+import { ParallaxImage } from '../primitives/ParallaxImage';
 
 const tiers = [
   {
@@ -120,27 +121,12 @@ function ProgrammeCard({ card }) {
         overflow: 'hidden',
       }}
     >
-      <div className="xg-tier-card-media" style={{
-        position: 'relative',
-        width: '100%',
-        aspectRatio: '1 / 1',
-        overflow: 'hidden',
-        background: '#000000',
-      }}>
-        <img
-          src={card.img}
-          alt=""
-          loading="eager"
-          decoding="async"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%', height: '100%',
-            objectFit: 'cover',
-            objectPosition: '50% 35%',
-          }}
-        />
-      </div>
+      <ParallaxImage
+        className="xg-tier-card-media"
+        src={card.img}
+        objectPosition="50% 35%"
+        style={{ width: '100%', aspectRatio: '1 / 1', background: '#000000' }}
+      />
 
       <div style={{
         padding: 'clamp(22px, 2.6vw, 32px)',

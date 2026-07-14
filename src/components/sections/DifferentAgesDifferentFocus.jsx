@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
+import { ParallaxImage } from '../primitives/ParallaxImage';
 
 const slides = [
   {
@@ -281,29 +282,11 @@ function Card({ slide, onOpen, dark }) {
         width: '100%',
       }}
     >
-      <div style={{
-        width: '100%',
-        aspectRatio: '1 / 1',
-        overflow: 'hidden',
-        background: imgBg,
-      }}>
-        <motion.img
-          src={slide.img}
-          alt=""
-          loading="eager"
-          decoding="async"
-          variants={{
-            hidden: { scale: 1.15 },
-            visible: { scale: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
-          }}
-          style={{
-            width: '100%', height: '100%',
-            objectFit: 'cover',
-            objectPosition: '50% 50%',
-            display: 'block',
-          }}
-        />
-      </div>
+      <ParallaxImage
+        src={slide.img}
+        alt=""
+        style={{ width: '100%', aspectRatio: '1 / 1', background: imgBg }}
+      />
 
       <div style={{
         padding: 'clamp(22px, 2.6vw, 32px)',

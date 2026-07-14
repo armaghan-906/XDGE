@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
+import { ParallaxImage } from '../primitives/ParallaxImage';
 
 const team = [
   {
@@ -108,26 +109,12 @@ function Bio({ intro, more }) {
 
 function Avatar({ src, alt }) {
   return (
-    <div style={{
-      position: 'relative',
-      width: '100%',
-      aspectRatio: '1 / 1',
-      background: '#000000',
-      overflow: 'hidden',
-    }}>
-      <img
-        src={src}
-        alt={alt}
-        loading="eager"
-        decoding="async"
-        style={{
-          width: '100%', height: '100%',
-          objectFit: 'cover',
-          objectPosition: '50% 35%',
-          display: 'block',
-        }}
-      />
-    </div>
+    <ParallaxImage
+      src={src}
+      alt={alt}
+      objectPosition="50% 35%"
+      style={{ width: '100%', aspectRatio: '1 / 1', background: '#000000' }}
+    />
   );
 }
 
