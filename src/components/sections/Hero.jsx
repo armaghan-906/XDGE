@@ -1,9 +1,18 @@
+import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { theme } from '../../theme';
 import { Logo } from '../Logo';
 
+// Slower loop so the ambient logo reveal reads as calm rather than busy.
+const HERO_VIDEO_RATE = 0.6;
+
 export function Hero() {
+  const videoRef = useRef(null);
+  useEffect(() => {
+    if (videoRef.current) videoRef.current.playbackRate = HERO_VIDEO_RATE;
+  }, []);
+
   return (
     <section
       data-screen-label="01 Hero"
@@ -20,6 +29,7 @@ export function Hero() {
           100vh cover video, logo dead-centre of the first viewport) so the
           intro reveal fades into the hero with zero jump. */}
       <video
+        ref={videoRef}
         src="/assets/videos/logo_reveal.mp4"
         poster="/assets/videos/logo_reveal_poster.jpg"
         preload="auto"
@@ -27,6 +37,7 @@ export function Hero() {
         muted
         loop
         playsInline
+        onLoadedMetadata={(e) => { e.currentTarget.playbackRate = HERO_VIDEO_RATE; }}
         style={{
           position: 'absolute',
           top: 0, left: 0,

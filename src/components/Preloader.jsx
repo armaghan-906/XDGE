@@ -1,26 +1,41 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Logo } from './Logo';
+
+// Slower intro reveal (matches the calmer hero loop).
+const INTRO_VIDEO_RATE = 0.7;
 
 export function Preloader() {
   // ?skipintro query param bypasses the intro (used for automated screenshots/tests)
   const [show, setShow] = useState(() => !window.location.search.includes('skipintro'));
+  const failsafeRef = useRef(null);
 
   useEffect(() => {
-    // Failsafe: if the video doesn't finish (e.g. autoPlay blocked on mobile),
-    // force-hide quickly so it never blocks taps/links for long.
-    const timer = setTimeout(() => setShow(false), 3000);
-    // Prevent scrolling while the preloader is active
+    // Failsafe: if the video doesn't finish (e.g. autoPlay blocked), force-hide
+    // so it never blocks the page. Recomputed from the real (slowed) runtime
+    // once metadata loads; this initial value only covers a never-loading video.
+    failsafeRef.current = setTimeout(() => setShow(false), 4500);
     if (show) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
-    return () => { 
-      clearTimeout(timer);
-      document.body.style.overflow = ''; 
+    return () => {
+      clearTimeout(failsafeRef.current);
+      document.body.style.overflow = '';
     };
   }, [show]);
+
+  // Set the slower rate and extend the failsafe to cover the full slowed clip
+  // (duration / rate) so the intro is never cut off before it finishes.
+  const onMeta = (e) => {
+    const v = e.currentTarget;
+    v.playbackRate = INTRO_VIDEO_RATE;
+    if (Number.isFinite(v.duration)) {
+      clearTimeout(failsafeRef.current);
+      failsafeRef.current = setTimeout(() => setShow(false), (v.duration / INTRO_VIDEO_RATE) * 1000 + 700);
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -44,6 +59,7 @@ export function Preloader() {
             autoPlay
             muted
             playsInline
+            onLoadedMetadata={onMeta}
             onEnded={() => setShow(false)}
             onError={() => setShow(false)} // Fail gracefully if the video is missing or broken
             style={{
