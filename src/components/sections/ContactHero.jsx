@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { theme } from '../../theme';
-import { HeroAmbient } from '../HeroAmbient';
 
 function ContactHeading() {
   const ease = [0.2, 0.7, 0.2, 1];
@@ -44,7 +43,6 @@ export function ContactHero() {
         position: 'relative', overflow: 'hidden',
       }}
     >
-      <HeroAmbient />
       <div style={{
         flex: 1,
         position: 'relative', zIndex: 10,
