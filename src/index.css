@@ -793,6 +793,14 @@ section[data-screen-label] {
     min-height: 100vh !important;
     min-height: 100svh !important;
   }
+
+  /* The XDGE lockup is centred in the full hero height on desktop, but on a
+     100vh phone that puts it right on top of the bottom "For Young People"
+     copy. Centre it in the UPPER portion instead so the two never overlap. */
+  section[data-screen-label="01 Hero"] .xg-hero-lockup {
+    height: 56vh !important;
+    height: 56svh !important;
+  }
 }
 
 /* TheReality pills + heading — allow wrapping on phones */

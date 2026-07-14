@@ -57,6 +57,7 @@ export function Hero() {
         zIndex: 2,
       }} />
       <div
+        className="xg-hero-lockup"
         style={{
           position: 'absolute',
           top: 0, left: 0, right: 0,
@@ -91,7 +92,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div style={{
+      <div className="xg-hero-copy" style={{
         position: 'absolute',
         bottom: 'clamp(12px, 2vw, 20px)',
         right: 'clamp(24px, 4vw, 40px)',
