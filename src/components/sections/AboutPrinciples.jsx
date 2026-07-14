@@ -26,13 +26,13 @@ const principles = [
     n: '04',
     title: 'Our Standard',
     body: 'We thrive in the moments where individuals and teams rise to a new level of performance. We work alongside individuals to remove limitations, create clarity, and move forward with purpose. We exist to help people reach their next level. Our focus is not just improvement — it is transformation.',
-    img: '/assets/ALL NEW IMAGES/10.png',
+    img: '/assets/ALL NEW IMAGES/10.webp',
   },
   {
     n: '05',
     title: 'The Moment That Matters',
     body: 'Many people never experience the moment where everything shifts — the moment they realise they are capable of far more than they ever believed. That moment changes confidence. It changes ambition. It changes performance. XDGE was built to create those moments early, in the foundational years where belief, identity, and leadership capability can shape everything that comes next.',
-    img: '/assets/ALL NEW IMAGES/13.png',
+    img: '/assets/ALL NEW IMAGES/13.webp',
   },
 ];
 
