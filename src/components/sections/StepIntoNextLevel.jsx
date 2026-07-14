@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
-import { FloatingVideo } from '../primitives/FloatingVideo';
 
 const fadeEase = [0.2, 0.7, 0.2, 1];
 
@@ -22,15 +21,6 @@ export function StepIntoNextLevel() {
     >
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <div style={{ position: 'relative' }}>
-          <FloatingVideo
-            src="/assets/videos/thunder_1.mp4"
-            style={{
-              top: '45%', left: '32%',
-              transform: 'translate(-50%, -50%)',
-              width: 'clamp(600px, 100vw, 1800px)',
-              opacity: 0.35, zIndex: -1,
-            }}
-          />
           <SplitHeading
             lines={['STEP INTO YOUR', 'NEXT LEVEL']}
             lineClasses={['hollow-text', 'cyan-text']}
