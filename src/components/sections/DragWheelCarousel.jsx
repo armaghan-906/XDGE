@@ -1,5 +1,5 @@
-import { useRef, useEffect } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
 
 // Boldz-style line mask: each line rises up from behind its clip, one-by-one.
@@ -75,13 +75,8 @@ const items = [
 ];
 
 function Card({ item, index, progress, total }) {
-  // Difference from the active centre, WRAPPED so the wheel loops forever
-  // (the shortest signed distance around the ring, in −total/2 … total/2).
-  const diff = useTransform(progress, (p) => {
-    let d = (((index - p) % total) + total) % total;
-    if (d > total / 2) d -= total;
-    return d;
-  });
+  // Calculate difference from active center
+  const diff = useTransform(progress, (p) => index - p);
 
   // Calculate layout on a circle
   const radius = 1200; // Radius of the wheel
@@ -105,7 +100,7 @@ function Card({ item, index, progress, total }) {
         position: 'absolute',
         top: '50%',
         left: '50%',
-        width: 'clamp(260px, 27vw, 400px)',
+        width: 'clamp(240px, 25vw, 340px)',
         aspectRatio: '3/4',
         originX: 0.5,
         originY: 0.5,
@@ -141,41 +136,39 @@ function Card({ item, index, progress, total }) {
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 38%, transparent 72%)',
+          background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)',
           pointerEvents: 'none'
         }} />
         <div style={{
           position: 'absolute',
-          bottom: 28, left: 28, right: 28,
+          bottom: 24, left: 24, right: 24,
           color: theme.base
         }}>
           <div style={{
             fontFamily: theme.display,
-            fontSize: 'clamp(30px, 4.5vw, 56px)',
+            fontSize: 'clamp(36px, 6vw, 72px)',
             fontWeight: 900,
             lineHeight: 1,
-            opacity: 0.55,
-            marginBottom: 10
+            opacity: 0.5,
+            marginBottom: 8
           }}>
             {item.id}
           </div>
           <h3 style={{
             fontFamily: theme.displayTight,
-            fontSize: 'clamp(22px, 2.6vw, 32px)',
-            fontWeight: 700,
+            fontSize: 'clamp(18px, 2vw, 24px)',
             margin: 0,
-            lineHeight: 1.12,
-            letterSpacing: '-0.01em',
-            marginBottom: item.desc ? 10 : 0
+            lineHeight: 1.1,
+            marginBottom: item.desc ? 8 : 0
           }}>
             {item.title}
           </h3>
           {item.desc && (
             <p style={{
               margin: 0,
-              fontSize: 'clamp(14px, 1.5vw, 17px)',
-              lineHeight: 1.45,
-              color: 'rgba(255,255,255,0.9)'
+              fontSize: 'clamp(12px, 1.3vw, 14px)',
+              lineHeight: 1.4,
+              color: 'rgba(255,255,255,0.85)'
             }}>
               {item.desc}
             </p>
@@ -187,27 +180,21 @@ function Card({ item, index, progress, total }) {
 }
 
 export function DragWheelCarousel() {
-  const progress = useMotionValue(0);
-  const pausedRef = useRef(false);
+  const containerRef = useRef(null);
+  
+  // Progress value (0 to items.length - 1)
+  const progressRaw = useMotionValue(0);
+  // Soft spring to make the transition smooth
+  const progress = useSpring(progressRaw, { stiffness: 60, damping: 20, mass: 1 });
 
-  // Gentle, continuous auto-rotation (same "always drifting" feel as the footer
-  // CAREER · UNIVERSITY · SCHOOL marquee). rAF-driven so it's GPU-smooth and
-  // auto-throttles offscreen; pauses while the user hovers or drags.
-  useEffect(() => {
-    let raf, last = performance.now();
-    const SPEED = 0.12; // cards advanced per second — slow and gradual
-    const tick = (now) => {
-      const dt = Math.min((now - last) / 1000, 0.05); last = now;
-      if (!pausedRef.current) progress.set(progress.get() + SPEED * dt);
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [progress]);
-
-  // Drag/swipe nudges the wheel; wrapping in Card keeps it infinite.
+  // Handle Dragging / Swiping
   const handleDrag = (event, info) => {
-    progress.set(progress.get() - info.delta.x / 200);
+    const delta = -info.delta.x / 200; // Adjust sensitivity
+    let next = progressRaw.get() + delta;
+    
+    // Clamp to [0, items.length - 1]
+    next = Math.max(0, Math.min(items.length - 1, next));
+    progressRaw.set(next);
   };
 
   return (
@@ -272,27 +259,62 @@ export function DragWheelCarousel() {
             </motion.span>
           </span>
         </motion.h2>
+
+        {/* Navigation Controls */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 32 }}>
+          <button
+            onClick={() => {
+              const next = Math.max(0, Math.round(progressRaw.get()) - 1);
+              progressRaw.set(next);
+            }}
+            aria-label="Previous"
+            style={{
+              background: '#ffffff',
+              border: 'none',
+              color: '#000000',
+              width: 56, height: 56, borderRadius: '50%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              cursor: 'pointer', transition: 'all 0.2s',
+            }}
+          >
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
+          </button>
+          <button
+            onClick={() => {
+              const next = Math.min(items.length - 1, Math.round(progressRaw.get()) + 1);
+              progressRaw.set(next);
+            }}
+            aria-label="Next"
+            style={{
+              background: '#ffffff',
+              border: 'none',
+              color: '#000000',
+              width: 56, height: 56, borderRadius: '50%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              cursor: 'pointer', transition: 'all 0.2s',
+            }}
+          >
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+          </button>
+        </div>
       </div>
 
       {/* Drag Surface & Cards — wrapper reveals the whole wheel as one block on scroll */}
       <div data-reveal>
       <motion.div
+        ref={containerRef}
         drag="x"
-        dragConstraints={{ left: 0, right: 0 }} // movement is driven via `progress`
+        dragConstraints={{ left: 0, right: 0 }} // We handle the actual movement via progressRaw
         dragElastic={0}
         onDrag={handleDrag}
-        onDragStart={() => { pausedRef.current = true; }}
-        onDragEnd={() => { pausedRef.current = false; }}
-        onPointerEnter={() => { pausedRef.current = true; }}
-        onPointerLeave={() => { pausedRef.current = false; }}
         style={{
           position: 'relative',
           height: 'clamp(400px, 60vh, 600px)',
           width: '100%',
           cursor: 'grab',
-          // touchAction: 'pan-y' keeps native vertical page scrolling while
-          // Framer Motion still intercepts horizontal drags/swipes.
-          touchAction: 'pan-y'
+          // CRITICAL FIX: touchAction: 'pan-y' allows native vertical page scrolling 
+          // while still allowing Framer Motion to intercept horizontal drags/swipes.
+          touchAction: 'pan-y' 
         }}
         whileTap={{ cursor: 'grabbing' }}
       >

@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { theme } from '../../theme';
 
 // Carousel 2 imagery — every image from "Images for Carousel 2" (optimized WebP),
-// used once. Fixed-size square cards, image only (no text), no expand-on-active.
+// used once. Fixed-size square cards, image only (no text).
 const items = [
   { img: '/assets/leave-1.webp' },
   { img: '/assets/leave-2.webp' },
@@ -14,19 +12,21 @@ const items = [
   { img: '/assets/WhatsApp Image 2026-06-16 at 1.04.14 PM.jpeg', cover: true },
 ];
 
-function LeaveCard({ img, cover, widthVw }) {
+function LeaveCard({ img, cover }) {
   return (
     <div
       className="xg-glass-solid"
       style={{
         position: 'relative',
-        width: `${widthVw}vw`,
+        width: 'clamp(240px, 28vw, 420px)',
         aspectRatio: '1 / 1',
         flexShrink: 0,
+        // trailing gap lives INSIDE the card so two copies tile seamlessly under
+        // the -50% marquee translate (matches the footer strip technique).
+        marginRight: 'clamp(16px, 2.5vw, 40px)',
         borderRadius: 24,
         overflow: 'hidden',
         border: `1px solid ${theme.borderDark}`,
-        // full square image, contained (never cropped/stretched); dark letterbox fill
         background: `#0a0a0a url("${img}") center/${cover ? 'cover' : 'contain'} no-repeat`,
       }}
     />
@@ -34,31 +34,6 @@ function LeaveCard({ img, cover, widthVw }) {
 }
 
 export function WhatYouLeaveWith() {
-  const [index, setIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
-  const cardW = isMobile ? 78 : 28; // vw — fixed card width (cards never expand)
-  const gapW = isMobile ? 4 : 2.5;  // vw
-
-  // translate the track so card[i] is centered in the viewport
-  const getTrackX = (i) => `calc(50vw - ${i * (cardW + gapW) + cardW / 2}vw)`;
-
-  const go = (dir) =>
-    setIndex((i) => Math.max(0, Math.min(items.length - 1, i + dir)));
-
-  const handleDragEnd = (e, { offset, velocity }) => {
-    if (Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500) {
-      go(offset.x < 0 ? 1 : -1);
-    }
-  };
-
   return (
     <section
       data-screen-label="What You Leave With"
@@ -81,7 +56,6 @@ export function WhatYouLeaveWith() {
           lineHeight: 0.95,
           textTransform: 'uppercase',
         }}>
-          {/* two-liner: each phrase stays on one line */}
           <span className="hollow-text" style={{ display: 'block', whiteSpace: 'nowrap' }}>WHAT YOU</span>
           <span className="cyan-text" style={{ display: 'block', whiteSpace: 'nowrap' }}>LEAVE WITH</span>
         </h2>
@@ -93,65 +67,22 @@ export function WhatYouLeaveWith() {
         }}>
           Proof of your capability. Ready for selection.
         </p>
+      </div>
 
-        {/* Navigation arrows — moved above carousel */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 32 }}>
-          <button
-            onClick={() => go(-1)}
-            disabled={index === 0}
-            aria-label="Previous"
-            style={{
-              background: index > 0 ? '#ffffff' : 'rgba(255,255,255,0.1)', 
-              border: 'none',
-              color: index > 0 ? '#000000' : '#ffffff', 
-              width: 56, height: 56, borderRadius: '50%',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              cursor: index > 0 ? 'pointer' : 'default', transition: 'all 0.2s',
-            }}
-          >
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
-          </button>
-          <button
-            onClick={() => go(1)}
-            disabled={index === items.length - 1}
-            aria-label="Next"
-            style={{
-              background: index < items.length - 1 ? '#ffffff' : 'rgba(255,255,255,0.1)', 
-              border: 'none',
-              color: index < items.length - 1 ? '#000000' : '#ffffff', 
-              width: 56, height: 56, borderRadius: '50%',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              cursor: index < items.length - 1 ? 'pointer' : 'default', transition: 'all 0.2s',
-            }}
-          >
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
-          </button>
+      {/* Continuous auto-scroll marquee (same mechanism as the footer
+          CAREER · UNIVERSITY · SCHOOL strip): two copies of the cards tile
+          seamlessly, translate 0 → -50% forever, pause on hover. Pure CSS on
+          the compositor thread — zero main-thread cost. */}
+      <div data-reveal style={{ width: '100%', overflow: 'hidden', position: 'relative', padding: '20px 0' }}>
+        <div
+          className="xg-leave-marquee"
+          style={{ display: 'flex', width: 'max-content' }}
+        >
+          {[...items, ...items].map((it, i) => (
+            <LeaveCard key={i} img={it.img} cover={it.cover} />
+          ))}
         </div>
       </div>
-
-      <div data-reveal style={{ width: '100%', overflow: 'hidden', position: 'relative', padding: '20px 0' }}>
-        <motion.div
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.1}
-          onDragEnd={handleDragEnd}
-          animate={{ x: getTrackX(index) }}
-          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          style={{
-            display: 'flex',
-            gap: `${gapW}vw`,
-            width: 'max-content',
-            cursor: 'grab',
-            touchAction: 'pan-y',
-          }}
-          whileTap={{ cursor: 'grabbing' }}
-        >
-          {items.map((it, i) => (
-            <LeaveCard key={i} img={it.img} cover={it.cover} widthVw={cardW} />
-          ))}
-        </motion.div>
-      </div>
-
     </section>
   );
 }
