@@ -210,7 +210,7 @@ export function TopBar() {
             transition={{ duration: 1.0, ease: overlayEase }}
             style={{
               position: 'fixed', inset: 0,
-              background: '#ECEAE2', // Boldz-style neutral cream
+              background: '#ecede8', // Boldz-style neutral cream
               color: '#000000',
               zIndex: 1000,
               display: 'flex', flexDirection: 'column',
@@ -295,11 +295,11 @@ export function TopBar() {
                       whileHover={{ x: 16 }}
                       style={{
                         display: 'block',
-                        fontFamily: theme.display,
-                        fontSize: 'clamp(44px, 7vw, 92px)',
-                        lineHeight: 1, letterSpacing: '-0.02em',
+                        fontFamily: "'Anton', sans-serif",
+                        fontSize: 'clamp(44px, 7vw, 87px)',
+                        lineHeight: 1, letterSpacing: '0.01em',
                         color: '#000000', textDecoration: 'none',
-                        textTransform: 'uppercase', fontWeight: 900,
+                        textTransform: 'uppercase', fontWeight: 400,
                         whiteSpace: 'nowrap',
                         transition: 'color 0.3s var(--xg-ease)',
                       }}
@@ -323,11 +323,11 @@ export function TopBar() {
                     const idx = i + primaryLinks.length;
                     const linkStyle = {
                       display: 'block',
-                      fontFamily: theme.display,
+                      fontFamily: "'Anton', sans-serif",
                       fontSize: 'clamp(22px, 3vw, 46px)',
-                      lineHeight: 1.05, letterSpacing: '-0.005em',
+                      lineHeight: 1.15, letterSpacing: '0.01em',
                       color: '#000000', textDecoration: 'none',
-                      textTransform: 'uppercase', fontWeight: 900,
+                      textTransform: 'uppercase', fontWeight: 400,
                     };
                     const shared = {
                       custom: idx,
