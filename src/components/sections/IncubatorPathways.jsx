@@ -38,7 +38,7 @@ export function IncubatorPathways() {
       data-screen-label="Incubator Pathways"
       data-section-theme="accent"
       style={{
-        background: "url('/assets/reviews-bg.png') center/cover no-repeat",
+        background: "url('/assets/reviews-bg.jpg') center/cover no-repeat",
         color: '#FFFFFF',
         position: 'relative',
         overflow: 'hidden',

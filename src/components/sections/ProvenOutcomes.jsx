@@ -202,7 +202,7 @@ export function ProvenOutcomes() {
       data-screen-label="Proven Outcomes"
       data-section-theme="accent"
       style={{
-        background: `url('/assets/reviews-bg.png') center/cover no-repeat`,
+        background: `url('/assets/reviews-bg.jpg') center/cover no-repeat`,
         color: theme.base,
         position: 'relative',
         overflow: 'hidden',
