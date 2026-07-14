@@ -7,6 +7,6 @@
  */
 import { VideoBackground } from './primitives/VideoBackground';
 
-export function HeroAmbient({ src = "/assets/videos/hero.mp4" }) {
-  return <VideoBackground src={src} />;
+export function HeroAmbient({ src = "/assets/videos/hero.mp4", ...rest }) {
+  return <VideoBackground src={src} {...rest} />;
 }

@@ -33,7 +33,20 @@ export function ProgrammesHero() {
         position: 'relative', overflow: 'hidden',
       }}
     >
-      <HeroAmbient src="/assets/videos/thunder_2.mp4" />
+      <HeroAmbient
+        src="/assets/videos/thunder_2.mp4"
+        playbackRate={0.5}
+        overlayOpacity={0.28}
+        edgeFade="to right"
+        videoStyle={{
+          position: 'absolute',
+          top: 0, right: 0, left: 'auto',
+          width: '58%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'center top',
+        }}
+      />
       <div style={{
         flex: 1,
         position: 'relative', zIndex: 10,
