@@ -222,7 +222,7 @@ export function DragWheelCarousel() {
             alignItems: 'flex-start',
           }}
         >
-          <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.1em', marginBottom: 'clamp(4px, 1vw, 12px)' }}>
+          <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em', marginBottom: 'clamp(2px, 0.3vw, 4px)' }}>
             <motion.span custom={0} variants={lineMask} style={{
               display: 'block',
               fontSize: 'clamp(14px, 2vw, 24px)',
@@ -233,7 +233,7 @@ export function DragWheelCarousel() {
               BUILD A PROJECT THAT
             </motion.span>
           </span>
-          <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.1em', marginBottom: 'clamp(8px, 1.5vw, 16px)' }}>
+          <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em', marginBottom: 'clamp(-8px, -0.6vw, -2px)' }}>
             <motion.span custom={1} variants={lineMask} style={{
               display: 'block',
               fontSize: 'clamp(48px, 16vw, 220px)',
@@ -247,7 +247,7 @@ export function DragWheelCarousel() {
               PROVES
             </motion.span>
           </span>
-          <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.1em' }}>
+          <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
             <motion.span className="hollow-text" custom={2} variants={lineMask} style={{
               display: 'block',
               fontSize: 'clamp(28px, 6vw, 84px)',
