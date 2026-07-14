@@ -36,13 +36,6 @@ const principles = [
   },
 ];
 
-const fadeEase = [0.2, 0.7, 0.2, 1];
-
-const rowVariants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: fadeEase } },
-};
-
 export function AboutPrinciples() {
   return (
     <section
@@ -104,12 +97,11 @@ export function AboutPrinciples() {
 
         <div className="xg-principles-list">
           {principles.map((p) => (
-            <motion.div
+            // Reveal is handled by the global ScrollReveal (`.xg-principle-row`
+            // is in its UNIT list). No framer whileInView here — two reveal
+            // systems on one node fought over opacity and replayed the fade.
+            <div
               key={p.n}
-              variants={rowVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.25 }}
               className="xg-principle-row"
             >
               <div className="xg-principle-num" style={{
@@ -157,7 +149,7 @@ export function AboutPrinciples() {
                   />
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
