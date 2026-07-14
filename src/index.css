@@ -1026,7 +1026,7 @@ section[data-screen-label] {
 /* What You Leave With — image cards auto-scroll continuously like the footer
    strip. Two copies + translate 0 → -50% = seamless infinite loop. */
 .xg-leave-marquee {
-  animation: xdge-marquee 55s linear infinite;
+  animation: xdge-marquee 32s linear infinite;
   will-change: transform;
 }
 
