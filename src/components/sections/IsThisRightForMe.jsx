@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { theme, fadeUp, stagger, cardStagger, cardRise } from '../../theme';
+import { theme, fadeUp, stagger } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { ParallaxImage } from '../primitives/ParallaxImage';
 import { SplitHeading } from '../primitives/SplitHeading';
@@ -61,7 +61,7 @@ function Card({ group }) {
   const [open, setOpen] = useState(false);
   return (
     <motion.article
-      variants={cardRise}
+      variants={fadeUp}
       data-no-reveal
       className="xg-glass-solid"
       whileHover={{ y: -8, scale: 1.02 }}
@@ -232,7 +232,6 @@ export function IsThisRightForMe() {
 
         <Group
           className="xg-3"
-          variants={cardStagger}
           style={{
             gap: 'clamp(20px, 2.4vw, 28px)',
             alignItems: 'stretch',
