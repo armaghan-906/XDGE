@@ -210,7 +210,7 @@ export function TopBar() {
             transition={{ duration: 1.0, ease: overlayEase }}
             style={{
               position: 'fixed', inset: 0,
-              background: '#F3EFE6', // Light cream color matching the design
+              background: '#ECEAE2', // Boldz-style neutral cream
               color: '#000000',
               zIndex: 1000,
               display: 'flex', flexDirection: 'column',
@@ -296,7 +296,7 @@ export function TopBar() {
                       style={{
                         display: 'block',
                         fontFamily: theme.display,
-                        fontSize: 'clamp(36px, 5.5vw, 64px)',
+                        fontSize: 'clamp(44px, 7vw, 92px)',
                         lineHeight: 1, letterSpacing: '-0.02em',
                         color: '#000000', textDecoration: 'none',
                         textTransform: 'uppercase', fontWeight: 900,
@@ -324,7 +324,7 @@ export function TopBar() {
                     const linkStyle = {
                       display: 'block',
                       fontFamily: theme.display,
-                      fontSize: 'clamp(20px, 2.6vw, 38px)',
+                      fontSize: 'clamp(22px, 3vw, 46px)',
                       lineHeight: 1.05, letterSpacing: '-0.005em',
                       color: '#000000', textDecoration: 'none',
                       textTransform: 'uppercase', fontWeight: 900,
