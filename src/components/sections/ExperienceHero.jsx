@@ -69,8 +69,8 @@ export function ExperienceHero() {
           >
             <div style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(19px, 2vw, 28px)',
-              lineHeight: 1.18, letterSpacing: '-0.01em',
+              fontSize: 'clamp(15px, 1.4vw, 20px)',
+              lineHeight: 1.2, letterSpacing: '-0.01em',
               textTransform: 'uppercase', color: theme.base,
             }}>
               <div>Real Leadership Development.</div>
