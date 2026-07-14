@@ -352,28 +352,6 @@ section[data-screen-label^="01"]>div:not(.xg-hero-ambient) {
    and smooth scroll on machines with Windows animation effects turned off,
    making the site look static/broken to those users). */
 
-body {
-  cursor: none;
-}
-
-input,
-textarea,
-select {
-  cursor: text;
-}
-
-@media (hover: none) {
-
-  body,
-  body * {
-    cursor: auto !important;
-  }
-
-  .xdge-cursor {
-    display: none !important;
-  }
-}
-
 /* ── What You Leave With list: small image left, title + desc right ── */
 .xg-leave-list {
   display: flex;
