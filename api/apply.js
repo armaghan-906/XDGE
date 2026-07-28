@@ -148,10 +148,20 @@ export default async function handler(req, res) {
     </div>
   `;
 
+  if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS || !process.env.CONTACT_TO) {
+    console.error('Missing SMTP environment variables in apply endpoint:', {
+      host: !process.env.SMTP_HOST,
+      user: !process.env.SMTP_USER,
+      pass: !process.env.SMTP_PASS,
+      to: !process.env.CONTACT_TO
+    });
+    return res.status(500).json({ error: 'Server mail configuration is incomplete. Please ensure Vercel environment variables are set and the app is redeployed.' });
+  }
+
   try {
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
+      port: Number(process.env.SMTP_PORT) || 587,
       secure: false,
       auth: {
         user: process.env.SMTP_USER,
