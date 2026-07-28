@@ -190,6 +190,8 @@ export function ApplyForm() {
     source: [],
   });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
 
   const set = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
   const toggle = (key) => (value) => setForm((f) => {
@@ -200,12 +202,30 @@ export function ApplyForm() {
     };
   });
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    // TODO: wire to backend (Formspree, EmailJS, or your own endpoint).
-    // eslint-disable-next-line no-console
-    console.log('Apply form submission', form);
-    setSubmitted(true);
+    setSending(true);
+    setError('');
+
+    try {
+      const res = await fetch('/api/apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Something went wrong.');
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message || 'Failed to send. Please try again.');
+    } finally {
+      setSending(false);
+    }
   };
 
   if (submitted) {
@@ -417,23 +437,39 @@ export function ApplyForm() {
 
           {/* Submit */}
           <div data-reveal style={{ paddingTop: 8 }}>
+            {error && (
+              <div style={{
+                padding: '12px 18px',
+                marginBottom: 16,
+                background: '#FFF0F0',
+                border: '1px solid #FFD0D0',
+                borderRadius: 8,
+                color: '#CC0000',
+                fontFamily: theme.body,
+                fontSize: 14,
+              }}>
+                {error}
+              </div>
+            )}
             <button
               type="submit"
+              disabled={sending}
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 14,
                 padding: '18px 32px',
-                background: theme.ink, color: theme.base,
+                background: sending ? '#555' : theme.ink, color: theme.base,
                 border: 'none', borderRadius: 999,
                 fontFamily: theme.body, fontSize: 14, fontWeight: 600,
                 letterSpacing: '0.04em', textTransform: 'uppercase',
-                cursor: 'pointer',
-                transition: 'transform 0.3s var(--xg-ease)',
+                cursor: sending ? 'not-allowed' : 'pointer',
+                opacity: sending ? 0.7 : 1,
+                transition: 'transform 0.3s var(--xg-ease), opacity 0.3s var(--xg-ease)',
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; }}
+              onMouseEnter={(e) => { if (!sending) e.currentTarget.style.transform = 'translateY(-2px)'; }}
               onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; }}
             >
-              Submit Your Enquiry
-              <span style={{ fontSize: 18, lineHeight: 1 }}>&rarr;</span>
+              {sending ? 'Submitting…' : 'Submit Your Enquiry'}
+              {!sending && <span style={{ fontSize: 18, lineHeight: 1 }}>&rarr;</span>}
             </button>
           </div>
         </Group>

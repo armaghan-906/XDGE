@@ -4,6 +4,8 @@ dist
 *.log
 .vite
 .vercel
+.env
+.env.local
 
 public/assets/videos/Footages/
 
