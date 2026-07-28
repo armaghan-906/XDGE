@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 
-const CALENDLY_URL = 'https://calendly.com/hallmarkleadership/strategy-session';
+const CALENDLY_URL = 'https://calendly.com/thexdge/strategy-session';
 const EMBED_URL = `${CALENDLY_URL}?hide_event_type_details=0&hide_gdpr_banner=1`;
 
 export function DiscoveryMeeting() {
