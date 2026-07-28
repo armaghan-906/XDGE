@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { theme } from '../../theme';
+import { HeroAmbient } from '../HeroAmbient';
 
 function ContactHeading() {
   const ease = [0.2, 0.7, 0.2, 1];
@@ -43,6 +44,7 @@ export function ContactHero() {
         position: 'relative', overflow: 'hidden',
       }}
     >
+      <HeroAmbient src="/assets/videos/hero.mp4" playbackRate={0.45} overlayOpacity={0.25} />
       <div style={{
         flex: 1,
         position: 'relative', zIndex: 10,

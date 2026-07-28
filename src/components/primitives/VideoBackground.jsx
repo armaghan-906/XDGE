@@ -11,9 +11,9 @@ export function VideoBackground({
   src,
   poster,
   // playbackRate < 1 slows the clip so it reads as calm/ambient rather than frantic.
-  playbackRate = 1,
+  playbackRate = 0.45,
   // Overlay darkness (0–1) — raise to push the video further back behind text.
-  overlayOpacity = 0.2,
+  overlayOpacity = 0.22,
   // Style overrides merged onto the <video>. Default fills the section (cover);
   // pass an anchored/sized box to make the graphic smaller and enter from a side.
   videoStyle,

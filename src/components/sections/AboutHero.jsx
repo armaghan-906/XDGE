@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
+import { HeroAmbient } from '../HeroAmbient';
 
 const fadeEase = [0.2, 0.7, 0.2, 1];
 
@@ -17,6 +18,7 @@ export function AboutHero() {
         padding: 'clamp(96px, 12vw, 140px) clamp(20px, 4vw, 56px) clamp(80px, 9vw, 120px)',
       }}
     >
+      <HeroAmbient src="/assets/videos/gold_swirls.mp4" playbackRate={0.45} overlayOpacity={0.25} />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <SplitHeading
           lines={[

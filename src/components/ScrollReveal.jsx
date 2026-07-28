@@ -37,19 +37,18 @@ export function ScrollReveal() {
         entered.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
         entered.forEach((entry, i) => {
           const el = entry.target;
-          // clear one-by-one cascade for elements that appear together
-          el.style.transitionDelay = `${Math.min(i * 70, 280)}ms`;
+          // Smooth Boldz-style cohesive reveal — tight 25ms cascade so blocks lift as a unified unit
+          el.style.transitionDelay = `${Math.min(i * 25, 100)}ms`;
           requestAnimationFrame(() => el.classList.add('sr-visible'));
           observer.unobserve(el);
         });
       },
-      // Fire slightly BEFORE the card reaches the bottom edge so the (now
-      // shorter) reveal finishes while it's still on screen under Lenis.
-      { threshold: 0.01, rootMargin: '0px 0px 12% 0px' }
+      { threshold: 0.01, rootMargin: '0px 0px 8% 0px' }
     );
 
     const scan = () => {
       const els = document.querySelectorAll(UNIT);
+      const viewHeight = window.innerHeight || document.documentElement.clientHeight;
       for (const el of els) {
         if (el.classList.contains('sr-init') || el.classList.contains('sr-visible')) continue;
         // anti-nesting: if an ancestor is also a reveal unit, let the ancestor animate
@@ -58,6 +57,15 @@ export function ScrollReveal() {
         if (el.closest('[data-no-reveal]')) continue;
         if (el.closest('[style*="z-index: 99999"]')) continue;
         if (el.closest('[style*="cursor: grab"]')) continue;
+        
+        // Anti-Flicker: If the element is already well inside the initial visible viewport on load,
+        // display immediately without forcing an opacity-zero flash.
+        const rect = el.getBoundingClientRect();
+        if (rect.top < viewHeight * 0.85 && rect.bottom > 0) {
+          el.classList.add('sr-init', 'sr-visible');
+          continue;
+        }
+
         el.classList.add('sr-init');
         observer.observe(el);
       }

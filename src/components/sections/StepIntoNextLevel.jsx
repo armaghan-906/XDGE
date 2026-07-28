@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
+import { HeroMotion } from '../HeroMotion';
 
 const fadeEase = [0.2, 0.7, 0.2, 1];
 
@@ -19,6 +20,7 @@ export function StepIntoNextLevel() {
         padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
+      <HeroMotion variant="ascend" />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <div style={{ position: 'relative' }}>
           <SplitHeading

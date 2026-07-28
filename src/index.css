@@ -83,7 +83,7 @@ html.lenis body { height: auto; }
 
 /* ── Premium polish layer ─────────────────────────────────── */
 :root {
-  --xg-ease: cubic-bezier(0.22, 1, 0.36, 1);        /* canonical SLOW soft expo-out — reveals/headings/page/menu */
+  --xg-ease: cubic-bezier(0.16, 1, 0.3, 1);         /* silken Boldz expo-out — reveals/headings/page/menu */
   --xg-ease-hover: cubic-bezier(0.2, 0.7, 0.2, 1);  /* FAST interaction ease — hovers/cursor/cards — do NOT slow */
   --xg-ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --xg-shadow-soft: 0 12px 40px -16px rgba(0, 0, 0, 0.25), 0 4px 16px -8px rgba(0, 0, 0, 0.18);
@@ -1182,33 +1182,32 @@ section[data-screen-label] {
   /* Prevent clipping at edges */
 }
 
-/* Global Scroll Reveal — CSS-only compositor-thread transitions.
-   .sr-init hides elements; .sr-visible fades them in.
-   The transition runs entirely on the GPU compositor. */
+/* Global Scroll Reveal — Pure GPU compositor acceleration (Boldz Design studio).
+   .sr-init hides elements; .sr-visible glides them in with zero jank or layout vibration. */
 .sr-init {
   opacity: 0;
-  transform: translateY(48px);
-  transition: opacity 0.85s var(--xg-ease),
-              transform 0.85s var(--xg-ease);
+  transform: translateZ(0) translateY(24px);
+  will-change: opacity, transform;
+  transition: opacity 1.0s var(--xg-ease),
+              transform 1.0s var(--xg-ease);
 }
 
 .sr-init.sr-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateZ(0) translateY(0);
 }
 
 /* ── Reveal variety ──────────────────────────────────────────────────────────
-   Blocks opt into a different entrance via data-reveal="left|right|scale|blur"
-   (default is the 48px bottom rise). sr-visible's translateY(0) resets every
-   axis, so these only need to override the initial state. */
-[data-reveal="left"].sr-init { transform: translateX(-64px); }
-[data-reveal="right"].sr-init { transform: translateX(64px); }
-[data-reveal="scale"].sr-init { transform: translateY(28px) scale(0.95); }
+   Subtle, balanced offsets prevent visual stuttering while preserving luxury physics. */
+[data-reveal="left"].sr-init { transform: translateZ(0) translateX(-36px); }
+[data-reveal="right"].sr-init { transform: translateZ(0) translateX(36px); }
+[data-reveal="scale"].sr-init { transform: translateZ(0) translateY(16px) scale(0.97); }
 [data-reveal="blur"].sr-init {
-  filter: blur(14px);
-  transition: opacity 0.85s var(--xg-ease),
-              transform 0.85s var(--xg-ease),
-              filter 0.85s var(--xg-ease);
+  filter: blur(8px);
+  transform: translateZ(0) translateY(18px);
+  transition: opacity 1.0s var(--xg-ease),
+              transform 1.0s var(--xg-ease),
+              filter 1.0s var(--xg-ease);
 }
 [data-reveal="blur"].sr-init.sr-visible { filter: blur(0); }
 

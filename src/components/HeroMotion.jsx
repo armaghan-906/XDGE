@@ -51,7 +51,7 @@ export function HeroMotion({ variant = 'ascend' }) {
     const mkStream = () => ({
       x: Math.random() * W,
       y: H + Math.random() * H * 0.5,
-      sp: 0.6 + Math.random() * 1.9,
+      sp: 0.25 + Math.random() * 0.65, // Decelerated for luxury Boldz pacing
       ph: Math.random() * 6.28,
       sway: 0.4 + Math.random() * 0.9,
       drift: (Math.random() - 0.5) * 0.3,
@@ -101,8 +101,8 @@ export function HeroMotion({ variant = 'ascend' }) {
       nodes = Array.from({ length: Math.min(28, Math.floor(W / 56)) }, () => ({
         x: Math.random() * W,
         y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.22,
-        vy: (Math.random() - 0.5) * 0.22,
+        vx: (Math.random() - 0.5) * 0.08, // Ultra-smooth low-inertia float
+        vy: (Math.random() - 0.5) * 0.08,
       }));
       pulses = [];
     };
@@ -136,14 +136,14 @@ export function HeroMotion({ variant = 'ascend' }) {
         ctx.arc(p.x, p.y, 1.7, 0, 6.3);
         ctx.fill();
       }
-      if (pulses.length < 9 && Math.random() < 0.05) {
+      if (pulses.length < 9 && Math.random() < 0.03) {
         const a = nodes[(Math.random() * nodes.length) | 0];
         const b = nodes[(Math.random() * nodes.length) | 0];
         if (a && b && a !== b) pulses.push({ a, b, p: 0 });
       }
       for (let k = pulses.length - 1; k >= 0; k--) {
         const pu = pulses[k];
-        pu.p += 0.018 * dt;
+        pu.p += 0.006 * dt; // Hypnotic, calm pulse speed
         const x = pu.a.x + (pu.b.x - pu.a.x) * pu.p;
         const y = pu.a.y + (pu.b.y - pu.a.y) * pu.p;
         ctx.fillStyle = 'rgba(255,255,255,0.95)';
