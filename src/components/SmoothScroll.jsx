@@ -23,13 +23,14 @@ export function SmoothScroll() {
     if (coarse) return; // mobile/touch stays 100% native; desktop always glides (brand)
 
     const lenis = new Lenis({
-      lerp: 0.075,          // lower = slower, more floaty glide
-      wheelMultiplier: 0.9,
+      lerp: 0.15,           // Ultra-responsive, fluid inertia without artificial sluggish drag
+      wheelMultiplier: 1.0, // Natural 1:1 scroll wheel speed translation
       smoothWheel: true,
       syncTouch: false,     // never fight native touch momentum
-      touchMultiplier: 1.5,
+      touchMultiplier: 1.2,
       orientation: 'vertical',
       gestureOrientation: 'vertical',
+      autoResize: true,     // Prevent stuck scroll clamping when dynamic content renders
       autoRaf: false,       // we drive a single shared RAF loop
       overscroll: false,
     });

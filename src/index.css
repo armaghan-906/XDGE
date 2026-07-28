@@ -1182,32 +1182,31 @@ section[data-screen-label] {
   /* Prevent clipping at edges */
 }
 
-/* Global Scroll Reveal — Pure GPU compositor acceleration (Boldz Design studio).
-   .sr-init hides elements; .sr-visible glides them in with zero jank or layout vibration. */
+/* Global Scroll Reveal — High-Performance native transforms (Zero GPU texture thrashing).
+   Elements reveal cleanly without freezing scroll frames or causing memory jitter. */
 .sr-init {
   opacity: 0;
-  transform: translateZ(0) translateY(24px);
-  will-change: opacity, transform;
-  transition: opacity 1.0s var(--xg-ease),
-              transform 1.0s var(--xg-ease);
+  transform: translateY(20px);
+  transition: opacity 0.65s var(--xg-ease),
+              transform 0.65s var(--xg-ease);
 }
 
 .sr-init.sr-visible {
   opacity: 1;
-  transform: translateZ(0) translateY(0);
+  transform: translateY(0);
 }
 
 /* ── Reveal variety ──────────────────────────────────────────────────────────
-   Subtle, balanced offsets prevent visual stuttering while preserving luxury physics. */
-[data-reveal="left"].sr-init { transform: translateZ(0) translateX(-36px); }
-[data-reveal="right"].sr-init { transform: translateZ(0) translateX(36px); }
-[data-reveal="scale"].sr-init { transform: translateZ(0) translateY(16px) scale(0.97); }
+   Lightweight offsets prevent visual layout shifts while scrolling. */
+[data-reveal="left"].sr-init { transform: translateX(-28px); }
+[data-reveal="right"].sr-init { transform: translateX(28px); }
+[data-reveal="scale"].sr-init { transform: translateY(12px) scale(0.98); }
 [data-reveal="blur"].sr-init {
-  filter: blur(8px);
-  transform: translateZ(0) translateY(18px);
-  transition: opacity 1.0s var(--xg-ease),
-              transform 1.0s var(--xg-ease),
-              filter 1.0s var(--xg-ease);
+  filter: blur(6px);
+  transform: translateY(14px);
+  transition: opacity 0.65s var(--xg-ease),
+              transform 0.65s var(--xg-ease),
+              filter 0.65s var(--xg-ease);
 }
 [data-reveal="blur"].sr-init.sr-visible { filter: blur(0); }
 

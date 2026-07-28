@@ -33,17 +33,17 @@ export function ScrollReveal() {
   useLayoutEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        const entered = entries.filter((e) => e.isIntersecting);
-        entered.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        entered.forEach((entry, i) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
           const el = entry.target;
-          // Smooth Boldz-style cohesive reveal — tight 25ms cascade so blocks lift as a unified unit
-          el.style.transitionDelay = `${Math.min(i * 25, 100)}ms`;
+          // Zero artificial delay delays on fast scrolling — elements emerge seamlessly and immediately
+          el.style.transitionDelay = '0ms';
           requestAnimationFrame(() => el.classList.add('sr-visible'));
           observer.unobserve(el);
         });
       },
-      { threshold: 0.01, rootMargin: '0px 0px 8% 0px' }
+      // Anticipatory reveal: start fading in 350px BEFORE reaching visual viewport boundary
+      { threshold: 0.0, rootMargin: '0px 0px 350px 0px' }
     );
 
     const scan = () => {
@@ -58,10 +58,10 @@ export function ScrollReveal() {
         if (el.closest('[style*="z-index: 99999"]')) continue;
         if (el.closest('[style*="cursor: grab"]')) continue;
         
-        // Anti-Flicker: If the element is already well inside the initial visible viewport on load,
-        // display immediately without forcing an opacity-zero flash.
+        // Anti-Flicker: If the element is within or above our visual boundary,
+        // render immediately without dropping opacity to zero.
         const rect = el.getBoundingClientRect();
-        if (rect.top < viewHeight * 0.85 && rect.bottom > 0) {
+        if (rect.top < viewHeight * 1.15 && rect.bottom > -100) {
           el.classList.add('sr-init', 'sr-visible');
           continue;
         }

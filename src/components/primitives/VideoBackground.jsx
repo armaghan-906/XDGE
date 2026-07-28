@@ -22,13 +22,13 @@ export function VideoBackground({
   edgeFade,
 }) {
   const videoRef = useRef(null);
-  const isInView = useInView(videoRef, { margin: "400px" });
+  const isInView = useInView(videoRef, { margin: "150px" });
 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playbackRate = playbackRate;
       if (isInView) {
-        videoRef.current.play().catch(e => console.warn("Video autoplay failed:", e));
+        videoRef.current.play().catch(() => {});
       } else {
         videoRef.current.pause();
       }
