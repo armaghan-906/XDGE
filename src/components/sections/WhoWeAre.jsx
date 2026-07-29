@@ -88,9 +88,13 @@ export function WhoWeAre() {
                 alt="XDGE coaching session"
                 loading="eager"
                 decoding="async"
+                // Lands with the block's fade rather than trailing it — same
+                // retune as the WhoWeServe cards. A 1.4s settle from 1.15 kept
+                // creeping for ~0.5s after the surrounding fadeUp (0.85s) had
+                // finished, which reads as the section dragging.
                 variants={{
-                  hidden: { scale: 1.15 },
-                  visible: { scale: 1, transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1] } },
+                  hidden: { scale: 1.06 },
+                  visible: { scale: 1, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
                 }}
                 style={{
                   position: 'absolute', inset: 0,

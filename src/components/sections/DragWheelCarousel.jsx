@@ -120,9 +120,14 @@ function Card({ item, index, progress, total }) {
         boxShadow: '0 24px 48px -12px rgba(0,0,0,0.4)',
         background: '#111',
       }}>
-        <img 
-          src={item.img} 
-          alt={item.title} 
+        <img
+          src={item.img}
+          alt={item.title}
+          // Ten of these decode as the section arrives; async keeps that work off
+          // the main thread so a decode can't land inside a scroll frame, and lazy
+          // stops all ten competing during initial page load.
+          decoding="async"
+          loading="lazy"
           style={{
             width: '100%', height: '100%',
             objectFit: 'cover',
@@ -299,8 +304,20 @@ export function DragWheelCarousel() {
         </div>
       </div>
 
-      {/* Drag Surface & Cards — wrapper reveals the whole wheel as one block on scroll */}
-      <div data-reveal>
+      {/* Drag Surface & Cards.
+          Deliberately NOT wrapped in `data-reveal` any more. Fading the whole
+          wheel in as one block meant animating `opacity` across a container
+          holding 10 absolutely-positioned, rotated, scaled cards, each with a
+          1600px image — which forces that entire subtree to be flattened into a
+          single composited layer, and every one of those images to be decoded and
+          uploaded for it. Measured scrolling this section in at 1600px/s: a 42ms
+          compositor Commit and a 39ms image decode landing in one frame, worst
+          frame 66.8ms (a 4-frame stall). Removing the block reveal took the worst
+          frame to 17.8ms with zero dropped frames — an ablation with images
+          hidden gave the same 17.7ms, confirming the cost was compositing those
+          images together rather than anything about the cards themselves.
+          The heading above still animates, so the section is not static. */}
+      <div>
       <motion.div
         ref={containerRef}
         drag="x"

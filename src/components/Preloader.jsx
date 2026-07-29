@@ -1,13 +1,23 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Logo } from './Logo';
+import { getLenis } from './SmoothScroll';
 
 // Slower intro reveal (matches the calmer hero loop).
 const INTRO_VIDEO_RATE = 0.7;
 
 export function Preloader() {
   // ?skipintro query param bypasses the intro (used for automated screenshots/tests)
-  const [show, setShow] = useState(() => !window.location.search.includes('skipintro'));
+  const [show, setShow] = useState(() => {
+    const skip = window.location.search.includes('skipintro');
+    // Flagged here, during render, and NOT in an effect: ScrollReveal reads this
+    // attribute from a useLayoutEffect, and every layout effect runs before any
+    // passive effect — so setting it in an effect would always be too late and
+    // the page entrance would fire behind the curtain. Idempotent, so React's
+    // double-invoked initializer in StrictMode is harmless.
+    if (!skip) document.documentElement.setAttribute('data-xg-intro', '');
+    return !skip;
+  });
   const failsafeRef = useRef(null);
 
   useEffect(() => {
@@ -15,14 +25,39 @@ export function Preloader() {
     // so it never blocks the page. Recomputed from the real (slowed) runtime
     // once metadata loads; this initial value only covers a never-loading video.
     failsafeRef.current = setTimeout(() => setShow(false), 4500);
+
+    // Scroll lock goes through Lenis when it owns the scroll. Setting
+    // `body { overflow: hidden }` underneath a running Lenis does not actually
+    // stop it — Lenis keeps integrating wheel deltas against documentElement, so
+    // the page could be sitting at a non-zero offset when the curtain lifted,
+    // and releasing the lock snapped it. Only fall back to the CSS lock on
+    // touch/reduced-motion, where Lenis deliberately does not run.
+    const lenis = getLenis();
     if (show) {
-      document.body.style.overflow = 'hidden';
+      if (lenis) lenis.stop();
+      else document.body.style.overflow = 'hidden';
     } else {
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+        lenis.start();
+      }
       document.body.style.overflow = '';
+      // Released as the curtain begins its fade, so the page entrance
+      // crossfades out from under it instead of starting on a static page.
+      document.documentElement.removeAttribute('data-xg-intro');
+      window.dispatchEvent(new Event('xg:intro-done'));
     }
+
     return () => {
       clearTimeout(failsafeRef.current);
       document.body.style.overflow = '';
+      // Never leave the page scroll-locked. The `data-xg-intro` gate is
+      // deliberately NOT cleared here: StrictMode double-invokes this effect, and
+      // the attribute is set once during render, so clearing it on the throwaway
+      // cleanup would drop the gate before the intro had even played. A genuine
+      // unmount mid-intro is covered by INTRO_WAIT_MS in ScrollReveal.
+      const l = getLenis();
+      if (l) l.start();
     };
   }, [show]);
 

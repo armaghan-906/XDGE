@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { theme, fadeUp } from '../../theme';
+import { theme, fadeUp, cardStagger, cardRise } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 import { ParallaxImage } from '../primitives/ParallaxImage';
@@ -62,15 +62,17 @@ export function Insights() {
             >All Insights <span style={{ fontSize: 16 }}>→</span></motion.a>
           </motion.div>
         </Group>
-        <Group className="xg-3">
+        {/* cardStagger/cardRise rather than the default text stagger: three
+            large cards 0.13s apart all overlap in flight, which reads as a
+            scramble. 0.28s apart over 1.1s each is a clean one-by-one cascade.
+            Hover lift is CSS (.xg-lift) so it cannot fight this reveal. */}
+        <Group className="xg-3" variants={cardStagger}>
           {posts.map((p, i) => (
             <motion.a
               key={i}
               href="#"
-              variants={fadeUp}
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-              className="xg-glass-solid"
+              variants={cardRise}
+              className="xg-glass-solid xg-lift"
               style={{
                 display: 'block', textDecoration: 'none', color: theme.base,
                 overflow: 'hidden', borderRadius: 8,

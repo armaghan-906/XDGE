@@ -50,10 +50,17 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
         aspectRatio: '4/3',
         background: '#000000',
       }}>
+        {/* Image settle on reveal. Tuned to LAND WITH the card's fade, not after
+            it: the card itself fades up over 0.85s (fadeUp), so a 1.4s settle left
+            the image still creeping inward for another half second after the card
+            had visibly arrived — which reads as the section being stuck or
+            dragging even though it renders at a clean 60fps. 0.9s with a smaller
+            1.06 start finishes with the fade and reads as one motion.
+            Same easing as fadeUp so the two curves agree. */}
         <motion.div
           variants={{
-            hidden: { scale: 1.15 },
-            visible: { scale: 1, transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1] } }
+            hidden: { scale: 1.06 },
+            visible: { scale: 1, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } }
           }}
           style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}
         >
@@ -62,8 +69,14 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
             alt={card.t}
             loading="eager"
             decoding="async"
-            animate={{ scale: isHovered ? 1.06 : 1 }}
-            transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
+            // Hover zoom intentionally left to CSS (`.xg-glass-solid:hover img`),
+            // as on the Insights and Is-This-Right-For-Me cards. This element also
+            // carried `animate={{ scale: isHovered ? 1.06 : 1 }}`, and since the
+            // CSS rule sets the standalone `scale` property while framer writes
+            // `transform`, the two composed instead of overriding — so hovering
+            // actually zoomed ~1.12, not 1.06. Dropping the JS copy fixes the
+            // doubled zoom and removes a per-hover JS animation on an image that
+            // is already running a scroll-linked parallax.
             style={{
               position: 'absolute',
               top: '-25%',

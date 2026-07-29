@@ -1180,35 +1180,58 @@ section[data-screen-label] {
   display: inline-block;
   padding: 0 0.02em;
   /* Prevent clipping at edges */
+  /* Kept deliberately: this filter was suspected of forcing a per-frame
+     re-raster of the heading while its parent animates opacity. An A/B ablation
+     (filter on vs off, 2 runs each, scrolling through "THE JOURNEY") measured
+     p95 17.6ms either way — no difference. The cost was image decode, not paint.
+     Left as designed rather than trading away the glow for nothing. */
 }
 
-/* Global Scroll Reveal — High-Performance native transforms (Zero GPU texture thrashing).
-   Elements reveal cleanly without freezing scroll frames or causing memory jitter. */
+/* ── Global Scroll Reveal ─────────────────────────────────────────────────────
+   The hidden state carries NO transition. That is the whole trick, and getting
+   it wrong is what made this site look broken.
+
+   `transition` used to be declared here on `.sr-init`, the same rule that sets
+   `opacity: 0`. CSS resolves the transition from the *after-change* style, so
+   adding the class did not hide the element — it smoothly ANIMATED it from its
+   natural opacity 1 down to 0 over 0.65s, sliding it 20px down as it went, and
+   only then did the reveal animate it back in. Every heading, paragraph and card
+   on the page visibly faded out and drifted before it faded in. Measured on the
+   hero copy: opacity 1 at frame 14, 0.41 by frame 21, 0 by frame 43 — a ~450ms
+   fade-out nobody asked for. That is the "flickering / staggering" that kept
+   coming back, and no amount of retiming the JS could fix it, because the
+   artifact was in the stylesheet.
+
+   Hidden = instant (no transition declared). Only the reveal transitions. */
 .sr-init {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.65s var(--xg-ease),
-              transform 0.65s var(--xg-ease);
 }
 
 .sr-init.sr-visible {
   opacity: 1;
   transform: translateY(0);
+  transition: opacity 0.65s var(--xg-ease),
+              transform 0.65s var(--xg-ease);
 }
 
 /* ── Reveal variety ──────────────────────────────────────────────────────────
-   Lightweight offsets prevent visual layout shifts while scrolling. */
+   Lightweight offsets prevent visual layout shifts while scrolling. Same rule
+   as above: the offset goes on `.sr-init` (instant), the transition on the
+   `.sr-visible` pair (animated). */
 [data-reveal="left"].sr-init { transform: translateX(-28px); }
 [data-reveal="right"].sr-init { transform: translateX(28px); }
 [data-reveal="scale"].sr-init { transform: translateY(12px) scale(0.98); }
 [data-reveal="blur"].sr-init {
   filter: blur(6px);
   transform: translateY(14px);
+}
+[data-reveal="blur"].sr-init.sr-visible {
+  filter: blur(0);
   transition: opacity 0.65s var(--xg-ease),
               transform 0.65s var(--xg-ease),
               filter 0.65s var(--xg-ease);
 }
-[data-reveal="blur"].sr-init.sr-visible { filter: blur(0); }
 
 /* ── Micro-interactions ──────────────────────────────────────────────────────
    Standalone scale/translate properties compose with framer's inline
@@ -1220,6 +1243,24 @@ a:active,
 /* Card image zoom on hover (Insights + Is This Right For Me glass cards) */
 .xg-glass-solid img { transition: scale 0.9s var(--xg-ease); }
 .xg-glass-solid:hover img { scale: 1.06; }
+
+/* Card hover lift — deliberately the standalone `translate` property, NOT
+   `transform`, and NOT framer's whileHover.
+   framer owns `transform` on these cards to run their reveal. A hover that also
+   animated `transform` (the old `whileHover={{ y: -8 }}`) is the same property,
+   so framer reconciles the two and gives hover priority: point at a card while
+   it is still rising and it snaps straight to the hover offset mid-flight.
+   `translate` is a separate CSS property that composes with framer's transform
+   matrix, so the lift and the reveal are simply additive and never interact.
+   The old hover also carried `scale: 1.02`, which re-rasterized the card's text
+   and image at a non-integer scale — the shimmer on hover. Zoom stays on the
+   image only (above), where there is no text to blur. */
+.xg-lift {
+  translate: 0 0;
+  transition: translate 0.5s var(--xg-ease-hover);
+}
+
+.xg-lift:hover { translate: 0 -8px; }
 
 /* Team portraits ease in closer on hover */
 .xg-team-grid img { transition: scale 1s var(--xg-ease); }
@@ -1235,19 +1276,22 @@ input:focus, textarea:focus, select:focus {
   outline: none;
 }
 
-/* Page transition: incoming page fades + rises into place.
-   Uses `backwards` fill (see PageTransition.jsx) so the transform never
-   persists — otherwise translateY(0) would establish a containing block
-   and break any position:fixed descendants. Compositor-only. */
+/* Page transition: incoming page fades in. OPACITY ONLY — deliberately.
+   This animates the wrapper around the *entire* page, so the translateY(28px)
+   that used to be here cost far more than it looked like:
+     - it promoted a multi-viewport-tall element to one composited layer for a
+       full second on every load and route change, which is a large texture
+       upload right when the page is already busy — the load-time stutter;
+     - a transform on that wrapper establishes a containing block, which
+       reparents any position:fixed descendant (e.g. the fullscreen overlay in
+       DifferentAgesDifferentFocus) for the duration;
+     - it shifted every descendant's getBoundingClientRect by up to 28px while
+       the reveal engine was measuring, so reveals triggered against positions
+       that did not match what was on screen.
+   Fading opacity alone has none of those effects and reads the same. */
 @keyframes xg-page-fadein {
-  from {
-    opacity: 0;
-    transform: translateY(28px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* Reviews section (data-screen-label "Proven Outcomes") — top/bottom padding
