@@ -4,7 +4,13 @@ import { Logo } from './Logo';
 import { getLenis } from './SmoothScroll';
 
 // Slower intro reveal (matches the calmer hero loop).
-const INTRO_VIDEO_RATE = 0.7;
+//
+// This rate is not purely cosmetic: the clip is 1.67s, and the intro is held for
+// duration/rate + 0.7s, so it sets how long every visitor waits before seeing
+// the page. 0.5 => ~4.0s. Going much below ~0.35 pushes the intro past the
+// INTRO_WAIT_MS failsafe in ScrollReveal, after which reveals would start firing
+// behind the curtain and the entrance would be spent on a hidden page.
+const INTRO_VIDEO_RATE = 0.5;
 
 export function Preloader() {
   // ?skipintro query param bypasses the intro (used for automated screenshots/tests)

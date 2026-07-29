@@ -96,7 +96,15 @@ const framerOwned = (el) => {
 // Cap on waiting for webfonts before revealing anyway.
 const FONT_WAIT_MS = 1200;
 // Cap on waiting for the intro overlay to finish.
-const INTRO_WAIT_MS = 6000;
+//
+// Only a backstop: the Preloader always dispatches `xg:intro-done`, including via
+// its own failsafe if the video never plays, so this timer normally never fires.
+// It is deliberately well clear of the longest realistic intro (the clip is
+// 1.67s, held for duration/playbackRate + 0.7s) so that lowering
+// INTRO_VIDEO_RATE for a slower intro cannot quietly push past it — if it did,
+// reveals would arm while the curtain was still up and the whole page entrance
+// would play to nobody.
+const INTRO_WAIT_MS = 9000;
 
 export function ScrollReveal() {
   useLayoutEffect(() => {

@@ -5,7 +5,11 @@ import { theme } from '../../theme';
 import { Logo } from '../Logo';
 
 // Slower loop so the ambient logo reveal reads as calm rather than busy.
-const HERO_VIDEO_RATE = 0.6;
+// The clip is only 1.67s, so at 0.4 it cycles every ~4.2s. This one loops
+// forever in the background and never gates anything, so slowing it costs
+// nothing — unlike the intro rate in Preloader.jsx, which directly extends how
+// long the page is held behind the curtain.
+const HERO_VIDEO_RATE = 0.4;
 
 export function Hero() {
   const videoRef = useRef(null);
