@@ -1,0 +1,13 @@
+# Build output. Vercel runs `vite build` itself, so uploading dist/ ships a
+# second copy of everything for nothing — dist/assets alone is 332MB, an exact
+# duplicate of public/assets. Without this file the deploy payload was 662MB
+# instead of 331MB, which on a slow uplink was enough to fail with "fetch
+# failed" partway through.
+dist
+
+# Never needed by the build.
+node_modules
+.git
+.vercel
+.DS_Store
+*.log
