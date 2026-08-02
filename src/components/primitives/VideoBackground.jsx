@@ -10,8 +10,10 @@ import { motion, useInView } from 'framer-motion';
 export function VideoBackground({
   src,
   poster,
-  // playbackRate < 1 slows the clip so it reads as calm/ambient rather than frantic.
-  playbackRate = 0.45,
+  // Native rate. A rate below 1 does not add frames, it just holds each one longer,
+  // so it trades smoothness for slowness — the ambient clips are retimed assets now
+  // (real interpolated in-between frames) and are slow at rate 1. See HeroAmbient.
+  playbackRate = 1,
   // Overlay darkness (0–1) — raise to push the video further back behind text.
   overlayOpacity = 0.22,
   // Style overrides merged onto the <video>. Default fills the section (cover);

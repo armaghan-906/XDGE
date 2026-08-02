@@ -35,7 +35,6 @@ export function ProgrammesHero() {
     >
       <HeroAmbient
         src="/assets/videos/thunder_2.mp4"
-        playbackRate={0.5}
         overlayOpacity={0.28}
         edgeFade="to right"
         videoStyle={{

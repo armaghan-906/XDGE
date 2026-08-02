@@ -30,7 +30,7 @@ export function ExperienceHero() {
         position: 'relative', overflow: 'hidden',
       }}
     >
-      <HeroAmbient src="/assets/videos/hero.mp4" playbackRate={0.45} overlayOpacity={0.25} />
+      <HeroAmbient src="/assets/videos/hero.mp4" overlayOpacity={0.25} />
       <div style={{
         flex: 1,
         position: 'relative', zIndex: 10,
