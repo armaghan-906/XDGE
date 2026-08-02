@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
-import { HeroMotion } from '../HeroMotion';
 
 const fadeEase = [0.2, 0.7, 0.2, 1];
 
@@ -20,7 +19,10 @@ export function StepIntoNextLevel() {
         padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
-      <HeroMotion variant="ascend" />
+      {/* Background removed per request — this section is now flat `theme.dark`.
+          It used to run `<HeroMotion variant="ascend" />`, a 2D-canvas animation
+          (not a video, despite looking like one), which drove its own rAF loop
+          behind the heading. */}
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <div style={{ position: 'relative' }}>
           <SplitHeading
@@ -52,7 +54,7 @@ export function StepIntoNextLevel() {
                 <img
                   src="/assets/ALL NEW IMAGES/ALL NEW IMAGES (5).webp"
                   alt=""
-                  loading="eager"
+                  loading="lazy"
                   decoding="async"
                   style={{
                     width: '100%', height: '100%',
@@ -70,7 +72,7 @@ export function StepIntoNextLevel() {
                 <img
                   src="/assets/ALL NEW IMAGES/ALL NEW IMAGES (4).webp"
                   alt=""
-                  loading="eager"
+                  loading="lazy"
                   decoding="async"
                   style={{
                     width: '100%', height: '100%',
