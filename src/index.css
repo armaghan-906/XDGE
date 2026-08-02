@@ -1022,11 +1022,16 @@ section[data-screen-label] {
    parent: measured 1440px wide against copies of 3072px each, so the strip
    travelled 720px and snapped back — it never completed a loop.
    `.xg-leave-marquee` sets this inline; this one had been missed. */
+/* 90s, not 35s. Duration here is not a speed on its own — it is the time to cross
+   one copy, and one copy is ~3072px at this font size, so 35s worked out to ~88px/s.
+   That only looked calm while the loop was broken and the strip was snapping back
+   after 720px (~20px/s). With the full distance actually travelled, 35s reads as
+   fast. 90s puts it at ~34px/s: a drift rather than a scroll. */
 .xdge-footer-marquee {
   display: flex;
   white-space: nowrap;
   width: max-content;
-  animation: xdge-marquee 35s linear infinite;
+  animation: xdge-marquee 90s linear infinite;
   will-change: transform;
 }
 
