@@ -1033,6 +1033,14 @@ section[data-screen-label] {
   animation-play-state: paused;
 }
 
+/* Applied by MarqueeIdle while a strip is off-screen: stops the infinite
+   animation and lets the compositor drop its promoted layer, instead of holding
+   both for the whole session behind content nobody is looking at. */
+.xg-mq-idle {
+  animation-play-state: paused !important;
+  will-change: auto !important;
+}
+
 /* ============================================================
    XDGE — Playful hover utilities
    Pure CSS (no JS) — pair with <Magnetic> for the springy follow.

@@ -4,6 +4,7 @@ import { ScrollProgress } from './components/ScrollProgress';
 import { TopBar } from './components/TopBar';
 import { PageTransition } from './components/PageTransition';
 import { ScrollReveal } from './components/ScrollReveal';
+import { MarqueeIdle } from './components/MarqueeIdle';
 import { Footer } from './components/sections/Footer';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -21,6 +22,7 @@ function Layout() {
     <div>
       <ScrollProgress />
       <ScrollReveal />
+      <MarqueeIdle />
       <TopBar />
       <PageTransition />
       <Footer />
