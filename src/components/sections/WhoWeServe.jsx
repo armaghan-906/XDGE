@@ -26,12 +26,17 @@ const cards = [
 // lost varied per load. `SplitHeading` documents the same hazard and solves it
 // the same way — latch the FACT of having been seen with `useInView`, then drive
 // `animate` from that, so the target is free to resolve late.
+// Tightened cascade: 0.06s apart over 0.55s, so all four are in within ~0.73s.
+// At the previous 0.13s / 0.85s the last card only landed 1.24s after the first,
+// and scrolling at any pace put the reader inside that window — which is why the
+// section read as "sometimes one card, sometimes all". Still one-by-one, just
+// quick enough that a normal scroll arrives after it, not during it.
 const cardReveal = {
   hidden: { opacity: 0, y: 48 },
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: i * 0.13 },
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.06 },
   }),
 };
 

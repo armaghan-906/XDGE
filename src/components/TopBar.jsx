@@ -78,8 +78,8 @@ export function TopBar() {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  // Once the page scrolls, the burger gains a frosted-glass disc so it stays
-  // legible over any content (rAF-throttled; state only flips at threshold).
+  // Once the page scrolls, the burger gains a solid disc so it stays legible over
+  // any content (rAF-throttled; state only flips at threshold).
   useEffect(() => {
     let raf = 0;
     const onScroll = () => {
@@ -161,11 +161,15 @@ export function TopBar() {
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             style={{
+              // No backdrop-filter. This button is `position: fixed` over the hero
+              // video, and a backdrop blur has to re-sample its backdrop on every
+              // frame that backdrop paints — a looping video, so every frame — which
+              // put the cost on each scroll frame in exactly the corner where the
+              // stutter was reported. The disc is a flatter solid instead: raised
+              // from 0.6/0.4 to 0.78/0.62 so it stays just as legible without it.
               background: scrolled && !open
-                ? (sectionTheme === 'light' ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.4)')
+                ? (sectionTheme === 'light' ? 'rgba(255,255,255,0.78)' : 'rgba(0,0,0,0.62)')
                 : 'transparent',
-              backdropFilter: scrolled && !open ? 'blur(10px)' : 'none',
-              WebkitBackdropFilter: scrolled && !open ? 'blur(10px)' : 'none',
               border: scrolled && !open
                 ? (sectionTheme === 'light' ? '1px solid rgba(0,0,0,0.12)' : '1px solid rgba(255,255,255,0.14)')
                 : '1px solid transparent',
