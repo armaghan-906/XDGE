@@ -1014,12 +1014,26 @@ section[data-screen-label] {
   animation-play-state: paused;
 }
 
-/* Footer marquee — runs on the CSS compositor thread, no main-thread cost. */
+/* Footer marquee — runs on the CSS compositor thread, no main-thread cost.
+   `width: max-content` is what makes the loop seamless and is not optional.
+   translateX(-50%) is a percentage of THIS element's own width, and the whole
+   two-copies trick only works when that width is the content width, so -50%
+   lands exactly one copy along. Without it the element was constrained to its
+   parent: measured 1440px wide against copies of 3072px each, so the strip
+   travelled 720px and snapped back — it never completed a loop.
+   `.xg-leave-marquee` sets this inline; this one had been missed. */
 .xdge-footer-marquee {
   display: flex;
   white-space: nowrap;
+  width: max-content;
   animation: xdge-marquee 35s linear infinite;
   will-change: transform;
+}
+
+/* Copies must keep their natural width — a flex item shrinks by default, and a
+   shrunk copy breaks the -50% alignment just as surely. */
+.xdge-footer-marquee > * {
+  flex: 0 0 auto;
 }
 
 /* What You Leave With — image cards auto-scroll continuously like the footer
