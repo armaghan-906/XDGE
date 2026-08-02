@@ -1,10 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { theme, fadeUp } from '../../theme';
+import { theme } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
-import { Magnetic } from '../Magnetic';
 
 const MotionLink = motion(Link);
 
@@ -15,9 +14,31 @@ const cards = [
   { year: 'The XDGE', t: 'Specialist Pathways', d: '', img: '/assets/serve-04.webp' },
 ];
 
+// Each card drives its own reveal and carries its own cascade delay.
+//
+// Previously these inherited "visible" from the surrounding `Group`'s
+// `whileInView`. That is the fragile path: `whileInView` with `once: true`
+// latches its observer the moment the element is seen, and if the variant does
+// not resolve on that exact pass the element is left on `hidden` — opacity 0,
+// 48px down — with nothing still watching to correct it. Measured on Home: two
+// of the four cards sat permanently at `matrix(1,0,0,1,0,48)` with opacity 0
+// while the other two were never given an initial style at all, and which pair
+// lost varied per load. `SplitHeading` documents the same hazard and solves it
+// the same way — latch the FACT of having been seen with `useInView`, then drive
+// `animate` from that, so the target is free to resolve late.
+const cardReveal = {
+  hidden: { opacity: 0, y: 48 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: i * 0.13 },
+  }),
+};
+
 function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
   const isHovered = hovered === index;
   const cardRef = useRef(null);
+  const seen = useInView(cardRef, { once: true, amount: 0.15 });
 
   const { scrollYProgress } = useScroll({
     target: cardRef,
@@ -39,7 +60,10 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
     <MotionLink data-no-reveal
       ref={cardRef}
       to="/programmes"
-      variants={fadeUp}
+      custom={index}
+      variants={cardReveal}
+      initial="hidden"
+      animate={seen ? 'visible' : 'hidden'}
       data-cursor="grow"
       className="xg-glass-solid xg-tilt"
       onMouseEnter={onEnter}
@@ -215,8 +239,10 @@ export function WhoWeServe() {
         </Group>
 
         {/* Cards are equal height (the title reserves 3 lines in ServeCard) but kept
-            STAGGERED — odd cards offset down — for the original masonry feel. */}
-        <Group className="xg-2" style={{ gap: 'clamp(24px, 4vw, 40px)', alignItems: 'flex-start' }}>
+            STAGGERED — odd cards offset down — for the original masonry feel.
+            A plain div, not a `Group`: each card now owns its reveal and its own
+            cascade delay, so an orchestrator here would drive nothing. */}
+        <div className="xg-2" style={{ gap: 'clamp(24px, 4vw, 40px)', alignItems: 'flex-start' }}>
           {cards.map((c, i) => (
             <ServeCard
               key={i}
@@ -232,7 +258,7 @@ export function WhoWeServe() {
               }}
             />
           ))}
-        </Group>
+        </div>
       </div>
     </section>
   );
