@@ -63,7 +63,7 @@ export function AboutPrinciples() {
           />
         </div>
 
-        <motion.div
+        <motion.div data-no-reveal
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"

@@ -46,7 +46,7 @@ const slides = [
       'Build strong material for personal statements and interviews',
       'Practise presenting ideas with confidence and credibility',
     ],
-    img: '/assets/ALL NEW IMAGES/Untitled design (57).webp',
+    img: '/assets/ALL NEW IMAGES/Untitled design (57).jpg',
   },
   {
     age: 'Ages 11–16',
@@ -120,7 +120,7 @@ function Modal({ slide, onClose }) {
   }, [onClose]);
 
   return createPortal(
-    <motion.div
+    <motion.div data-no-reveal
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -133,7 +133,7 @@ function Modal({ slide, onClose }) {
         padding: 'clamp(16px, 4vw, 40px)',
       }}
     >
-      <motion.div
+      <motion.div data-no-reveal
         initial={{ y: 40, opacity: 0, scale: 0.97 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
         exit={{ y: 20, opacity: 0, scale: 0.98 }}
@@ -263,7 +263,7 @@ function Card({ slide, onOpen, dark }) {
   const imgBg = dark ? theme.dark : '#000000';
 
   return (
-    <motion.button
+    <motion.button data-no-reveal
       variants={fadeUp}
       whileHover={{ y: -6 }}
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}

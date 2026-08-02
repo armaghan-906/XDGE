@@ -1,21 +1,31 @@
 import { useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { theme } from '../../theme';
 import { Logo } from '../Logo';
+import { Group, Reveal } from '../primitives/Reveal';
 
 // Slower loop so the ambient logo reveal reads as calm rather than busy.
-// The clip is only 1.67s, so at 0.4 it cycles every ~4.2s. This one loops
-// forever in the background and never gates anything, so slowing it costs
-// nothing — unlike the intro rate in Preloader.jsx, which directly extends how
-// long the page is held behind the curtain.
+// The clip is only 1.67s, so at 0.4 it cycles every ~4.2s.
 const HERO_VIDEO_RATE = 0.4;
 
 export function Hero() {
   const videoRef = useRef(null);
+
+  // Stop decoding once the hero is off-screen. `autoPlay loop` on its own keeps
+  // this clip decoding for the whole session — it was still running while the
+  // visitor was 13,000px down the page, so every scroll frame anywhere on Home
+  // paid for a video nobody could see. `FloatingVideo` and `VideoBackground`
+  // already gate playback this way; the hero was the one that did not.
+  const inView = useInView(videoRef, { margin: '200px' });
+
   useEffect(() => {
-    if (videoRef.current) videoRef.current.playbackRate = HERO_VIDEO_RATE;
-  }, []);
+    const v = videoRef.current;
+    if (!v) return;
+    v.playbackRate = HERO_VIDEO_RATE;
+    if (inView) v.play().catch(() => {});
+    else v.pause();
+  }, [inView]);
 
   return (
     <section
@@ -29,9 +39,9 @@ export function Hero() {
         alignItems: 'center', justifyContent: 'center',
       }}
     >
-      {/* Video + lockup mirror the Preloader geometry exactly (full-bleed
-          100vh cover video, logo dead-centre of the first viewport) so the
-          intro reveal fades into the hero with zero jump. */}
+      {/* Full-bleed 100vh cover video with the logo dead-centre of the first
+          viewport — this is now the first thing the visitor sees, since the intro
+          preloader that used to precede it has been removed. */}
       <video
         ref={videoRef}
         src="/assets/videos/logo_reveal.mp4"
@@ -96,7 +106,11 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="xg-hero-copy" style={{
+      {/* Rises from below as one cascade under framer, rather than picking up the
+          generic CSS reveal. Left to the CSS engine, the <h3> and <p> each got the
+          shared 20px lift — barely readable as motion next to the 48px `fadeUp`
+          used everywhere else, so this block looked like it just switched on. */}
+      <Group className="xg-hero-copy" style={{
         position: 'absolute',
         bottom: 'clamp(12px, 2vw, 20px)',
         right: 'clamp(24px, 4vw, 40px)',
@@ -107,44 +121,56 @@ export function Hero() {
         flexDirection: 'column',
         alignItems: 'flex-end',
       }}>
-        <h3 style={{
-          fontSize: 'clamp(20px, 2.2vw, 28px)',
-          lineHeight: 1.25,
-          margin: 0,
-          fontFamily: theme.body,
-          color: theme.base,
-          fontWeight: 600
-        }}>
-          For Young People 12&ndash;24 Building<br />
-          Their Next Step Advantage
-        </h3>
+        <Reveal style={{ width: '100%' }}>
+          <h3 style={{
+            fontSize: 'clamp(20px, 2.2vw, 28px)',
+            lineHeight: 1.25,
+            margin: 0,
+            fontFamily: theme.body,
+            color: theme.base,
+            fontWeight: 600
+          }}>
+            For Young People 12&ndash;24 Building<br />
+            Their Next Step Advantage
+          </h3>
+        </Reveal>
 
-        <div style={{ width: '100%', height: 1, background: '#ffffff', margin: '16px 0 20px' }}></div>
+        <Reveal style={{ width: '100%' }}>
+          <div style={{ width: '100%', height: 1, background: '#ffffff', margin: '16px 0 20px' }}></div>
+        </Reveal>
 
-        <p style={{
-          fontSize: 'clamp(12px, 1.3vw, 14px)',
-          lineHeight: 1.5,
-          margin: '0 0 20px',
-          color: '#e0e0e0',
-          fontWeight: 400,
-        }}>
-          The XDGE (pronounced Edge) helps ambitious young people develop the
-          leadership, skills, and real-world experience that define their distinctive edge.
-          Guided by experienced leaders and industry experts, participants build the
-          confidence, capability, and portfolio to stand out in their next opportunity and
-          make an impact in school, university, careers, business, and life.
-        </p>
+        <Reveal style={{ width: '100%' }}>
+          <p style={{
+            fontSize: 'clamp(12px, 1.3vw, 14px)',
+            lineHeight: 1.5,
+            margin: '0 0 20px',
+            color: '#e0e0e0',
+            fontWeight: 400,
+          }}>
+            The XDGE (pronounced Edge) helps ambitious young people develop the
+            leadership, skills, and real-world experience that define their distinctive edge.
+            Guided by experienced leaders and industry experts, participants build the
+            confidence, capability, and portfolio to stand out in their next opportunity and
+            make an impact in school, university, careers, business, and life.
+          </p>
+        </Reveal>
 
-        <Link
-          to="/programmes"
-          style={{
-            display: 'inline-flex', alignItems: 'center', gap: 10, padding: '10px 20px',
-            border: `1px solid rgba(255,255,255,0.4)`, borderRadius: 999, color: theme.base,
-            textDecoration: 'none', fontSize: 13, fontWeight: 500,
-            background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(4px)',
-          }}
-        >View All Programmes <span style={{ fontSize: 16 }}>→</span></Link>
-      </div>
+        <Reveal>
+          <Link
+            to="/programmes"
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 10, padding: '10px 20px',
+              border: `1px solid rgba(255,255,255,0.4)`, borderRadius: 999, color: theme.base,
+              textDecoration: 'none', fontSize: 13, fontWeight: 500,
+              // No backdrop-filter. This button sits over the looping hero video, and
+              // a backdrop blur has to re-sample its backdrop every frame the video
+              // paints — which is every frame, so the cost landed on each scroll frame
+              // and made this corner stutter. A flatter solid keeps it legible for free.
+              background: 'rgba(0,0,0,0.55)',
+            }}
+          >View All Programmes <span style={{ fontSize: 16 }}>→</span></Link>
+        </Reveal>
+      </Group>
     </section>
   );
 }

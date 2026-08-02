@@ -17,7 +17,7 @@ function OutcomesHeading({ y, opacity }) {
         paddingBottom: '0.06em',
       }}
     >
-      <motion.span
+      <motion.span data-no-reveal
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
@@ -54,7 +54,7 @@ export function OutcomesHero() {
         gap: 32,
       }}>
         <div style={{ marginTop: 24, position: 'relative' }}>
-          <motion.div
+          <motion.div data-no-reveal
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
@@ -70,7 +70,7 @@ export function OutcomesHero() {
             The
           </motion.div>
           <OutcomesHeading y={y} opacity={opacity} />
-          <motion.div
+          <motion.div data-no-reveal
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: 0.65 }}
@@ -89,7 +89,7 @@ export function OutcomesHero() {
 
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
           <div className="xg-hide-md" />
-          <motion.div
+          <motion.div data-no-reveal
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.9 }}

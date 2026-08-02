@@ -18,13 +18,13 @@ function FormulaHeading({ y, opacity }) {
         paddingBottom: '0.06em',
       }}
     >
-      <motion.span
+      <motion.span data-no-reveal
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.4, ease, delay: 0.25 }}
         style={{ display: 'block' }}
       >PERFORMANCE</motion.span>
-      <motion.span
+      <motion.span data-no-reveal
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.4, ease, delay: 0.4 }}
@@ -61,7 +61,7 @@ export function PerformanceFormulaHero() {
         gap: 32,
       }}>
         <div style={{ marginTop: 24, position: 'relative' }}>
-          <motion.div
+          <motion.div data-no-reveal
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease, delay: 0.1 }}
@@ -77,7 +77,7 @@ export function PerformanceFormulaHero() {
             Our
           </motion.div>
           <FormulaHeading y={y} opacity={opacity} />
-          <motion.div
+          <motion.div data-no-reveal
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease, delay: 0.65 }}
@@ -96,7 +96,7 @@ export function PerformanceFormulaHero() {
 
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
           <div className="xg-hide-md" />
-          <motion.div
+          <motion.div data-no-reveal
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease, delay: 0.9 }}

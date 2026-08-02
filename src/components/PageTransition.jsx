@@ -1,7 +1,6 @@
 import { Suspense, useEffect } from 'react';
 import { useLocation, useOutlet } from 'react-router-dom';
 import { theme } from '../theme';
-import { getLenis } from './SmoothScroll';
 
 /**
  * PageTransition — plain page wrapper (no curtain overlay).
@@ -13,11 +12,9 @@ export function PageTransition() {
   const outlet = useOutlet();
 
   useEffect(() => {
-    // Reset through Lenis so its internal target doesn't lerp back to a stale
-    // position; fall back to native when smooth-scroll is disabled.
-    const lenis = getLenis();
-    if (lenis) lenis.scrollTo(0, { immediate: true });
-    else window.scrollTo(0, 0);
+    // Native scroll owns the position (Lenis was removed — a JS-driven scroll
+    // always trails the wheel input, which is what read as the page "sticking").
+    window.scrollTo(0, 0);
   }, [pathname]);
 
   return (

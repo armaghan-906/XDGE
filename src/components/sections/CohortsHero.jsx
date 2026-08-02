@@ -17,13 +17,13 @@ function CohortsHeading({ y, opacity }) {
         paddingBottom: '0.06em',
       }}
     >
-      <motion.span
+      <motion.span data-no-reveal
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.6, ease: [0.2, 0.7, 0.2, 1], delay: 0.25 }}
         style={{ display: 'block' }}
       >COHORTS &amp;</motion.span>
-      <motion.span
+      <motion.span data-no-reveal
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.6, ease: [0.2, 0.7, 0.2, 1], delay: 0.4 }}
@@ -60,7 +60,7 @@ export function CohortsHero() {
         gap: 32,
       }}>
         <div style={{ marginTop: 24, position: 'relative' }}>
-          <motion.div
+          <motion.div data-no-reveal
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
@@ -76,7 +76,7 @@ export function CohortsHero() {
             The
           </motion.div>
           <CohortsHeading y={y} opacity={opacity} />
-          <motion.div
+          <motion.div data-no-reveal
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.65 }}
@@ -95,7 +95,7 @@ export function CohortsHero() {
 
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
           <div className="xg-hide-md" />
-          <motion.div
+          <motion.div data-no-reveal
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}

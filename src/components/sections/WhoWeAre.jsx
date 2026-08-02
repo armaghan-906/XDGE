@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { theme, fadeUp, stagger } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
-import { FloatingVideo } from '../primitives/FloatingVideo';
 
 const svg = {
   width: 22, height: 22, viewBox: '0 0 24 24', fill: 'none',
@@ -51,15 +50,6 @@ export function WhoWeAre() {
     >
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <div style={{ marginBottom: 'clamp(40px, 6vw, 64px)', position: 'relative' }}>
-          <FloatingVideo
-            src="/assets/videos/thunder_1.mp4"
-            style={{
-              top: '50%', left: '20%',
-              transform: 'translate(-50%, -50%)',
-              width: 'clamp(600px, 80vw, 1500px)',
-              opacity: 0.35, zIndex: -1,
-            }}
-          />
           <SplitHeading
             lines={[
               <span style={{ whiteSpace: 'nowrap' }}>
@@ -77,7 +67,7 @@ export function WhoWeAre() {
         </div>
 
         <Group className="xg-wwa-grid">
-          <motion.div variants={fadeUp} className="xg-wwa-img">
+          <motion.div data-no-reveal variants={fadeUp} className="xg-wwa-img">
             <div style={{
               position: 'relative',
               width: '100%', aspectRatio: '4/5',
@@ -86,7 +76,7 @@ export function WhoWeAre() {
               <motion.img
                 src="/assets/who-we-are.webp"
                 alt="XDGE coaching session"
-                loading="eager"
+                loading="lazy"
                 decoding="async"
                 // Lands with the block's fade rather than trailing it — same
                 // retune as the WhoWeServe cards. A 1.4s settle from 1.15 kept
@@ -110,7 +100,7 @@ export function WhoWeAre() {
           {/* icon + divider + bold-lead rows — each row cascades in one-by-one */}
           <motion.div variants={stagger} style={{ display: 'flex', flexDirection: 'column' }}>
             {points.map((p, i) => (
-              <motion.div
+              <motion.div data-no-reveal
                 key={i}
                 variants={fadeUp}
                 style={{

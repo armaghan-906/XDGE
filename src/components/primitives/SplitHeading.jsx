@@ -69,7 +69,7 @@ export function SplitHeading({ lines, style, tag = 'h2', lineClasses = [] }) {
             marginBottom: `-${PAD}`,
           }}
         >
-          <motion.span
+          <motion.span data-no-reveal
             custom={i}
             variants={lineMask}
             className={lineClasses[i] || undefined}

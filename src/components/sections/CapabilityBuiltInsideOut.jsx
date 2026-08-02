@@ -32,7 +32,7 @@ export function CapabilityBuiltInsideOut() {
           }}
           className="xg-cap-grid"
         >
-          <motion.div
+          <motion.div data-no-reveal
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -41,7 +41,7 @@ export function CapabilityBuiltInsideOut() {
             <PerformanceDiagram maxWidth={760} />
           </motion.div>
 
-          <motion.div
+          <motion.div data-no-reveal
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}

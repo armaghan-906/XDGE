@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { theme, fadeUp, stagger, cardStagger, cardRise } from '../../theme';
+import { theme, fadeUp, cardStagger, cardRise } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { ParallaxImage } from '../primitives/ParallaxImage';
 import { SplitHeading } from '../primitives/SplitHeading';
@@ -181,25 +181,22 @@ export function IsThisRightForMe() {
         {/* Full-width heading so it lays out as a clean 2-liner (IS THIS / RIGHT FOR ME)
             instead of being squeezed by the 2-column grid; CTA drops below, right-aligned. */}
         <Group style={{ marginBottom: 'clamp(40px, 6vw, 64px)' }}>
-          <motion.h2
-            data-no-reveal
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+          <SplitHeading
+            lineClasses={['cyan-text', 'hollow-text']}
+            lines={[
+              // Kicker line is 0.45em of the h2 size; the size lives on an inner
+              // span so the line's own clip is measured against it.
+              <span style={{ display: 'block', fontSize: '0.45em', letterSpacing: '0.02em' }}>IS THIS RIGHT</span>,
+              'FOR ME',
+            ]}
             style={{
               fontFamily: theme.display, fontWeight: 900,
               fontSize: 'clamp(40px, 11.3vw, 200px)',
               lineHeight: 0.95, letterSpacing: '-0.02em',
-              margin: 0, textTransform: 'uppercase'
+              textTransform: 'uppercase'
             }}
-          >
-            <motion.span variants={fadeUp} style={{ display: 'flex', flexDirection: 'column' }}>
-              <span className="cyan-text" style={{ fontSize: '0.45em', paddingBottom: '0.1em', letterSpacing: '0.02em' }}>IS THIS RIGHT</span>
-              <span className="hollow-text" style={{ marginTop: '-0.05em' }}>FOR ME</span>
-            </motion.span>
-          </motion.h2>
-          <motion.div variants={fadeUp} style={{
+          />
+          <motion.div data-no-reveal variants={fadeUp} style={{
             display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end',
             flexWrap: 'wrap', gap: 24, marginTop: 'clamp(24px, 3vw, 40px)',
           }}>

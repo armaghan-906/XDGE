@@ -18,8 +18,8 @@ import { fadeUp, stagger } from '../../theme';
  * only drives children that declare their own `variants`. Plenty of Group
  * children (Culture, ExperienceJourney, WhoWeServe …) have no variants and are
  * legitimately revealed by the CSS engine — excluding the whole subtree here
- * would leave them with no animation at all. ScrollReveal instead detects the
- * individual framer-driven children; see `framerOwned` there.
+ * would leave them with no animation at all. The framer-driven children carry
+ * `data-no-reveal` individually instead.
  *
  * `once: true` — plays a single time per visit, so there is no ongoing scroll
  * cost and no re-animation when scrolling back up.

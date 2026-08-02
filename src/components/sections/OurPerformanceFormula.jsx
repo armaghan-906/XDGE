@@ -78,7 +78,7 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
       background: 'radial-gradient(circle at center, rgba(110,150,200,0.16), rgba(255,255,255,0) 72%)',
     }}>
       {/* Outer ring */}
-      <motion.div
+      <motion.div data-no-reveal
         variants={diagRing}
         style={{
           position: 'absolute', inset: 0,
@@ -89,7 +89,7 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
         }}
       />
       {/* Middle ring */}
-      <motion.div
+      <motion.div data-no-reveal
         className="xg-perf-ring-middle"
         variants={diagRing}
         style={{
@@ -100,7 +100,7 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
         }}
       />
       {/* Inner ring */}
-      <motion.div
+      <motion.div data-no-reveal
         className="xg-perf-ring-inner"
         variants={diagRing}
         style={{
@@ -112,7 +112,7 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
       />
 
       {/* Labels (fade in after rings) */}
-      <motion.div
+      <motion.div data-no-reveal
         variants={diagLabel}
         style={{
           position: 'absolute',
@@ -139,7 +139,7 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
         </div>
       </motion.div>
 
-      <motion.div
+      <motion.div data-no-reveal
         variants={diagLabel}
         style={{
           position: 'absolute',
@@ -166,7 +166,7 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
         </div>
       </motion.div>
 
-      <motion.div
+      <motion.div data-no-reveal
         variants={diagLabel}
         style={{
           position: 'absolute',
@@ -197,7 +197,6 @@ export function PerformanceDiagram({ maxWidth = 620, dark = true } = {}) {
   );
 }
 
-import { FloatingVideo } from '../primitives/FloatingVideo';
 
 export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
   const bg = dark ? theme.dark : theme.base;
@@ -215,36 +214,26 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
         padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
-      <FloatingVideo 
-        src="/assets/videos/lightning_1.mp4" 
-        style={{ top: '20%', left: '-5%', opacity: 0.6, mixBlendMode: 'screen', transform: 'scale(3)', transformOrigin: 'left center', zIndex: 0 }} 
-      />
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         
         {/* Massive full-width heading */}
-        <motion.h2
-          data-no-reveal
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+        <SplitHeading
+          lineClasses={['cyan-text', 'hollow-text']}
+          lines={[
+            // Kicker line is 0.45em of the h2 size; the size lives on an inner
+            // span so the line's own clip is measured against it.
+            <span style={{ display: 'block', fontSize: '0.45em', letterSpacing: '0.02em' }}>OUR PERFORMANCE</span>,
+            'FORMULA',
+          ]}
           style={{
             fontFamily: theme.display, fontWeight: 900,
             fontSize: 'clamp(40px, 11.3vw, 200px)',
             lineHeight: 0.9, letterSpacing: '-0.02em',
             marginBottom: 'clamp(40px, 6vw, 80px)',
-            marginTop: 0, textTransform: 'uppercase',
+            textTransform: 'uppercase',
             width: '100%',
-            display: 'flex', flexDirection: 'column'
           }}
-        >
-          <motion.div variants={fadeUp} style={{ display: 'flex' }}>
-            <span className="cyan-text" style={{ fontSize: '0.45em', paddingBottom: '0.1em', letterSpacing: '0.02em' }}>OUR PERFORMANCE</span>
-          </motion.div>
-          <motion.div variants={fadeUp} style={{ display: 'flex', marginTop: '-0.05em' }}>
-            <span className="hollow-text">FORMULA</span>
-          </motion.div>
-        </motion.h2>
+        />
 
         <div className="xg-2" style={{ alignItems: 'center' }}>
           {/* Left text — heading + each line cascade in one-by-one */}
@@ -255,7 +244,7 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
             viewport={{ once: true, amount: 0.15 }}
             data-no-reveal
           >
-            <motion.div
+            <motion.div data-no-reveal
               variants={fadeUp}
               style={{
                 fontSize: 'clamp(20px, 2.5vw, 28px)',
@@ -279,10 +268,10 @@ export function OurPerformanceFormula({ dark = true, diagramMaxWidth } = {}) {
                 maxWidth: 420,
               }}
             >
-              <motion.p variants={fadeUp} style={{ margin: 0 }}>Most people focus on what they do.</motion.p>
-              <motion.p variants={fadeUp} style={{ margin: 0 }}>We focus on how you think, behave, and take action.</motion.p>
-              <motion.p variants={fadeUp} style={{ margin: 0 }}>Align these, and you perform at your next level.</motion.p>
-              <motion.p variants={fadeUp} style={{ margin: 0, color: muted }}>
+              <motion.p data-no-reveal variants={fadeUp} style={{ margin: 0 }}>Most people focus on what they do.</motion.p>
+              <motion.p data-no-reveal variants={fadeUp} style={{ margin: 0 }}>We focus on how you think, behave, and take action.</motion.p>
+              <motion.p data-no-reveal variants={fadeUp} style={{ margin: 0 }}>Align these, and you perform at your next level.</motion.p>
+              <motion.p data-no-reveal variants={fadeUp} style={{ margin: 0, color: muted }}>
                 This is the XDGE framework embedded in every programme and session.
               </motion.p>
             </motion.div>

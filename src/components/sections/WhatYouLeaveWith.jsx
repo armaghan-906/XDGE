@@ -1,4 +1,5 @@
 import { theme } from '../../theme';
+import { SplitHeading } from '../primitives/SplitHeading';
 
 // Carousel 2 imagery — every image from "Images for Carousel 2" (optimized WebP),
 // used once. Fixed-size square cards, image only (no text).
@@ -47,18 +48,21 @@ export function WhatYouLeaveWith() {
       }}
     >
       <div style={{ textAlign: 'center', marginBottom: 60, position: 'relative', zIndex: 10, padding: '0 clamp(20px, 4vw, 40px)' }}>
-        <h2 style={{
-          fontFamily: theme.display,
-          fontSize: 'clamp(40px, 11.3vw, 200px)',
-          fontWeight: 900,
-          margin: 0,
-          letterSpacing: '-0.02em',
-          lineHeight: 0.95,
-          textTransform: 'uppercase',
-        }}>
-          <span className="hollow-text" style={{ display: 'block', whiteSpace: 'nowrap' }}>WHAT YOU</span>
-          <span className="cyan-text" style={{ display: 'block', whiteSpace: 'nowrap' }}>LEAVE WITH</span>
-        </h2>
+        <SplitHeading
+          lineClasses={['hollow-text', 'cyan-text']}
+          lines={[
+            <span style={{ display: 'block', whiteSpace: 'nowrap' }}>WHAT YOU</span>,
+            <span style={{ display: 'block', whiteSpace: 'nowrap' }}>LEAVE WITH</span>,
+          ]}
+          style={{
+            fontFamily: theme.display,
+            fontSize: 'clamp(40px, 11.3vw, 200px)',
+            fontWeight: 900,
+            letterSpacing: '-0.02em',
+            lineHeight: 0.95,
+            textTransform: 'uppercase',
+          }}
+        />
         <p style={{
           color: theme.subtitle,
           marginTop: 16,

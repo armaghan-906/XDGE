@@ -88,7 +88,7 @@ const tiers = [
         duration: '12-14 weeks · 1:2:1 Mentor Programme',
         title: 'Incubator Pathways',
         desc: 'Take your idea from concept to reality through a specialist mentored incubator pathway focused on business, research, technology, life sciences, social enterprise, or leadership.',
-        img: '/assets/ALL NEW IMAGES/Untitled design (58).webp',
+        img: '/assets/ALL NEW IMAGES/Untitled design (58).jpg',
       },
       {
         duration: '12-14 weeks · 1:2:1 Mentor Programme',

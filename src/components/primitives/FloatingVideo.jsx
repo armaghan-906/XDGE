@@ -3,7 +3,10 @@ import { motion, useInView } from 'framer-motion';
 
 export function FloatingVideo({ src, style }) {
   const videoRef = useRef(null);
-  const isInView = useInView(videoRef, { margin: "400px" });
+  // 150px, matching VideoBackground. At 400px several of these ambient clips on
+  // Home counted as "in view" at once, so four were decoding concurrently through
+  // most of a scroll — measured as 4 playing videos at any point on the page.
+  const isInView = useInView(videoRef, { margin: "150px" });
 
   useEffect(() => {
     if (videoRef.current) {

@@ -72,15 +72,6 @@ img {
   max-width: 100%;
 }
 
-/* Lenis smooth-scroll baseline (only active when SmoothScroll mounts Lenis,
-   i.e. desktop + motion-OK; classes are added to <html> by Lenis itself). */
-html.lenis,
-html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-.lenis.lenis-stopped { overflow: hidden; }
-.lenis.lenis-smooth iframe { pointer-events: none; }
-
 /* ── Premium polish layer ─────────────────────────────────── */
 :root {
   --xg-ease: cubic-bezier(0.16, 1, 0.3, 1);         /* silken Boldz expo-out — reveals/headings/page/menu */

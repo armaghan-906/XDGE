@@ -86,7 +86,7 @@ function Bio({ intro, more }) {
 
           <AnimatePresence initial={false}>
             {open && (
-              <motion.div
+              <motion.div data-no-reveal
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
@@ -148,7 +148,7 @@ export function AboutTeam() {
 
         <div className="xg-team-grid">
           {team.map((m, i) => (
-            <motion.div
+            <motion.div data-no-reveal
               key={m.name}
               variants={rowVariants}
               initial="hidden"

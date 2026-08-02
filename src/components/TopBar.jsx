@@ -138,7 +138,7 @@ export function TopBar() {
 
   return (
     <>
-      <motion.header
+      <motion.header data-no-reveal
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
@@ -203,7 +203,6 @@ export function TopBar() {
       <AnimatePresence>
         {open && (
           <motion.div key="menu-overlay"
-            data-lenis-prevent
             initial={{ y: '-100%' }}
             animate={{ y: '0%' }}
             exit={{ y: '-100%' }}
@@ -216,6 +215,9 @@ export function TopBar() {
               display: 'flex', flexDirection: 'column',
               padding: 'clamp(96px, 9vw, 112px) clamp(20px, 4vw, 48px) clamp(40px, 5vw, 56px)',
               overflowY: 'auto',
+              // Keeps a scroll that bottoms out inside the menu from chaining to
+              // the page behind it (previously handled by Lenis's prevent rule).
+              overscrollBehavior: 'contain',
             }}
           >
             <div className="xg-menu-grid" style={{ position: 'relative', zIndex: 2 }}>
@@ -223,7 +225,7 @@ export function TopBar() {
                 display: 'flex', flexDirection: 'column',
                 justifyContent: 'space-between', gap: 32,
               }}>
-                <motion.div
+                <motion.div data-no-reveal
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.4, ease: fadeEase } }}
                 >
@@ -257,7 +259,7 @@ export function TopBar() {
                   </div>
                 </motion.div>
 
-                <motion.div
+                <motion.div data-no-reveal
                   className="xg-menu-image"
                   initial={{ opacity: 0, scale: 1.06 }}
                   animate={{ opacity: 1, scale: 1, transition: { duration: 1.0, delay: 0.55, ease: [0.22, 1, 0.36, 1] } }}
@@ -284,7 +286,7 @@ export function TopBar() {
               >
                 {primaryLinks.map((item, i) => (
                   <span key={item.label} style={clip}>
-                    <MotionLink
+                    <MotionLink data-no-reveal
                       to={item.to}
                       custom={i}
                       variants={linkVariants}
@@ -351,7 +353,7 @@ export function TopBar() {
                   })}
                 </nav>
 
-                <motion.div
+                <motion.div data-no-reveal
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.9, ease: fadeEase } }}
                 >

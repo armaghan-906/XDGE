@@ -19,7 +19,12 @@ export function ParallaxImage({
   style,
   imgStyle,
   objectPosition = '50% 50%',
-  loading = 'eager',
+  // Lazy by default. Every ParallaxImage on the site sits below the fold (they are
+  // card and row images), so eager loading only meant all of them competed for
+  // bandwidth and decode time during first paint, and their decodes then landed
+  // inside the first scroll frames. Pass loading="eager" explicitly for anything
+  // genuinely above the fold.
+  loading = 'lazy',
 }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({

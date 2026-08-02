@@ -25,7 +25,6 @@ const posts = [
   },
 ];
 
-import { FloatingVideo } from '../primitives/FloatingVideo';
 
 export function Insights() {
   return (
@@ -47,7 +46,7 @@ export function Insights() {
               }}
             />
           </div>
-          <motion.div variants={fadeUp} style={{ paddingBottom: 24 }}>
+          <motion.div data-no-reveal variants={fadeUp} style={{ paddingBottom: 24 }}>
             <p style={{ fontSize: 17, lineHeight: 1.55, color: theme.subtitle, margin: '0 0 24px', maxWidth: 480 }}>
               Get our latest thoughts and opinions on all things leadership, mindset, and performance.
             </p>
@@ -68,7 +67,7 @@ export function Insights() {
             Hover lift is CSS (.xg-lift) so it cannot fight this reveal. */}
         <Group className="xg-3" variants={cardStagger}>
           {posts.map((p, i) => (
-            <motion.a
+            <motion.a data-no-reveal
               key={i}
               href="#"
               variants={cardRise}

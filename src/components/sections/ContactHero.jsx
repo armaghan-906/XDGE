@@ -16,13 +16,13 @@ function ContactHeading() {
         paddingBottom: '0.06em',
       }}
     >
-      <motion.span
+      <motion.span data-no-reveal
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.0, ease, delay: 0.1 }}
         style={{ display: 'block' }}
       >CONTACT</motion.span>
-      <motion.span
+      <motion.span data-no-reveal
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
         transition={{ duration: 1.0, ease, delay: 0.22 }}
@@ -54,7 +54,7 @@ export function ContactHero() {
       }}>
         <div style={{ marginTop: 24, position: 'relative' }}>
           <ContactHeading />
-          <motion.div
+          <motion.div data-no-reveal
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.45 }}
@@ -73,7 +73,7 @@ export function ContactHero() {
 
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
           <div className="xg-hide-md" />
-          <motion.div
+          <motion.div data-no-reveal
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.7 }}

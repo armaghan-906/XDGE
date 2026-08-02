@@ -109,7 +109,7 @@ export function TheReality() {
           </div>
         </Group>
 
-        <motion.div
+        <motion.div data-no-reveal
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true, amount: 0.6 }}

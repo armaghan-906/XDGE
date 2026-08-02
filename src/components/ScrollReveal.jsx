@@ -21,26 +21,44 @@ import { useLayoutEffect } from 'react';
  *    before the next paint. No requestAnimationFrame anywhere in the hide path.
  *
  * 2. PARTITIONING (kills the double animation).
- *    `Reveal`/`Group` stamp `data-no-reveal` on their root, so an entire
- *    framer-driven subtree is invisible to this engine. Without that, e.g. an
- *    Insights card would fade+rise under framer while the <h3> and <p> *inside*
- *    it independently fade+rise under CSS, on a different curve, duration and
- *    trigger point — which reads as the card's text juddering against its own
- *    frame. `.sr-init` also carries a `transition`, and a CSS transition on an
- *    element whose transform/opacity framer rewrites every frame makes the
- *    browser chase each new value over 0.65s: visible rubber-banding.
+ *    Every self-animating framer element carries `data-no-reveal`, which puts its
+ *    whole subtree off-limits to this engine. Without that, e.g. an Insights card
+ *    would fade+rise under framer while the <h3> and <p> *inside* it independently
+ *    fade+rise under CSS, on a different curve, duration and trigger point — which
+ *    reads as the card's text juddering against its own frame. `.sr-init` also
+ *    carries a `transition`, and a CSS transition on an element whose
+ *    transform/opacity framer rewrites every frame makes the browser chase each
+ *    new value over 0.65s: visible rubber-banding.
+ *
+ *    The marker is DECLARED, never inferred. This used to be a runtime guess that
+ *    walked an element's ancestors and treated "has an inline transform AND an
+ *    inline opacity" as "framer owns this". That silently missed any wrapper whose
+ *    hidden variant sets only one of the two (`lineMask` sets just `y`, `diagLabel`
+ *    just `opacity`), and it depended on framer having already written its initial
+ *    styles by scan time — so whether a heading animated once, twice, or not at all
+ *    varied by section and by timing. Roughly 30 elements had been hand-marked to
+ *    patch individual symptoms; the remaining 67 are now marked too, and the guess
+ *    is gone.
+ *
+ *    IMPORTANT when adding motion: mark a framer element `data-no-reveal` only if
+ *    it animates ITSELF. Orchestrators whose `hidden` variant is empty (`stagger`,
+ *    `cardStagger`, `listContainer`, and therefore `Group`) apply nothing of their
+ *    own and must stay unmarked, or every plain child under them loses its reveal.
+ *
+ *    And watch the FACTORY form. `const MotionLink = motion(Link)` is every bit as
+ *    framer-driven as `motion.a`, but it is used as `<MotionLink>` — so a search
+ *    for `motion.` does not find it. WhoWeServe's cards are exactly that: a
+ *    `MotionLink` carrying `variants={fadeUp}` wrapping the card's own <h3> and
+ *    <p>. Left unmarked, framer faded the card while this engine independently
+ *    faded the text inside it, and the card's contents flickered in and back out.
  *
  * 3. FONT-METRIC GATING (kills the heading judder).
  *    Fonts load with `display=swap`, so Archivo Black replaces the fallback
  *    mid-session and every heading re-lays-out. A heading that is mid-reveal
  *    (or already revealed) visibly jumps when that happens. Reveals therefore
  *    wait for `document.fonts.ready` — capped, so a slow font never blocks the
- *    page.
- *
- * 4. INTRO GATING.
- *    While the preloader is up, revealing content behind it burns the entrance
- *    for nothing and leaves a static page when the curtain lifts. Reveals hold
- *    until the intro is done, then play properly.
+ *    page. This is now the ONLY gate: reveals used to also wait out the intro
+ *    preloader's full ~4s runtime, which is why the page sat dead on load.
  *
  * Elements animate ONCE and are then unobserved, and `will-change` is applied
  * only for the duration of each element's own transition — so there is no
@@ -62,55 +80,17 @@ const UNIT_PARTS = [
 const UNIT = UNIT_PARTS.join(', ');
 const UNIT_SCOPED = UNIT_PARTS.map((s) => `section ${s}`).join(', ');
 
-/**
- * True if this element, or an ancestor, is currently being driven by framer —
- * in which case the CSS engine must not touch it.
- *
- * The dominant authored pattern across these sections is a `motion.div` (or
- * `motion.a`) carrying `variants={fadeUp}` and wrapping text. That wrapper is a
- * <div>/<a>, so it never matches a reveal unit itself and the anti-nesting test
- * above cannot see it — but the <h3>/<p> inside it do match. Left alone, the
- * wrapper rises under framer while its own text rises separately under CSS on a
- * different curve and trigger: the text judders against the card around it.
- * There are dozens of these, so they cannot practically be marked by hand.
- *
- * framer resolves a component's `initial` variant during render and writes it
- * into the style attribute (buildHTMLStyles) so there is no flash — meaning an
- * element mid-`fadeUp`/`cardRise` carries BOTH an inline `transform` and an
- * inline `opacity` at scan time. Requiring both is what makes this specific:
- * a hand-authored `transform: translate(-50%, -50%)` centring hack (several of
- * those exist) has no inline opacity beside it and is not matched. An orchestrator
- * like `Group`, whose `hidden` variant is empty `{}`, writes neither and is
- * likewise not matched — so its non-animated children still reveal normally.
- */
-const framerOwned = (el) => {
-  for (let n = el; n && n !== document.body; n = n.parentElement) {
-    const s = n.style;
-    if (!s) continue;
-    const t = s.transform;
-    if (t && t !== 'none' && s.opacity !== '') return true;
-  }
-  return false;
-};
-
 // Cap on waiting for webfonts before revealing anyway.
 const FONT_WAIT_MS = 1200;
-// Cap on waiting for the intro overlay to finish.
-//
-// Only a backstop: the Preloader always dispatches `xg:intro-done`, including via
-// its own failsafe if the video never plays, so this timer normally never fires.
-// It is deliberately well clear of the longest realistic intro (the clip is
-// 1.67s, held for duration/playbackRate + 0.7s) so that lowering
-// INTRO_VIDEO_RATE for a slower intro cannot quietly push past it — if it did,
-// reveals would arm while the curtain was still up and the whole page entrance
-// would play to nobody.
-const INTRO_WAIT_MS = 9000;
 
 export function ScrollReveal() {
   useLayoutEffect(() => {
     let armed = false;
     let disposed = false;
     const pending = new Set();
+    // Units this instance has claimed. See `consider` for why membership here,
+    // rather than the presence of the `sr-init` class, is what marks a unit done.
+    const handled = new WeakSet();
 
     // Reveal one element.
     //
@@ -147,22 +127,32 @@ export function ScrollReveal() {
     );
 
     const consider = (el) => {
-      if (el.classList.contains('sr-init')) return;
+      // Already finished — nothing left to do.
+      if (el.classList.contains('sr-visible')) return;
+
+      // Already claimed by THIS instance. Deliberately tracked per-instance
+      // instead of testing for the `sr-init` class: StrictMode double-invokes
+      // this layout effect in dev (mount → cleanup → mount), and the first run
+      // leaves `sr-init` — i.e. opacity 0 — on every unit before its observer is
+      // disconnected. Keyed off the class, the second run then treated all of
+      // them as handled and never observed them with its own observer, so 38
+      // elements on Home (the WHAT YOU LEAVE WITH marquee, the journey steps,
+      // the Insights block) stayed invisible for the whole session with nothing
+      // left alive to reveal them. Re-observing is safe and flash-free: the
+      // class is already on the element, so nothing repaints.
+      if (handled.has(el)) return;
 
       // Anti-nesting: if an ancestor is itself a reveal unit, let the ancestor
       // animate and leave this element alone, so a card moves as a single
       // object instead of piece by piece.
       if (el.parentElement && el.parentElement.closest(UNIT)) return;
 
-      // Opt-outs: explicitly-marked subtrees (Reveal, SplitHeading, cards), the
-      // preloader, and drag carousels.
+      // The ONLY opt-out: an explicitly-marked framer-driven subtree. Every
+      // self-animating framer element carries `data-no-reveal` — the primitives
+      // stamp it themselves, section-level ones declare it in their JSX.
       if (el.closest('[data-no-reveal]')) return;
-      if (el.closest('[style*="z-index: 99999"]')) return;
-      if (el.closest('[style*="cursor: grab"]')) return;
 
-      // …and anything framer is already driving.
-      if (framerOwned(el)) return;
-
+      handled.add(el);
       el.classList.add('sr-init');
       observer.observe(el);
     };
@@ -221,17 +211,10 @@ export function ScrollReveal() {
       ? capped(document.fonts.ready, FONT_WAIT_MS)
       : Promise.resolve();
 
-    // Intro overlay: hold the entrance until the curtain is gone.
-    const intro = document.documentElement.hasAttribute('data-xg-intro')
-      ? capped(
-          new Promise((r) =>
-            window.addEventListener('xg:intro-done', r, { once: true })
-          ),
-          INTRO_WAIT_MS
-        )
-      : Promise.resolve();
-
-    Promise.all([fonts, intro]).then(arm);
+    // Fonts are the only gate now. The intro preloader used to hold reveals for
+    // its full ~4s runtime, so nothing on the page could animate until it lifted
+    // — the single biggest contributor to the page feeling stuck on load.
+    fonts.then(arm);
 
     return () => {
       disposed = true;

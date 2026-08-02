@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { theme, fadeUp, stagger } from '../../theme';
+import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 import { Magnetic } from '../Magnetic';
@@ -26,8 +26,17 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
 
   const imgY = useTransform(scrollYProgress, [0, 1], ["-25%", "25%"]);
 
+  // Promote to its own compositor layer only while the card is near the viewport.
+  // `will-change: transform` was set unconditionally, which pinned a full-resolution
+  // texture for all four card images for the entire session. Under GPU memory
+  // pressure the compositor can drop those layers' backing store, and the card
+  // contents blink out until it is re-rasterized — which is what "sometimes they
+  // vanish after a while" looks like. ParallaxImage was already gated this way for
+  // the same reason; this card had been missed.
+  const near = useInView(cardRef, { margin: '300px 0px 300px 0px' });
+
   return (
-    <MotionLink
+    <MotionLink data-no-reveal
       ref={cardRef}
       to="/programmes"
       variants={fadeUp}
@@ -67,7 +76,7 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
           <motion.img
             src={card.img}
             alt={card.t}
-            loading="eager"
+            loading="lazy"
             decoding="async"
             // Hover zoom intentionally left to CSS (`.xg-glass-solid:hover img`),
             // as on the Insights and Is-This-Right-For-Me cards. This element also
@@ -84,7 +93,7 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
               width: '100%', 
               height: '150%',
               objectFit: 'cover',
-              willChange: 'transform',
+              willChange: near ? 'transform' : 'auto',
               y: imgY,
             }}
           />
@@ -186,24 +195,20 @@ export function WhoWeServe() {
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <Group style={{ display: 'flex', flexDirection: 'column', marginBottom: 'clamp(32px, 6vw, 56px)' }}>
           <div style={{ position: 'relative', alignSelf: 'center', textAlign: 'center', padding: '40px 0' }}>
-            <motion.h2
-              data-no-reveal
-              variants={stagger}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+            <SplitHeading
+              lines={[
+                <span style={{ whiteSpace: 'nowrap' }}>
+                  <span className="cyan-text" style={{ paddingRight: '0.2em' }}>WHO</span>
+                  <span className="hollow-text">IS IT FOR</span>
+                </span>,
+              ]}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
                 fontSize: 'clamp(40px, 11.3vw, 200px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
-                margin: 0, textTransform: 'uppercase'
+                textTransform: 'uppercase'
               }}
-            >
-              <motion.span variants={fadeUp} style={{ display: 'block' }}>
-                <span className="cyan-text" style={{ paddingRight: '0.2em' }}>WHO</span>
-                <span className="hollow-text">IS IT FOR</span>
-              </motion.span>
-            </motion.h2>
+            />
           </div>
 
 

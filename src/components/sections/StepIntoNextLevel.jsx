@@ -36,7 +36,7 @@ export function StepIntoNextLevel() {
         </div>
 
         <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(40px, 8vw, 120px)' }}>
-          <motion.div
+          <motion.div data-no-reveal
             variants={fadeUp}
             style={{
               display: 'flex', flexDirection: 'column',
@@ -90,7 +90,7 @@ export function StepIntoNextLevel() {
             </div>
           </motion.div>
 
-          <motion.div
+          <motion.div data-no-reveal
             variants={fadeUp}
             style={{
               display: 'flex', flexDirection: 'column',

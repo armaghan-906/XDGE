@@ -45,7 +45,7 @@ export function VideoBackground({
     : null;
 
   return (
-    <motion.div
+    <motion.div data-no-reveal
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.2, ease: "easeOut" }}

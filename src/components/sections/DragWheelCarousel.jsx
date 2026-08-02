@@ -3,11 +3,17 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
 
 // Boldz-style line mask: each line rises up from behind its clip, one-by-one.
+//
+// This heading is hand-rolled rather than a `SplitHeading` because its three
+// lines have individually different font sizes and one carries a gradient text
+// fill. The motion constants are therefore kept IDENTICAL to SplitHeading's so
+// it reads as the same reveal as every other heading on the site — 130% travel
+// (enough to clear the clip's padding at these line-heights) over 1.4s.
 const lineMask = {
-  hidden: { y: '120%' },
+  hidden: { y: '130%' },
   visible: (i = 0) => ({
     y: '0%',
-    transition: { duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: 0.05 + i * 0.13 },
+    transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.05 + i * 0.13 },
   }),
 };
 
@@ -228,7 +234,7 @@ export function DragWheelCarousel() {
           }}
         >
           <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em', marginBottom: 0 }}>
-            <motion.span custom={0} variants={lineMask} style={{
+            <motion.span data-no-reveal custom={0} variants={lineMask} style={{
               display: 'block',
               fontSize: 'clamp(14px, 2vw, 24px)',
               fontWeight: 800,
@@ -239,7 +245,7 @@ export function DragWheelCarousel() {
             </motion.span>
           </span>
           <span style={{ display: 'block', overflow: 'hidden', paddingBottom: 0, marginBottom: 'clamp(-8px, -0.6vw, -2px)' }}>
-            <motion.span custom={1} variants={lineMask} style={{
+            <motion.span data-no-reveal custom={1} variants={lineMask} style={{
               display: 'block',
               fontSize: 'clamp(48px, 16vw, 220px)',
               fontWeight: 900,
@@ -253,7 +259,7 @@ export function DragWheelCarousel() {
             </motion.span>
           </span>
           <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
-            <motion.span className="hollow-text" custom={2} variants={lineMask} style={{
+            <motion.span data-no-reveal className="hollow-text" custom={2} variants={lineMask} style={{
               display: 'block',
               fontSize: 'clamp(28px, 6vw, 84px)',
               fontWeight: 900,
@@ -318,7 +324,12 @@ export function DragWheelCarousel() {
           images together rather than anything about the cards themselves.
           The heading above still animates, so the section is not static. */}
       <div>
+      {/* The drag surface owns its children's transforms every frame, so the CSS
+          reveal engine must stay out of this subtree entirely. This used to be
+          matched by sniffing for `cursor: grab` in the inline style; the marker
+          is explicit now. */}
       <motion.div
+        data-no-reveal
         ref={containerRef}
         drag="x"
         dragConstraints={{ left: 0, right: 0 }} // We handle the actual movement via progressRaw

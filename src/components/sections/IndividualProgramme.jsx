@@ -120,7 +120,7 @@ export function IndividualProgramme() {
             }}
           >
             {items.map((it) => (
-              <motion.li
+              <motion.li data-no-reveal
                 key={it.title}
                 variants={listItem}
                 style={{

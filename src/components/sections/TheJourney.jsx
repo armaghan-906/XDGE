@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { theme, fadeUp, stagger } from '../../theme';
+import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
@@ -108,7 +108,6 @@ const steps = [
 
 const fadeEase = [0.22, 1, 0.36, 1];
 
-import { FloatingVideo } from '../primitives/FloatingVideo';
 
 export function TheJourney() {
   return (
@@ -126,38 +125,23 @@ export function TheJourney() {
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         <Group style={{ display: 'flex', flexDirection: 'column', marginBottom: 'clamp(56px, 8vw, 96px)' }}>
           <div style={{ position: 'relative', alignSelf: 'center', textAlign: 'center', padding: '40px 0' }}>
-            <FloatingVideo 
-              src="/assets/videos/lightning_3.mp4" 
-              style={{ 
-                top: '50%', 
-                left: '50%', 
-                transform: 'translate(-50%, -50%) scale(1.5)', 
-                opacity: 0.5, 
-                mixBlendMode: 'screen', 
-                zIndex: -1 
-              }} 
-            />
-            <motion.h2
-              data-no-reveal
-              variants={stagger}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+            <SplitHeading
+              lines={[
+                <span style={{ whiteSpace: 'nowrap' }}>
+                  <span className="hollow-text" style={{ paddingRight: '0.2em' }}>THE</span>{' '}
+                  <span className="cyan-text">JOURNEY</span>
+                </span>,
+              ]}
               style={{
                 fontFamily: theme.display, fontWeight: 900,
                 fontSize: 'clamp(40px, 11.3vw, 200px)',
                 lineHeight: 0.95, letterSpacing: '-0.02em',
-                margin: 0, textTransform: 'uppercase', textAlign: 'center'
+                textTransform: 'uppercase', textAlign: 'center'
               }}
-            >
-              <motion.span variants={fadeUp} style={{ display: 'block' }}>
-                <span className="hollow-text" style={{ paddingRight: '0.2em' }}>THE</span>{' '}
-                <span className="cyan-text">JOURNEY</span>
-              </motion.span>
-            </motion.h2>
+            />
           </div>
 
-          <motion.div variants={fadeUp} style={{ 
+          <motion.div data-no-reveal variants={fadeUp} style={{ 
             alignSelf: 'flex-end', 
             display: 'flex', 
             flexDirection: 'column', 

@@ -165,7 +165,6 @@ const ArrowRight = (
   </svg>
 );
 
-import { FloatingVideo } from '../primitives/FloatingVideo';
 
 export function ProvenOutcomes() {
   const [index, setIndex] = useState(0);

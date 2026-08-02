@@ -94,7 +94,7 @@ export function CohortProgramme() {
         }} />
 
         <Group className="xg-2" style={{ alignItems: 'flex-start', gap: 'clamp(32px, 6vw, 88px)' }}>
-          <motion.div variants={fadeUp}>
+          <motion.div data-no-reveal variants={fadeUp}>
             <h3 style={{
               fontFamily: theme.display, fontWeight: 900,
               fontSize: 'clamp(36px, 9.3vw, 120px)',
@@ -120,7 +120,7 @@ export function CohortProgramme() {
             }}
           >
             {items.map((it) => (
-              <motion.li
+              <motion.li data-no-reveal
                 key={it.title}
                 variants={listItem}
                 style={{

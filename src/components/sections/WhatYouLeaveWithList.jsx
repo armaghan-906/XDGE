@@ -78,7 +78,7 @@ export function WhatYouLeaveWithList() {
 
         <div className="xg-leave-list">
           {items.map((it) => (
-            <motion.div
+            <motion.div data-no-reveal
               key={it.title}
               variants={rowVariants}
               initial="hidden"
