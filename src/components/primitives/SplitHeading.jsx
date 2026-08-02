@@ -29,12 +29,19 @@ import { useFontsReady } from '../../hooks/useFontsReady';
  */
 const PAD = '0.08em';
 
+// All lines rise TOGETHER — one delay, no per-line offset.
+//
+// This used to cascade at `0.05 + i * 0.13`, so a three-line heading finished
+// 0.26s after it started and the parts read as separate objects arriving one
+// after another rather than as one heading. Each line still has its own clip
+// (that is what makes the mask work at all), but they now share a single
+// timing, so the whole heading lifts as a single block.
 const lineMask = {
   hidden: { y: '130%' },
-  visible: (i = 0) => ({
+  visible: {
     y: '0%',
-    transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.05 + i * 0.13 },
-  }),
+    transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.05 },
+  },
 };
 
 export function SplitHeading({ lines, style, tag = 'h2', lineClasses = [] }) {
@@ -70,7 +77,6 @@ export function SplitHeading({ lines, style, tag = 'h2', lineClasses = [] }) {
           }}
         >
           <motion.span data-no-reveal
-            custom={i}
             variants={lineMask}
             className={lineClasses[i] || undefined}
             style={{ display: 'block' }}

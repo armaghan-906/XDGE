@@ -2,19 +2,21 @@ import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
 
-// Boldz-style line mask: each line rises up from behind its clip, one-by-one.
+// Line mask: all three lines rise from behind their clips TOGETHER, as one block.
 //
 // This heading is hand-rolled rather than a `SplitHeading` because its three
 // lines have individually different font sizes and one carries a gradient text
 // fill. The motion constants are therefore kept IDENTICAL to SplitHeading's so
 // it reads as the same reveal as every other heading on the site — 130% travel
-// (enough to clear the clip's padding at these line-heights) over 1.4s.
+// (enough to clear the clip's padding at these line-heights) over 1.4s, on one
+// shared delay so "BUILD A PROJECT THAT / PROVES / YOUR FUTURE POTENTIAL" arrives
+// as a single heading rather than three parts landing in sequence.
 const lineMask = {
   hidden: { y: '130%' },
-  visible: (i = 0) => ({
+  visible: {
     y: '0%',
-    transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.05 + i * 0.13 },
-  }),
+    transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.05 },
+  },
 };
 
 const items = [
@@ -234,7 +236,7 @@ export function DragWheelCarousel() {
           }}
         >
           <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em', marginBottom: 0 }}>
-            <motion.span data-no-reveal custom={0} variants={lineMask} style={{
+            <motion.span data-no-reveal variants={lineMask} style={{
               display: 'block',
               fontSize: 'clamp(14px, 2vw, 24px)',
               fontWeight: 800,
@@ -245,7 +247,7 @@ export function DragWheelCarousel() {
             </motion.span>
           </span>
           <span style={{ display: 'block', overflow: 'hidden', paddingBottom: 0, marginBottom: 'clamp(-8px, -0.6vw, -2px)' }}>
-            <motion.span data-no-reveal custom={1} variants={lineMask} style={{
+            <motion.span data-no-reveal variants={lineMask} style={{
               display: 'block',
               fontSize: 'clamp(48px, 16vw, 220px)',
               fontWeight: 900,
@@ -259,7 +261,7 @@ export function DragWheelCarousel() {
             </motion.span>
           </span>
           <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
-            <motion.span data-no-reveal className="hollow-text" custom={2} variants={lineMask} style={{
+            <motion.span data-no-reveal className="hollow-text" variants={lineMask} style={{
               display: 'block',
               fontSize: 'clamp(28px, 6vw, 84px)',
               fontWeight: 900,
