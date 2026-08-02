@@ -27,7 +27,39 @@ import { useFontsReady } from '../../hooks/useFontsReady';
  * a jump. `useFontsReady` holds the reveal until metrics are final (capped), so
  * the animation only ever runs against a stable box.
  */
-const PAD = '0.08em';
+// The clip must hide the line BELOW it and nothing else. Every other edge needs
+// slack, because `overflow: hidden` clips all four sides and the line box is
+// smaller than the glyphs that sit in it.
+//
+// BOTTOM (was the only one that existed, at 0.08em): descenders and heavy strokes.
+// TOP: these headings run `line-height` 0.85–0.95, i.e. tighter than the font's
+//   own ascent, so cap-tops sit above the line box and were being shaved. Measured
+//   on the PROVES heading: 26px off the top of the middle line, and 4px off the
+//   hollow line — which uses a different family and weight ('Archivo' 500 vs
+//   'Archivo Black' 900) and so overflows its box by a different amount again.
+// Deliberately VERTICAL only. Side padding was tried and reverted: it does stop a
+// long line being cut, but the clip's border box then extends past the container,
+// and in any section without its own `overflow: hidden` that lands in the
+// document's scrollable area — measured 2200px of scrollWidth against a 1920px
+// viewport on /how-it-works, /cohorts and /about, i.e. the whole page could be
+// scrolled sideways. CSS cannot express "clip Y, leave X alone" either: with one
+// axis visible and the other hidden, the visible one computes to auto. Lines that
+// overflow their container are capped at the source instead, per heading.
+//
+// Each padding is cancelled by an equal negative margin and `box-sizing:
+// content-box`, so the clip's content box — and therefore the layout — is exactly
+// as it was; only the clipping rectangle grows.
+//
+// Travel is 160%, up from 130%, because the bottom padding grew. The line has to
+// clear `height + PAD_BOTTOM` PLUS however far its glyphs overflow their own line
+// box, and at 130% three lines were left peeking before their reveal — measured
+// 3px on PROVES, 9px on IS THIS RIGHT, 12px on OUR PERFORMANCE. The two kickers
+// are the tight case: they set `font-size: 0.45em` on an inner span, so their line
+// box is small while PAD_BOTTOM is a fraction of the h2's much larger size. 160%
+// gives 0.60x the line height of clearance, which covers all of them. Starting
+// further below costs nothing visually — it is hidden either way.
+const PAD_BOTTOM = '0.15em';
+const PAD_TOP = '0.25em';
 
 // All lines rise TOGETHER — one delay, no per-line offset.
 //
@@ -37,7 +69,7 @@ const PAD = '0.08em';
 // (that is what makes the mask work at all), but they now share a single
 // timing, so the whole heading lifts as a single block.
 const lineMask = {
-  hidden: { y: '130%' },
+  hidden: { y: '160%' },
   visible: {
     y: '0%',
     transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.05 },
@@ -65,15 +97,19 @@ export function SplitHeading({ lines, style, tag = 'h2', lineClasses = [] }) {
     >
       {lines.map((l, i) => (
         // The wrapper is the stationary clip; the inner span is what moves.
-        // padding+negative-margin gives descenders/strokes room without
-        // shifting layout.
+        // Padding grows the clipping rectangle on every edge except where the
+        // mask needs it tight; the matching negative margins cancel it out of the
+        // layout, so nothing shifts.
         <span
           key={i}
           style={{
             display: 'block',
             overflow: 'hidden',
-            paddingBottom: PAD,
-            marginBottom: `-${PAD}`,
+            boxSizing: 'content-box',
+            paddingTop: PAD_TOP,
+            marginTop: `-${PAD_TOP}`,
+            paddingBottom: PAD_BOTTOM,
+            marginBottom: `-${PAD_BOTTOM}`,
           }}
         >
           <motion.span data-no-reveal

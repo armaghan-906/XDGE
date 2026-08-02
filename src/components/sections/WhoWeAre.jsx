@@ -59,7 +59,10 @@ export function WhoWeAre() {
             ]}
             style={{
               fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(40px, 11.3vw, 200px)',
+              // Capped below the usual 200px: this line is nowrap inside a container that
+            // stops at maxWidth 1280 while 11.3vw keeps growing, so past a ~1770px
+            // viewport it overflowed and the clip shaved the end off — "WHO ARE WE" measured 1371px against a 1280px container.
+            fontSize: 'clamp(40px, 11.3vw, 185px)',
               lineHeight: 0.92, letterSpacing: '-0.02em',
               textAlign: 'left', margin: 0, textTransform: 'uppercase',
             }}

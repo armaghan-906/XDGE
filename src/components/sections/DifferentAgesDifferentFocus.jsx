@@ -346,7 +346,10 @@ export function DifferentAgesDifferentFocus() {
           lines={['HOW DOES XDGE DIFFER', 'BY AGE AND OUTCOMES?']}
           style={{
             fontFamily: theme.display, fontWeight: 900,
-            fontSize: 'clamp(40px, 11.3vw, 200px)',
+            // Capped below the usual 200px: this line is nowrap inside a container that
+            // stops at maxWidth 1280 while 11.3vw keeps growing, so past a ~1770px
+            // viewport it overflowed and the clip shaved the end off — "BY AGE AND OUTCOMES?" measured 1357px against 1280px.
+            fontSize: 'clamp(40px, 11.3vw, 185px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             marginBottom: 'clamp(28px, 4vw, 40px)',
           }}

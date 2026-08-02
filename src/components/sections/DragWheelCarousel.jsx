@@ -12,11 +12,27 @@ import { theme } from '../../theme';
 // shared delay so "BUILD A PROJECT THAT / PROVES / YOUR FUTURE POTENTIAL" arrives
 // as a single heading rather than three parts landing in sequence.
 const lineMask = {
-  hidden: { y: '130%' },
+  hidden: { y: '160%' },
   visible: {
     y: '0%',
     transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.05 },
   },
+};
+
+// Vertical slack for the clips, matching SplitHeading. `overflow: hidden` was
+// shaving this heading's glyphs — measured 20px off the top and 26px off the
+// bottom of the PROVES line, whose line-height is 0.85, far tighter than the
+// glyphs themselves. Negative margins cancel the padding so layout is unchanged.
+//
+// Each clip must also carry its line's own font-size: these three lines set their
+// size on the INNER span, so an `em` padding here would otherwise resolve against
+// the h2's inherited 24px and be worth ~6px instead of ~55px.
+const clipBox = {
+  display: 'block',
+  overflow: 'hidden',
+  boxSizing: 'content-box',
+  paddingTop: '0.25em',
+  marginTop: '-0.25em',
 };
 
 const items = [
@@ -235,7 +251,7 @@ export function DragWheelCarousel() {
             alignItems: 'flex-start',
           }}
         >
-          <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em', marginBottom: 0 }}>
+          <span style={{ ...clipBox, fontSize: 'clamp(14px, 2vw, 24px)', paddingBottom: '0.04em', marginBottom: 0 }}>
             <motion.span data-no-reveal variants={lineMask} style={{
               display: 'block',
               fontSize: 'clamp(14px, 2vw, 24px)',
@@ -246,7 +262,7 @@ export function DragWheelCarousel() {
               BUILD A PROJECT THAT
             </motion.span>
           </span>
-          <span style={{ display: 'block', overflow: 'hidden', paddingBottom: 0, marginBottom: 'clamp(-8px, -0.6vw, -2px)' }}>
+          <span style={{ ...clipBox, fontSize: 'clamp(48px, 16vw, 220px)', paddingBottom: '0.15em', marginBottom: 'calc(clamp(-8px, -0.6vw, -2px) - 0.15em)' }}>
             <motion.span data-no-reveal variants={lineMask} style={{
               display: 'block',
               fontSize: 'clamp(48px, 16vw, 220px)',
@@ -260,7 +276,7 @@ export function DragWheelCarousel() {
               PROVES
             </motion.span>
           </span>
-          <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.04em' }}>
+          <span style={{ ...clipBox, fontSize: 'clamp(28px, 6vw, 84px)', paddingBottom: '0.15em', marginBottom: '-0.11em' }}>
             <motion.span data-no-reveal className="hollow-text" variants={lineMask} style={{
               display: 'block',
               fontSize: 'clamp(28px, 6vw, 84px)',
