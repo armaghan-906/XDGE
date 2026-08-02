@@ -5,9 +5,21 @@ import { theme } from '../../theme';
 import { Logo } from '../Logo';
 import { Group, Reveal } from '../primitives/Reveal';
 
-// Slower loop so the ambient logo reveal reads as calm rather than busy.
-// The clip is only 1.67s, so at 0.4 it cycles every ~4.2s.
-const HERO_VIDEO_RATE = 0.4;
+// No playbackRate here on purpose — the clip itself is slow.
+//
+// The calm pacing used to come from playbackRate 0.4 on a 1.67s / 30fps / 50-frame
+// source. That does not create frames, it just holds each one 2.5x longer, so the
+// effective rate was 12.5fps: measured with requestVideoFrameCallback as 50 unique
+// frames over 4s, against a page that was itself dropping zero frames. Twelve fps
+// is the judder — slowing a video this way can only ever make it choppier.
+//
+// The asset is now genuinely slow instead: retimed 2.5x with motion-interpolated
+// in-between frames (ffmpeg minterpolate), so it is 4.03s of real 30fps, 121 frames.
+// Same pacing as before, ~30fps instead of 12.5, and 924KB instead of 2.1MB because
+// the source was a wildly overspecced 10.3Mbps for a background loop.
+//
+// So: leave it at native rate. Re-introducing playbackRate would bring the judder
+// straight back.
 
 export function Hero() {
   const videoRef = useRef(null);
@@ -22,7 +34,6 @@ export function Hero() {
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
-    v.playbackRate = HERO_VIDEO_RATE;
     if (inView) v.play().catch(() => {});
     else v.pause();
   }, [inView]);
@@ -51,7 +62,6 @@ export function Hero() {
         muted
         loop
         playsInline
-        onLoadedMetadata={(e) => { e.currentTarget.playbackRate = HERO_VIDEO_RATE; }}
         style={{
           position: 'absolute',
           top: 0, left: 0,
