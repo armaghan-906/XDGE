@@ -5,6 +5,7 @@ import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 import { ParallaxImage } from '../primitives/ParallaxImage';
+import { useScrollLock } from '../../hooks/useScrollLock';
 
 const slides = [
   {
@@ -108,14 +109,13 @@ function CloseIcon() {
 }
 
 function Modal({ slide, onClose }) {
+  useScrollLock(true);
+
   useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') onClose(); };
     window.addEventListener('keydown', onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
     return () => {
       window.removeEventListener('keydown', onKey);
-      document.body.style.overflow = prev;
     };
   }, [onClose]);
 

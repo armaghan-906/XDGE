@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { theme } from '../theme';
+import { useScrollLock } from '../hooks/useScrollLock';
 import { Logo } from './Logo';
 
 const MotionLink = motion(Link);
@@ -87,32 +88,8 @@ export function TopBar() {
   const [sectionTheme, setSectionTheme] = useState('dark');
   const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
-    const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, []);
-
-  // Once the page scrolls, the burger gains a solid disc so it stays legible over
-  // any content (rAF-throttled; state only flips at threshold).
-  useEffect(() => {
-    let raf = 0;
-    const onScroll = () => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        raf = 0;
-        setScrolled(window.scrollY > 48);
-      });
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => { window.removeEventListener('scroll', onScroll); if (raf) cancelAnimationFrame(raf); };
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [open]);
+  // Locks the page behind the panel without the 8px scrollbar reflow — see the hook.
+  useScrollLock(open);
 
   // Detect which section's bg is currently behind the header band, switch colors accordingly.
   // Using IntersectionObserver eliminates forced synchronous layout (layout thrashing) on scroll.
@@ -159,6 +136,10 @@ export function TopBar() {
         transition={{ duration: 0.6, delay: 0.2 }}
         style={{
           position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1100,
+          // Fixed boxes are laid out against the viewport, so when the lock reserves
+          // the scrollbar's width this element would otherwise slide 8px right on its
+          // own while everything else stayed put.
+          paddingRight: 'var(--xg-lock-pad, 0px)',
         }}
       >
         <div style={{

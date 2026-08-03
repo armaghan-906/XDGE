@@ -1,3 +1,15 @@
+html {
+  /* Reserve the scrollbar's space permanently.
+     Opening the menu (and the age-focus modal) sets `body { overflow: hidden }` to
+     lock the scroll, which removes the scrollbar and so widens the viewport —
+     measured 1432px -> 1440px, i.e. everything behind the overlay jumps 8px
+     sideways at the exact moment the panel starts sliding down, and jumps back on
+     close. It is a single reflow rather than dropped frames, which is why the
+     frame timings looked clean while it still read as the animation stuttering.
+     With the gutter always reserved, locking the scroll changes nothing. */
+  scrollbar-gutter: stable;
+}
+
 html,
 body {
   margin: 0;
