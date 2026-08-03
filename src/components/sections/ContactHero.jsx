@@ -1,34 +1,20 @@
 import { motion } from 'framer-motion';
 import { theme } from '../../theme';
 import { HeroAmbient } from '../HeroAmbient';
+import { SplitHeading } from '../primitives/SplitHeading';
 
 function ContactHeading() {
-  const ease = [0.2, 0.7, 0.2, 1];
   return (
-    <h1
-      data-no-reveal
+    <SplitHeading
+      tag="h1"
+      lines={['CONTACT', 'US']}
       style={{
         fontFamily: theme.display, fontWeight: 900,
         fontSize: 'clamp(40px, 11.3vw, 200px)',
-        lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
-        color: theme.base, display: 'block',
-        overflow: 'hidden',
-        paddingBottom: '0.06em',
+        lineHeight: 0.92, letterSpacing: '-0.03em',
+        color: theme.base,
       }}
-    >
-      <motion.span data-no-reveal
-        initial={{ y: '110%' }}
-        animate={{ y: '0%' }}
-        transition={{ duration: 1.0, ease, delay: 0.1 }}
-        style={{ display: 'block' }}
-      >CONTACT</motion.span>
-      <motion.span data-no-reveal
-        initial={{ y: '110%' }}
-        animate={{ y: '0%' }}
-        transition={{ duration: 1.0, ease, delay: 0.22 }}
-        style={{ display: 'block' }}
-      >US</motion.span>
-    </h1>
+    />
   );
 }
 

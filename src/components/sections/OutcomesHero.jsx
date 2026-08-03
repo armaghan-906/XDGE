@@ -1,37 +1,26 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { theme } from '../../theme';
 import { HeroAmbient } from '../HeroAmbient';
+import { SplitHeading } from '../primitives/SplitHeading';
 
-function OutcomesHeading({ y, opacity }) {
+function OutcomesHeading() {
   return (
-    <motion.h1
-      data-no-reveal
+    <SplitHeading
+      tag="h1"
+      lines={['OUTCOMES.']}
       style={{
-        y, opacity,
         fontFamily: theme.display, fontWeight: 900,
         fontSize: 'clamp(40px, 11.3vw, 200px)',
-        lineHeight: 0.92, letterSpacing: '-0.03em', margin: 0,
-        color: theme.base, display: 'block',
-        overflow: 'hidden',
-        paddingBottom: '0.06em',
+        lineHeight: 0.92, letterSpacing: '-0.03em',
+        color: theme.base,
       }}
-    >
-      <motion.span data-no-reveal
-        initial={{ y: '110%' }}
-        animate={{ y: '0%' }}
-        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
-        style={{ display: 'inline-block' }}
-      >OUTCOMES.</motion.span>
-    </motion.h1>
+    />
   );
 }
 
 export function OutcomesHero() {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0.4]);
 
   return (
     <section
@@ -69,7 +58,7 @@ export function OutcomesHero() {
           >
             The
           </motion.div>
-          <OutcomesHeading y={y} opacity={opacity} />
+          <OutcomesHeading />
           <motion.div data-no-reveal
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
