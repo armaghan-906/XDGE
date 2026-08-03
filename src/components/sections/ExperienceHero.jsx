@@ -1,5 +1,3 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
 import { SplitHeading } from '../primitives/SplitHeading';
 import { HeroAmbient } from '../HeroAmbient';
@@ -13,14 +11,9 @@ const pStyle = {
 };
 
 export function ExperienceHero() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0.4]);
 
   return (
     <section
-      ref={ref}
       data-screen-label="01 Experience Hero"
       data-cursor="light"
       data-section-theme="dark"
@@ -38,8 +31,15 @@ export function ExperienceHero() {
         display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
         gap: 'clamp(40px, 6vw, 72px)',
       }}>
-        {/* Two-line hero — "HOW XDGE" (size B) over "WORKS" (size A), cyan X */}
-        <motion.div style={{ y, opacity, marginTop: 8 }}>
+        {/* Two-line hero — "HOW XDGE" (size B) over "WORKS" (size A), cyan X.
+            No scroll parallax on this block. It used to drift up 120px and fade to
+            0.4 opacity as the page scrolled, on top of the mask — which is why this
+            heading read differently from every other one on the site. The section
+            headings all measure the same on both pages (THE JOURNEY 0.70s, OUR
+            PERFORMANCE FORMULA 0.65s, WHAT YOU LEAVE WITH 0.70s, IS THIS RIGHT FOR
+            ME 0.65s); the drift was the only thing setting the hero apart. Dropping
+            it also removes a scroll subscriber. */}
+        <div style={{ marginTop: 8 }}>
           <SplitHeading
             tag="h1"
             lines={[
@@ -58,7 +58,7 @@ export function ExperienceHero() {
               textAlign: 'center',
             }}
           />
-        </motion.div>
+        </div>
 
         {/* Content card — bottom-right */}
         <div className="xg-hero-body" style={{ alignItems: 'flex-end' }}>
