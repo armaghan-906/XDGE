@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useSmallScreen } from '../../hooks/useSmallScreen';
 import { mobileVideo } from '../../utils/mobileVideo';
+import { useVideoAutoplay } from '../../hooks/useVideoAutoplay';
 
 /**
  * VideoBackground — Full-bleed looping video background for hero sections.
@@ -34,16 +35,12 @@ export function VideoBackground({
   const posterSrc = poster || (src ? src.replace(/\.mp4$/, '_poster.jpg') : null);
   const clip = small ? mobileVideo(src) : src;
 
+  // Starting the clip is delegated — on a phone a bare `play()` is not enough.
+  useVideoAutoplay(videoRef, isInView);
+
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = playbackRate;
-      if (isInView) {
-        videoRef.current.play().catch(() => {});
-      } else {
-        videoRef.current.pause();
-      }
-    }
-  }, [src, isInView, playbackRate]);
+    if (videoRef.current) videoRef.current.playbackRate = playbackRate;
+  }, [src, playbackRate]);
 
   if (!src) return null;
 
@@ -75,6 +72,8 @@ export function VideoBackground({
         poster={posterSrc}
         loop
         muted
+        autoPlay
+        preload="metadata"
         playsInline
         style={{
           width: '100%',

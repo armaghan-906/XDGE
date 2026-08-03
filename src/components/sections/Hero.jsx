@@ -1,7 +1,8 @@
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { useInView } from 'framer-motion';
 import { useSmallScreen } from '../../hooks/useSmallScreen';
 import { mobileVideo } from '../../utils/mobileVideo';
+import { useVideoAutoplay } from '../../hooks/useVideoAutoplay';
 import { Link } from 'react-router-dom';
 import { theme } from '../../theme';
 import { Logo } from '../Logo';
@@ -36,12 +37,7 @@ export function Hero() {
   // already gate playback this way; the hero was the one that did not.
   const inView = useInView(videoRef, { margin: '200px' });
 
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (inView) v.play().catch(() => {});
-    else v.pause();
-  }, [inView]);
+  useVideoAutoplay(videoRef, inView);
 
   return (
     <section

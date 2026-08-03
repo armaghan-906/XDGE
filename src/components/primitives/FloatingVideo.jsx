@@ -1,7 +1,8 @@
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useSmallScreen } from '../../hooks/useSmallScreen';
 import { mobileVideo } from '../../utils/mobileVideo';
+import { useVideoAutoplay } from '../../hooks/useVideoAutoplay';
 
 export function FloatingVideo({ src, style }) {
   const videoRef = useRef(null);
@@ -14,15 +15,7 @@ export function FloatingVideo({ src, style }) {
   // most of a scroll — measured as 4 playing videos at any point on the page.
   const isInView = useInView(videoRef, { margin: "150px" });
 
-  useEffect(() => {
-    if (videoRef.current) {
-      if (isInView) {
-        videoRef.current.play().catch(e => console.warn(e));
-      } else {
-        videoRef.current.pause();
-      }
-    }
-  }, [isInView]);
+  useVideoAutoplay(videoRef, isInView);
 
   return (
     <motion.div
@@ -41,7 +34,7 @@ export function FloatingVideo({ src, style }) {
     >
       <video
         ref={videoRef}
-        loop muted playsInline
+        loop muted autoPlay playsInline preload="metadata"
         src={clip}
         style={{
           width: '100%',
