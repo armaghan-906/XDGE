@@ -5,6 +5,7 @@ import { TopBar } from './components/TopBar';
 import { PageTransition } from './components/PageTransition';
 import { ScrollReveal } from './components/ScrollReveal';
 import { MarqueeIdle } from './components/MarqueeIdle';
+import { PerfOverlay } from './components/PerfOverlay';
 import { Footer } from './components/sections/Footer';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -23,6 +24,7 @@ function Layout() {
       <ScrollProgress />
       <ScrollReveal />
       <MarqueeIdle />
+      <PerfOverlay />
       <TopBar />
       <PageTransition />
       <Footer />
