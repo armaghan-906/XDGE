@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
-import { theme, fadeUp, stagger } from '../../theme';
+import { theme } from '../../theme';
 import { FloatingVideo } from '../primitives/FloatingVideo';
+import { SplitHeading } from '../primitives/SplitHeading';
 
 /**
  * CreateYourPath — centered banner heading with a lightning video behind it.
@@ -30,28 +30,28 @@ export function CreateYourPath() {
         }}
       />
       <div style={{ display: 'flex', justifyContent: 'center', width: '100%', position: 'relative', zIndex: 10 }}>
-        <h2
+        {/* Same line mask as every other display heading. This was a plain <h2>,
+            so it only ever got the generic 0.65s CSS fade while the rest of the
+            site rose from behind a clip — which is why it read as not animating.
+            Font size lives on the h2 and the kicker is 0.45em of it (the original
+            5.09vw/11.3vw and 90px/200px are both exactly that ratio), because the
+            clip's em padding resolves against the h2's size, not the line's. */}
+        <SplitHeading
+          lineClasses={['cyan-text', 'hollow-text']}
+          lines={[
+            <span style={{ display: 'block', fontSize: '0.45em', whiteSpace: 'nowrap', paddingLeft: '0.05em' }}>
+              CREATE YOUR OWN PATH &amp;
+            </span>,
+            'LEAVE A TRAIL',
+          ]}
           style={{
             textAlign: 'left',
             fontFamily: theme.display, fontWeight: 900,
+            fontSize: 'clamp(40px, 11.3vw, 200px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
             textTransform: 'uppercase',
-            margin: 0,
           }}
-        >
-          <span
-            className="cyan-text"
-            style={{ display: 'block', fontSize: 'clamp(18px, 5.09vw, 90px)', whiteSpace: 'nowrap', paddingLeft: '0.05em', marginBottom: '0.1em' }}
-          >
-            CREATE YOUR OWN PATH &amp;
-          </span>
-          <span
-            className="hollow-text"
-            style={{ display: 'block', fontSize: 'clamp(40px, 11.3vw, 200px)' }}
-          >
-            LEAVE A TRAIL
-          </span>
-        </h2>
+        />
       </div>
     </section>
   );

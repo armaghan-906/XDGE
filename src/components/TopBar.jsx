@@ -69,6 +69,21 @@ const clip = { display: 'block', overflow: 'hidden', paddingBottom: '0.06em' };
 
 export function TopBar() {
   const [open, setOpen] = useState(false);
+  // Closing via a nav link is not the same as closing via the burger. A link click
+  // also changes route, and that work — unmounting the old page, fetching the lazy
+  // chunk for the new one, resetting scroll, re-scanning for reveals — lands right
+  // in the middle of the overlay's 1s slide-out. Measured: closing alone is a clean
+  // 16.7ms median with zero dropped frames; closing WITH navigation produces a 67ms
+  // frame, a ~4-frame hitch, and that is the stutter.
+  //
+  // The route render is real work and cannot be wished away, so the fix is to make
+  // sure nothing is animating while it happens: a nav click drops the whole
+  // AnimatePresence, so the overlay is gone in the same commit with no exit at all.
+  // Shortening the exit duration was tried first and did nothing — AnimatePresence
+  // animates an exiting child with the props it had before removal, so the new
+  // duration was never read (overlay still left at ~606ms, not 300ms).
+  const [navigating, setNavigating] = useState(false);
+  const closeForNav = () => { setNavigating(true); setOpen(false); };
   const [sectionTheme, setSectionTheme] = useState('dark');
   const [scrolled, setScrolled] = useState(false);
 
@@ -156,7 +171,7 @@ export function TopBar() {
           </div>
 
           <button
-            onClick={() => setOpen((o) => !o)}
+            onClick={() => { setNavigating(false); setOpen((o) => !o); }}
             data-cursor="grow"
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
@@ -204,6 +219,8 @@ export function TopBar() {
         </div>
       </motion.header>
 
+      {/* Dropped entirely on nav so there is no exit to stutter — see above. */}
+      {!navigating && (
       <AnimatePresence>
         {open && (
           <motion.div key="menu-overlay"
@@ -296,7 +313,7 @@ export function TopBar() {
                       variants={linkVariants}
                       initial="hidden"
                       animate="visible"
-                      onClick={() => setOpen(false)}
+                      onClick={closeForNav}
                       data-cursor="grow"
                       whileHover={{ x: 16 }}
                       style={{
@@ -340,7 +357,7 @@ export function TopBar() {
                       variants: linkVariants,
                       initial: 'hidden',
                       animate: 'visible',
-                      onClick: () => setOpen(false),
+                      onClick: closeForNav,
                       'data-cursor': 'grow',
                       whileHover: { x: -10 },
                       style: linkStyle,
@@ -393,6 +410,7 @@ export function TopBar() {
           </motion.div>
         )}
       </AnimatePresence>
+      )}
     </>
   );
 }

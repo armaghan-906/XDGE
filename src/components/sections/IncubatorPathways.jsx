@@ -1,4 +1,5 @@
 import { theme } from '../../theme';
+import { SplitHeading } from '../primitives/SplitHeading';
 
 const sIcon = { width: 26, height: 26, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' };
 const mIcon = { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' };
@@ -55,14 +56,15 @@ export function IncubatorPathways() {
             </div>
             <div style={{ width: 96, height: 2, background: 'rgba(255,255,255,0.55)', margin: 'clamp(14px,1.6vw,20px) 0 clamp(24px,3vw,36px)' }} />
 
-            <h2 style={{
-              fontFamily: theme.display, fontWeight: 900,
-              fontSize: 'clamp(34px, 6vw, 92px)',
-              lineHeight: 1.0, letterSpacing: '-0.02em',
-              margin: 0, color: '#FFFFFF',
-            }}>
-              Entrepreneur &amp; Incubator Pathways
-            </h2>
+            <SplitHeading
+              lines={['Entrepreneur & Incubator Pathways']}
+              style={{
+                fontFamily: theme.display, fontWeight: 900,
+                fontSize: 'clamp(34px, 6vw, 92px)',
+                lineHeight: 1.0, letterSpacing: '-0.02em',
+                color: '#FFFFFF',
+              }}
+            />
 
             <div style={{ width: 96, height: 2, background: 'rgba(255,255,255,0.55)', margin: 'clamp(28px,3.4vw,44px) 0' }} />
 

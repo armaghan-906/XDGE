@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { ParallaxImage } from '../primitives/ParallaxImage';
+import { SplitHeading } from '../primitives/SplitHeading';
 
 const tiers = [
   {
@@ -200,18 +201,21 @@ export function ProgrammeTiers() {
           <div key={tier.name}>
             {/* tier heading — hollow name + tagline + description (About-page style) */}
             <div style={{ marginBottom: 'clamp(28px, 4vw, 48px)' }}>
-              <h3
-                className="hollow-text"
+              {/* Same line mask as every other display heading — this was a plain
+                  <h3>, so it only got the generic CSS fade while the rest of the
+                  site rose from behind a clip. */}
+              <SplitHeading
+                tag="h3"
+                lineClasses={['hollow-text']}
+                lines={[tier.name]}
                 style={{
                   // no fontFamily/fontWeight here — let .hollow-text (thin Archivo)
                   // apply, so these match the hero "OUR" outline thickness.
                   fontSize: 'clamp(48px, 8vw, 120px)',
                   lineHeight: 0.95, letterSpacing: '-0.02em',
-                  margin: 0, textTransform: 'uppercase',
+                  textTransform: 'uppercase',
                 }}
-              >
-                {tier.name}
-              </h3>
+              />
               <div style={{
                 fontWeight: 400,
                 fontSize: 'clamp(26px, 3.2vw, 44px)',
