@@ -32,8 +32,15 @@ export function VideoBackground({
   // 2-9x less work per frame than the desktop source. Poster still covers the gap
   // before the first frame decodes.
   const small = useSmallScreen();
-  const posterSrc = poster || (src ? src.replace(/\.mp4$/, '_poster.jpg') : null);
   const clip = small ? mobileVideo(src) : src;
+
+  // No poster on phones. A poster only shows while the clip has not started, so on
+  // desktop it is invisible — but on a phone, where autoplay can be refused outright
+  // (Low Power Mode) or simply be slow to start, it is what the visitor actually
+  // sees: a still frame sitting in the hero. Reported as "images in the hero on
+  // mobile", and Home reads differently only because its clip does start. Dropping it
+  // means the hero falls back to the section's own black rather than a frozen frame.
+  const posterSrc = small ? undefined : (poster || (src ? src.replace(/\.mp4$/, '_poster.jpg') : null));
 
   // Starting the clip is delegated — on a phone a bare `play()` is not enough.
   useVideoAutoplay(videoRef, isInView);

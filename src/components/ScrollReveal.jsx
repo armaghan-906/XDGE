@@ -121,9 +121,21 @@ export function ScrollReveal() {
           else pending.add(el);
         }
       },
-      // Start the fade ~320px before the element reaches the viewport edge, so
-      // it has finished moving by the time it is actually looked at.
-      { threshold: 0, rootMargin: '0px 0px 320px 0px' }
+      // Fires as the element reaches the viewport edge, not 320px before it.
+      //
+      // 320px of lead was deliberate — "finished moving by the time it is looked
+      // at" — but that is the same mistake the heading mask made, and the numbers
+      // say it plainly. Against a 0.65s transition, 320px of lead means the whole
+      // animation is spent off-screen at any ordinary reading pace: at 300px/s the
+      // visitor sees 0% of it, at 500px/s 2%. The text is simply already settled
+      // when it appears, which is exactly the reported "heading and text are static,
+      // they don't animate" — and it reads that way on a phone in particular, where
+      // 320px is over a third of the viewport.
+      //
+      // Triggering at the edge shows all of it, and there is still room to settle:
+      // an element is on screen for (viewport + its height) / speed, which at
+      // 500px/s on a phone is well over a second against a 0.65s transition.
+      { threshold: 0, rootMargin: '0px' }
     );
 
     const consider = (el) => {

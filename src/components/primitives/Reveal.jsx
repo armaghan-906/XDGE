@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { fadeUp, stagger } from '../../theme';
 
 /**
@@ -21,23 +22,51 @@ import { fadeUp, stagger } from '../../theme';
  * would leave them with no animation at all. The framer-driven children carry
  * `data-no-reveal` individually instead.
  *
- * `once: true` — plays a single time per visit, so there is no ongoing scroll
- * cost and no re-animation when scrolling back up.
+ * ── Why `useInView` and not `whileInView` ───────────────────────────────────
+ *
+ * `whileInView` with `once: true` latches its observer the moment the element is
+ * seen, and if the variant does not resolve on that exact pass the element is
+ * left on `hidden` — opacity 0 — with nothing still watching to correct it. That
+ * is not theoretical: measured on mobile Home, the hero's "View All Programmes"
+ * CTA sat stranded at opacity 0 for the whole session. SplitHeading and the
+ * WhoWeServe cards were both moved off `whileInView` for exactly this, and this
+ * is the last primitive that was still on it.
+ *
+ * `useInView` latches the FACT of having been seen instead, and `animate` is then
+ * free to resolve late. Same single play per visit, same trigger geometry — just
+ * no way to end up permanently invisible.
  */
 
-// Shared trigger geometry. Nested Reveal/Group used to trigger at different
-// amounts (0.15 vs 0.1), so a heading inside a group could start on a different
-// scroll frame than the group around it. One value keeps a section coherent.
-const VIEWPORT = { once: true, amount: 0.15 };
+// Shared trigger geometry: ANY pixel, not a fraction.
+//
+// Nested Reveal/Group used to trigger at different amounts (0.15 vs 0.1), so a
+// heading inside a group could start on a different scroll frame than the group
+// around it. One value keeps a section coherent — but requiring a *fraction* of the
+// element turned out to be able to deadlock it.
+//
+// Measured on mobile Home. The hero CTA's layout position is 790-832, comfortably
+// inside both its copy block (575-832) and the hero section (0-844). But while it
+// sits on `fadeUp`'s hidden state it carries translateY(48px), and a transform
+// counts towards the rendered box — so it was really occupying 838-880, past the
+// section's bottom edge, and the section clips (`overflow: hidden`). Only 6px of 42
+// remained visible: ratio 0.136 against a 0.15 threshold. It missed by 0.014, so it
+// never triggered, so it never left the hidden state that was pushing it out — the
+// offset was preventing the very reveal that would have removed the offset.
+//
+// Any-pixel cannot deadlock that way, and it matches how SplitHeading is armed.
+const VIEWPORT = { once: true };
 
 export function Reveal({ children, variants = fadeUp, ...rest }) {
+  const ref = useRef(null);
+  const seen = useInView(ref, VIEWPORT);
+
   return (
     <motion.div
+      ref={ref}
       data-no-reveal
       variants={variants}
       initial="hidden"
-      whileInView="visible"
-      viewport={VIEWPORT}
+      animate={seen ? 'visible' : 'hidden'}
       {...rest}
     >
       {children}
@@ -46,12 +75,15 @@ export function Reveal({ children, variants = fadeUp, ...rest }) {
 }
 
 export function Group({ children, variants = stagger, ...rest }) {
+  const ref = useRef(null);
+  const seen = useInView(ref, VIEWPORT);
+
   return (
     <motion.div
+      ref={ref}
       variants={variants}
       initial="hidden"
-      whileInView="visible"
-      viewport={VIEWPORT}
+      animate={seen ? 'visible' : 'hidden'}
       {...rest}
     >
       {children}

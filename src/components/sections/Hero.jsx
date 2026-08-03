@@ -57,7 +57,7 @@ export function Hero() {
       <video
         ref={videoRef}
         src={clip}
-        poster="/assets/videos/logo_reveal_poster.jpg"
+        poster={small ? undefined : "/assets/videos/logo_reveal_poster.jpg"}
         preload="auto"
         autoPlay
         muted
