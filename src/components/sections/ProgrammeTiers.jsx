@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { theme, fadeUp } from '../../theme';
+import { theme, fadeUp, cardRise, cardStagger } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { ParallaxImage } from '../primitives/ParallaxImage';
 import { SplitHeading } from '../primitives/SplitHeading';
@@ -109,8 +109,12 @@ const tiers = [
 
 function ProgrammeCard({ card }) {
   return (
-    <article
-      data-reveal
+    // Same reveal as the Insights cards on Home: a framer cardRise inside a
+    // cardStagger Group, so cards lift in one by one instead of all fading
+    // together under the generic CSS reveal.
+    <motion.article
+      data-no-reveal
+      variants={cardRise}
       className="xg-tier-card"
       data-cursor="grow"
       style={{
@@ -168,7 +172,7 @@ function ProgrammeCard({ card }) {
           {card.desc}
         </p>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
@@ -237,6 +241,7 @@ export function ProgrammeTiers() {
 
             <Group
               className="xg-3"
+              variants={cardStagger}
               style={{
                 gap: 'clamp(20px, 2.4vw, 28px)',
                 alignItems: 'stretch',

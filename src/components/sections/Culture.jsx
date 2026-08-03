@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { theme, fadeUp } from '../../theme';
+import { theme, fadeUp, cardRise, cardStagger } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
@@ -52,9 +52,12 @@ export function Culture() {
           </p>
         </Group>
 
-        <Group className="xg-2" style={{ gap: 24, marginBottom: 'clamp(48px, 7vw, 80px)' }}>
-          <div
-            data-reveal
+        {/* Same reveal as the Insights cards on Home — cardRise inside a
+            cardStagger Group, so the two panels lift in one after the other. */}
+        <Group className="xg-2" variants={cardStagger} style={{ gap: 24, marginBottom: 'clamp(48px, 7vw, 80px)' }}>
+          <motion.div
+            data-no-reveal
+            variants={cardRise}
             style={{
               border: `1px solid ${theme.borderLight}`,
               padding: 'clamp(28px, 4vw, 40px)',
@@ -89,10 +92,11 @@ export function Culture() {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          <div
-            data-reveal
+          <motion.div
+            data-no-reveal
+            variants={cardRise}
             style={{
               border: `1px solid ${theme.borderLight}`,
               padding: 'clamp(28px, 4vw, 40px)',
@@ -127,7 +131,7 @@ export function Culture() {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </Group>
 
         <SplitHeading
