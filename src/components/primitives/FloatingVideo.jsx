@@ -1,13 +1,14 @@
 import { useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useSmallScreen } from '../../hooks/useSmallScreen';
+import { mobileVideo } from '../../utils/mobileVideo';
 
 export function FloatingVideo({ src, style }) {
   const videoRef = useRef(null);
-  // These are purely decorative overlays at 0.4 opacity, so on a phone they are
-  // dropped outright rather than swapped for a still — nothing is lost from the
-  // layout and it removes a whole video decode.
+  // Kept on phones, at 640px. These are decorative overlays at 0.4 opacity, so the
+  // smaller source costs nothing visually and decodes for a fraction of the work.
   const small = useSmallScreen();
+  const clip = small ? mobileVideo(src) : src;
   // 150px, matching VideoBackground. At 400px several of these ambient clips on
   // Home counted as "in view" at once, so four were decoding concurrently through
   // most of a scroll — measured as 4 playing videos at any point on the page.
@@ -22,8 +23,6 @@ export function FloatingVideo({ src, style }) {
       }
     }
   }, [isInView]);
-
-  if (small) return null;
 
   return (
     <motion.div
@@ -43,7 +42,7 @@ export function FloatingVideo({ src, style }) {
       <video
         ref={videoRef}
         loop muted playsInline
-        src={src}
+        src={clip}
         style={{
           width: '100%',
           display: 'block',

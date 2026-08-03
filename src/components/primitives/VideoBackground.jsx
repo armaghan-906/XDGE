@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useSmallScreen } from '../../hooks/useSmallScreen';
+import { mobileVideo } from '../../utils/mobileVideo';
 
 /**
  * VideoBackground — Full-bleed looping video background for hero sections.
@@ -26,9 +27,12 @@ export function VideoBackground({
 }) {
   const videoRef = useRef(null);
   const isInView = useInView(videoRef, { margin: "150px" });
-  // Phones get the poster still instead of the clip — see useSmallScreen.
+  // Phones get the clip, just a 640px one — decode scales with pixels, so it is
+  // 2-9x less work per frame than the desktop source. Poster still covers the gap
+  // before the first frame decodes.
   const small = useSmallScreen();
   const posterSrc = poster || (src ? src.replace(/\.mp4$/, '_poster.jpg') : null);
+  const clip = small ? mobileVideo(src) : src;
 
   useEffect(() => {
     if (videoRef.current) {
@@ -65,24 +69,9 @@ export function VideoBackground({
       }}
       aria-hidden="true"
     >
-      {small ? (
-        <img
-          src={posterSrc}
-          alt=""
-          decoding="async"
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            display: 'block',
-            ...maskStyle,
-            ...videoStyle,
-          }}
-        />
-      ) : (
       <video
         ref={videoRef}
-        src={src}
+        src={clip}
         poster={posterSrc}
         loop
         muted
@@ -96,7 +85,6 @@ export function VideoBackground({
           ...videoStyle,
         }}
       />
-      )}
       <div style={{
         position: 'absolute',
         inset: 0,

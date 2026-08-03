@@ -47,16 +47,18 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
   const cardRef = useRef(null);
   const seen = useInView(cardRef, { once: true, amount: 0.15 });
 
+  // Phones keep the parallax at a shorter travel — see ParallaxImage for why a JS
+  // scroll transform always trails the card, and why less travel makes that gap
+  // cover less ground on screen.
+  const small = useSmallScreen();
+  const drift = small ? 10 : 25;
+
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ["start end", "end start"]
   });
 
-  const imgY = useTransform(scrollYProgress, [0, 1], ["-25%", "25%"]);
-
-  // Phones hold the image still — see ParallaxImage for why a JS scroll transform
-  // makes the image trail the card it lives in.
-  const small = useSmallScreen();
+  const imgY = useTransform(scrollYProgress, [0, 1], [`-${drift}%`, `${drift}%`]);
 
   // Promote to its own compositor layer only while the card is near the viewport.
   // `will-change: transform` was set unconditionally, which pinned a full-resolution
@@ -125,13 +127,13 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
               // is already running a scroll-linked parallax.
               style={{
                 position: 'absolute',
-                top: small ? 0 : '-25%',
+                top: `-${drift}%`,
                 left: 0,
                 width: '100%',
-                height: small ? '100%' : '150%',
+                height: `${100 + drift * 2}%`,
                 objectFit: 'cover',
-                willChange: small ? 'auto' : (near ? 'transform' : 'auto'),
-                ...(small ? null : { y: imgY }),
+                willChange: near ? 'transform' : 'auto',
+                y: imgY,
               }}
             />
           </picture>

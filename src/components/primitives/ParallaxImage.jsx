@@ -28,11 +28,22 @@ export function ParallaxImage({
   loading = 'lazy',
 }) {
   const ref = useRef(null);
+
+  // Phones keep the parallax but at a shorter travel. Be clear about the trade: the
+  // page scrolls on the compositor thread while this `y` is computed in JS on the
+  // main thread, so the image can only ever trail the card it sits in — that gap is
+  // what reads as the image juddering, and no amount of tuning removes it entirely.
+  // What a shorter travel does is shrink how far behind it can visibly get: 6% of
+  // the frame instead of 16%, so the same lag in milliseconds covers a third of the
+  // distance on screen.
+  const small = useSmallScreen();
+  const parallax = small ? Math.round(range * 0.4) : range;
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
   });
-  const y = useTransform(scrollYProgress, [0, 1], [`-${range}%`, `${range}%`]);
+  const y = useTransform(scrollYProgress, [0, 1], [`-${parallax}%`, `${parallax}%`]);
 
   // `will-change: transform` used to be set unconditionally, which pinned a
   // separate compositor layer (and its full-resolution texture) for every
@@ -41,14 +52,6 @@ export function ParallaxImage({
   // scroll stutter rather than as anything visibly wrong. Promote only while the
   // image is near the viewport, i.e. only while its parallax is observable.
   const near = useInView(ref, { margin: '300px 0px 300px 0px' });
-
-  // No parallax on phones. The page scrolls on the compositor thread while this
-  // transform is computed in JS on the main thread, so on a phone the image visibly
-  // trails the card it sits in — which reads as the image itself stuttering inside
-  // the card. Holding it still removes the lag outright; there is nothing to fall
-  // behind. It also drops a scroll subscriber per image (seven on this site).
-  const small = useSmallScreen();
-  const parallax = small ? 0 : range;
 
   // /assets/foo.webp -> /assets/foo@1000.jpg  (generated for every referenced image
   // wider than 1100px; webp encoding was unavailable locally, and the decode saving
@@ -82,8 +85,8 @@ export function ParallaxImage({
             height: `${100 + parallax * 2}%`,
             objectFit: 'cover',
             objectPosition,
-            ...(small ? null : { y }),
-            willChange: small ? 'auto' : (near ? 'transform' : 'auto'),
+            y,
+            willChange: near ? 'transform' : 'auto',
             display: 'block',
             ...imgStyle,
           }}
