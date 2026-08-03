@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { theme } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
+import { mobileSrc } from '../../utils/mobileSrc';
+import { useSmallScreen } from '../../hooks/useSmallScreen';
 
 const MotionLink = motion(Link);
 
@@ -51,6 +53,10 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
   });
 
   const imgY = useTransform(scrollYProgress, [0, 1], ["-25%", "25%"]);
+
+  // Phones hold the image still — see ParallaxImage for why a JS scroll transform
+  // makes the image trail the card it lives in.
+  const small = useSmallScreen();
 
   // Promote to its own compositor layer only while the card is near the viewport.
   // `will-change: transform` was set unconditionally, which pinned a full-resolution
@@ -102,30 +108,33 @@ function ServeCard({ card, index, hovered, onEnter, onLeave, style }) {
           }}
           style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}
         >
-          <motion.img
-            src={card.img}
-            alt={card.t}
-            loading="lazy"
-            decoding="async"
-            // Hover zoom intentionally left to CSS (`.xg-glass-solid:hover img`),
-            // as on the Insights and Is-This-Right-For-Me cards. This element also
-            // carried `animate={{ scale: isHovered ? 1.06 : 1 }}`, and since the
-            // CSS rule sets the standalone `scale` property while framer writes
-            // `transform`, the two composed instead of overriding — so hovering
-            // actually zoomed ~1.12, not 1.06. Dropping the JS copy fixes the
-            // doubled zoom and removes a per-hover JS animation on an image that
-            // is already running a scroll-linked parallax.
-            style={{
-              position: 'absolute',
-              top: '-25%',
-              left: 0,
-              width: '100%', 
-              height: '150%',
-              objectFit: 'cover',
-              willChange: near ? 'transform' : 'auto',
-              y: imgY,
-            }}
-          />
+          <picture>
+            <source media="(max-width: 768px)" srcSet={mobileSrc(card.img)} />
+            <motion.img
+              src={card.img}
+              alt={card.t}
+              loading="lazy"
+              decoding="async"
+              // Hover zoom intentionally left to CSS (`.xg-glass-solid:hover img`),
+              // as on the Insights and Is-This-Right-For-Me cards. This element also
+              // carried `animate={{ scale: isHovered ? 1.06 : 1 }}`, and since the
+              // CSS rule sets the standalone `scale` property while framer writes
+              // `transform`, the two composed instead of overriding — so hovering
+              // actually zoomed ~1.12, not 1.06. Dropping the JS copy fixes the
+              // doubled zoom and removes a per-hover JS animation on an image that
+              // is already running a scroll-linked parallax.
+              style={{
+                position: 'absolute',
+                top: small ? 0 : '-25%',
+                left: 0,
+                width: '100%',
+                height: small ? '100%' : '150%',
+                objectFit: 'cover',
+                willChange: small ? 'auto' : (near ? 'transform' : 'auto'),
+                ...(small ? null : { y: imgY }),
+              }}
+            />
+          </picture>
         </motion.div>
         <div style={{
           position: 'absolute', inset: 0,

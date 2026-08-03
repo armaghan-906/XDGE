@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { useSmallScreen } from '../../hooks/useSmallScreen';
 
 /**
  * ParallaxImage — the image drifts vertically inside its frame as the page
@@ -41,6 +42,14 @@ export function ParallaxImage({
   // image is near the viewport, i.e. only while its parallax is observable.
   const near = useInView(ref, { margin: '300px 0px 300px 0px' });
 
+  // No parallax on phones. The page scrolls on the compositor thread while this
+  // transform is computed in JS on the main thread, so on a phone the image visibly
+  // trails the card it sits in — which reads as the image itself stuttering inside
+  // the card. Holding it still removes the lag outright; there is nothing to fall
+  // behind. It also drops a scroll subscriber per image (seven on this site).
+  const small = useSmallScreen();
+  const parallax = small ? 0 : range;
+
   // /assets/foo.webp -> /assets/foo@1000.jpg  (generated for every referenced image
   // wider than 1100px; webp encoding was unavailable locally, and the decode saving
   // is about pixel count rather than format anyway).
@@ -67,14 +76,14 @@ export function ParallaxImage({
           decoding="async"
           style={{
             position: 'absolute',
-            top: `-${range}%`,
+            top: `-${parallax}%`,
             left: 0,
             width: '100%',
-            height: `${100 + range * 2}%`,
+            height: `${100 + parallax * 2}%`,
             objectFit: 'cover',
             objectPosition,
-            y,
-            willChange: near ? 'transform' : 'auto',
+            ...(small ? null : { y }),
+            willChange: small ? 'auto' : (near ? 'transform' : 'auto'),
             display: 'block',
             ...imgStyle,
           }}

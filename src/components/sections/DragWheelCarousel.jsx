@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
+import { mobileSrc } from '../../utils/mobileSrc';
 
 // Line mask: all three lines rise from behind their clips TOGETHER, as one block.
 //
@@ -144,24 +145,27 @@ function Card({ item, index, progress, total }) {
         boxShadow: '0 24px 48px -12px rgba(0,0,0,0.4)',
         background: '#111',
       }}>
-        <img
-          src={item.img}
-          alt={item.title}
-          // Ten of these decode as the section arrives; async keeps that work off
-          // the main thread so a decode can't land inside a scroll frame, and lazy
-          // stops all ten competing during initial page load.
-          decoding="async"
-          loading="lazy"
-          style={{
-            width: '100%', height: '100%',
-            objectFit: 'cover',
-            display: 'block',
-            opacity: 0.8,
-            transition: 'opacity 0.4s ease',
-          }} 
-          onMouseOver={(e) => e.currentTarget.style.opacity = 1}
-          onMouseOut={(e) => e.currentTarget.style.opacity = 0.8}
-        />
+        <picture>
+          <source media="(max-width: 768px)" srcSet={mobileSrc(item.img)} />
+          <img
+            src={item.img}
+            alt={item.title}
+            // Ten of these decode as the section arrives; async keeps that work off
+            // the main thread so a decode can't land inside a scroll frame, and lazy
+            // stops all ten competing during initial page load.
+            decoding="async"
+            loading="lazy"
+            style={{
+              width: '100%', height: '100%',
+              objectFit: 'cover',
+              display: 'block',
+              opacity: 0.8,
+              transition: 'opacity 0.4s ease',
+            }} 
+            onMouseOver={(e) => e.currentTarget.style.opacity = 1}
+            onMouseOut={(e) => e.currentTarget.style.opacity = 0.8}
+          />
+        </picture>
         <div style={{
           position: 'absolute',
           inset: 0,

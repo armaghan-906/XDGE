@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { theme, fadeUp, stagger } from '../../theme';
 import { Group } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
+import { mobileSrc } from '../../utils/mobileSrc';
 
 const svg = {
   width: 22, height: 22, viewBox: '0 0 24 24', fill: 'none',
@@ -76,27 +77,30 @@ export function WhoWeAre() {
               width: '100%', aspectRatio: '4/5',
               borderRadius: 4, overflow: 'hidden', background: '#000000',
             }}>
-              <motion.img
-                src="/assets/who-we-are.webp"
-                alt="XDGE coaching session"
-                loading="lazy"
-                decoding="async"
-                // Lands with the block's fade rather than trailing it — same
-                // retune as the WhoWeServe cards. A 1.4s settle from 1.15 kept
-                // creeping for ~0.5s after the surrounding fadeUp (0.85s) had
-                // finished, which reads as the section dragging.
-                variants={{
-                  hidden: { scale: 1.06 },
-                  visible: { scale: 1, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
-                }}
-                style={{
-                  position: 'absolute', inset: 0,
-                  width: '100%', height: '100%',
-                  objectFit: 'contain',
-                  objectPosition: 'center center',
-                  display: 'block',
-                }}
-              />
+              <picture>
+                <source media="(max-width: 768px)" srcSet={mobileSrc('/assets/who-we-are.webp')} />
+                <motion.img
+                  src="/assets/who-we-are.webp"
+                  alt="XDGE coaching session"
+                  loading="lazy"
+                  decoding="async"
+                  // Lands with the block's fade rather than trailing it — same
+                  // retune as the WhoWeServe cards. A 1.4s settle from 1.15 kept
+                  // creeping for ~0.5s after the surrounding fadeUp (0.85s) had
+                  // finished, which reads as the section dragging.
+                  variants={{
+                    hidden: { scale: 1.06 },
+                    visible: { scale: 1, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
+                  }}
+                  style={{
+                    position: 'absolute', inset: 0,
+                    width: '100%', height: '100%',
+                    objectFit: 'contain',
+                    objectPosition: 'center center',
+                    display: 'block',
+                  }}
+                />
+              </picture>
             </div>
           </motion.div>
 
