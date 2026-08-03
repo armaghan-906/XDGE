@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { useInView } from 'framer-motion';
+import { useSmallScreen } from '../../hooks/useSmallScreen';
 import { Link } from 'react-router-dom';
 import { theme } from '../../theme';
 import { Logo } from '../Logo';
@@ -23,6 +24,8 @@ import { Group, Reveal } from '../primitives/Reveal';
 
 export function Hero() {
   const videoRef = useRef(null);
+  // Phones get the poster still — see useSmallScreen.
+  const small = useSmallScreen();
 
   // Stop decoding once the hero is off-screen. `autoPlay loop` on its own keeps
   // this clip decoding for the whole session — it was still running while the
@@ -53,6 +56,21 @@ export function Hero() {
       {/* Full-bleed 100vh cover video with the logo dead-centre of the first
           viewport — this is now the first thing the visitor sees, since the intro
           preloader that used to precede it has been removed. */}
+      {small ? (
+        <img
+          src="/assets/videos/logo_reveal_poster.jpg"
+          alt=""
+          decoding="async"
+          style={{
+            position: 'absolute',
+            top: 0, left: 0,
+            width: '100%',
+            height: '100vh',
+            objectFit: 'cover',
+            zIndex: 1,
+          }}
+        />
+      ) : (
       <video
         ref={videoRef}
         src="/assets/videos/logo_reveal.mp4"
@@ -71,6 +89,7 @@ export function Hero() {
           zIndex: 1,
         }}
       />
+      )}
       <div style={{
         position: 'absolute',
         top: 0, left: 0,

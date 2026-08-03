@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useSmallScreen } from '../../hooks/useSmallScreen';
 
 /**
  * VideoBackground — Full-bleed looping video background for hero sections.
@@ -25,6 +26,9 @@ export function VideoBackground({
 }) {
   const videoRef = useRef(null);
   const isInView = useInView(videoRef, { margin: "150px" });
+  // Phones get the poster still instead of the clip — see useSmallScreen.
+  const small = useSmallScreen();
+  const posterSrc = poster || (src ? src.replace(/\.mp4$/, '_poster.jpg') : null);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -61,10 +65,25 @@ export function VideoBackground({
       }}
       aria-hidden="true"
     >
+      {small ? (
+        <img
+          src={posterSrc}
+          alt=""
+          decoding="async"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block',
+            ...maskStyle,
+            ...videoStyle,
+          }}
+        />
+      ) : (
       <video
         ref={videoRef}
         src={src}
-        poster={poster}
+        poster={posterSrc}
         loop
         muted
         playsInline
@@ -77,6 +96,7 @@ export function VideoBackground({
           ...videoStyle,
         }}
       />
+      )}
       <div style={{
         position: 'absolute',
         inset: 0,

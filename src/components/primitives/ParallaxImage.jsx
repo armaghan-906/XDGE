@@ -41,31 +41,45 @@ export function ParallaxImage({
   // image is near the viewport, i.e. only while its parallax is observable.
   const near = useInView(ref, { margin: '300px 0px 300px 0px' });
 
+  // /assets/foo.webp -> /assets/foo@1000.jpg  (generated for every referenced image
+  // wider than 1100px; webp encoding was unavailable locally, and the decode saving
+  // is about pixel count rather than format anyway).
+  const mobileSrc = src ? src.replace(/\.(webp|jpe?g)$/i, '@1000.jpg') : src;
+
   return (
     <div
       ref={ref}
       className={className}
       style={{ position: 'relative', overflow: 'hidden', ...style }}
     >
-      <motion.img
-        src={src}
-        alt={alt}
-        loading={loading}
-        decoding="async"
-        style={{
-          position: 'absolute',
-          top: `-${range}%`,
-          left: 0,
-          width: '100%',
-          height: `${100 + range * 2}%`,
-          objectFit: 'cover',
-          objectPosition,
-          y,
-          willChange: near ? 'transform' : 'auto',
-          display: 'block',
-          ...imgStyle,
-        }}
-      />
+      {/* Phones get a 1000px variant, not the 1600px original. `srcset` alone is no
+          use here: at DPR 3 a 390px phone computes a need of ~1170px and picks the
+          1600px file anyway, which is the opposite of the point. A `<picture>` media
+          condition is the only way to make the choice by viewport rather than by
+          pixel density. Measured on Home: 31MP decoded against 14.7MP the screen can
+          actually show; the variants are 1.0MP each instead of 2.56MP. */}
+      <picture>
+        <source media="(max-width: 768px)" srcSet={mobileSrc} />
+        <motion.img
+          src={src}
+          alt={alt}
+          loading={loading}
+          decoding="async"
+          style={{
+            position: 'absolute',
+            top: `-${range}%`,
+            left: 0,
+            width: '100%',
+            height: `${100 + range * 2}%`,
+            objectFit: 'cover',
+            objectPosition,
+            y,
+            willChange: near ? 'transform' : 'auto',
+            display: 'block',
+            ...imgStyle,
+          }}
+        />
+      </picture>
     </div>
   );
 }

@@ -1,8 +1,13 @@
 import { useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useSmallScreen } from '../../hooks/useSmallScreen';
 
 export function FloatingVideo({ src, style }) {
   const videoRef = useRef(null);
+  // These are purely decorative overlays at 0.4 opacity, so on a phone they are
+  // dropped outright rather than swapped for a still — nothing is lost from the
+  // layout and it removes a whole video decode.
+  const small = useSmallScreen();
   // 150px, matching VideoBackground. At 400px several of these ambient clips on
   // Home counted as "in view" at once, so four were decoding concurrently through
   // most of a scroll — measured as 4 playing videos at any point on the page.
@@ -17,6 +22,8 @@ export function FloatingVideo({ src, style }) {
       }
     }
   }, [isInView]);
+
+  if (small) return null;
 
   return (
     <motion.div
