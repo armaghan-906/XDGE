@@ -241,7 +241,7 @@ export function DragWheelCarousel() {
           data-no-reveal
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '0px 0px 300px 0px' }}
+          viewport={{ once: true }}
           style={{
             fontFamily: theme.display,
             margin: 0,

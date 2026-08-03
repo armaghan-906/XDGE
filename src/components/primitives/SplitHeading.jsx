@@ -86,14 +86,20 @@ export function SplitHeading({ lines, style, tag = 'h2', lineClasses = [] }) {
   // the heading permanently invisible. `useInView` latches the *fact* of having
   // been seen, and the animate target is then free to flip when fonts land.
   //
-  // Fires 300px BEFORE the heading reaches the viewport, not once 20% of it is
-  // already on screen. Together with the shorter mask above this is what stops a
-  // heading arriving late: at `amount: 0.2` + 1.4s, a ~340px heading started only
-  // after 68px of it had appeared and was still animating as it left the screen at
-  // anything past ~800px/s of scroll — perfect frames the whole time, but the
-  // content visibly trailing the scroll. 300px early + 0.8s settles it before it
-  // is read. Matches how the plain-text reveal has always been armed.
-  const seen = useInView(ref, { once: true, margin: '0px 0px 300px 0px' });
+  // Fires the moment the heading's first pixel enters the viewport — no margin,
+  // no `amount`. Both of the alternatives are wrong in opposite directions, and
+  // the numbers are stark for a ~340px heading against a 0.8s mask:
+  //
+  //   amount: 0.2   starts only after 68px is already on screen -> arrives late,
+  //                 and at the old 1.4s it was still animating as it left
+  //   300px early   the rise is largely OVER before you can see it: at 300px/s
+  //                 you see 0% of it, at 600px/s only 38%
+  //   at entry      100% of the rise is on screen at every speed, and it still
+  //                 settles in time up to ~1000px/s
+  //
+  // The whole point of the mask is watching the line come up from behind its clip,
+  // so it has to start exactly when there is something to watch.
+  const seen = useInView(ref, { once: true });
 
   return (
     <Tag
