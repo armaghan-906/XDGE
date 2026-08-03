@@ -15,7 +15,7 @@ const lineMask = {
   hidden: { y: '160%' },
   visible: {
     y: '0%',
-    transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.05 },
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.05 },
   },
 };
 
@@ -241,7 +241,7 @@ export function DragWheelCarousel() {
           data-no-reveal
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, margin: '0px 0px 300px 0px' }}
           style={{
             fontFamily: theme.display,
             margin: 0,
