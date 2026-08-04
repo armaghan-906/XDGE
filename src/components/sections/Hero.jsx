@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { useInView } from 'framer-motion';
 import { useSmallScreen } from '../../hooks/useSmallScreen';
-import { mobileVideo } from '../../utils/mobileVideo';
 import { useVideoAutoplay } from '../../hooks/useVideoAutoplay';
 import { Link } from 'react-router-dom';
 import { theme } from '../../theme';
@@ -26,9 +25,9 @@ import { Group, Reveal } from '../primitives/Reveal';
 
 export function Hero() {
   const videoRef = useRef(null);
-  // Phones get a 640px cut of the same clip rather than the desktop file.
+  // No hero video on phones — see VideoBackground for the full reasoning. The lockup
+  // and copy carry the hero on their own; the section's black is the backdrop.
   const small = useSmallScreen();
-  const clip = small ? mobileVideo('/assets/videos/logo_reveal.mp4') : '/assets/videos/logo_reveal.mp4';
 
   // Stop decoding once the hero is off-screen. `autoPlay loop` on its own keeps
   // this clip decoding for the whole session — it was still running while the
@@ -54,24 +53,26 @@ export function Hero() {
       {/* Full-bleed 100vh cover video with the logo dead-centre of the first
           viewport — this is now the first thing the visitor sees, since the intro
           preloader that used to precede it has been removed. */}
-      <video
-        ref={videoRef}
-        src={clip}
-        poster={small ? undefined : "/assets/videos/logo_reveal_poster.jpg"}
-        preload="auto"
-        autoPlay
-        muted
-        loop
-        playsInline
-        style={{
-          position: 'absolute',
-          top: 0, left: 0,
-          width: '100%',
-          height: '100vh',
-          objectFit: 'cover',
-          zIndex: 1,
-        }}
-      />
+      {!small && (
+        <video
+          ref={videoRef}
+          src="/assets/videos/logo_reveal.mp4"
+          poster="/assets/videos/logo_reveal_poster.jpg"
+          preload="auto"
+          autoPlay
+          muted
+          loop
+          playsInline
+          style={{
+            position: 'absolute',
+            top: 0, left: 0,
+            width: '100%',
+            height: '100vh',
+            objectFit: 'cover',
+            zIndex: 1,
+          }}
+        />
+      )}
       <div style={{
         position: 'absolute',
         top: 0, left: 0,

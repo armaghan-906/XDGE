@@ -1,7 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useSmallScreen } from '../../hooks/useSmallScreen';
-import { mobileVideo } from '../../utils/mobileVideo';
 import { useVideoAutoplay } from '../../hooks/useVideoAutoplay';
 
 /**
@@ -28,19 +27,18 @@ export function VideoBackground({
 }) {
   const videoRef = useRef(null);
   const isInView = useInView(videoRef, { margin: "150px" });
-  // Phones get the clip, just a 640px one — decode scales with pixels, so it is
-  // 2-9x less work per frame than the desktop source. Poster still covers the gap
-  // before the first frame decodes.
-  const small = useSmallScreen();
-  const clip = small ? mobileVideo(src) : src;
 
-  // No poster on phones. A poster only shows while the clip has not started, so on
-  // desktop it is invisible — but on a phone, where autoplay can be refused outright
-  // (Low Power Mode) or simply be slow to start, it is what the visitor actually
-  // sees: a still frame sitting in the hero. Reported as "images in the hero on
-  // mobile", and Home reads differently only because its clip does start. Dropping it
-  // means the hero falls back to the section's own black rather than a frozen frame.
-  const posterSrc = small ? undefined : (poster || (src ? src.replace(/\.mp4$/, '_poster.jpg') : null));
+  // No hero video on phones at all — not a smaller clip, not a poster still.
+  //
+  // This has been through both other positions: a poster instead of the clip (which
+  // showed as a frozen frame sitting in the hero), then a 640px clip (which plays,
+  // but is still a video decoding continuously on a device that has to composite it
+  // against everything else). Removed outright now, so the hero falls back to the
+  // section's own background and a phone does no video work in the hero.
+  //
+  // FloatingVideo is untouched: those are mid-page decorative overlays, not heroes.
+  const small = useSmallScreen();
+  const posterSrc = poster || (src ? src.replace(/\.mp4$/, '_poster.jpg') : null);
 
   // Starting the clip is delegated — on a phone a bare `play()` is not enough.
   useVideoAutoplay(videoRef, isInView);
@@ -49,7 +47,7 @@ export function VideoBackground({
     if (videoRef.current) videoRef.current.playbackRate = playbackRate;
   }, [src, playbackRate]);
 
-  if (!src) return null;
+  if (!src || small) return null;
 
   const maskStyle = edgeFade
     ? {
@@ -75,7 +73,7 @@ export function VideoBackground({
     >
       <video
         ref={videoRef}
-        src={clip}
+        src={src}
         poster={posterSrc}
         loop
         muted
