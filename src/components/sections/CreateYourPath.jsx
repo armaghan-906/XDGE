@@ -1,9 +1,8 @@
 import { theme } from '../../theme';
-import { FloatingVideo } from '../primitives/FloatingVideo';
 import { SplitHeading } from '../primitives/SplitHeading';
 
 /**
- * CreateYourPath — centered banner heading with a lightning video behind it.
+ * CreateYourPath — centered banner heading on the section's own dark ground.
  * CREATE YOUR OWN (outline) / PATH & LEAVE (white) + A TRAIL (gradient).
  */
 export function CreateYourPath() {
@@ -20,15 +19,9 @@ export function CreateYourPath() {
         padding: 'clamp(90px, 11vw, 160px) clamp(20px, 4vw, 40px)',
       }}
     >
-      <FloatingVideo
-        src="/assets/videos/lightning_1.mp4"
-        style={{
-          top: '50%', left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 'clamp(800px, 120vw, 2400px)',
-          opacity: 0.4, zIndex: 0,
-        }}
-      />
+      {/* The lightning_1 loop that used to sit behind this heading is gone. It was
+          the last video on About, and the only thing still fetching an mp4 here on a
+          phone; the heading carries the section on its own. */}
       <div style={{ display: 'flex', justifyContent: 'center', width: '100%', position: 'relative', zIndex: 10 }}>
         {/* Same line mask as every other display heading. This was a plain <h2>,
             so it only ever got the generic 0.65s CSS fade while the rest of the

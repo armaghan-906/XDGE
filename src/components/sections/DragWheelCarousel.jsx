@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { theme } from '../../theme';
 import { mobileSrc } from '../../utils/mobileSrc';
 
@@ -7,16 +7,20 @@ import { mobileSrc } from '../../utils/mobileSrc';
 //
 // This heading is hand-rolled rather than a `SplitHeading` because its three
 // lines have individually different font sizes and one carries a gradient text
-// fill. The motion constants are therefore kept IDENTICAL to SplitHeading's so
-// it reads as the same reveal as every other heading on the site — 130% travel
-// (enough to clear the clip's padding at these line-heights) over 1.4s, on one
-// shared delay so "BUILD A PROJECT THAT / PROVES / YOUR FUTURE POTENTIAL" arrives
-// as a single heading rather than three parts landing in sequence.
+// fill. All three still share ONE delay, so "BUILD A PROJECT THAT / PROVES / YOUR
+// FUTURE POTENTIAL" arrives as a single heading rather than three parts landing in
+// sequence, and the travel is 160% — enough to clear the clip padding at these
+// line-heights.
+//
+// Duration is a deliberate exception at 1.2s against SplitHeading's 0.8s. This is
+// the tallest heading on the site (PROVES runs to 220px), and the same duration that
+// reads as measured on a 40px section heading reads as a snap on glyphs this size,
+// because the distance travelled scales with the font while the time does not.
 const lineMask = {
   hidden: { y: '160%' },
   visible: {
     y: '0%',
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.05 },
+    transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.05 },
   },
 };
 
@@ -146,7 +150,9 @@ function Card({ item, index, progress, total }) {
         background: '#111',
       }}>
         <picture>
-          <source media="(max-width: 768px)" srcSet={mobileSrc(item.img)} />
+          {mobileSrc(item.img) && (
+            <source media="(max-width: 768px)" srcSet={mobileSrc(item.img)} />
+          )}
           <img
             src={item.img}
             alt={item.title}
@@ -214,6 +220,10 @@ function Card({ item, index, progress, total }) {
 
 export function DragWheelCarousel() {
   const containerRef = useRef(null);
+
+  // Any-pixel latch for the heading, matching SplitHeading's trigger geometry.
+  const headingRef = useRef(null);
+  const headingSeen = useInView(headingRef, { once: true });
   
   // Progress value (0 to items.length - 1)
   const progressRaw = useMotionValue(0);
@@ -241,11 +251,16 @@ export function DragWheelCarousel() {
       }}
     >
       <div style={{ marginBottom: 60, position: 'relative', zIndex: 10, padding: '0 clamp(20px, 4vw, 40px)' }}>
+        {/* useInView, not whileInView. `whileInView` with `once: true` releases its
+            observer the moment the element is seen, so if the variant does not resolve
+            on that pass the lines stay on `hidden` — y 160%, parked behind the clip —
+            with nothing left watching to correct it. Every other heading was moved off
+            it for that reason; this one was the last still on it. */}
         <motion.h2
+          ref={headingRef}
           data-no-reveal
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate={headingSeen ? 'visible' : 'hidden'}
           style={{
             fontFamily: theme.display,
             margin: 0,

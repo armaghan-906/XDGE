@@ -1,6 +1,7 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { theme, fadeUp } from '../../theme';
-import { Group } from '../primitives/Reveal';
+import { Reveal } from '../primitives/Reveal';
 import { SplitHeading } from '../primitives/SplitHeading';
 
 const principles = [
@@ -37,6 +38,10 @@ const principles = [
 ];
 
 export function AboutPrinciples() {
+  // Any-pixel latch, matching every other reveal on the site.
+  const introRef = useRef(null);
+  const introSeen = useInView(introRef, { once: true });
+
   return (
     <section
       data-screen-label="Why XDGE Exists"
@@ -64,10 +69,10 @@ export function AboutPrinciples() {
         </div>
 
         <motion.div data-no-reveal
+          ref={introRef}
           variants={fadeUp}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          animate={introSeen ? 'visible' : 'hidden'}
           style={{
             display: 'flex', flexDirection: 'column',
             gap: 10,
@@ -97,10 +102,16 @@ export function AboutPrinciples() {
 
         <div className="xg-principles-list">
           {principles.map((p) => (
-            // Reveal is handled by the global ScrollReveal (`.xg-principle-row`
-            // is in its UNIT list). No framer whileInView here — two reveal
-            // systems on one node fought over opacity and replayed the fade.
-            <div
+            // `Reveal` IS the row — the class goes on its motion.div, so the grid
+            // layout is untouched and no wrapper is inserted.
+            //
+            // These five were on the global CSS engine, which gives every unit the
+            // same 20px lift over 0.65s. Against the 48px `fadeUp` used everywhere
+            // else that barely reads as movement, which is why this section looked
+            // like it just switched on rather than animating. Reveal stamps
+            // `data-no-reveal`, so ScrollReveal skips them and the two systems
+            // cannot fight over opacity the way they did before.
+            <Reveal
               key={p.n}
               className="xg-principle-row"
             >
@@ -149,7 +160,7 @@ export function AboutPrinciples() {
                   />
                 </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
